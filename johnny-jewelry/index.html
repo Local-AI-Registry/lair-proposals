@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style>
+<title>Johnny's Jewelry Playbook</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: one reading column with numbered lessons in order, a live calculator, then the target list. LAIR brand kit. */
+:root{
+  --blue:#1F4FE0; --ink:#0B1A2E; --paper:#F4F1EA; --paper-deep:#ECE6D6; --coral:#FF5A3C;
+  --bg:var(--paper); --surface:#FFFFFF; --fg:var(--ink); --muted:#4a5a72; --line:#d8d2c3;
+  --tint:#E7EDFC; --accent:var(--blue); --accent-fg:#FFFFFF; --good:#1f8a4c; --good-soft:#dff2e6;
+  --logo-ink:#0B1A2E;
+  --display:"Cormorant", "Cormorant Garamond", Georgia, serif;
+  --head:"Bricolage Grotesque", "Hanken Grotesk", system-ui, sans-serif;
+  --body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B1A2E; --surface:#12233B; --fg:#F4F1EA; --muted:#A9B4C6; --line:#24395A;
+  --tint:#18305C; --accent:#6F93FF; --accent-fg:#0B1A2E; --good:#5BD08A; --good-soft:#163A2A; --paper-deep:#162944;
+  --logo-ink:#F4F1EA; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0B1A2E; --surface:#12233B; --fg:#F4F1EA; --muted:#A9B4C6; --line:#24395A;
+  --tint:#18305C; --accent:#6F93FF; --accent-fg:#0B1A2E; --good:#5BD08A; --good-soft:#163A2A; --paper-deep:#162944;
+  --logo-ink:#F4F1EA; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font:400 17px/1.6 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:820px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:28px 72px}
+h1,h2,h3{text-wrap:balance;margin:0}
+p,li{text-wrap:pretty}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px;border-radius:4px}
+
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.lockup{height:22px;width:auto;display:block}
+.lockup .ink{fill:var(--logo-ink)}
+.from{font-size:13px;color:var(--muted)}
+
+.hero{padding-block:44px 30px;border-bottom:1px solid var(--line);display:grid;gap:18px}
+.eyebrow{font:700 12px/1 var(--head);letter-spacing:.12em;text-transform:uppercase;color:var(--accent)}
+.hero h1{font:600 clamp(40px,8vw,68px)/1.02 var(--display);letter-spacing:-.01em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero .lede{font-size:19px;max-width:60ch;color:var(--muted)}
+.goalrow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-top:8px}
+.goal{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;display:grid;gap:2px}
+.goal b{font:800 28px/1.1 var(--head);font-variant-numeric:tabular-nums}
+.goal span{font-size:13px;color:var(--muted);line-height:1.35}
+@media (max-width:560px){.goalrow{grid-template-columns:1fr}}
+
+nav.toc{display:flex;flex-wrap:wrap;gap:8px;padding-block:20px;border-bottom:1px solid var(--line)}
+nav.toc a{font:600 14px/1 var(--head);text-decoration:none;color:var(--fg);background:var(--surface);border:1px solid var(--line);padding:9px 12px;border-radius:999px;white-space:nowrap}
+nav.toc a:hover{border-color:var(--accent);color:var(--accent)}
+
+section{padding-block:48px 8px;display:grid;gap:18px}
+.num{font:600 20px/1 var(--display);color:var(--coral);font-style:italic}
+section h2{font:700 clamp(26px,4.6vw,34px)/1.15 var(--head);letter-spacing:-.015em}
+section h3{font:700 19px/1.3 var(--head);margin-top:6px}
+.prose{display:grid;gap:14px;max-width:65ch}
+.muted{color:var(--muted)}
+.small{font-size:14px}
+
+/* Lesson 1 */
+.shift{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:600px){.shift{grid-template-columns:1fr}}
+.panel{border:1px solid var(--line);border-radius:14px;padding:18px;background:var(--surface);display:grid;gap:10px;align-content:start}
+.panel .tag{font:700 11px/1 var(--head);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.panel.now{border-color:var(--accent);background:var(--tint)}
+.panel.now .tag{color:var(--accent)}
+.q{font:500 15px/1.4 var(--body);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.links{display:grid;gap:6px;font-size:14px}
+.links i{display:block;height:8px;border-radius:4px;background:var(--line)}
+.links i:nth-child(2){width:86%}.links i:nth-child(3){width:92%}.links i:nth-child(4){width:70%}
+.ai-ans{font-size:15px;line-height:1.5}
+.ai-ans b{color:var(--accent)}
+
+.steps{list-style:none;padding:0;margin:0;display:grid;gap:10px;counter-reset:s}
+.steps li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:12px;align-items:start;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px;counter-increment:s}
+.steps li::before{content:counter(s);font:800 16px/36px var(--head);text-align:center;width:36px;height:36px;border-radius:50%;background:var(--accent);color:var(--accent-fg)}
+.steps b{display:block;font:700 16px/1.35 var(--head)}
+.steps span{font-size:15px;color:var(--muted)}
+
+.gloss{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+@media (max-width:600px){.gloss{grid-template-columns:1fr}}
+.gloss div{border-top:2px solid var(--fg);padding-top:8px;font-size:15px}
+.gloss dt{font:700 15px/1.3 var(--head)}
+.gloss dd{margin:2px 0 0;color:var(--muted)}
+
+/* Lesson 2 */
+.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:700px){.cards{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start}
+.card h3{margin:0;font-size:17px}
+.card .rate{font:700 13px/1.3 var(--head);color:var(--accent)}
+.card ul{margin:0;padding-left:18px;font-size:15px;display:grid;gap:4px}
+.edge{background:var(--ink);color:var(--paper);border-radius:16px;padding:22px;display:grid;gap:10px}
+.edge h3{color:var(--paper);margin:0}
+.edge ul{margin:0;padding-left:18px;display:grid;gap:6px}
+.edge .k{color:#9DB6FF;font-weight:600}
+
+/* Lesson 3: script */
+.script{display:grid;gap:12px}
+.line{display:grid;grid-template-columns:96px minmax(0,1fr);gap:14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.line:last-child{border-bottom:0}
+@media (max-width:520px){.line{grid-template-columns:1fr;gap:4px}}
+.who{font:700 12px/1.6 var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.say{font:500 22px/1.35 var(--display);font-style:italic}
+.say.plain{font:400 16px/1.55 var(--body);font-style:normal}
+.prompts{display:grid;gap:8px}
+.prompt{display:flex;gap:10px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:15px}
+.prompt span{min-width:0}
+.btn{font:700 14px/1 var(--head);border:0;border-radius:999px;padding:10px 14px;cursor:pointer;background:var(--paper-deep);color:var(--fg);white-space:nowrap}
+.btn:hover{filter:brightness(.96)}
+.btn.primary{background:var(--accent);color:var(--accent-fg);padding:14px 20px;font-size:16px;text-decoration:none;display:inline-block}
+.objs{display:grid;gap:10px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px}
+summary{font:700 16px/1.35 var(--head);cursor:pointer;list-style-position:outside}
+details p{margin-top:8px;font-size:16px}
+
+.book{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:20px;align-items:center;border:2px solid var(--accent);border-radius:18px;padding:22px;background:var(--tint)}
+@media (max-width:600px){.book{grid-template-columns:1fr}}
+.book h3{margin:0;font-size:22px}
+.book .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:12px}
+.url{font:600 15px/1.3 var(--body);background:var(--surface);border:1px dashed var(--line);border-radius:8px;padding:9px 11px;user-select:all;overflow-wrap:anywhere}
+.qr{background:#fff;padding:10px;border-radius:12px;width:168px;height:168px;display:grid;place-items:center;justify-self:center}
+.qr img,.qr canvas{width:148px;height:148px}
+
+/* Lesson 4: funnel */
+.funnels{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px}
+@media (max-width:640px){.funnels{grid-template-columns:1fr}}
+.funnel{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:10px}
+.funnel h3{margin:0;font-size:16px}
+.bar{display:grid;grid-template-columns:minmax(0,1fr) 56px;gap:10px;align-items:center;font-size:14px}
+.bar .track{height:28px;border-radius:6px;background:var(--bg);position:relative;overflow:hidden}
+.bar .fill{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:6px}
+.bar .fill.c{background:var(--coral)}
+.bar .lab{position:absolute;left:10px;top:50%;transform:translateY(-50%);font-weight:600;color:var(--fg);mix-blend-mode:normal}
+.bar b{font:800 18px/1 var(--head);text-align:right;font-variant-numeric:tabular-nums}
+.big{font:600 clamp(24px,4vw,30px)/1.25 var(--display);max-width:30ch}
+.big b{color:var(--accent);font-weight:600}
+.nos{display:flex;flex-wrap:wrap;gap:5px;align-items:center}
+.dot{width:16px;height:16px;border-radius:50%;background:var(--line)}
+.dot.y{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+
+/* Lesson 5: calculator */
+.calc{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:20px}
+.inputs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 20px}
+@media (max-width:620px){.inputs{grid-template-columns:1fr}}
+.field{display:grid;gap:6px}
+.field label{font:600 14px/1.3 var(--head);display:flex;justify-content:space-between;gap:8px}
+.field label output{font-variant-numeric:tabular-nums;color:var(--accent)}
+.field .hint{font-size:12.5px;color:var(--muted);line-height:1.35}
+input[type=range]{width:100%;accent-color:var(--accent)}
+.adv summary{font-size:14px}
+.adv{background:var(--bg)}
+.adv .inputs{margin-top:14px}
+.results{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:700px){.results{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.res{border-top:3px solid var(--fg);padding-top:8px;display:grid;gap:2px}
+.res.hl{border-color:var(--coral)}
+.res b{font:800 26px/1.1 var(--head);font-variant-numeric:tabular-nums}
+.res span{font-size:13px;color:var(--muted);line-height:1.35}
+.chart{overflow-x:auto}
+.chart svg{display:block;width:100%;min-width:480px;height:auto}
+.chart text{font:500 11px var(--body);fill:var(--muted)}
+.verdict{font:600 18px/1.45 var(--body);background:var(--tint);border-radius:12px;padding:14px 16px}
+
+/* Lesson 6: targets */
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:0;font-size:14.5px}
+th,td{text-align:left;padding:11px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:700 12px/1.2 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:var(--bg)}
+tr:last-child td{border-bottom:0}
+td .n{font:700 15px/1.3 var(--head);display:block}
+td .c{color:var(--muted);font-size:13px}
+.pill{display:inline-block;font:700 11.5px/1 var(--head);padding:5px 8px;border-radius:999px;white-space:nowrap}
+.pill.a{background:var(--accent);color:var(--accent-fg)}
+.pill.b{background:var(--paper-deep);color:var(--fg)}
+.check{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px 18px;font-size:15.5px}
+@media (max-width:560px){.check{grid-template-columns:1fr}}
+.check li{padding-left:26px;position:relative}
+.check li::before{content:"";position:absolute;left:0;top:4px;width:16px;height:16px;border-radius:4px;border:2px solid var(--good)}
+.check.no li::before{border-color:var(--coral);border-radius:50%}
+.week{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+@media (max-width:640px){.week{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.day{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:12px;display:grid;gap:4px;font-size:14px}
+.day b{font:700 13px/1 var(--head);letter-spacing:.06em;text-transform:uppercase;color:var(--accent)}
+/* Illustrations */
+.fig{margin:4px 0 0;display:grid;gap:10px}
+.fig svg{display:block;width:100%;height:auto;max-width:560px}
+.fig figcaption{font-size:14px;color:var(--muted);max-width:60ch}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:14px}
+@media (max-width:640px){.two{grid-template-columns:1fr}}
+.two figure{margin:0;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:8px}
+.two figcaption{font:600 15px/1.4 var(--head);color:var(--fg)}
+.two figcaption span{display:block;font:400 13.5px/1.4 var(--body);color:var(--muted)}
+.ill text{font-family:var(--body)}
+.ill .bg{fill:var(--surface)} .ill .bd{stroke:var(--line);stroke-width:1.5;fill:none}
+.ill .fg{fill:var(--fg)} .ill .mut{fill:var(--muted)} .ill .acc{fill:var(--accent)} .ill .cor{fill:var(--coral)}
+.ill .soft{fill:var(--tint)} .ill .grey{fill:var(--line)} .ill .good{fill:var(--good)} .ill .onacc{fill:var(--accent-fg)}
+.ill .page{fill:var(--bg)}
+.ill .s-acc{stroke:var(--accent)} .ill .s-cor{stroke:var(--coral)} .ill .s-fg{stroke:var(--fg)} .ill .s-mut{stroke:var(--muted)}
+.ill .shop-a{color:var(--accent)} .ill .shop-m{color:var(--muted)}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;list-style:none;padding:0;margin:0}
+@media (max-width:700px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.flow li{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:14px;display:grid;gap:6px;align-content:start}
+.flow svg{width:56px;height:56px}
+.flow b{font:700 15px/1.3 var(--head)}
+.flow b small{display:block;font:700 11px/1.4 var(--head);letter-spacing:.08em;text-transform:uppercase;color:var(--coral)}
+.flow span{font-size:14px;color:var(--muted);line-height:1.45}
+.story{border-left:4px solid var(--coral);padding:4px 0 4px 16px;display:grid;gap:6px}
+.story .say{font-size:24px}
+footer{margin-top:56px;padding-top:20px;border-top:1px solid var(--line);font-size:13px;color:var(--muted);display:grid;gap:6px}
+@media (prefers-reduced-motion:no-preference){.bar .fill{transition:width .5s ease}}
+
+.say-box{background:var(--ink);color:var(--paper);border-radius:14px;padding:16px 18px;display:grid;gap:6px}
+.say-box .lbl{font:700 11px/1 var(--head);letter-spacing:.12em;text-transform:uppercase;color:#9DB6FF}
+.say-box p{font:500 22px/1.35 var(--display);font-style:italic}
+.short{font-size:19px;line-height:1.5;display:grid;gap:8px;max-width:40ch}
+.short p{margin:0}
+.gets{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.gets li{display:flex;gap:10px;align-items:center;font-size:17px}
+.gets li::before{content:"";flex:none;width:20px;height:20px;border-radius:50%;background:var(--good);box-shadow:inset 0 0 0 5px var(--good-soft)}
+@media (prefers-reduced-motion:no-preference){
+  .ill .a-fade{animation:fadeg 3.2s ease-in-out infinite}
+  @keyframes fadeg{0%,35%{opacity:.8}60%,85%{opacity:.15}100%{opacity:.8}}
+  .ill .a-pop{transform-box:fill-box;transform-origin:center;animation:pop 3.2s ease-in-out infinite}
+  @keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.07)}}
+  .ill .a-flow{stroke-dasharray:6 6;animation:flowl .9s linear infinite}
+  @keyframes flowl{to{stroke-dashoffset:-12}}
+  .ill .a-wob{transform-box:fill-box;transform-origin:center;animation:wob 2.4s ease-in-out infinite}
+  @keyframes wob{0%,60%,100%{transform:rotate(0)}70%{transform:rotate(-12deg)}85%{transform:rotate(12deg)}}
+  .ill .a-tilt{transform-box:view-box;transform-origin:170px 38px;animation:tilt 4.5s ease-in-out infinite}
+  @keyframes tilt{0%{transform:rotate(-7deg)}45%,100%{transform:rotate(0)}}
+  .ill .a-prog{stroke-dasharray:280;animation:prog 6s linear infinite}
+  @keyframes prog{0%{stroke-dashoffset:280}70%,100%{stroke-dashoffset:0}}
+  .ill .a-dot{transform-box:fill-box;transform-origin:center;animation:dotp 6s ease-in-out infinite}
+  @keyframes dotp{0%,6%{transform:scale(1.5)}14%,100%{transform:scale(1)}}
+  .flow li{animation:lit 4s ease-in-out infinite}
+  .flow li:nth-child(2){animation-delay:1s}.flow li:nth-child(3){animation-delay:2s}.flow li:nth-child(4){animation-delay:3s}
+  @keyframes lit{0%,22%{border-color:var(--accent);box-shadow:0 0 0 3px var(--tint)}30%,100%{border-color:var(--line);box-shadow:none}}
+  .dot.y{animation:pop2 2s ease-in-out infinite}
+  @keyframes pop2{0%,100%{transform:scale(1)}50%{transform:scale(1.35)}}
+}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+  <div class="top">
+    <svg class="lockup" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1867.45 232.87" role="img" aria-label="Local AI Registry">
+  <g transform="translate(0 22.54) scale(1.878)">
+    <path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/>
+    <path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/>
+  </g>
+  <path transform="translate(237.85 173.34)" d="M46 0L13.800 0L13.800-132L46-132L46 0ZM99.800 0L19.600 0L19.600-27L99.800-27L99.800 0ZM162.800 2.800L162.800 2.800Q146.800 2.800 134.500-3.400Q122.200-9.600 115.200-22Q108.200-34.400 108.200-53L108.200-53Q108.200-71.600 115.200-83.900Q122.200-96.200 134.600-102.300Q147-108.400 163-108.400L163-108.400Q179-108.400 191.400-102.200Q203.800-96 210.800-83.700Q217.800-71.400 217.800-52.800L217.800-52.800Q217.800-33.800 210.600-21.400Q203.400-9 190.900-3.100Q178.400 2.800 162.800 2.800ZM163.800-20.600L163.800-20.600Q171-20.600 175.800-23.900Q180.600-27.200 183-34Q185.400-40.800 185.400-50.800L185.400-50.800Q185.400-61.400 182.800-68.700Q180.200-76 175.100-79.900Q170-83.800 162-83.800L162-83.800Q155.200-83.800 150.300-80.500Q145.400-77.200 143-70.400Q140.600-63.600 140.600-53.400L140.600-53.400Q140.600-37 146.700-28.800Q152.800-20.600 163.800-20.600ZM286.400 2.800L286.400 2.800Q272.800 2.800 262.400-1Q252.000-4.800 245.000-11.900Q238.000-19 234.300-29Q230.600-39 230.600-51.400L230.600-51.400Q230.600-64.200 234.300-74.600Q238.000-85 245.000-92.600Q252.000-100.200 262.200-104.300Q272.400-108.400 285.600-108.400L285.600-108.400Q298.800-108.400 308.400-104.200Q318-100 324.100-92.400Q330.200-84.800 332.400-74.800L332.400-74.800L302.600-64.800Q302-71.400 299.400-75.600Q296.800-79.800 292.700-81.700Q288.600-83.600 283.800-83.600L283.800-83.600Q278.800-83.600 275-81.600Q271.200-79.600 268.600-75.600Q266-71.600 264.600-65.900Q263.200-60.200 263.200-52.800L263.200-52.800Q263.200-42.200 265.900-35.100Q268.600-28 273.900-24.400Q279.200-20.800 286.800-20.800L286.800-20.800Q294.600-20.800 299-24Q303.400-27.200 305.400-31.900Q307.400-36.600 307.800-41.200L307.800-41.200L335.800-35Q335-27.600 331.900-20.700Q328.800-13.800 322.800-8.500Q316.800-3.200 307.900-0.200Q299 2.800 286.400 2.800ZM375.600 2.800L375.600 2.800Q366.800 2.800 360.000-0.700Q353.200-4.200 349.400-10.900Q345.600-17.600 345.600-27.200L345.600-27.200Q345.600-36.200 349.100-42.100Q352.600-48 359.300-51.500Q366.000-55 375.400-57.300Q384.800-59.600 396.800-61.400L396.800-61.400Q402.600-62.400 406.500-63.300Q410.400-64.200 412.400-66.200Q414.400-68.200 414.400-72L414.400-72Q414.400-77 410.800-80.600Q407.200-84.200 399.200-84.200L399.200-84.200Q393.600-84.200 389.100-82.200Q384.600-80.200 381.400-76.400Q378.200-72.600 376.600-67.200L376.600-67.200L348.200-75.600Q350.800-84 355.500-90.200Q360.200-96.400 366.800-100.500Q373.400-104.600 381.900-106.500Q390.400-108.400 400.000-108.400L400.000-108.400Q416.000-108.400 426.100-103.300Q436.200-98.200 441.100-87.500Q446.000-76.800 446.000-60L446.000-60L446.000-43.800Q446.000-36.600 446.300-29.300Q446.600-22 447.100-14.700Q447.600-7.400 448.400 0L448.400 0L420.000 0Q419.200-4.600 418.400-11.100Q417.600-17.600 417.200-24.400L417.200-24.400L413.400-24.400Q410.600-16.800 405.300-10.500Q400.000-4.200 392.500-0.700Q385.000 2.800 375.600 2.800ZM390.200-20L390.200-20Q393.800-20 397.500-21.300Q401.200-22.600 404.600-24.900Q408.000-27.200 410.800-30.600Q413.600-34 415.000-38L415.000-38L414.600-53.800L419.000-52.800Q415.200-50.400 410.600-49Q406.000-47.600 401.300-46.800Q396.600-46 392.100-45.100Q387.600-44.200 384.100-42.800Q380.600-41.400 378.600-39Q376.600-36.600 376.600-32.400L376.600-32.400Q376.600-26.800 380.400-23.400Q384.200-20 390.200-20ZM501.400 0L469.800 0L469.800-144L501.400-144L501.400 0ZM596.600 0L561.400 0L606.200-132L653.400-132L698.200 0L663 0L631.400-106.800L628.200-106.800L596.600 0ZM676.400-24.800L588-24.800L588-46.400L676.400-46.400L676.400-24.800ZM747.600 0L714.800 0L714.800-132L747.600-132L747.600 0ZM852.200 0L820 0L820-132L876.200-132Q887.200-132 896.200-130.300Q905.200-128.600 912.100-125.300Q919-122 923.800-117.300Q928.600-112.600 931-106.500Q933.400-100.400 933.400-93L933.400-93Q933.400-86 931.200-80.400Q929-74.800 924.500-70.600Q920-66.400 913.200-63.800Q906.400-61.200 897.400-60L897.400-60L897.400-57Q908.800-55.800 915.100-51.900Q921.400-48 924.800-41.600Q928.200-35.200 930.800-26.200L930.800-26.200L938.400 0L902.600 0L896.800-24.200Q895-32.200 891.900-36.600Q888.800-41 884-42.700Q879.200-44.400 872-44.400L872-44.400L852.200-44.400L852.200 0ZM852.200-107.600L852.200-68.200L874-68.200Q886.200-68.200 893-73Q899.800-77.800 899.800-88L899.800-88Q899.800-98 893.600-102.800Q887.400-107.600 874.800-107.600L874.800-107.600L852.200-107.600ZM1006.400 2.800L1006.400 2.800Q993.200 2.800 982.800-0.700Q972.400-4.200 965.100-11Q957.800-17.800 954.000-27.800Q950.200-37.800 950.200-50.800L950.200-50.800Q950.200-63.400 953.900-74Q957.600-84.600 964.500-92.300Q971.400-100 981.500-104.200Q991.600-108.400 1004.200-108.400L1004.200-108.400Q1017.000-108.400 1026.700-104.300Q1036.400-100.200 1042.700-92.200Q1049-84.200 1052-72.700Q1055-61.200 1054-46.400L1054-46.400L971.400-45.800L971.400-62.600L1035.600-63.200L1024.200-55.400Q1025.600-65.400 1023.000-71.700Q1020.400-78 1015.400-80.900Q1010.400-83.800 1004.600-83.800L1004.600-83.800Q997.600-83.800 992.300-80Q987.000-76.200 984.000-69Q981.000-61.800 981.000-51.400L981.000-51.400Q981.000-35 988.100-27.600Q995.200-20.200 1006.200-20.200L1006.200-20.200Q1011.600-20.200 1015.200-21.700Q1018.800-23.200 1021.100-25.500Q1023.400-27.800 1024.700-30.600Q1026-33.400 1026.800-36L1026.800-36L1054.800-30Q1053.200-22.600 1049.700-16.600Q1046.200-10.600 1040.300-6.200Q1034.400-1.800 1026.100 0.500Q1017.800 2.800 1006.400 2.800ZM1116.200 37L1116.200 37Q1098.600 37 1087.300 34.300Q1076 31.600 1070.800 26.300Q1065.600 21 1065.600 13.400L1065.600 13.400Q1065.600 4.200 1072.900-1.600Q1080.200-7.400 1094.400-8.200L1094.400-8.200L1094.400-12.400Q1083.400-12.400 1077.500-14.600Q1071.600-16.800 1071.600-22.800L1071.600-22.800Q1071.600-28.400 1077.400-33Q1083.200-37.600 1096.600-40.200L1096.600-40.200L1096.600-44.400Q1084.400-45.400 1077.200-52.500Q1070-59.600 1070-71.200L1070-71.200Q1070-81 1075.600-89.100Q1081.200-97.200 1092.400-102.100Q1103.600-107 1120.400-107L1120.400-107L1175.200-107L1175.200-82.800L1141.800-87.200L1141.800-82.400Q1154.800-80.600 1160.400-76.400Q1166-72.200 1166-64.600L1166-64.600Q1166-56.600 1160.500-50.400Q1155-44.200 1145-40.700Q1135-37.200 1121.200-37.200L1121.200-37.200Q1118.800-37.200 1115.900-37.400Q1113-37.600 1105.200-38.400L1105.200-38.400Q1102-35.600 1100.200-33.700Q1098.400-31.800 1098.400-30.200L1098.400-30.200Q1098.400-29 1099.400-28.200Q1100.400-27.400 1102.300-27.100Q1104.200-26.800 1106.400-26.800L1106.400-26.800L1138.600-26.800Q1142.600-26.800 1149.100-26.300Q1155.600-25.800 1162.100-23.200Q1168.600-20.600 1173.100-14.800Q1177.600-9 1177.600 1.800L1177.600 1.800Q1177.600 13.600 1171 21.500Q1164.400 29.400 1150.800 33.200Q1137.200 37 1116.200 37ZM1120.400 11.400L1120.400 11.400Q1132 11.400 1138.400 10.200Q1144.800 9 1147.300 6.400Q1149.800 3.800 1149.800 0L1149.800 0Q1149.800-3.600 1148.400-5.700Q1147-7.800 1144.800-8.600Q1142.600-9.400 1140.300-9.600Q1138-9.800 1136.400-9.800L1136.400-9.800L1110.600-9.800Q1103.200-9.800 1099.700-6.300Q1096.200-2.800 1096.200 1.800L1096.200 1.800Q1096.200 5.600 1098.600 7.700Q1101 9.800 1106.300 10.600Q1111.600 11.400 1120.400 11.400ZM1119-53.200L1119-53.200Q1127.600-53.200 1131.900-57.800Q1136.200-62.400 1136.200-69.400L1136.200-69.400Q1136.200-77 1131.800-81.900Q1127.400-86.800 1119.200-86.800L1119.200-86.800Q1111-86.800 1106.400-81.900Q1101.800-77 1101.800-69.400L1101.800-69.400Q1101.800-64.800 1103.800-61.100Q1105.800-57.400 1109.600-55.300Q1113.400-53.200 1119-53.200ZM1227.200 0L1195.000 0L1195.000-105.600L1227.200-105.600L1227.200 0ZM1211.200-120.400L1211.200-120.400Q1202.000-120.400 1197.100-124.300Q1192.200-128.200 1192.200-135.400L1192.200-135.400Q1192.200-143 1197.100-146.900Q1202.000-150.800 1211.200-150.800L1211.200-150.800Q1220.600-150.800 1225.500-146.900Q1230.400-143 1230.400-135.600L1230.400-135.600Q1230.400-128.200 1225.500-124.300Q1220.600-120.400 1211.200-120.400ZM1295.400 2.800L1295.400 2.800Q1284.800 2.800 1276.200 0.900Q1267.600-1 1261.200-4.600Q1254.800-8.200 1250.700-13.300Q1246.600-18.400 1245.000-24.600L1245.000-24.600L1269.000-35.200Q1270.400-31.800 1273.900-28.300Q1277.400-24.800 1283.300-22.600Q1289.200-20.400 1297.600-20.400L1297.600-20.400Q1305.600-20.400 1310.100-22.700Q1314.600-25 1314.600-29.400L1314.600-29.400Q1314.600-32.600 1312.100-34.500Q1309.600-36.400 1304.600-37.900Q1299.600-39.400 1292.200-40.800L1292.200-40.800Q1284.600-42.400 1276.800-44.500Q1269.000-46.600 1262.200-50.300Q1255.400-54 1251.300-60.100Q1247.200-66.200 1247.200-75.600L1247.200-75.600Q1247.200-85.400 1252.400-92.700Q1257.600-100 1267.900-104.200Q1278.200-108.400 1293.000-108.400L1293.000-108.400Q1306.200-108.400 1316.200-105Q1326.200-101.600 1332.900-95.300Q1339.600-89 1342.200-80.200L1342.200-80.200L1316.400-71Q1315.400-75.400 1312.300-78.600Q1309.200-81.800 1304.500-83.500Q1299.800-85.200 1293.400-85.200L1293.400-85.200Q1285.600-85.200 1281.300-82.800Q1277.000-80.400 1277.000-76.400L1277.000-76.400Q1277.000-73.200 1279.900-71.100Q1282.800-69 1288.200-67.600Q1293.600-66.200 1301.000-64.600L1301.000-64.600Q1308.800-63 1316.500-60.900Q1324.200-58.800 1330.500-55.300Q1336.800-51.800 1340.500-46.100Q1344.200-40.400 1344.200-31.400L1344.200-31.400Q1344.200-20.800 1338.600-13.100Q1333.000-5.400 1322.100-1.300Q1311.200 2.800 1295.400 2.800ZM1403.200 2.600L1403.200 2.600Q1384.600 2.600 1375.800-7.300Q1367.000-17.200 1367.000-39L1367.000-39L1367.000-80.400L1352.000-80.400L1352.600-105.400L1363.400-105.400Q1369.800-105.600 1373.100-107.400Q1376.400-109.200 1377.200-114.200L1377.200-114.200L1379.800-129L1398.000-129L1398.000-105.600L1423.400-105.600L1423.400-79.400L1398.000-79.400L1398.000-40.400Q1398.000-33.600 1401.300-30.400Q1404.600-27.200 1411.400-27.200L1411.400-27.200Q1415.200-27.200 1418.600-28Q1422.000-28.800 1424.200-30.200L1424.200-30.200L1424.200-0.400Q1417.800 1.600 1412.500 2.100Q1407.200 2.600 1403.200 2.600ZM1475.600 0L1443.200 0L1443.200-49L1443.200-105.600L1469.600-105.600L1470.200-69.800L1474.200-69.800Q1475.600-83.800 1479.500-92.100Q1483.400-100.400 1490.700-104.200Q1498.000-108 1508.800-108L1508.800-108Q1510.400-108 1512.400-107.900Q1514.400-107.800 1517.000-107.400L1517.000-107.400L1515.800-73Q1512.600-74.600 1508.900-75.100Q1505.200-75.600 1502.400-75.600L1502.400-75.600Q1494.600-75.600 1488.900-72.600Q1483.200-69.600 1479.900-63.400Q1476.600-57.200 1475.600-47.800L1475.600-47.800L1475.600 0ZM1573.000 36.800L1573.000 36.800Q1565.000 36.800 1556.600 35.400Q1548.200 34 1540.700 31.300Q1533.200 28.600 1527.800 24.200L1527.800 24.200L1535.600-4.400Q1542.600 2.200 1552.500 5.400Q1562.400 8.600 1571.600 8.600L1571.600 8.600Q1582.200 8.600 1589.100 4.500Q1596.000 0.400 1599.700-8.100Q1603.400-16.600 1604.000-29.200L1604.000-29.200L1605.000-46.600L1600.200-46.600Q1598.400-33.600 1593.900-25.400Q1589.400-17.200 1582.500-13.300Q1575.600-9.400 1566.200-9.400L1566.200-9.400Q1554.600-9.400 1546.800-15.200Q1539.000-21 1535.100-32.700Q1531.200-44.400 1531.200-61.800L1531.200-61.800L1531.200-105.600L1563.600-105.600L1563.600-69.800Q1563.600-51.400 1567.300-43.500Q1571.000-35.600 1579.000-35.600L1579.000-35.600Q1583.200-35.600 1586.600-38Q1590.000-40.400 1592.400-44.800Q1594.800-49.200 1596.100-55.500Q1597.400-61.800 1597.400-69.600L1597.400-69.600L1597.400-105.600L1629.600-105.600L1629.600-28Q1629.600-15.400 1627.300-5Q1625.000 5.400 1620.500 13.200Q1616.000 21 1609.200 26.300Q1602.400 31.600 1593.400 34.200Q1584.400 36.800 1573.000 36.800Z" class="ink"/>
+</svg>
+
+    <span class="from">For Johnny Moon, from Steve Lee</span>
+  </div>
+
+  <header class="hero">
+    <span class="eyebrow">AI Consultant playbook · Jewelers · Orange County</span>
+    <h1>Help jewelers show up when people <em>ask AI.</em></h1>
+    <p class="lede">Read it once. Then say it your way.</p>
+    <div class="goalrow">
+      <div class="goal"><b>$750</b><span>you earn each month, per store that signs</span></div>
+      <div class="goal"><b>14</b><span>stores signed means $10,000 a month</span></div>
+      <div class="goal"><b id="heroConv">~275</b><span>talks with owners to get there</span></div>
+    </div>
+  </header>
+
+  <nav class="toc" aria-label="Sections">
+    <a href="#problem">1 · The problem</a>
+    <a href="#why">2 · Why AI skips</a>
+    <a href="#fix">3 · Our fix</a>
+    <a href="#pitch">4 · Your pitch</a>
+    <a href="#book">5 · Book it</a>
+    <a href="#math">6 · The math</a>
+    <a href="#calc">7 · Calculator</a>
+    <a href="#targets">8 · Where to go</a>
+  </nav>
+
+  <section id="problem">
+    <span class="num">Lesson one</span>
+    <h2>The problem</h2>
+    <div class="short"><p>People used to Google.</p><p>Now they ask AI, like ChatGPT.</p><p>Google showed 10 stores. AI names 2.</p></div>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 360 272" role="img" aria-label="Before: Google shows ten stores. Now: AI names two and hides the rest.">
+<defs><symbol id="shop" viewBox="0 0 16 16"><rect x="0" y="0" width="16" height="5" rx="1" fill="currentColor"/><rect x="1.5" y="5" width="13" height="11" fill="currentColor" opacity=".55"/><rect x="6" y="9" width="4" height="7" fill="currentColor"/></symbol></defs>
+<rect class="bg" x="15" y="15" width="150" height="222" rx="18"/><rect class="bd" x="15" y="15" width="150" height="222" rx="18"/>
+<rect class="soft" x="27" y="35" width="126" height="22" rx="11"/><text x="40" y="50" font-size="10" class="mut">jeweler irvine</text>
+<use href="#shop" class="shop-a" x="27" y="68" width="16" height="16"/><rect class="grey" x="49" y="69" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="78" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="94" width="16" height="16"/><rect class="grey" x="49" y="95" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="104" width="70" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="120" width="16" height="16"/><rect class="grey" x="49" y="121" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="130" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="146" width="16" height="16"/><rect class="grey" x="49" y="147" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="156" width="70" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="172" width="16" height="16"/><rect class="grey" x="49" y="173" width="90" height="5" rx="2.5"/><rect class="grey" x="49" y="182" width="60" height="5" rx="2.5"/><use href="#shop" class="shop-a" x="27" y="198" width="16" height="16"/><rect class="grey" x="49" y="199" width="76" height="5" rx="2.5"/><rect class="grey" x="49" y="208" width="70" height="5" rx="2.5"/>
+<rect class="bg" x="195" y="15" width="150" height="222" rx="18"/><rect class="bd" x="195" y="15" width="150" height="222" rx="18"/>
+<rect class="acc" x="221" y="33" width="114" height="36" rx="11"/>
+<text x="231" y="48" font-size="10" class="onacc">Best jeweler in Irvine</text><text x="231" y="61" font-size="10" class="onacc">for a custom ring?</text>
+<g class="a-pop"><rect class="soft" x="205" y="79" width="126" height="62" rx="11"/>
+<text x="215" y="96" font-size="10" class="fg">Couples love</text>
+<text x="215" y="111" font-size="11" font-weight="700" class="acc">Store A and Store B.</text>
+<text x="215" y="126" font-size="10" class="fg">Both do custom work.</text></g>
+<text x="207" y="158" font-size="9.5" class="mut">Every other store:</text>
+<use href="#shop" class="shop-m a-fade" style="animation-delay:0.0s" x="209" y="166" width="16" height="16"/><use href="#shop" class="shop-m a-fade" style="animation-delay:0.15s" x="230" y="166" width="16" height="16"/><use href="#shop" class="shop-m a-fade" style="animation-delay:0.3s" x="251" y="166" width="16" height="16"/><use href="#shop" class="shop-m a-fade" style="animation-delay:0.44999999999999996s" x="272" y="166" width="16" height="16"/><use href="#shop" class="shop-m a-fade" style="animation-delay:0.6s" x="293" y="166" width="16" height="16"/><use href="#shop" class="shop-m a-fade" style="animation-delay:0.75s" x="314" y="166" width="16" height="16"/>
+<text x="207" y="200" font-size="9.5" class="cor" font-weight="700">Never mentioned</text>
+<text x="90" y="262" text-anchor="middle" font-size="12" font-weight="700" class="fg">Before: Google, 10 stores</text>
+<text x="270" y="262" text-anchor="middle" font-size="12" font-weight="700" class="fg">Now: AI, 2 stores</text>
+</svg>
+<figcaption>If AI doesn't name you, you don't exist.</figcaption>
+</figure>
+    <div class="say-box"><span class="lbl">Say it like this</span><p>"When couples ask AI for a jeweler, it only names two. Are you one of them?"</p></div>
+  </section>
+
+  <section id="why">
+    <span class="num">Lesson two</span>
+    <h2>Why AI skips a store</h2>
+    <div class="short"><p>AI reads about a store all over the internet.</p><p>If the facts don't match, AI doesn't trust it.</p></div>
+    <div class="two">
+<figure><svg class="ill" viewBox="0 0 340 232" role="img" aria-label="Facts do not match, AI is unsure"><line x1="58" y1="32" x2="170" y2="120" class="s-mut" stroke-width="1.5" stroke-dasharray="0"/><line x1="282" y1="32" x2="170" y2="120" class="s-mut" stroke-width="1.5" stroke-dasharray="0"/><line x1="50" y1="120" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="290" y1="120" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="170" y1="204" x2="170" y2="120" class="s-cor" stroke-width="1.5" stroke-dasharray="4 4"/><rect class="bg" x="8" y="14" width="100" height="36" rx="10"/><rect class="bd" x="8" y="14" width="100" height="36" rx="10"/><text x="18" y="29" font-size="10.5" font-weight="700" class="fg">Google</text><text x="18" y="42" font-size="9.5" class="mut">Open 10am</text><circle cx="96" cy="26" r="7" class="good"/><text x="96" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="232" y="14" width="100" height="36" rx="10"/><rect class="bd" x="232" y="14" width="100" height="36" rx="10"/><text x="242" y="29" font-size="10.5" font-weight="700" class="fg">Reviews</text><text x="242" y="42" font-size="9.5" class="mut">312 reviews</text><circle cx="320" cy="26" r="7" class="good"/><text x="320" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="0" y="102" width="100" height="36" rx="10"/><rect class="bd" x="0" y="102" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="10" y="117" font-size="10.5" font-weight="700" class="fg">Directories</text><text x="10" y="130" font-size="9.5" class="cor">Old address</text><circle cx="88" cy="114" r="7" class="cor"/><text x="88" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><rect class="bg" x="240" y="102" width="100" height="36" rx="10"/><rect class="bd" x="240" y="102" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="250" y="117" font-size="10.5" font-weight="700" class="fg">Website</text><text x="250" y="130" font-size="9.5" class="cor">Open 11am</text><circle cx="328" cy="114" r="7" class="cor"/><text x="328" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><rect class="bg" x="120" y="186" width="100" height="36" rx="10"/><rect class="bd" x="120" y="186" width="100" height="36" rx="10" stroke-dasharray="3 3"/><text x="130" y="201" font-size="10.5" font-weight="700" class="fg">News</text><text x="130" y="214" font-size="9.5" class="cor">Nothing</text><circle cx="208" cy="198" r="7" class="cor"/><text x="208" y="201.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">!</text><g class="a-wob"><circle cx="170" cy="120" r="30" class="grey"/><text x="170" y="128" font-size="24" font-weight="800" text-anchor="middle" class="fg">?</text></g></svg><figcaption>Facts don't match<span>AI isn't sure. It skips you.</span></figcaption></figure>
+<figure><svg class="ill" viewBox="0 0 340 232" role="img" aria-label="Facts match, AI trusts the store"><line x1="58" y1="32" x2="170" y2="120" class="s-acc a-flow" stroke-width="2.5"/><line x1="282" y1="32" x2="170" y2="120" class="s-acc a-flow" stroke-width="2.5"/><line x1="50" y1="120" x2="170" y2="120" class="s-acc a-flow" stroke-width="2.5"/><line x1="290" y1="120" x2="170" y2="120" class="s-acc a-flow" stroke-width="2.5"/><line x1="170" y1="204" x2="170" y2="120" class="s-acc a-flow" stroke-width="2.5"/><rect class="bg" x="8" y="14" width="100" height="36" rx="10"/><rect class="bd" x="8" y="14" width="100" height="36" rx="10"/><text x="18" y="29" font-size="10.5" font-weight="700" class="fg">Google</text><text x="18" y="42" font-size="9.5" class="mut">Open 10am</text><circle cx="96" cy="26" r="7" class="good"/><text x="96" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="232" y="14" width="100" height="36" rx="10"/><rect class="bd" x="232" y="14" width="100" height="36" rx="10"/><text x="242" y="29" font-size="10.5" font-weight="700" class="fg">Reviews</text><text x="242" y="42" font-size="9.5" class="mut">312 reviews</text><circle cx="320" cy="26" r="7" class="good"/><text x="320" y="29.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="0" y="102" width="100" height="36" rx="10"/><rect class="bd" x="0" y="102" width="100" height="36" rx="10"/><text x="10" y="117" font-size="10.5" font-weight="700" class="fg">Directories</text><text x="10" y="130" font-size="9.5" class="mut">Same address</text><circle cx="88" cy="114" r="7" class="good"/><text x="88" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="240" y="102" width="100" height="36" rx="10"/><rect class="bd" x="240" y="102" width="100" height="36" rx="10"/><text x="250" y="117" font-size="10.5" font-weight="700" class="fg">Website</text><text x="250" y="130" font-size="9.5" class="mut">Open 10am</text><circle cx="328" cy="114" r="7" class="good"/><text x="328" y="117.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><rect class="bg" x="120" y="186" width="100" height="36" rx="10"/><rect class="bd" x="120" y="186" width="100" height="36" rx="10"/><text x="130" y="201" font-size="10.5" font-weight="700" class="fg">News</text><text x="130" y="214" font-size="9.5" class="mut">Local story</text><circle cx="208" cy="198" r="7" class="good"/><text x="208" y="201.5" font-size="10" font-weight="700" text-anchor="middle" fill="#fff">✓</text><g class="a-pop"><circle cx="170" cy="120" r="30" class="acc"/><text x="170" y="125" font-size="15" font-weight="800" text-anchor="middle" class="onacc">AI</text></g></svg><figcaption>Facts match<span>AI trusts you. It names you.</span></figcaption></figure>
+</div>
+    <div class="say-box"><span class="lbl">Say it like this</span><p>"AI only names stores it trusts. Trust comes from the same facts everywhere."</p></div>
+  </section>
+
+  <section id="fix">
+    <span class="num">Lesson three</span>
+    <h2>How we fix it</h2>
+    <ol class="flow">
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><rect class="soft" x="6" y="8" width="30" height="36" rx="4"/><rect class="grey" x="11" y="15" width="20" height="3" rx="1.5"/><rect class="grey" x="11" y="22" width="16" height="3" rx="1.5"/><rect class="grey" x="11" y="29" width="18" height="3" rx="1.5"/><circle cx="36" cy="34" r="10" class="bg"/><circle cx="36" cy="34" r="10" fill="none" class="s-acc" stroke-width="3.5"/><line x1="43" y1="41" x2="51" y2="49" class="s-acc" stroke-width="4.5" stroke-linecap="round"/></svg><b><small>Step 1</small>We find it</b><span>Everything online about the store.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><rect class="soft" x="8" y="6" width="34" height="44" rx="4"/><circle cx="16" cy="17" r="4" class="good"/><rect class="grey" x="23" y="15" width="14" height="4" rx="2"/><circle cx="16" cy="29" r="4" class="good"/><rect class="grey" x="23" y="27" width="12" height="4" rx="2"/><circle cx="16" cy="41" r="4" class="cor"/><rect class="grey" x="23" y="39" width="14" height="4" rx="2"/><path d="M38 48 L50 30 L54 33 L42 51 L37 52 Z" class="fg"/></svg><b><small>Step 2</small>Owner fixes it</b><span>They check the facts. Free.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><g class="s-acc" stroke-width="2.5" stroke-linecap="round"><line class="a-flow" x1="28" y1="28" x2="10" y2="10"/><line class="a-flow" x1="28" y1="28" x2="46" y2="10"/><line class="a-flow" x1="28" y1="28" x2="10" y2="46"/><line class="a-flow" x1="28" y1="28" x2="46" y2="46"/></g><rect class="soft" x="3" y="3" width="13" height="13" rx="3"/><rect class="soft" x="40" y="3" width="13" height="13" rx="3"/><rect class="soft" x="3" y="40" width="13" height="13" rx="3"/><rect class="soft" x="40" y="40" width="13" height="13" rx="3"/><circle cx="28" cy="28" r="9" class="acc"/><path d="M28 21 L33 30 L23 30 Z" class="onacc"/></svg><b><small>Step 3</small>We spread it</b><span>Same facts, everywhere AI looks.</span></li>
+<li><svg class="ill" viewBox="0 0 56 56" aria-hidden="true"><path d="M6 10 h44 a4 4 0 0 1 4 4 v24 a4 4 0 0 1 -4 4 h-26 l-10 9 v-9 h-8 a4 4 0 0 1 -4 -4 v-24 a4 4 0 0 1 4 -4 z" class="acc"/><use href="#shop" x="13" y="17" width="16" height="16" style="color:var(--accent-fg)"/><path class="cor a-pop" d="M41 18 l2.4 4.9 5.4.8-3.9 3.8.9 5.4-4.8-2.5-4.8 2.5.9-5.4-3.9-3.8 5.4-.8z"/></svg><b><small>Step 4</small>AI names them</b><span>Now AI trusts the store.</span></li>
+</ol>
+    <h3>What they get for $3,000 a month</h3>
+    <ul class="gets">
+      <li>A free AI check first</li>
+      <li>Google profile and reviews handled</li>
+      <li>Listed on the sites AI reads</li>
+      <li>Press and website fixes</li>
+      <li>A report every month</li>
+    </ul>
+    <p class="muted">No contract. Cancel anytime. US team.</p>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 340 196" role="img" aria-label="A scale: one ring sale on one side, one month of LAIR on the other. They balance.">
+<rect class="fg" x="167" y="40" width="6" height="118"/><rect class="fg" x="118" y="156" width="104" height="9" rx="4.5"/>
+<g class="a-tilt">
+<rect class="fg" x="48" y="36" width="244" height="5" rx="2.5"/>
+<line x1="70" y1="41" x2="42" y2="96" class="s-mut" stroke-width="1.5"/><line x1="70" y1="41" x2="98" y2="96" class="s-mut" stroke-width="1.5"/>
+<line x1="270" y1="41" x2="242" y2="96" class="s-mut" stroke-width="1.5"/><line x1="270" y1="41" x2="298" y2="96" class="s-mut" stroke-width="1.5"/>
+<path d="M36 96 h68 a34 12 0 0 1 -68 0 z" class="soft"/><path d="M236 96 h68 a34 12 0 0 1 -68 0 z" class="soft"/>
+<circle cx="70" cy="80" r="11" fill="none" class="s-acc" stroke-width="4"/><path d="M70 56 L78 63 L70 70 L62 63 Z" class="bg"/><path d="M70 56 L78 63 L70 70 L62 63 Z" fill="none" class="s-acc" stroke-width="2"/>
+<rect class="acc" x="246" y="78" width="48" height="16" rx="3"/><rect class="acc" x="249" y="72" width="48" height="16" rx="3" opacity=".7"/>
+<text x="273" y="84" font-size="10" font-weight="800" text-anchor="middle" class="onacc">$3,000</text>
+</g>
+<circle cx="170" cy="38" r="7" class="cor"/>
+<text x="70" y="134" font-size="12" font-weight="700" text-anchor="middle" class="fg">1 ring sale</text>
+<text x="270" y="134" font-size="12" font-weight="700" text-anchor="middle" class="fg">1 month of LAIR</text>
+</svg>
+<figcaption>One more ring a month pays for it.</figcaption>
+</figure>
+    <div class="say-box"><span class="lbl">Say it like this</span><p>"We get AI to trust your store, so it sends you buyers. One ring a month pays for it."</p></div>
+    <h3>Four words to know</h3>
+    <dl class="gloss">
+      <div><dt>AEO</dt><dd>Getting named by AI. This is what we sell.</dd></div>
+      <div><dt>SEO</dt><dd>Showing up on Google.</dd></div>
+      <div><dt>Google profile</dt><dd>The store on Google Maps.</dd></div>
+      <div><dt>AI Score</dt><dd>How much AI trusts a store.</dd></div>
+    </dl>
+  </section>
+
+  <section id="pitch">
+    <span class="num">Lesson four</span>
+    <h2>Your pitch</h2>
+    <div class="story">
+      <span class="eyebrow">Your best line</span>
+      <p class="say">"I'm a jeweler too. This really helped my jewelry business. Now I help other jewelers."</p>
+      <p class="small muted">Owners trust owners. Keep what AI said about your shop, before and after, on your phone.</p>
+    </div>
+    <div class="cards">
+      <div class="card"><h3>Friends</h3><span class="rate">About 1 in 10 sign</span><p class="small">People who know you. Text first.</p></div>
+      <div class="card"><h3>Referrals</h3><span class="rate">About 1 in 7 sign</span><p class="small">Ask suppliers and friends for names.</p></div>
+      <div class="card"><h3>Walk-ins</h3><span class="rate">About 1 in 33 sign</span><p class="small">Tue to Thu mornings. Never Saturday.</p></div>
+    </div>
+    <div class="edge">
+      <h3>Why you win</h3>
+      <ul>
+        <li><span class="k">You're a jeweler.</span> They trust you.</li>
+        <li><span class="k">You use it.</span> It helped your business.</li>
+        <li><span class="k">You know their suppliers.</span> Ask them for intros.</li>
+        <li><span class="k">Wear your work.</span> It starts the talk.</li>
+      </ul>
+    </div>
+    <figure class="fig">
+<svg class="ill" viewBox="0 0 340 92" role="img" aria-label="The visit: say hi, your story, phone test, book it. About five minutes.">
+<line x1="30" y1="44" x2="310" y2="44" class="s-mut" stroke-width="2" opacity=".35"/>
+<line x1="30" y1="44" x2="310" y2="44" class="s-acc a-prog" stroke-width="3"/><circle cx="30" cy="44" r="8" class="acc a-dot" style="animation-delay:0.0s"/><text x="30" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">0:00</text><text x="30" y="78" font-size="12" font-weight="700" text-anchor="middle" class="fg">Say hi</text><circle cx="123" cy="44" r="8" class="acc a-dot" style="animation-delay:1.4s"/><text x="123" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">1:00</text><text x="123" y="78" font-size="12" font-weight="700" text-anchor="middle" class="fg">Your story</text><circle cx="216" cy="44" r="8" class="acc a-dot" style="animation-delay:2.8s"/><text x="216" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">2:00</text><text x="216" y="78" font-size="12" font-weight="700" text-anchor="middle" class="fg">Phone test</text><circle cx="310" cy="44" r="11" class="cor a-dot" style="animation-delay:4.199999999999999s"/><text x="310" y="24" font-size="10.5" font-weight="700" text-anchor="middle" class="mut">4:00</text><text x="310" y="78" font-size="12" font-weight="700" text-anchor="middle" class="fg">Book it</text>
+</svg>
+<figcaption>The whole visit: about 5 minutes.</figcaption>
+</figure>
+    <div class="script">
+      <div class="line"><span class="who">Say hi</span><p class="say">"Hi, I'm Johnny. I'm a jeweler too. Can I show you something? One minute."</p></div>
+      <div class="line"><span class="who">Your story</span><p class="say">"This really helped my business. Want to see what AI says about yours?"</p></div>
+      <div class="line"><span class="who">Phone test</span><p class="say plain">Open ChatGPT. Hand them your phone. Have them type one of these:</p></div>
+    </div>
+    <div class="prompts" id="prompts">
+      <div class="prompt"><span>Best jeweler in Irvine for a custom engagement ring?</span><button class="btn" type="button">Copy</button></div>
+      <div class="prompt"><span>Where should I buy an engagement ring in Orange County?</span><button class="btn" type="button">Copy</button></div>
+      <div class="prompt"><span>Best place to buy a Rolex near Newport Beach?</span><button class="btn" type="button">Copy</button></div>
+    </div>
+    <p class="small muted">Swap in their city.</p>
+    <div class="script">
+      <div class="line"><span class="who">Show the gap</span><p class="say">"See? AI sends buyers to these stores. Not you."</p></div>
+      <div class="line"><span class="who">Ask</span><p class="say">"We do a free AI check. 20 minutes with Steve. What day works?"</p></div>
+    </div>
+    <h3>If they say...</h3>
+    <div class="objs">
+      <details><summary>"How much?"</summary><p>"$3,000 a month. No contract. One ring pays for it."</p></details>
+      <details><summary>"I have an SEO guy."</summary><p>"Keep him. SEO is Google. We do AI. You just saw the gap."</p></details>
+      <details><summary>"I get referrals."</summary><p>"Referrals check AI too. If AI doesn't know you, you lose them."</p></details>
+      <details><summary>"Send me info."</summary><p>"Info won't show what AI says. The free check will. Thursday?"</p></details>
+      <details><summary>"Too busy."</summary><p>"It's 20 minutes. Steve does the talking."</p></details>
+    </div>
+  </section>
+
+  <section id="book">
+    <span class="num">Lesson five</span>
+    <h2>Book it before you leave</h2>
+    <div class="short"><p>"Later" never happens.</p><p>Pick a time together, right there.</p></div>
+    <div class="book">
+      <div>
+        <h3>Book with Steve</h3>
+        <p class="small muted">Free 20-minute AI check. Have them scan the code.</p>
+        <div class="row">
+          <a class="btn primary" href="https://calendly.com/steve-localairegistry" target="_blank" rel="noopener">Open booking page</a>
+          <button class="btn" type="button" id="copyCal">Copy link</button>
+        </div>
+        <p class="url" id="calUrl" style="margin-top:10px">calendly.com/steve-localairegistry</p>
+      </div>
+      <div class="qr" id="qr" aria-label="QR code for the booking page"></div>
+    </div>
+    <p class="small muted">Text them the same day. Check back in 3 days.</p>
+  </section>
+
+  <section id="math">
+    <span class="num">Lesson six</span>
+    <h2>The math</h2>
+    <div class="short"><p>Most people say no.</p><p>That's normal. It's part of the plan.</p></div>
+    <div class="funnels">
+      <div class="funnel">
+        <h3>100 walk-ins</h3>
+        <div class="bar"><div class="track"><div class="fill" style="width:100%;opacity:.18"></div><span class="lab">Talks</span></div><b>100</b></div>
+        <div class="bar"><div class="track"><div class="fill" style="width:15%"></div><span class="lab">Book a call</span></div><b>15</b></div>
+        <div class="bar"><div class="track"><div class="fill c" style="width:3%"></div><span class="lab">Sign</span></div><b>3</b></div>
+      </div>
+      <div class="funnel">
+        <h3>100 friends</h3>
+        <div class="bar"><div class="track"><div class="fill" style="width:100%;opacity:.18"></div><span class="lab">Talks</span></div><b>100</b></div>
+        <div class="bar"><div class="track"><div class="fill" style="width:40%"></div><span class="lab">Book a call</span></div><b>40</b></div>
+        <div class="bar"><div class="track"><div class="fill c" style="width:10%"></div><span class="lab">Sign</span></div><b>10</b></div>
+      </div>
+    </div>
+    <p class="small muted">33 walk-ins. About 1 says yes:</p>
+    <div class="nos" aria-label="32 grey dots and one green dot"><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot y"></span></div>
+    <p class="big">One yes pays you <b>$9,000 a year.</b> So every talk, even a no, earns you about <b>$270.</b></p>
+    <div class="say-box"><span class="lbl">Remember</span><p>"Count talks, not wins."</p></div>
+    <p class="small muted">These are starting guesses. Track your own and update the calculator.</p>
+  </section>
+
+  <section id="calc">
+    <span class="num">Lesson seven</span>
+    <h2>Your $10,000 a month calculator</h2>
+    <div class="short"><p>Move the sliders. Watch your income grow.</p></div>
+    <div class="calc">
+      <div class="inputs">
+        <div class="field">
+          <label for="perWeek">Talks per week <output id="perWeekO"></output></label>
+          <input type="range" id="perWeek" min="2" max="40" step="1" value="10">
+          <span class="hint">Real talks with an owner.</span>
+        </div>
+        <div class="field">
+          <label for="warm">Friends and referrals <output id="warmO"></output></label>
+          <input type="range" id="warm" min="0" max="100" step="5" value="30">
+          <span class="hint">Share of talks with people who know you.</span>
+        </div>
+      </div>
+      <details class="adv">
+        <summary>More settings</summary>
+        <div class="inputs">
+          <div class="field"><label for="coldBook">Walk-ins who book <output id="coldBookO"></output></label><input type="range" id="coldBook" min="5" max="40" step="1" value="15"></div>
+          <div class="field"><label for="coldClose">Of those, who sign <output id="coldCloseO"></output></label><input type="range" id="coldClose" min="5" max="50" step="1" value="20"></div>
+          <div class="field"><label for="warmBook">Friends who book <output id="warmBookO"></output></label><input type="range" id="warmBook" min="10" max="80" step="1" value="40"></div>
+          <div class="field"><label for="warmClose">Of those, who sign <output id="warmCloseO"></output></label><input type="range" id="warmClose" min="5" max="60" step="1" value="25"></div>
+          <div class="field"><label for="price">Store pays per month <output id="priceO"></output></label><input type="range" id="price" min="500" max="5000" step="500" value="3000"></div>
+          <div class="field"><label for="share">Your cut <output id="shareO"></output></label><input type="range" id="share" min="5" max="50" step="5" value="25"></div>
+          <div class="field"><label for="churn">Stores who quit each month <output id="churnO"></output></label><input type="range" id="churn" min="0" max="10" step="1" value="3"></div>
+          <div class="field"><label for="goal">Your monthly goal <output id="goalO"></output></label><input type="range" id="goal" min="2000" max="30000" step="1000" value="10000"></div>
+        </div>
+      </details>
+      <div class="results">
+        <div class="res"><b id="rRate"></b><span>talks per yes</span></div>
+        <div class="res"><b id="rNew"></b><span>new stores a month</span></div>
+        <div class="res"><b id="rNeed"></b><span>stores you need</span></div>
+        <div class="res hl"><b id="rMonths"></b><span>to hit your goal</span></div>
+      </div>
+      <div class="chart" aria-label="Your monthly income over 24 months">
+        <svg id="chart" viewBox="0 0 640 230" role="img"></svg>
+      </div>
+      <p class="verdict" id="verdict"></p>
+    </div>
+  </section>
+
+  <section id="targets">
+    <span class="num">Lesson eight</span>
+    <h2>Where to go first</h2>
+    <div class="short"><p>Family-owned. Real showroom. Lots of reviews.</p><p>Start with La Vita Vital. It's down the street from our office.</p></div>
+    <div class="tablewrap">
+      <table>
+        <thead><tr><th>Store</th><th>Why</th><th>Fit</th></tr></thead>
+        <tbody><tr><td><span class="n">La Vita Vital</span><span class="c">9810 Irvine Center Dr, Irvine</span></td><td>Custom maker. Near our office.</td><td><span class="pill a">Start here</span></td></tr><tr><td><span class="n">Liberty Diamonds</span><span class="c">18009 Sky Park Cir, Irvine</span></td><td>Since 1982. Big on rings.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Kanan Design</span><span class="c">130 E Main St, Tustin</span></td><td>3 generations. All custom.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">South Coast Jeweler</span><span class="c">Santa Ana</span></td><td>About 400 Yelp reviews.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Integrity Jewelers</span><span class="c">Garden Grove</span></td><td>Since 1990. About 530 reviews.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Simone &amp; Son</span><span class="c">Huntington Beach</span></td><td>Since 1945. About 400 reviews.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Nathan Alan Jewelers</span><span class="c">23 Corporate Plaza Dr, Newport Beach</span></td><td>Since 1980. By appointment.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">William Harold &amp; Sons</span><span class="c">Newport Beach</span></td><td>Family owned. Big on rings.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Newport Jewelers</span><span class="c">Newport Beach</span></td><td>Rolex, Cartier, custom.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Fredric H. Rubel</span><span class="c">246 Forest Ave, Laguna Beach</span></td><td>Rolex dealer. 3 generations.</td><td><span class="pill a">A</span></td></tr><tr><td><span class="n">Affinity &amp; Co</span><span class="c">Huntington Beach</span></td><td>Custom. Smaller shop.</td><td><span class="pill b">B</span></td></tr><tr><td><span class="n">JB Diamonds</span><span class="c">369 San Miguel Dr, Newport Beach</span></td><td>Maker since 1983. Good for referrals.</td><td><span class="pill b">B</span></td></tr><tr><td><span class="n">South Bay Jewelry</span><span class="c">Laguna Hills</span></td><td>Since 1969. Custom and estate.</td><td><span class="pill b">B</span></td></tr><tr><td><span class="n">C &amp; R Diamond</span><span class="c">Beach Blvd</span></td><td>About 150 reviews.</td><td><span class="pill b">B</span></td></tr></tbody>
+      </table>
+    </div>
+    <p class="small muted">From public listings, Nov 2026. Check hours before you go.</p>
+    <h3>Good signs</h3>
+    <ul class="check">
+      <li>Real showroom</li>
+      <li>10+ years open</li>
+      <li>100+ reviews</li>
+      <li>Rings, custom or Rolex</li>
+      <li>Already pays for ads</li>
+      <li>Owner is in the store</li>
+    </ul>
+    <h3>Skip</h3>
+    <ul class="check no">
+      <li>Mall kiosks and chains</li>
+      <li>Repair-only shops</li>
+      <li>Pawn and gold buyers</li>
+      <li>Corporate-run stores</li>
+    </ul>
+    <h3>Your week: 10 talks</h3>
+    <div class="week">
+      <div class="day"><b>Mon</b>Text 5 friends. Ask each for 2 names.</div>
+      <div class="day"><b>Tue</b>Walk into 3 stores.</div>
+      <div class="day"><b>Wed</b>Walk into 3 more.</div>
+      <div class="day"><b>Thu</b>Visit friends who said yes.</div>
+      <div class="day"><b>Fri</b>Follow up. Write down every yes and no.</div>
+    </div>
+  </section>
+
+  <footer>
+    <span>Local AI Registry · 9891 Irvine Center Dr, Irvine, CA 92618</span>
+    <span>Numbers here are guesses to plan with, not promises.</span>
+  </footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const money = n => "$" + Math.round(n).toLocaleString("en-US");
+  const ids = ["perWeek","warm","coldBook","coldClose","warmBook","warmClose","price","share","churn","goal"];
+  const fmt = {perWeek:v=>v, warm:v=>v+"%", coldBook:v=>v+"%", coldClose:v=>v+"%", warmBook:v=>v+"%", warmClose:v=>v+"%", price:v=>money(v), share:v=>v+"%", churn:v=>v+"%", goal:v=>money(v)};
+
+  function calc(){
+    const v = {}; ids.forEach(k => { v[k] = +$(k).value; $(k+"O").textContent = fmt[k](v[k]); });
+    const w = v.warm/100;
+    const rate = w*(v.warmBook/100)*(v.warmClose/100) + (1-w)*(v.coldBook/100)*(v.coldClose/100);
+    const convMonth = v.perWeek*52/12;
+    const newPer = convMonth*rate;
+    const perClient = v.price*v.share/100;
+    const need = Math.ceil(v.goal/perClient);
+    const churn = v.churn/100;
+    let c = 0, hit = null; const series = [];
+    for(let m=1;m<=24;m++){ c = c*(1-churn) + newPer; series.push(c*perClient); if(hit===null && c*perClient >= v.goal) hit = m; }
+    const cap = churn>0 ? newPer/churn : Infinity;
+    $("rRate").textContent = rate>0 ? "1 in " + Math.round(1/rate) : "n/a";
+    $("rNew").textContent = newPer.toFixed(1);
+    $("rNeed").textContent = need;
+    $("rMonths").textContent = hit ? hit + (hit===1?" month":" months") : "24+ months";
+    const totalConv = rate>0 ? Math.round(need/rate) : 0;
+    let msg;
+    if(hit){
+      msg = "At " + v.perWeek + " talks a week you reach " + money(v.goal) + " a month in about " + hit + " months. That's about " + totalConv.toLocaleString("en-US") + " talks. Then about " + money(v.goal*12) + " a year. Every talk is worth about " + money(rate*perClient*12) + " a year to you, even a no.";
+    } else if (cap*perClient < v.goal) {
+      msg = "At this pace you top out around " + money(cap*perClient) + " a month. Add more talks or more friends to reach " + money(v.goal) + ".";
+    } else {
+      msg = "You'll get there, but it takes over 2 years. Add a few more talks a week.";
+    }
+    $("verdict").textContent = msg;
+    if(totalConv) $("heroConv").textContent = "~" + totalConv;
+    draw(series, v.goal, hit);
+  }
+
+  function draw(series, goal, hit){
+    const svg = $("chart"), W=640, H=230, L=56, R=14, T=16, B=34;
+    const maxV = Math.max(goal*1.25, ...series);
+    const step = maxV>24000 ? 10000 : maxV>12000 ? 5000 : 2500;
+    const top = Math.ceil(maxV/step)*step;
+    const x = i => L + (i+0.5)*(W-L-R)/24, y = val => T + (1 - val/top)*(H-T-B);
+    const bw = (W-L-R)/24*0.62;
+    let s = "";
+    for(let g=0; g<=top; g+=step){ s += `<line x1="${L}" x2="${W-R}" y1="${y(g)}" y2="${y(g)}" stroke="var(--line)" stroke-width="1"/><text x="${L-8}" y="${y(g)+4}" text-anchor="end">${g===0?"$0":"$"+(g/1000)+"k"}</text>`; }
+    series.forEach((val,i)=>{ const reached = val>=goal; s += `<rect x="${x(i)-bw/2}" y="${y(val)}" width="${bw}" height="${Math.max(0,y(0)-y(val))}" rx="2" fill="${reached?"var(--accent)":"var(--muted)"}" opacity="${reached?1:.45}"/>`; if((i+1)%3===0||i===0) s += `<text x="${x(i)}" y="${H-12}" text-anchor="middle">${i===0?"Mo 1":i+1}</text>`; });
+    s += `<line x1="${L}" x2="${W-R}" y1="${y(goal)}" y2="${y(goal)}" stroke="var(--coral)" stroke-width="2" stroke-dasharray="6 4"/><text x="${W-R}" y="${y(goal)-6}" text-anchor="end" style="fill:var(--coral);font-weight:700">Goal ${money(goal)}/mo</text>`;
+    svg.innerHTML = s;
+  }
+
+  ids.forEach(k => $(k).addEventListener("input", calc));
+  calc();
+
+  function copy(text, btn){
+    const done = () => { const t = btn.textContent; btn.textContent = "Copied"; setTimeout(()=>btn.textContent=t, 1400); };
+    try { navigator.clipboard.writeText(text).then(done).catch(()=>{}); } catch(e) {}
+  }
+  document.querySelectorAll("#prompts .prompt").forEach(p => { const b = p.querySelector("button"); b.addEventListener("click", ()=>copy(p.querySelector("span").textContent, b)); });
+  $("copyCal").addEventListener("click", e => copy("https://calendly.com/steve-localairegistry", e.currentTarget));
+
+  try { new QRCode($("qr"), {text:"https://calendly.com/steve-localairegistry", width:148, height:148, colorDark:"#0B1A2E", colorLight:"#ffffff", correctLevel: QRCode.CorrectLevel.M}); }
+  catch(e){ $("qr").hidden = true; }
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,830 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Green Mart Partner Plan</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant:ital,wght@0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: an operating plan read top to bottom; animated explainer, responsibility matrix, fix list, setup cards with "done when". Light mode only (LAIR rule). */
+:root{
+  --blue:#1F4FE0; --ink:#0B1A2E; --coral:#FF5A3C; --paper:#F4F1EA; --paper-deep:#ECE6D6; --tint:#E7EDFC; --white:#FFFFFF;
+  --muted:#4A5568; --body:#25344d; --line:#D9D2C1; --soft:#EEE8DA;
+  --bad:#D92D20; --bad-bg:#FDECEA; --good-bg:#E7EDFC;
+  --treez:#0F766E; --treez-bg:#E3F4F1; --range:#7A4B00; --range-bg:#FBF0DC; --gm-bg:#ECE6D6;
+  --f-display:"Cormorant", Georgia, "Times New Roman", serif;
+  --f-head:"Bricolage Grotesque", "Hanken Grotesk", system-ui, sans-serif;
+  --f-body:"Hanken Grotesk", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --f-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  color-scheme: light;
+}
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;margin:0;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top, 0px);z-index:10;background:var(--paper)}
+.wrap{max-width:1080px;margin:0 auto;padding-block:28px 72px}
+h1,h2,h3,h4{font-family:var(--f-head);line-height:1.15;text-wrap:balance;margin:0}
+p,li,td,figcaption{text-wrap:pretty}
+a{color:var(--blue)}
+a:focus-visible,button:focus-visible{outline:3px solid var(--blue);outline-offset:2px;border-radius:4px}
+code,.mono{font-family:var(--f-mono);font-size:.86em;background:var(--paper-deep);padding:1px 5px;border-radius:4px;overflow-wrap:anywhere}
+header.top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:12px 24px;padding-bottom:20px;border-bottom:1px solid var(--line)}
+.lockup{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.lockup svg{width:34px;height:auto}
+.lockup span{font-family:var(--f-head);font-weight:700;font-size:20px;letter-spacing:-.01em}
+.meta{font-size:13px;color:var(--muted);display:flex;flex-wrap:wrap;gap:4px 14px}
+.hero{padding-block:44px 8px;display:grid;gap:18px}
+.eyebrow{font-family:var(--f-head);font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--blue)}
+.hero h1 .ln{display:inline-block}
+.hero h1{font-size:clamp(34px,6vw,58px);font-weight:800;letter-spacing:-.02em;max-width:17ch}
+.hero .lede{font-size:clamp(17px,2.2vw,20px);max-width:64ch;color:var(--body);margin:0}
+.principle{font-family:var(--f-display);font-style:italic;font-weight:500;font-size:clamp(22px,3vw,29px);line-height:1.3;max-width:38ch;border-left:3px solid var(--coral);padding-left:16px;margin:6px 0 0}
+
+/* Explainer illustration */
+.explain{margin:18px 0 0;background:var(--white);border:1px solid var(--line);border-radius:18px;padding:20px 20px 18px;display:grid;gap:16px}
+.explain h2{font-size:clamp(22px,3vw,28px);font-weight:800;letter-spacing:-.01em}
+.explain .why{margin:0;color:var(--body);max-width:70ch}
+.ill{width:100%;height:auto;display:block}
+.ill.tall{display:none;max-width:420px;margin:0 auto}
+@media (max-width:680px){.ill.wide{display:none}.ill.tall{display:block}}
+.ill .src{stroke-width:1.5}
+.ill .t-title{font-family:var(--f-head);font-weight:700;fill:var(--ink)}
+.ill .t-sub{font-family:var(--f-body);font-weight:600}
+.ill .t-body{font-family:var(--f-body);fill:var(--body)}
+.ill .t-eyebrow{font-family:var(--f-head);font-weight:700;letter-spacing:.12em;fill:var(--blue)}
+.ill .t-white{font-family:var(--f-head);font-weight:700;fill:var(--white)}
+.ill .wire{fill:none;stroke:#C9C1AE;stroke-width:2;stroke-dasharray:5 6}
+.ill .wire.out{stroke:var(--blue);stroke-dasharray:none;stroke-width:2.5}
+.ill .ring{fill:none;stroke:var(--blue);stroke-width:2;transform-origin:center;transform-box:fill-box;animation:ring 2.6s ease-out infinite}
+@keyframes ring{0%{opacity:.6;transform:scale(1)}100%{opacity:0;transform:scale(1.45)}}
+.ill .tick{animation:tick 4.8s ease-in-out infinite}
+@keyframes tick{0%,30%{opacity:.25}45%,100%{opacity:1}}
+@media (prefers-reduced-motion:reduce){.ill .dot,.ill .ring{display:none}.ill .tick{animation:none;opacity:1}}
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+@media (max-width:820px){.flow{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){.flow{grid-template-columns:minmax(0,1fr)}}
+.step{background:var(--paper);border-radius:12px;padding:14px 16px}
+.step .n{font-family:var(--f-head);font-weight:800;font-size:12px;color:var(--blue);letter-spacing:.08em}
+.step h4{font-size:16px;margin:4px 0 4px}
+.step p{margin:0;font-size:14.5px;color:var(--body)}
+
+/* Partner cards */
+.partners{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:10px}
+@media (max-width:900px){.partners{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.partners{grid-template-columns:minmax(0,1fr)}}
+.partner{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px;display:grid;gap:8px;align-content:start}
+.partner .tag{justify-self:start}
+.partner h3{font-size:20px;font-weight:800}
+.partner .owns{font-family:var(--f-head);font-weight:600;font-size:15px;color:var(--ink);margin:0}
+.partner ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--body);display:grid;gap:4px}
+.partner.lair{background:var(--tint);border-color:#C9D6FA}
+.tag{font-family:var(--f-head);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;border-radius:999px;white-space:nowrap;display:inline-block}
+.t-treez{background:var(--treez-bg);color:var(--treez)}
+.t-range{background:var(--range-bg);color:var(--range)}
+.t-lair{background:var(--blue);color:var(--white)}
+.t-gm{background:var(--gm-bg);color:var(--ink)}
+.t-bad{background:var(--bad-bg);color:var(--bad)}
+.t-good{background:var(--good-bg);color:var(--blue)}
+.t-neutral{background:var(--paper-deep);color:var(--ink)}
+nav.index{position:sticky;top:env(safe-area-inset-top, 0px);z-index:5;background:var(--paper);border-block:1px solid var(--line);margin-block:32px 8px;overflow-x:auto}
+nav.index ol{list-style:none;display:flex;gap:4px;margin:0;padding:8px 0;white-space:nowrap}
+nav.index a{display:block;padding:6px 12px;border-radius:999px;text-decoration:none;color:var(--ink);font-size:14px;font-weight:600}
+nav.index a:hover{background:var(--tint);color:var(--blue)}
+section{padding-block:40px 8px;scroll-margin-top:64px}
+section > h2{font-size:clamp(26px,3.6vw,36px);font-weight:800;letter-spacing:-.015em;margin-bottom:10px}
+section > .intro{max-width:68ch;color:var(--body);margin:0 0 22px}
+h3.sub{font-size:20px;font-weight:700;margin:30px 0 10px}
+.small{font-size:13px;color:var(--muted)}
+
+/* Tables */
+.tbl{overflow-x:auto;background:var(--white);border:1px solid var(--line);border-radius:12px}
+table{border-collapse:collapse;width:100%;font-size:14.5px;min-width:680px}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--soft);vertical-align:top}
+th{font-family:var(--f-head);font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);background:#FBF9F4;font-weight:700}
+tr:last-child td{border-bottom:0}
+tr.group td{background:var(--paper);font-family:var(--f-head);font-weight:700;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);padding-block:8px}
+td.c{text-align:center;white-space:nowrap}
+td.n{font-family:var(--f-head);font-weight:700;color:var(--muted);font-variant-numeric:tabular-nums;width:36px}
+.raci b{display:inline-grid;place-items:center;min-width:28px;height:24px;border-radius:6px;font-family:var(--f-head);font-size:13px}
+.raci .o{background:var(--ink);color:var(--white)}
+.raci .s{background:var(--tint);color:var(--blue)}
+.raci .a{background:var(--paper-deep);color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:8px 18px;font-size:14px;margin:10px 0 0;align-items:center;color:var(--body)}
+.legend b{display:inline-grid;place-items:center;min-width:28px;height:24px;border-radius:6px;font-family:var(--f-head);font-size:13px;margin-right:6px}
+
+/* Spec cards */
+.specs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.specs{grid-template-columns:minmax(0,1fr)}}
+.spec{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;display:grid;gap:8px;align-content:start}
+.spec header{display:flex;flex-wrap:wrap;gap:6px 10px;align-items:baseline}
+.spec h4{font-size:17px;font-weight:700}
+.spec p{margin:0;font-size:15px;color:var(--body)}
+.spec ul{margin:0;padding-left:18px;font-size:14.5px;color:var(--body);display:grid;gap:4px}
+.spec.launch{grid-column:1 / -1;background:var(--tint);border-color:#C9D6FA}
+.done{background:var(--paper);border-radius:8px;padding:9px 12px;font-size:14.5px}
+.spec.launch .done{background:var(--white)}
+.done b{font-family:var(--f-head)}
+
+/* Cannibalization */
+.cann{display:grid;gap:12px}
+.issue{background:var(--white);border:1px solid var(--line);border-left:5px solid var(--bad);border-radius:12px;padding:16px 18px;display:grid;gap:8px}
+.issue h4{font-size:17px}
+.issue p{margin:0;font-size:15px;color:var(--body)}
+.compete{display:flex;flex-wrap:wrap;gap:6px}
+.compete code{background:var(--bad-bg);color:#8a1c14}
+.issue .fix{background:var(--paper);border-radius:8px;padding:9px 12px;font-size:14.5px}
+.issue .fix b{font-family:var(--f-head)}
+
+/* Topical map */
+.map{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:820px){.map{grid-template-columns:minmax(0,1fr)}}
+.pillar{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:18px 20px;display:grid;gap:10px;align-content:start}
+.pillar h4{font-size:19px;font-weight:700}
+.pillar .hub{font-size:14px;color:var(--muted);margin:0}
+.pillar ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.pillar li{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:10px;align-items:baseline;font-size:15px;border-top:1px dashed #E6DFCE;padding-top:7px}
+.pipeline{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px;margin-top:6px}
+@media (max-width:820px){.pipeline{grid-template-columns:minmax(0,1fr)}}
+.pipe{background:var(--white);border:1px solid var(--line);border-radius:10px;padding:12px 14px;font-size:14px}
+.pipe b{display:block;font-family:var(--f-head);font-size:15px;margin:4px 0 2px}
+
+/* Links */
+.links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.links{grid-template-columns:minmax(0,1fr)}}
+.lcard{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.lcard h4{font-size:16px;margin-bottom:8px;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.lcard ul{margin:0;padding-left:18px;display:grid;gap:6px;font-size:14.5px;color:var(--body)}
+.lcard.no{border-left:5px solid var(--bad);grid-column:1 / -1}
+.asks{margin:0 0 10px;padding-left:20px;display:grid;gap:6px;font-size:15px;color:var(--body)}
+table.pbn{min-width:560px}
+.lcard.yes{border-left:5px solid var(--blue)}
+.rulebox{background:var(--ink);color:var(--white);border-radius:14px;padding:20px 22px;margin-bottom:14px;display:grid;gap:8px}
+.rulebox h3{font-size:clamp(20px,2.6vw,24px);font-weight:800}
+.rulebox p{margin:0;color:#D6DDF0;max-width:72ch}
+.evidence{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px;margin-top:12px}
+.evidence h4{font-size:16px;margin-bottom:6px}
+.evidence p{margin:0 0 10px;font-size:15px;color:var(--body)}
+.anchors{display:grid;gap:6px;margin:6px 0 12px}
+.anchor{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;align-items:baseline;font-family:var(--f-mono);font-size:13px;background:var(--bad-bg);color:#8a1c14;border-radius:8px;padding:9px 12px}
+.anchor span{overflow-wrap:anywhere}
+.anchor b{font-family:var(--f-head);font-size:13px;white-space:nowrap}
+
+/* Rhythm */
+.rhythm{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+@media (max-width:820px){.rhythm{grid-template-columns:minmax(0,1fr)}}
+.rcol{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:16px 18px}
+.rcol .when{font-family:var(--f-head);font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.rcol ul{margin:8px 0 0;padding-left:18px;display:grid;gap:6px;font-size:14.5px;color:var(--body)}
+
+/* Concept explainers */
+.concept{margin:4px 0 22px;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px 18px 14px;display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);gap:20px;align-items:center}
+@media (max-width:760px){.concept{grid-template-columns:minmax(0,1fr)}}
+.concept svg{width:100%;height:auto;display:block}
+.concept figcaption{font-size:16px;color:var(--body);max-width:44ch}
+.k-label{font-family:var(--f-head);font-weight:700;font-size:15px;fill:var(--ink)}
+.k-label.good{fill:var(--blue)} .k-label.bad{fill:var(--bad)}
+.k-cap{font-family:var(--f-body);font-size:13.5px;fill:var(--muted)} .k-cap.bad{fill:var(--bad)}
+.k-in{font-family:var(--f-head);font-weight:700;font-size:16px;fill:#FFFFFF} .k-in.sm{font-size:12px;font-weight:500;fill:#C9D6FA}
+.k-wire{fill:none;stroke:#C9C1AE;stroke-width:2;stroke-dasharray:4 5}
+.k-wire.strong{stroke:var(--blue);stroke-dasharray:none;stroke-width:2.5}
+.k-wire.bad{stroke:#E8A39C;stroke-dasharray:4 5}
+.k-pages rect{fill:#FDECEA;stroke:#E8A39C;stroke-width:1.5}
+.k-pill rect{fill:var(--paper);stroke:var(--line);stroke-width:1.5}
+.k-pill text{font-family:var(--f-body);font-weight:600;font-size:14px;fill:var(--ink)}
+.k-pill.good rect{fill:var(--tint);stroke:#C9D6FA}
+.k-pill.bad rect{fill:#FDECEA;stroke:#E8A39C} .k-pill.bad text{fill:#8a1c14}
+.concept .ring{fill:none;stroke:var(--blue);stroke-width:2;transform-origin:center;transform-box:fill-box;animation:ring 2.6s ease-out infinite}
+.k-pop{transform-origin:center;transform-box:fill-box;animation:pop 2.2s ease-in-out infinite}
+@keyframes pop{0%,100%{transform:scale(1)}50%{transform:scale(1.15)}}
+@media (prefers-reduced-motion:reduce){.concept .dot,.concept .ring{display:none}.k-pop{animation:none}}
+/* Proof table */
+table.fixtbl{min-width:920px}
+td.proof{width:300px}
+.shot{display:block;margin-bottom:8px}
+.shot img{width:280px;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px;display:block}
+pre.snip{margin:0 0 8px;background:var(--ink);color:#E7EDFC;border-radius:8px;padding:9px 11px;font-family:var(--f-mono);font-size:11.5px;line-height:1.5;white-space:pre-wrap;word-break:break-word;max-width:300px}
+pre.snip code{background:none;padding:0;font-size:inherit;color:inherit}
+a.open{font-size:13px;font-weight:600}
+footer.end{margin-top:48px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted);display:grid;gap:8px}
+@media (prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+<style>img{max-width:100%}[hidden]{display:none!important}:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="top">
+    <a class="lockup" href="https://localairegistry.com" aria-label="Local AI Registry">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg>
+      <span>Local AI Registry</span>
+    </a>
+    <div class="meta"><span>Green Mart Dispensary, Santa Ana</span><span>For Green Mart, Range Marketing and Treez</span><span>November 2026</span></div>
+  </header>
+
+  <div class="hero">
+    <div class="eyebrow">Partner operating plan</div>
+    <h1><span class="ln">One website,</span> <span class="ln">three partners,</span> <span class="ln">one source of truth</span></h1>
+    <p class="lede">Green Mart's new website, now on staging at <a href="https://greenmart.site.newpreview.dev/">greenmart.site.newpreview.dev</a>, is close. This plan sets out who owns what between Treez, Range Marketing and Local AI Registry, what to fix and set up before launch, and what the site needs so Google and AI assistants (ChatGPT, Gemini, Perplexity, Google AI Overviews) can read it, trust it and recommend Green Mart by name.</p>
+    <p class="principle">AI can only recommend what it can read, verify and match across the web.</p>
+
+    
+
+    <div class="partners">
+      <div class="partner">
+        <span class="tag t-treez">Treez</span>
+        <h3>The menu</h3>
+        <p class="owns">Products, prices, inventory, ordering</p>
+        <ul>
+          <li>Online menu and checkout</li>
+          <li>Product, brand and category pages</li>
+          <li>Live deals and stock</li>
+        </ul>
+      </div>
+      <div class="partner">
+        <span class="tag t-range">Range Marketing</span>
+        <h3>The website</h3>
+        <p class="owns">Build, SEO and website management</p>
+        <ul>
+          <li>WordPress build, hosting, speed, security</li>
+          <li>On-site SEO and technical setup</li>
+          <li>Publishing and site upkeep</li>
+        </ul>
+      </div>
+      <div class="partner lair">
+        <span class="tag t-lair">Local AI Registry</span>
+        <h3>AI and local search</h3>
+        <p class="owns">How Green Mart shows up in AI answers and on Google Maps</p>
+        <ul>
+          <li>Google Business Profile: weekly posts, review replies</li>
+          <li>Semantic articles for the website</li>
+          <li>Directories, press releases, editorial links</li>
+        </ul>
+      </div>
+      <div class="partner">
+        <span class="tag t-gm">Green Mart</span>
+        <h3>The business</h3>
+        <p class="owns">Facts, approvals and account ownership</p>
+        <ul>
+          <li>Owns every login and property</li>
+          <li>Confirms hours, services, deals</li>
+          <li>Approves content and launch</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <nav class="index" aria-label="Sections">
+    <ol>
+      <li><a href="#roles">Who owns what</a></li>
+      <li><a href="#fix">Fix before launch</a></li>
+      <li><a href="#do">Set up before launch</a></li>
+      <li><a href="#menu">Menu setup</a></li>
+      <li><a href="#cannibal">Cannibalization</a></li>
+      <li><a href="#map">Topical map</a></li>
+      <li><a href="#links">Backlinks</a></li>
+      <li><a href="#rhythm">Our cadence</a></li>
+      <li><a href="#next">Next steps</a></li>
+    </ol>
+  </nav>
+
+  <section id="roles">
+    <h2>Who owns what</h2>
+    <p class="intro">Each workstream has one owner who is accountable for it, and support partners who supply what the owner needs. This keeps two vendors from doing the same work and nothing from falling between them.</p>
+    <div class="tbl raci">
+      <table>
+        <thead><tr><th>Workstream</th><th>Treez</th><th>Range</th><th>Local AI Registry</th><th>Green Mart</th></tr></thead>
+        <tbody>
+          <tr><td>Online menu, product pages, checkout</td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>WordPress build, hosting, speed, security, updates</td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Pre-launch fixes (typos, broken links, placeholders)</td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Domain move and 301 redirects</td><td class="c"><b class="s">S</b></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>On-site SEO: titles, descriptions, headings, internal links</td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"></td></tr>
+          <tr><td>AI readiness: schema, llms.txt, AI crawler access, sitemaps</td><td class="c"><b class="s">S</b></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"></td></tr>
+          <tr><td>Semantic articles (writing, schema, internal link plan)</td><td class="c"></td><td class="c"><b class="s">S</b></td><td class="c"><b class="o">O</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Publishing articles on the site</td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"></td></tr>
+          <tr><td>Google Business Profile: weekly posts, photos, Q&amp;A</td><td class="c"></td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Review replies (Google and major listings)</td><td class="c"></td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Directory submissions and listing consistency</td><td class="c"></td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"></td></tr>
+          <tr><td>Press releases and editorial link placements</td><td class="c"></td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="a">A</b></td></tr>
+          <tr><td>Brand partner and local links (see Backlinks)</td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"><b class="s">S</b></td><td class="c"><b class="s">S</b></td></tr>
+          <tr><td>Analytics and Search Console (Green Mart owns the accounts)</td><td class="c"></td><td class="c"><b class="s">S</b></td><td class="c"><b class="s">S</b></td><td class="c"><b class="o">O</b></td></tr>
+          <tr><td>AI answer tracking and monthly reporting</td><td class="c"></td><td class="c"></td><td class="c"><b class="o">O</b></td><td class="c"></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="legend">
+      <span><b style="background:var(--ink);color:var(--white)">O</b>Owner, accountable for the result</span>
+      <span><b style="background:var(--tint);color:var(--blue)">S</b>Supports with input or access</span>
+      <span><b style="background:var(--paper-deep);color:var(--ink)">A</b>Approves</span>
+    </div>
+  </section>
+
+  <section id="fix">
+    <h2>Fix these before launch</h2>
+    <p class="intro">Things we found on the staging build at <a href="https://greenmart.site.newpreview.dev/">greenmart.site.newpreview.dev</a> that would go live as they are today. We checked each one in Chrome after passing the age gate. Each row shows a screenshot or the exact code, and links to the page. The broken links matter most, because crawlers and shoppers hit them on day one.</p>
+    <div class="tbl">
+      <table class="fixtbl">
+<thead><tr><th>#</th><th>What we found</th><th>Proof</th><th>Fix</th></tr></thead>
+<tbody>
+<tr class="group"><td colspan="4">Broken links</td></tr>
+<tr><td class="n">1</td><td>All 11 category links in the menu bar (Flower, Pre-Rolls, Vapes, Edibles, Extracts, Tinctures, Capsules, Topicals, Drinks, CBD, Accessories) go to <code>/shop/collection/...</code> addresses that return "Page not found" (status 404). The page is blank between header and footer.</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/shop/collection/flower"><img src="proof/e01-flower-404.jpg" alt="Flower menu link opens a blank 404 page" loading="lazy"></a><pre class="snip"><code>&lt;a href=&quot;/shop/collection/flower&quot; class=&quot;nav-link ...&quot;&gt;Flower&lt;/a&gt;</code></pre><a class="open" href="https://greenmart.site.newpreview.dev/shop/collection/flower">Open the page</a></td><td>Fixed once the Treez menu runs at <code>/shop/</code> (see Menu setup). Test each link after.</td></tr>
+<tr><td class="n">2</td><td>The "Deals" button, 61 daily deal brand links, "Sign in" and "Wishlist" point to <code>www.grnmrt.com/shop/...</code> addresses that show a 404 page on the current site today.</td><td class="proof"><a class="shot" href="https://www.grnmrt.com/shop/brand/stiiizy"><img src="proof/e02-live-stiiizy-404.jpg" alt="STIIIZY deal link lands on a 404 page" loading="lazy"></a><pre class="snip"><code>&lt;a href=&quot;https://www.grnmrt.com/shop/deals&quot; ...&gt;Deals&lt;/a&gt;
+&lt;a href=&quot;https://www.grnmrt.com/shop/brand/almora-farm&quot; ...&gt;Almora Farms&lt;/a&gt;
+&lt;a href=&quot;https://www.grnmrt.com/shop/wishlist&quot;&gt;Wishlist&lt;/a&gt;</code></pre><a class="open" href="https://www.grnmrt.com/shop/brand/stiiizy">Open the page</a></td><td>Point each one at the real menu address once the menu location is set, then test them all.</td></tr>
+<tr><td class="n">3</td><td>"All Brands" and the everyday deal cards (West Coast Cure, STIIIZY, Hotbox) go to addresses that return "Page not found".</td><td class="proof"><pre class="snip"><code>&lt;a href=&quot;/shop/brands&quot; class=&quot;btn btn-accent&quot;&gt;All Brands&lt;/a&gt;
+&lt;a href=&quot;/shop/brand/west-coast-cure&quot; ...&gt;Everyday Deal 30% off West Coast Cure&lt;/a&gt;</code></pre><a class="open" href="https://greenmart.site.newpreview.dev/shop/brands">Open the page</a></td><td>Same fix as #1.</td></tr>
+<tr><td class="n">4</td><td>The seven "Shop [day]'s Deals" buttons point to <code>/deals</code>, which returns "Page not found".</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/deals"><img src="proof/e04-deals-404.jpg" alt="Shop Deals button lands on a 404 page" loading="lazy"></a><pre class="snip"><code>&lt;a href=&quot;/deals&quot; class=&quot;btn btn-accent ...&quot;&gt;Shop Monday’s Deals&lt;/a&gt;</code></pre><a class="open" href="https://greenmart.site.newpreview.dev/deals">Open the page</a></td><td>Point them to <code>/about/special-offers/</code> or that day's deals in the menu.</td></tr>
+<tr><td class="n">5</td><td>"Order Now" and "All Products" go to <code>www.grnmrt.com/shop</code>. That works today because it is the current site. After the switch, <code>www.grnmrt.com</code> is the new WordPress site.</td><td class="proof"><pre class="snip"><code>&lt;a class=&quot;btn gm-header-order&quot; href=&quot;https://www.grnmrt.com/shop&quot;&gt;Order Now&lt;/a&gt;</code></pre></td><td>Retest after the switch, once the menu is live at <code>/shop/</code>.</td></tr>
+<tr><td class="n">6</td><td>The "40% off your first purchase" card says "Plan Your Visit" but opens <code>/shop</code>.</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/"><img src="proof/e06-plan-your-visit.jpg" alt="First purchase card with Plan Your Visit link" loading="lazy"></a><pre class="snip"><code>&lt;a href=&quot;/shop&quot; ...&gt;Plan Your Visit →&lt;/a&gt;</code></pre></td><td>Match the label to where it goes.</td></tr>
+<tr class="group"><td colspan="4">Typos and test files</td></tr>
+<tr><td class="n">7</td><td>"Conditons" misspelled in the page address and in the banner heading.</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/terms-conditons/"><img src="proof/e07-terms-typo.jpg" alt="Terms and Conditons banner heading" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/terms-conditons/">Open the page</a></td><td>Rename to <code>/terms-and-conditions/</code> and fix the heading.</td></tr>
+<tr><td class="n">8</td><td>The home page slider images are files named <code>test.webp</code> to <code>test4.webp</code>, with alt text "Test" to "Test4".</td><td class="proof"><pre class="snip"><code>&lt;img src=&quot;/wp-content/uploads/test4.webp&quot; alt=&quot;Test4&quot;&gt;
+&lt;img src=&quot;/wp-content/uploads/test3.webp&quot; alt=&quot;Test3&quot;&gt;</code></pre></td><td>Rename the files and write alt text that says what each photo shows.</td></tr>
+<tr><td class="n">9</td><td>Blog titles in all caps, for example "THE BEST STRAINS FOR THE SUMMER" and "CANNABINOIDS AND THE BODY + ALL NEW PRODUCTS".</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/blog/the-best-strains-for-the-summer/"><img src="proof/e09-all-caps.jpg" alt="All caps blog title" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/blog/the-best-strains-for-the-summer/">Open the page</a></td><td>Title case.</td></tr>
+<tr><td class="n">10</td><td>A date inside a post title: "What's the Best Vape Pen for You? May 23rd, 2024".</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/blog/whats-the-best-vape-pen-for-you/"><img src="proof/e10-date-title.jpg" alt="Blog title with a 2024 date" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/blog/whats-the-best-vape-pen-for-you/">Open the page</a></td><td>Drop the date from the title, show an "Updated" date instead.</td></tr>
+<tr class="group"><td colspan="4">Headings and page titles</td></tr>
+<tr><td class="n">11</td><td>Two H1 headings on the home page. The first is hidden on screen with <code>visually-hidden</code>.</td><td class="proof"><pre class="snip"><code>&lt;h1 class=&quot;visually-hidden&quot;&gt;Green Mart Dispensary in Santa Ana, CA&lt;/h1&gt;
+&lt;h1 class=&quot;h3 fw-bold ...&quot;&gt;Shopping for Cannabis Made Simple&lt;/h1&gt;</code></pre></td><td>Keep one H1. Make "Shopping for Cannabis Made Simple" an H2.</td></tr>
+<tr><td class="n">12</td><td>Two H1 headings on Privacy ("Privacy Policy" twice) and Terms ("Terms &amp; Conditons" plus "Terms and Conditions").</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/privacy-policy/"><img src="proof/e12-privacy-h1.jpg" alt="Privacy Policy heading shown twice" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/privacy-policy/">Open the page</a></td><td>One H1 per page.</td></tr>
+<tr><td class="n">13</td><td>A list of cities added to the end of every blog post's title tag.</td><td class="proof"><pre class="snip"><code>&lt;title&gt;New to Edibles in Santa Ana? How to Start Low and Go Slow - Orange, CA, Santa Ana, CA &amp; Costa Mesa, CA | Green Mart Dispensary&lt;/title&gt;</code></pre><a class="open" href="https://greenmart.site.newpreview.dev/blog/how-to-dose-edibles-santa-ana/">Open the page</a></td><td>Remove the city lists.</td></tr>
+<tr><td class="n">14</td><td>No meta description on any of the 24 posts or the blog index.</td><td class="proof"><pre class="snip"><code>&lt;title&gt;New to Edibles in Santa Ana? ...&lt;/title&gt;
+&lt;!-- no &lt;meta name=&quot;description&quot;&gt; tag on this page --&gt;</code></pre></td><td>One or two sentences each. We can supply them.</td></tr>
+<tr class="group"><td colspan="4">Facts to confirm</td></tr>
+<tr><td class="n">15</td><td>The current grnmrt.com sells "weed delivery in Santa Ana, Irvine and Tustin". The new site describes in-store shopping and pickup only.</td><td class="proof"><pre class="snip"><code>&lt;!-- current www.grnmrt.com --&gt;
+&lt;title&gt;Cannabis Dispensary &amp; Weed Delivery Santa Ana - Green Mart&lt;/title&gt;
+&lt;meta name=&quot;description&quot; content=&quot;... fast weed delivery in Santa Ana, Irvine &amp; Tustin ...&quot;&gt;</code></pre><a class="open" href="https://greenmart.site.newpreview.dev/about/online-ordering-in-store-pickup/">Open the new pickup page</a></td><td>Green Mart confirms one answer, used everywhere.</td></tr>
+<tr><td class="n">16</td><td>Drive times on city pages, for example "About a 20-minute drive separates Corona, CA from our shop in Santa Ana".</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/service-areas/corona-ca/"><img src="proof/e16-corona.jpg" alt="Corona page drive time claim" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/service-areas/corona-ca/">Open the page</a></td><td>Check each one against real drive times.</td></tr>
+<tr><td class="n">17</td><td>Hours shown as open daily 7am to 10pm in the header, footer and schema.</td><td class="proof"><pre class="snip"><code>&quot;dayOfWeek&quot;: &quot;Monday&quot;, &quot;opens&quot;: &quot;07:00&quot;, &quot;closes&quot;: &quot;22:00&quot;
+... same for every day</code></pre></td><td>Confirm it matches Google Business Profile, including holidays.</td></tr>
+<tr class="group"><td colspan="4">Code and schema</td></tr>
+<tr><td class="n">18</td><td>Business schema appears in two blocks. One has a trailing space in the phone and a relative logo path. The other has no phone. The <code>url</code> points to the staging Santa Ana page.</td><td class="proof"><pre class="snip"><code>&quot;telephone&quot;: &quot;(714) 406-1550 &quot;,
+&quot;image&quot;: &quot;/wp-content/uploads/logo.png&quot;,
+&quot;url&quot;: &quot;https://greenmart.site.newpreview.dev/service-areas/santa-ana-ca/&quot;
+...
+&quot;telephone&quot;:false</code></pre></td><td>Replace with one Store block (see Set up before launch).</td></tr>
+<tr><td class="n">19</td><td>Page schema gives the home page the headline "Home", and its text drops the business name.</td><td class="proof"><pre class="snip"><code>&quot;headline&quot;:&quot;Home&quot;
+&quot;articleBody&quot;: &quot;... That is why we built around a straightforward idea ...&quot;</code></pre></td><td>Fix the headline and the missing name.</td></tr>
+<tr><td class="n">20</td><td>Navigation schema lists 3 menu items with the address <code>#</code>.</td><td class="proof"><pre class="snip"><code>{&quot;@type&quot;: &quot;SiteNavigationElement&quot;, &quot;name&quot;: &quot;Products&quot;, &quot;url&quot;: &quot;#&quot;}
+{&quot;@type&quot;: &quot;SiteNavigationElement&quot;, &quot;name&quot;: &quot;Brands&quot;, &quot;url&quot;: &quot;#&quot;}
+{&quot;@type&quot;: &quot;SiteNavigationElement&quot;, &quot;name&quot;: &quot;About&quot;, &quot;url&quot;: &quot;#&quot;}</code></pre></td><td>Use the real hub URLs or leave those items out.</td></tr>
+<tr><td class="n">21</td><td>Photos with empty alt text: 10 on the home page, 10 on the blog index.</td><td class="proof"><pre class="snip"><code>&lt;img src=&quot;/wp-content/uploads/green-mart-yelp-026.webp&quot; alt=&quot;&quot;&gt;
+&lt;img src=&quot;/wp-content/uploads/green-mart-yelp-021.webp&quot; alt=&quot;&quot;&gt;</code></pre></td><td>Describe each photo.</td></tr>
+<tr><td class="n">22</td><td>The age verification popup is in the page code twice (one copy hidden), with the same element ID.</td><td class="proof"><pre class="snip"><code>&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot; id=&quot;ageGateYes&quot;&gt;
+&lt;button type=&quot;button&quot; class=&quot;btn btn-primary btn-lg&quot; id=&quot;ageGateYes&quot;&gt;</code></pre></td><td>Keep one copy.</td></tr>
+<tr><td class="n">23</td><td>The store locator page is a map with about 80 words of text.</td><td class="proof"><a class="shot" href="https://greenmart.site.newpreview.dev/about/store-locator/"><img src="proof/e23-locator.jpg" alt="Store locator page with a map" loading="lazy"></a><a class="open" href="https://greenmart.site.newpreview.dev/about/store-locator/">Open the page</a></td><td>Expand into a full Visit page: directions, parking, ATM, hours.</td></tr>
+<tr><td class="n">24</td><td>Brand logos and everyday deal cards are in the page code twice for the carousel, and all 7 daily deal panels load at once.</td><td class="proof"><pre class="snip"><code>&lt;img alt=&quot;STIIIZY logo&quot;&gt; × 2
+&lt;img alt=&quot;Jeeter logo&quot;&gt; × 2
+&lt;img alt=&quot;Heavy Hitters logo&quot;&gt; × 2
+...</code></pre></td><td>Load today's panel first, lazy load below the first screen, compress the slider images.</td></tr>
+<tr><td class="n">25</td><td>The "Website by Range Marketing" footer link is a followed link on every page.</td><td class="proof"><pre class="snip"><code>&lt;a href=&quot;https://rangemarketing.com/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot; title=&quot;Website Designed by Range Marketing&quot;&gt;Website by Range Marketing&lt;/a&gt;</code></pre></td><td>Add <code>rel="nofollow"</code> or move it to one credits page.</td></tr>
+</tbody>
+</table>
+    </div>
+  </section>
+
+  <section id="do">
+    <h2>Set up before launch</h2>
+    <p class="intro">What the site needs so our AI work can take hold, plus the migration and launch steps. Each item has a "done when" so it can be checked off. Local AI Registry supplies the content for anything marked with our tag.</p>
+    <div class="specs">
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-treez">Treez</span><h4>Menu connected</h4></header>
+        <p>The new site's links expect the Treez menu at <code>www.grnmrt.com/shop/</code>. Details are in Menu setup.</p>
+        <div class="done"><b>Done when:</b> every <code>/shop/</code> link on the build loads the live menu and a test order goes through.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><h4>301 redirects for 2,509 old URLs</h4></header>
+        <p>The current site's sitemaps list 2,509 URLs, and the new build uses different addresses for almost all of them. We have sent a full 301 map.</p>
+        <div class="done"><b>Done when:</b> every old URL takes one 301 hop to its closest match, none return 404, and nothing is mass redirected to the home page.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><h4>AI crawler access</h4></header>
+        <p>Allow the crawlers that feed AI answers in <code>robots.txt</code>, and make sure no firewall or bot shield blocks them.</p>
+        <div class="done"><b>Done when:</b> GPTBot, OAI-SearchBot, ChatGPT-User, PerplexityBot, ClaudeBot, Claude-SearchBot, Google-Extended, Applebot-Extended and Bingbot can load the home page and a blog post with a normal 200 response.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-treez">Treez</span><h4>XML sitemaps</h4></header>
+        <p>The build has no sitemap yet. We need one sitemap index for pages, posts and the menu, with accurate last-modified dates, listed in <code>robots.txt</code>.</p>
+        <div class="done"><b>Done when:</b> <code>/sitemap_index.xml</code> loads and lists only live canonical URLs: no redirects, no noindex pages.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-lair">LAIR supplies</span><h4>llms.txt</h4></header>
+        <p>A plain-text file at the site root that gives AI tools a short summary of Green Mart and links to the pages that matter most. We write it, Range uploads it.</p>
+        <div class="done"><b>Done when:</b> <code>https://www.grnmrt.com/llms.txt</code> returns our file as plain text.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-lair">LAIR supplies</span><h4>One clean Store entity</h4></header>
+        <p>Replaces the two business blocks from fix #18. AI tools need one consistent description of the business.</p>
+        <div class="done"><b>Done when:</b> every page carries one <code>Store</code> block with a stable <code>@id</code>, home page URL, full logo URL, phone, address, geo, hours, license number and the <code>sameAs</code> list we provide (Google, Weedmaps, Yelp, Leafly, Instagram).</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><h4>Page-level schema</h4></header>
+        <p>Markup that matches what each page is.</p>
+        <div class="done"><b>Done when:</b> the FAQ page has <code>FAQPage</code>, every post has <code>Article</code> with author, <code>datePublished</code> and <code>dateModified</code>, every page has <code>BreadcrumbList</code>, and all of it passes Google's Rich Results Test.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-lair">LAIR supplies</span><h4>Quick facts block</h4></header>
+        <p>A short, visible block on the home page and Visit page with the facts AI quotes most: address, hours, phone, license, payment methods, parking, ATM, pickup and delivery policy.</p>
+        <div class="done"><b>Done when:</b> the block is plain text (not an image or slider) and matches Google Business Profile word for word.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><h4>One topic per page title</h4></header>
+        <p>Most titles on the build repeat the same keyword list (see Cannibalization).</p>
+        <div class="done"><b>Done when:</b> each page has a unique title under about 60 characters that names its own topic, plus a unique description.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><span class="tag t-lair">LAIR</span><h4>Merge the overlapping posts</h4></header>
+        <p>The seven blog posts listed under Cannibalization become two strong guides. We rewrite them, Range sets the 301s.</p>
+        <div class="done"><b>Done when:</b> the merged guides are live and the old posts redirect to them.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-range">Range</span><h4>Publishing access for articles</h4></header>
+        <p>We deliver articles ready to publish: copy, schema, internal links and image alt text.</p>
+        <div class="done"><b>Done when:</b> Local AI Registry has a WordPress Author or Editor account limited to posts, or Range commits to publishing our articles within an agreed number of business days.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-gm">Green Mart</span><span class="tag t-lair">LAIR</span><h4>Accounts owned by Green Mart</h4></header>
+        <p>Domain, DNS, hosting, WordPress, GA4, Search Console and Bing Webmaster Tools, with access for Range and Local AI Registry. The data and the site stay with the business.</p>
+        <div class="done"><b>Done when:</b> Green Mart holds the owner login on each, and GA4, Search Console and Bing are verified before launch.</div>
+      </article>
+      <article class="spec launch">
+        <header><span class="tag t-range">Range</span><span class="tag t-lair">LAIR checks</span><h4>Launch day</h4></header>
+        <ul>
+          <li>Switch search indexing on. Staging is hidden from search today, which is right.</li>
+          <li>Replace every staging address (<a href="https://greenmart.site.newpreview.dev/">greenmart.site.newpreview.dev</a>) in pages and schema.</li>
+          <li>Canonical tags all use <code>https://www.grnmrt.com</code>.</li>
+          <li>Submit the sitemap to Google and Bing, keep the old sitemap submitted for 30 days, ping IndexNow.</li>
+          <li>Test the top pages and 20 random old product URLs for one-hop 301s.</li>
+          <li>Place a test order through "Order Now".</li>
+        </ul>
+        <div class="done"><b>Done when:</b> Search Console shows no new 404s after 14 days of daily checks.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="menu">
+    <h2>Menu setup for AI search</h2>
+    <p class="intro">For Treez. The menu holds about 2,190 product pages today, most of what crawlers can find on grnmrt.com. Set up well, it shows AI tools exactly what Green Mart carries. Set up poorly, it floods crawlers with duplicate URLs.</p>
+    <div class="specs">
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Menu on the main domain</h4></header>
+        <p>Run the menu at <code>www.grnmrt.com/shop/</code> so product pages stay on the main domain.</p>
+        <div class="done"><b>Done when:</b> "Order Now" and all <code>/shop/</code> links on the build load the live menu.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Keep product slugs</h4></header>
+        <p>If product slugs stay the same, one redirect rule moves all of them from <code>/product/{slug}</code> to <code>/shop/product/{slug}</code>.</p>
+        <div class="done"><b>Done when:</b> 20 random old product URLs land on the same product in the new menu.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Product pages AI can read</h4></header>
+        <p>Product pages come back from the server with name, brand, category, THC and CBD, price and stock in the HTML, plus <code>Product</code> schema.</p>
+        <div class="done"><b>Done when:</b> a product page fetched without JavaScript shows the product details, and its schema passes the Rich Results Test.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Real 404 status for missing pages</h4></header>
+        <p>On the current menu, a missing address such as <a href="https://www.grnmrt.com/shop/brand/stiiizy"><code>/shop/brand/stiiizy</code></a> shows a "404" page but sends a 200 "OK" status with <code>index, follow</code>. Crawlers treat these as real pages.</p>
+        <div class="done"><b>Done when:</b> missing menu pages return a 404 or 410 status.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Keep the canonicals that work today</h4></header>
+        <p>Filter and search addresses like <code>/shop?brand.keyword=KANHA&amp;page=1</code> already point their canonical to <code>/shop</code>, and <code>/age-gate</code> pages already carry <code>noindex, follow</code>. Both are right.</p>
+        <div class="done"><b>Done when:</b> both behave the same way after the menu moves to <code>/shop/</code>.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Age gate as an overlay</h4></header>
+        <p>The current menu sends visitors without a cookie to a separate <code>/age-gate</code> URL. The new WordPress build uses an overlay, which crawlers can read past.</p>
+        <div class="done"><b>Done when:</b> the menu uses the same overlay approach and every product URL returns its own content with a 200.</div>
+      </article>
+      <article class="spec">
+        <header><span class="tag t-treez">Treez</span><h4>Sold-out products don't 404</h4></header>
+        <p>Products come and go every week. A steady stream of 404s tells crawlers the site is unreliable.</p>
+        <div class="done"><b>Done when:</b> temporarily sold-out items stay live and say so, and discontinued items 301 to their brand or category page.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="cannibal">
+    <h2>Cannibalization</h2>
+    <figure class="concept" aria-labelledby="cc-cap">
+      <svg viewBox="0 0 440 270" role="img" aria-label="Today, an AI crawler splits its visits across five similar pages. After merging, every visit lands on one page.">
+        <text class="k-label" x="10" y="20">Today: 5 pages compete</text>
+        <text class="k-label good" x="240" y="20">After: 1 page owns it</text>
+        <line x1="220" y1="34" x2="220" y2="250" stroke="#E6DFCE" stroke-width="2"/>
+        <defs>
+          <path id="ca1" d="M60 140 C 90 140, 100 64, 122 64"/><path id="ca2" d="M60 140 C 90 140, 100 102, 122 102"/>
+          <path id="ca3" d="M60 140 L 122 140"/><path id="ca4" d="M60 140 C 90 140, 100 178, 122 178"/>
+          <path id="ca5" d="M60 140 C 90 140, 100 216, 122 216"/><path id="cb1" d="M290 140 L 336 140"/>
+        </defs>
+        <use href="#ca1" class="k-wire"/><use href="#ca2" class="k-wire"/><use href="#ca3" class="k-wire"/><use href="#ca4" class="k-wire"/><use href="#ca5" class="k-wire"/>
+        <use href="#cb1" class="k-wire strong"/>
+        <circle cx="38" cy="140" r="24" fill="#0B1A2E"/><text class="k-in" x="38" y="145" text-anchor="middle">AI</text>
+        <g class="k-pages">
+          <rect x="122" y="50" width="84" height="28" rx="6"/><rect x="122" y="88" width="84" height="28" rx="6"/><rect x="122" y="126" width="84" height="28" rx="6"/><rect x="122" y="164" width="84" height="28" rx="6"/><rect x="122" y="202" width="84" height="28" rx="6"/>
+        </g>
+        <g fill="#E8B4AE"><rect x="132" y="61" width="52" height="6" rx="3"/><rect x="132" y="99" width="46" height="6" rx="3"/><rect x="132" y="137" width="56" height="6" rx="3"/><rect x="132" y="175" width="48" height="6" rx="3"/><rect x="132" y="213" width="54" height="6" rx="3"/></g>
+        <circle class="dot" r="4" fill="#D92D20"><animateMotion dur="2.5s" begin="-0.1s" repeatCount="indefinite"><mpath href="#ca1"/></animateMotion></circle>
+        <circle class="dot" r="4" fill="#D92D20"><animateMotion dur="2.5s" begin="-0.6s" repeatCount="indefinite"><mpath href="#ca2"/></animateMotion></circle>
+        <circle class="dot" r="4" fill="#D92D20"><animateMotion dur="2.5s" begin="-1.1s" repeatCount="indefinite"><mpath href="#ca3"/></animateMotion></circle>
+        <circle class="dot" r="4" fill="#D92D20"><animateMotion dur="2.5s" begin="-1.6s" repeatCount="indefinite"><mpath href="#ca4"/></animateMotion></circle>
+        <circle class="dot" r="4" fill="#D92D20"><animateMotion dur="2.5s" begin="-2.1s" repeatCount="indefinite"><mpath href="#ca5"/></animateMotion></circle>
+        <text class="k-cap" x="10" y="258">Visits split five ways</text>
+        <circle cx="268" cy="140" r="24" fill="#0B1A2E"/><text class="k-in" x="268" y="145" text-anchor="middle">AI</text>
+        <rect x="336" y="86" width="96" height="108" rx="10" fill="#FFFFFF" stroke="#1F4FE0" stroke-width="2.5"/>
+        <rect x="350" y="104" width="62" height="7" rx="3.5" fill="#1F4FE0"/><rect x="350" y="120" width="68" height="5" rx="2.5" fill="#C9D6FA"/><rect x="350" y="132" width="56" height="5" rx="2.5" fill="#C9D6FA"/><rect x="350" y="144" width="64" height="5" rx="2.5" fill="#C9D6FA"/>
+        <g class="k-pop"><circle cx="384" cy="172" r="11" fill="#1F4FE0"/><path d="M379 172 l4 4 l6 -8" stroke="#fff" stroke-width="2.5" fill="none" stroke-linecap="round"/></g>
+        <circle class="dot" r="6" fill="#1F4FE0"><animateMotion dur="1.1s" begin="-0.2s" repeatCount="indefinite"><mpath href="#cb1"/></animateMotion></circle>
+        <circle class="dot" r="6" fill="#1F4FE0"><animateMotion dur="1.1s" begin="-0.75s" repeatCount="indefinite"><mpath href="#cb1"/></animateMotion></circle>
+        <text class="k-cap" x="240" y="258">Every visit lands on one page</text>
+      </svg>
+      <figcaption id="cc-cap">AI crawlers read a limited number of pages per visit. Five near-copies split that attention, so none of them stands out. One strong page gets read, ranked and cited.</figcaption>
+    </figure>
+    <p class="intro">Cannibalization is when several pages on the same site compete for the same question. Search engines and AI crawlers only fetch so many pages per visit, so every near-duplicate takes a fetch away from a page that should be read. And when five pages say roughly the same thing, none of them becomes the clear page to rank or cite.</p>
+    <div class="cann">
+      <article class="issue">
+        <h4>Every page targets the same four phrases</h4>
+        <p>Most page titles on the build are built from the same set: "Weed Near Me, Weed Dispensary, Dispensary Near Me &amp; Cannabis Dispensary", followed by six city names. About, Community, Newsletter, Reviews, Privacy Policy and the service area pages all compete for the same searches.</p>
+        <div class="fix"><b>Fix:</b> one topic per page. The home page and the Santa Ana page own "dispensary in Santa Ana". Every other page names its own subject.</div>
+      </article>
+      <article class="issue">
+        <h4>Five pages answer "best dispensary in Santa Ana"</h4>
+        <div class="compete"><code>/</code><code>/service-areas/santa-ana-ca/</code><code>/about/store-locator/</code><code>/blog/best-cannabis-store-santa-ana/</code><code>/blog/quality-matters-cannabis-santa-ana-dispensary/</code></div>
+        <div class="fix"><b>Fix:</b> make <code>/service-areas/santa-ana-ca/</code> the full Visit page and fold the store locator into it. Re-angle the two posts to specific questions and link them to that page.</div>
+      </article>
+      <article class="issue">
+        <h4>Three posts on licensed vs. unlicensed shops</h4>
+        <div class="compete"><code>/blog/licensed-cannabis-dispensary-santa-ana/</code><code>/blog/licensed-vs-unlicensed-cannabis-store-california/</code><code>/blog/risks-of-unlicensed-cannabis-shops/</code></div>
+        <div class="fix"><b>Fix:</b> merge into one definitive guide and 301 the other two to it.</div>
+      </article>
+      <article class="issue">
+        <h4>Four first-visit guides</h4>
+        <div class="compete"><code>/blog/first-dispensary-visit-santa-ana/</code><code>/blog/tips-for-visiting-cannabis-store-santa-ana/</code><code>/blog/how-to-pick-a-cannabis-dispensary-santa-ana/</code><code>/blog/questions-to-ask-cannabis-store-santa-ana/</code></div>
+        <div class="fix"><b>Fix:</b> one "First visit" guide that covers what to bring, what to ask and how to choose. 301 the rest to it.</div>
+      </article>
+      <article class="issue">
+        <h4>Once the menu runs at /shop/, every category and brand exists twice</h4>
+        <div class="compete"><code>/products/flower/</code><code>/shop/collection/flower</code><code>/cannabis-brands/stealthy/</code><code>/shop/brand/stealthy</code></div>
+        <div class="fix"><b>Fix:</b> the WordPress page is the one to rank, because it has the writing. The menu page links back to it and either sets its canonical there or carries <code>noindex, follow</code>. Range and Treez agree on one rule before launch.</div>
+      </article>
+    </div>
+  </section>
+
+  <section id="map">
+    <h2>Suggested topical map</h2>
+    <figure class="concept" aria-labelledby="mc-cap">
+      <svg viewBox="0 0 440 280" role="img" aria-label="Six articles, each answering one question, link up to one hub page, which links to the menu.">
+        <defs>
+          <path id="m1" d="M70 52 L 196 120"/><path id="m2" d="M370 52 L 244 120"/>
+          <path id="m3" d="M60 140 L 172 140"/><path id="m4" d="M380 140 L 268 140"/>
+          <path id="m5" d="M70 228 L 196 160"/><path id="m6" d="M370 228 L 244 160"/>
+        </defs>
+        <use href="#m1" class="k-wire"/><use href="#m2" class="k-wire"/><use href="#m3" class="k-wire"/><use href="#m4" class="k-wire"/><use href="#m5" class="k-wire"/><use href="#m6" class="k-wire"/>
+        <g class="k-pill"><rect x="6" y="36" width="128" height="32" rx="16"/><text x="70" y="57" text-anchor="middle">Edible dosing</text></g>
+        <g class="k-pill"><rect x="306" y="36" width="128" height="32" rx="16"/><text x="370" y="57" text-anchor="middle">Purchase limits</text></g>
+        <g class="k-pill"><rect x="2" y="124" width="116" height="32" rx="16"/><text x="60" y="145" text-anchor="middle">First visit</text></g>
+        <g class="k-pill"><rect x="322" y="124" width="116" height="32" rx="16"/><text x="380" y="145" text-anchor="middle">Terpenes</text></g>
+        <g class="k-pill"><rect x="6" y="212" width="128" height="32" rx="16"/><text x="70" y="233" text-anchor="middle">Reading labels</text></g>
+        <g class="k-pill"><rect x="306" y="212" width="128" height="32" rx="16"/><text x="370" y="233" text-anchor="middle">Rec vs. medical</text></g>
+        <circle class="ring" cx="220" cy="140" r="48"/>
+        <circle cx="220" cy="140" r="48" fill="#0B1A2E"/>
+        <text class="k-in" x="220" y="136" text-anchor="middle">Hub page</text>
+        <text class="k-in sm" x="220" y="155" text-anchor="middle">Cannabis 101</text>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-0.1s" repeatCount="indefinite"><mpath href="#m1"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-0.4s" repeatCount="indefinite"><mpath href="#m2"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-0.7s" repeatCount="indefinite"><mpath href="#m3"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-1.0s" repeatCount="indefinite"><mpath href="#m4"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-1.3s" repeatCount="indefinite"><mpath href="#m5"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="2s" begin="-1.6s" repeatCount="indefinite"><mpath href="#m6"/></animateMotion></circle>
+        <text class="k-cap" x="220" y="272" text-anchor="middle">Articles link up to the hub, the hub links to the menu</text>
+      </svg>
+      <figcaption id="mc-cap">A topical map groups pages the way people ask questions. Each article answers one question and links to its hub, so AI tools see Green Mart covering the whole subject, not one page at a time.</figcaption>
+    </figure>
+    <p class="intro">The structure we recommend so grnmrt.com becomes the clear answer for cannabis questions in Santa Ana. Range builds and maintains the hub pages. Local AI Registry writes the semantic articles under each hub. Each article answers one question and links up to its hub and across to the menu.</p>
+    <div class="legend" style="margin-bottom:16px">
+      <span><span class="tag t-good">On the build</span></span>
+      <span><span class="tag t-neutral">Range builds</span></span>
+      <span><span class="tag t-lair">LAIR article</span></span>
+    </div>
+    <div class="map">
+      <div class="pillar">
+        <h4>1. The store</h4>
+        <p class="hub">Hub: Santa Ana Visit page. The facts AI quotes.</p>
+        <ul>
+          <li><span>Home with quick facts block</span><span class="tag t-good">On the build</span></li>
+          <li><span>Visit: directions from the 55 and the 5, parking, ATM</span><span class="tag t-neutral">Range builds</span></li>
+          <li><span>FAQs with FAQ schema</span><span class="tag t-good">On the build</span></li>
+          <li><span>License and compliance (C10-0001511-LIC)</span><span class="tag t-neutral">Range builds</span></li>
+          <li><span>Is Green Mart open early? Hours and holiday hours</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>What forms of payment do Santa Ana dispensaries take?</span><span class="tag t-lair">LAIR article</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <h4>2. Ordering and deals</h4>
+        <p class="hub">Hub: Special Offers. How to buy and save.</p>
+        <ul>
+          <li><span>Online ordering and pickup</span><span class="tag t-good">On the build</span></li>
+          <li><span>Daily deals by weekday</span><span class="tag t-good">On the build</span></li>
+          <li><span>Rewards and points program</span><span class="tag t-neutral">Range builds</span></li>
+          <li><span>First-time customer deal</span><span class="tag t-neutral">Range builds</span></li>
+          <li><span>How order-ahead pickup works, step by step</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Are taxes included in dispensary prices in California?</span><span class="tag t-lair">LAIR article</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <h4>3. Product categories</h4>
+        <p class="hub">Hubs: one WordPress page per category, linked to the menu.</p>
+        <ul>
+          <li><span>Flower, pre-rolls, vapes, edibles, concentrates and 6 more</span><span class="tag t-good">On the build</span></li>
+          <li><span>Drinks (in the menu, no hub page yet)</span><span class="tag t-neutral">Range builds</span></li>
+          <li><span>510 carts vs. all-in-ones vs. pods</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Infused pre-rolls and blunts explained</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Live resin vs. live rosin</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>THC drinks: onset and dosing</span><span class="tag t-lair">LAIR article</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <h4>4. Brands</h4>
+        <p class="hub">Hub: Cannabis Brands. Brands people search by name.</p>
+        <ul>
+          <li><span>Stealthy, PlugPlay, Dime Industries, King Roll, Oak Fruitland, Emerald Bay</span><span class="tag t-good">On the build</span></li>
+          <li><span>Bodega Boyz, Raw Garden, Rove, Sluggers</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>STIIIZY, Connected, Turn, Jeeter, Wyld</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Each brand page shows its weekly deal day</span><span class="tag t-neutral">Range builds</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <h4>5. Local</h4>
+        <p class="hub">Hub: Service Areas. Santa Ana first, then nearby cities.</p>
+        <ul>
+          <li><span>Tustin, Irvine, Orange, Costa Mesa, Garden Grove</span><span class="tag t-good">On the build</span></li>
+          <li><span>Anaheim, Huntington Beach, Corona (check drive times)</span><span class="tag t-good">On the build</span></li>
+          <li><span>Dispensaries open early and late near Santa Ana</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Dispensary near the 55 Freeway</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Santa Ana cannabis events and community</span><span class="tag t-lair">LAIR article</span></li>
+        </ul>
+      </div>
+      <div class="pillar">
+        <h4>6. Cannabis 101</h4>
+        <p class="hub">Hub: Cannabis 101. Plain answers shoppers ask AI before visiting.</p>
+        <ul>
+          <li><span>Product types, labels, edible dosing, rec vs. medical</span><span class="tag t-good">On the build</span></li>
+          <li><span>First visit guide (merges 4 posts)</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Licensed vs. unlicensed (merges 3 posts)</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>California purchase limits and ID rules</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Carrying cannabis in your car in California</span><span class="tag t-lair">LAIR article</span></li>
+          <li><span>Indica, sativa, hybrid and terpenes</span><span class="tag t-lair">LAIR article</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <h3 class="sub">How an article goes from brief to live</h3>
+    <div class="pipeline">
+      <div class="pipe"><span class="tag t-lair">LAIR</span><b>Brief</b>Question, hub, internal links</div>
+      <div class="pipe"><span class="tag t-lair">LAIR</span><b>Draft</b>Copy, schema, alt text</div>
+      <div class="pipe"><span class="tag t-gm">Green Mart</span><b>Approve</b>Facts and compliance</div>
+      <div class="pipe"><span class="tag t-range">Range</span><b>Publish</b>Live, linked, in sitemap</div>
+      <div class="pipe"><span class="tag t-lair">LAIR</span><b>Track</b>Indexing and AI citations</div>
+    </div>
+  </section>
+
+  <section id="links">
+    <h2>Backlinks</h2>
+    <figure class="concept" aria-labelledby="lc-cap">
+      <svg viewBox="0 0 440 270" role="img" aria-label="Links from trusted sources pass trust to grnmrt.com. Links from link farms do not.">
+        <text class="k-label good" x="10" y="22">Trusted sources</text>
+        <text class="k-label bad" x="430" y="22" text-anchor="end">Link farms</text>
+        <defs>
+          <path id="g1" d="M128 66 C 170 66, 160 135, 162 135"/><path id="g2" d="M128 135 L 162 135"/><path id="g3" d="M128 204 C 170 204, 160 135, 162 135"/>
+          <path id="b1" d="M312 66 C 285 66, 286 100, 284 112"/><path id="b2" d="M312 135 L 286 135"/><path id="b3" d="M312 204 C 285 204, 286 170, 284 158"/>
+        </defs>
+        <use href="#g1" class="k-wire strong"/><use href="#g2" class="k-wire strong"/><use href="#g3" class="k-wire strong"/>
+        <use href="#b1" class="k-wire bad"/><use href="#b2" class="k-wire bad"/><use href="#b3" class="k-wire bad"/>
+        <g class="k-pill good"><rect x="6" y="50" width="122" height="32" rx="16"/><text x="67" y="71" text-anchor="middle">Local news</text></g>
+        <g class="k-pill good"><rect x="6" y="119" width="122" height="32" rx="16"/><text x="67" y="140" text-anchor="middle">Brand locator</text></g>
+        <g class="k-pill good"><rect x="6" y="188" width="122" height="32" rx="16"/><text x="67" y="209" text-anchor="middle">Real directory</text></g>
+        <g class="k-pill bad"><rect x="312" y="50" width="122" height="32" rx="16"/><text x="373" y="71" text-anchor="middle">seo-links.xyz</text></g>
+        <g class="k-pill bad"><rect x="312" y="119" width="122" height="32" rx="16"/><text x="373" y="140" text-anchor="middle">pbn-blog.shop</text></g>
+        <g class="k-pill bad"><rect x="312" y="188" width="122" height="32" rx="16"/><text x="373" y="209" text-anchor="middle">backlinks.online</text></g>
+        <circle class="ring" cx="222" cy="135" r="58" style="animation-duration:3s"/>
+        <rect x="162" y="105" width="122" height="60" rx="14" fill="#1F4FE0"/>
+        <text class="k-in" x="223" y="132" text-anchor="middle">grnmrt.com</text>
+        <text class="k-in sm" x="223" y="151" text-anchor="middle">trusted, cited</text>
+        <g stroke="#D92D20" stroke-width="3" stroke-linecap="round"><path d="M293 80 l10 10 M303 80 l-10 10"/><path d="M294 130 l10 10 M304 130 l-10 10"/><path d="M293 180 l10 10 M303 180 l-10 10"/></g>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="1.8s" begin="-0.1s" repeatCount="indefinite"><mpath href="#g1"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="1.8s" begin="-0.7s" repeatCount="indefinite"><mpath href="#g2"/></animateMotion></circle>
+        <circle class="dot" r="5" fill="#1F4FE0"><animateMotion dur="1.8s" begin="-1.3s" repeatCount="indefinite"><mpath href="#g3"/></animateMotion></circle>
+        <text class="k-cap" x="10" y="258">Pass trust</text>
+        <text class="k-cap bad" x="430" y="258" text-anchor="end">Ignored or penalized</text>
+      </svg>
+      <figcaption id="lc-cap">A link is a vote. Votes from places people and AI already trust carry weight. Votes from sites built only to sell links count for nothing, or count against you.</figcaption>
+    </figure>
+    <p class="intro">AI assistants lean on sources they already trust: news sites, industry publications, brand partners and real directories. Links from those places help. Local AI Registry handles press, editorial placements and directories. Below are the links we'd like Range to secure as the website owner, and the shared rule all three partners follow.</p>
+
+    <div class="rulebox">
+      <h3>The shared rule: no PBNs, link farms or paid niche edits</h3>
+      <p>Private blog networks, link farm "directories" and paid link insertions are built to fake authority. Google penalizes them, and AI assistants have little reason to trust or cite pages that exist only to sell links. One bad batch can drag down the whole domain, and the cleanup takes months. This applies to every partner on this account, including us.</p>
+    </div>
+
+    <div class="links">
+      <div class="lcard yes">
+        <h4><span class="tag t-range">Range</span>Links we'd like Range to secure</h4>
+        <ul>
+          <li><b>Brand store locators.</b> Raw Garden and Keef already link to grnmrt.com. Ask every brand Green Mart carries (STIIIZY, Jeeter, Wyld, Kiva, Camino, Dime Industries and others) to list Green Mart with a link.</li>
+          <li><b>Local organizations.</b> Santa Ana and Orange County business groups, sponsorships and community events Green Mart supports.</li>
+          <li><b>Lost links.</b> Find old links pointing at URLs that will move, and make sure each one lands through a 301.</li>
+          <li><b>Partner pages.</b> Treez and any payment or loyalty partners that list their retailers.</li>
+          <li><b>Link monitoring.</b> Watch new links each month and keep a disavow file in Search Console for link-farm spam as it shows up.</li>
+        </ul>
+      </div>
+      <div class="lcard yes">
+        <h4><span class="tag t-lair">LAIR</span>Links Local AI Registry builds</h4>
+        <ul>
+          <li><b>Editorial placements</b> in cannabis and local publications, written as real stories.</li>
+          <li><b>Press releases</b> for real news: anniversaries, new brands, community events.</li>
+          <li><b>Directory submissions</b> with the exact same name, address, phone and hours everywhere.</li>
+          <li><b>Industry listings</b> such as Weedmaps, Leafly and cannabis directories, kept current.</li>
+          <li>Each link points to the right page on grnmrt.com, not just the home page.</li>
+        </ul>
+      </div>
+      <div class="lcard no">
+        <h4><span class="tag t-bad">Can't use</span>Link types none of us will build</h4>
+        <ul>
+          <li><b>Private blog networks</b>: sites run only to pass links.</li>
+          <li><b>Link farm "directories"</b> on throwaway <code>.xyz</code>, <code>.shop</code>, <code>.site</code> and <code>.online</code> domains listing hundreds of sites.</li>
+          <li><b>Paid niche edits and guest posts</b> on general blogs with no cannabis or Orange County audience.</li>
+          <li><b>Exact-match anchors</b> like "best dispensary Santa Ana" repeated across sites.</li>
+          <li><b>Sitewide footer links</b> that pass authority out of the site (fix #25).</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="evidence">
+      <h4>What we ask in writing</h4>
+      <ul class="asks">
+        <li>Range confirms it will not build PBN, link-farm or paid niche-edit links for grnmrt.com.</li>
+        <li>Range shares a monthly list of every link it builds, so Local AI Registry can check it against the shared rule.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="rhythm">
+    <h2>Our cadence</h2>
+    <p class="intro">What Local AI Registry delivers once the site is live, so Range and Treez know what is coming and when it touches the website.</p>
+    <div class="rhythm">
+      <div class="rcol">
+        <div class="when">Every week</div>
+        <ul>
+          <li>Google Business Profile posts (deals, new brands, events)</li>
+          <li>Replies to new reviews</li>
+          <li>Check of hours, deals and listing facts</li>
+        </ul>
+      </div>
+      <div class="rcol">
+        <div class="when">Every month</div>
+        <ul>
+          <li>Semantic articles from the topical map, sent to Range to publish</li>
+          <li>Directory submissions and listing cleanup</li>
+          <li>Editorial placements and press as news allows</li>
+          <li>Report on AI answers, Maps and Search Console</li>
+        </ul>
+      </div>
+      <div class="rcol">
+        <div class="when">Ongoing</div>
+        <ul>
+          <li>Green Mart's public Local AI Registry record</li>
+          <li>Tracking prompts like "best dispensary in Santa Ana"</li>
+          <li>Flagging site issues to Range and menu issues to Treez</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="next">
+    <h2>Next steps</h2>
+    <p class="intro">The first decisions to lock in this week.</p>
+    <div class="tbl">
+      <table>
+        <thead><tr><th>Step</th><th>Owner</th><th>Done when</th></tr></thead>
+        <tbody>
+          <tr><td>Confirm the menu will run at <code>www.grnmrt.com/shop/</code> with the same product slugs</td><td><span class="tag t-treez">Treez</span> <span class="tag t-range">Range</span></td><td>Written confirmation and a test order on staging</td></tr>
+          <tr><td>Work through the 25 fixes</td><td><span class="tag t-range">Range</span></td><td>Each item checked off on staging</td></tr>
+          <tr><td>Load and test the 301 map we sent</td><td><span class="tag t-range">Range</span></td><td>Top pages and 20 random products redirect in one hop</td></tr>
+          <tr><td>Agree the canonical rule for WordPress vs. menu category and brand pages</td><td><span class="tag t-range">Range</span> <span class="tag t-treez">Treez</span></td><td>One indexed page per category and brand</td></tr>
+          <tr><td>Set up Search Console, GA4 and Bing under Green Mart's account</td><td><span class="tag t-gm">Green Mart</span> <span class="tag t-lair">LAIR</span></td><td>All three verified before launch</td></tr>
+          <tr><td>Confirm delivery or pickup only, hours and payment methods</td><td><span class="tag t-gm">Green Mart</span></td><td>One answer, used on the site and every listing</td></tr>
+          <tr><td>Send llms.txt, Store schema values, quick facts block and blog descriptions</td><td><span class="tag t-lair">LAIR</span></td><td>Delivered to Range</td></tr>
+          <tr><td>Publishing access or turnaround for articles</td><td><span class="tag t-range">Range</span></td><td>Account created or turnaround agreed</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <footer class="end">
+    <span>AI is evolving every day. Local AI Registry's dedicated local AI research team is always figuring out the best approach.</span>
+    <span>Local AI Registry · 9891 Irvine Center Dr, Irvine, CA 92618 · (213) 931-5633</span>
+  </footer>
+</div>
+
+</body>
+</html>

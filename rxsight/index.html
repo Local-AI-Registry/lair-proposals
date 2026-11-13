@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>RxSight SOW | Local AI Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F4F1EA; --paper2:#FBFAF6; --card:#FFFFFF; --ink:#0B1A2E; --ink2:#3D4A5C; --mute:#6B7A92;
+  --line:#D9DEE7; --blue:#1F4FE0; --blue-soft:#DCE5FF; --coral:#FF5A3C; --good:#1E7F4F;
+  color-scheme: light;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:'Hanken Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:3px;border-radius:4px}
+.wrap{max-width:760px;margin:0 auto;padding:0 20px}
+section{padding:60px 0}
+section.alt{background:var(--paper2)}
+h1,h2{font-family:'Cormorant',Georgia,serif;font-weight:600;letter-spacing:-0.01em;margin:0;text-wrap:balance}
+h1{font-size:clamp(40px,7.5vw,66px);line-height:1;font-weight:500;margin-bottom:22px}
+h2{font-size:clamp(32px,5.2vw,44px);line-height:1.05;margin-bottom:12px}
+h3{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:19px;line-height:1.25;margin:0 0 6px;text-wrap:balance}
+p,li{text-wrap:pretty}
+.lede{font-size:19px;color:var(--ink2);max-width:660px;margin:0}
+.sub{color:var(--ink2);margin:0 0 24px;max-width:660px}
+.num{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-variant-numeric:tabular-nums}
+.small{font-size:14px;color:var(--mute)}
+.part{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;color:var(--blue);margin:0 0 8px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:24px 20px 0;max-width:760px;margin:0 auto}
+.top .lock{width:200px;height:auto;display:block}
+.prepared{font-size:12px;color:var(--mute);text-align:right;line-height:1.2;display:flex;flex-direction:column;align-items:flex-end;gap:6px}
+.prepared .rx{width:150px;height:auto;display:block}
+.who{font-size:15px;color:var(--ink2);margin:-8px 0 18px}
+@media (max-width:520px){.top .lock{width:140px}.prepared .rx{width:104px}.prepared{font-size:11px}}
+.hero{padding:52px 0 56px}
+.hero .for{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:15px;color:var(--blue);margin:0 0 16px}
+.draft{display:inline-block;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:12px;letter-spacing:.06em;text-transform:uppercase;background:var(--blue-soft);color:var(--blue);border-radius:999px;padding:4px 10px;margin-left:8px;vertical-align:middle}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:36px;background:var(--card);border:1.5px solid var(--ink);border-radius:20px;overflow:hidden}
+.tile{padding:18px 18px 16px;border-right:1px solid var(--line)}
+.tile:last-child{border-right:none}
+.tile .num{font-size:32px;line-height:1.05;display:block}
+.tile .n{font-size:14px;color:var(--ink2);display:block;margin-top:4px}
+@media (max-width:560px){.tiles{grid-template-columns:1fr}.tile{border-right:none;border-bottom:1px solid var(--line)}.tile:last-child{border-bottom:none}}
+/* paths diagram */
+.fig{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin:24px 0 8px}
+.fig svg{width:100%;height:auto;display:block}
+.fig .cap{font-size:14px;color:var(--mute);margin:12px 0 0}
+.paths{display:grid;gap:14px}
+.path{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;align-items:stretch;position:relative}
+.path .lbl{grid-column:1/-1;font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute);margin:4px 0 0}
+.path .lbl b{color:var(--blue)}
+.step{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:12px 12px;font-size:14px;line-height:1.35;position:relative}
+.step strong{display:block;font-family:'Bricolage Grotesque',sans-serif;font-size:15px;color:var(--ink);margin-bottom:2px}
+.step.end{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.step.end strong{color:var(--paper)}
+.step:not(:last-child)::after{content:"";position:absolute;right:-8px;top:50%;width:8px;height:2px;background:var(--blue)}
+@media (max-width:860px){.path{grid-template-columns:1fr}.step:not(:last-child)::after{right:auto;left:24px;top:auto;bottom:-8px;width:2px;height:8px}}
+/* phase cards */
+.phase{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:22px;margin:0 0 16px}
+.phase .head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;margin-bottom:10px}
+.phase .price{font-family:'Bricolage Grotesque',sans-serif;font-weight:800;font-size:26px;white-space:nowrap}
+.phase .price small{font-weight:500;font-size:15px;color:var(--ink2)}
+.phase p{margin:0 0 10px;color:var(--ink2)}
+ul.ticks{list-style:none;padding:0;margin:8px 0 0}
+ul.ticks li{padding-left:28px;position:relative;margin-bottom:8px}
+ul.ticks li::before{content:"";position:absolute;left:0;top:3px;width:20px;height:20px;border-radius:50%;background:var(--blue-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%231F4FE0' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px 20px no-repeat}
+ul.guard li::before{background:#E3F2EA url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M5.5 10.5l3 3 6-7' fill='none' stroke='%231E7F4F' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/20px 20px no-repeat}
+.note{background:var(--blue-soft);border-radius:14px;padding:14px 16px;font-size:15px;color:var(--ink);margin-top:14px}
+/* timeline */
+.tl{position:relative;margin:28px 0 8px;padding:0}
+.tl ol{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:12px;position:relative}
+.tl ol::before{content:"";position:absolute;left:8px;right:8px;top:9px;height:2px;background:var(--line)}
+.tl .bar{position:absolute;z-index:1;left:8px;top:9px;height:2px;background:var(--blue);width:0;transition:width 1.4s ease}
+.tl.in .bar{width:calc(100% - 16px)}
+.tl li{position:relative;padding-top:28px;font-size:14px;color:var(--ink2)}
+.tl li::before{content:"";position:absolute;z-index:2;left:0;top:2px;width:16px;height:16px;border-radius:50%;background:var(--card);border:2px solid var(--blue)}
+.tl li.live::before{background:var(--coral);border-color:var(--coral)}
+.tl li b{display:block;font-family:'Bricolage Grotesque',sans-serif;color:var(--ink);font-size:15px;margin-bottom:2px}
+@media (max-width:600px){.tl ol{grid-template-columns:1fr;gap:18px;padding-left:28px}.tl ol::before{left:7px;right:auto;top:4px;bottom:4px;width:2px;height:auto}.tl .bar{display:none}.tl li{padding-top:0}.tl li::before{left:-28px;top:3px}}
+/* tables */
+.tw{overflow-x:auto;margin:16px 0 8px}
+table.demand{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border-radius:16px}
+table.demand th{text-align:left;font-weight:600;font-size:13px;color:var(--mute);padding:12px 12px 8px;border-bottom:1.5px solid var(--ink);vertical-align:bottom}
+table.demand td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}
+table.demand .r{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+table.demand tr.tot td{font-weight:800;border-bottom:none;font-family:'Bricolage Grotesque',sans-serif;font-size:17px}
+@media (max-width:480px){table.demand{font-size:13px}table.demand td,table.demand th{padding:10px 8px}}
+.offer{background:var(--ink);color:var(--paper);border-radius:20px;padding:24px;margin:24px 0}
+.offer .part{color:var(--blue-soft)}
+.offer .big{font-size:48px;line-height:1;display:block;margin-bottom:6px}
+.offer p{margin:0}
+.cols{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:600px){.cols{grid-template-columns:1fr}}
+.box{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px}
+.box h3{font-size:17px}
+.box ul{margin:8px 0 0;padding-left:20px;color:var(--ink2);font-size:15px}
+.box li{margin-bottom:6px}
+.sign{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:28px}
+.sign div{border-top:1.5px solid var(--ink);padding-top:8px;font-size:14px;color:var(--ink2);min-height:70px}
+.sign b{display:block;color:var(--ink);font-family:'Bricolage Grotesque',sans-serif;font-size:15px}
+@media (max-width:600px){.sign{grid-template-columns:1fr}}
+.next{background:var(--blue-soft)}
+.sig{margin-top:20px;font-weight:700}
+.src{padding:32px 20px 48px;font-size:13px;color:var(--mute)}
+/* gentle reveal */
+.rv{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.rv.in{opacity:1;transform:none}
+.paths .step{opacity:0;transform:translateY(8px);transition:opacity .45s ease,transform .45s ease}
+.paths.in .step{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv,.paths .step{opacity:1!important;transform:none!important;transition:none!important}.tl .bar{transition:none}}
+@media print{.rv,.paths .step{opacity:1!important;transform:none!important}.tl .bar{width:calc(100% - 16px)}section{padding:28px 0;break-inside:avoid-page}body{background:#fff}}
+</style>
+</head>
+<body>
+<header class="top">
+  <a href="https://localairegistry.com" aria-label="Local AI Registry">
+    <span class="lock color"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1867.45 232.87" style="width:100%;height:auto;display:block" role="img" aria-label="Local AI Registry">
+  <g transform="translate(0 22.54) scale(1.878)">
+    <path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/>
+    <path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/>
+  </g>
+  <path transform="translate(237.85 173.34)" d="M46 0L13.800 0L13.800-132L46-132L46 0ZM99.800 0L19.600 0L19.600-27L99.800-27L99.800 0ZM162.800 2.800L162.800 2.800Q146.800 2.800 134.500-3.400Q122.200-9.600 115.200-22Q108.200-34.400 108.200-53L108.200-53Q108.200-71.600 115.200-83.900Q122.200-96.200 134.600-102.300Q147-108.400 163-108.400L163-108.400Q179-108.400 191.400-102.200Q203.800-96 210.800-83.700Q217.800-71.400 217.800-52.800L217.800-52.800Q217.800-33.800 210.600-21.400Q203.400-9 190.900-3.100Q178.400 2.800 162.800 2.800ZM163.800-20.600L163.800-20.600Q171-20.600 175.800-23.900Q180.600-27.200 183-34Q185.400-40.800 185.400-50.800L185.400-50.800Q185.400-61.400 182.800-68.700Q180.200-76 175.100-79.900Q170-83.800 162-83.800L162-83.800Q155.200-83.800 150.300-80.500Q145.400-77.200 143-70.400Q140.600-63.600 140.600-53.400L140.600-53.400Q140.600-37 146.700-28.800Q152.800-20.600 163.800-20.600ZM286.400 2.800L286.400 2.800Q272.800 2.800 262.400-1Q252.000-4.800 245.000-11.900Q238.000-19 234.300-29Q230.600-39 230.600-51.400L230.600-51.400Q230.600-64.200 234.300-74.600Q238.000-85 245.000-92.600Q252.000-100.200 262.200-104.300Q272.400-108.400 285.600-108.400L285.600-108.400Q298.800-108.400 308.400-104.200Q318-100 324.100-92.400Q330.200-84.800 332.400-74.800L332.400-74.800L302.600-64.800Q302-71.400 299.400-75.600Q296.800-79.800 292.700-81.700Q288.600-83.600 283.800-83.600L283.800-83.600Q278.800-83.600 275-81.600Q271.200-79.600 268.600-75.600Q266-71.600 264.600-65.900Q263.200-60.200 263.200-52.800L263.200-52.800Q263.200-42.200 265.900-35.100Q268.600-28 273.900-24.400Q279.200-20.800 286.800-20.800L286.800-20.800Q294.600-20.800 299-24Q303.400-27.200 305.400-31.900Q307.400-36.600 307.800-41.200L307.800-41.200L335.800-35Q335-27.600 331.900-20.700Q328.800-13.800 322.800-8.500Q316.800-3.200 307.900-0.200Q299 2.800 286.400 2.800ZM375.600 2.800L375.600 2.800Q366.800 2.800 360.000-0.700Q353.200-4.200 349.400-10.900Q345.600-17.600 345.600-27.200L345.600-27.200Q345.600-36.200 349.100-42.100Q352.600-48 359.300-51.500Q366.000-55 375.400-57.300Q384.800-59.600 396.800-61.400L396.800-61.400Q402.600-62.400 406.500-63.300Q410.400-64.200 412.400-66.200Q414.400-68.200 414.400-72L414.400-72Q414.400-77 410.800-80.600Q407.200-84.200 399.200-84.200L399.200-84.200Q393.600-84.200 389.100-82.200Q384.600-80.200 381.400-76.400Q378.200-72.600 376.600-67.200L376.600-67.200L348.200-75.600Q350.800-84 355.500-90.200Q360.200-96.400 366.800-100.500Q373.400-104.600 381.900-106.500Q390.400-108.400 400.000-108.400L400.000-108.400Q416.000-108.400 426.100-103.300Q436.200-98.200 441.100-87.500Q446.000-76.800 446.000-60L446.000-60L446.000-43.800Q446.000-36.600 446.300-29.300Q446.600-22 447.100-14.700Q447.600-7.400 448.400 0L448.400 0L420.000 0Q419.200-4.600 418.400-11.100Q417.600-17.600 417.200-24.400L417.200-24.400L413.400-24.400Q410.600-16.800 405.300-10.500Q400.000-4.200 392.500-0.700Q385.000 2.800 375.600 2.800ZM390.200-20L390.200-20Q393.800-20 397.500-21.300Q401.200-22.600 404.600-24.900Q408.000-27.200 410.800-30.600Q413.600-34 415.000-38L415.000-38L414.600-53.800L419.000-52.800Q415.200-50.400 410.600-49Q406.000-47.600 401.300-46.800Q396.600-46 392.100-45.100Q387.600-44.200 384.100-42.800Q380.600-41.400 378.600-39Q376.600-36.600 376.600-32.400L376.600-32.400Q376.600-26.800 380.400-23.400Q384.200-20 390.200-20ZM501.400 0L469.800 0L469.800-144L501.400-144L501.400 0ZM596.600 0L561.400 0L606.200-132L653.400-132L698.200 0L663 0L631.400-106.800L628.200-106.800L596.600 0ZM676.400-24.800L588-24.800L588-46.400L676.400-46.400L676.400-24.800ZM747.600 0L714.800 0L714.800-132L747.600-132L747.600 0ZM852.200 0L820 0L820-132L876.200-132Q887.200-132 896.200-130.300Q905.200-128.600 912.100-125.300Q919-122 923.800-117.300Q928.600-112.600 931-106.500Q933.400-100.400 933.400-93L933.400-93Q933.400-86 931.200-80.400Q929-74.800 924.500-70.600Q920-66.400 913.200-63.800Q906.400-61.200 897.400-60L897.400-60L897.400-57Q908.800-55.800 915.100-51.900Q921.400-48 924.800-41.600Q928.200-35.200 930.800-26.200L930.800-26.200L938.400 0L902.600 0L896.800-24.200Q895-32.200 891.900-36.600Q888.800-41 884-42.700Q879.200-44.400 872-44.400L872-44.400L852.200-44.400L852.200 0ZM852.200-107.600L852.200-68.200L874-68.200Q886.200-68.200 893-73Q899.800-77.800 899.800-88L899.800-88Q899.800-98 893.600-102.800Q887.400-107.600 874.800-107.600L874.800-107.600L852.200-107.600ZM1006.400 2.800L1006.400 2.800Q993.200 2.800 982.800-0.700Q972.400-4.200 965.100-11Q957.800-17.800 954.000-27.800Q950.200-37.800 950.200-50.800L950.200-50.800Q950.200-63.400 953.900-74Q957.600-84.600 964.500-92.300Q971.400-100 981.500-104.200Q991.600-108.400 1004.200-108.400L1004.200-108.400Q1017.000-108.400 1026.700-104.300Q1036.400-100.200 1042.700-92.200Q1049-84.200 1052-72.700Q1055-61.200 1054-46.400L1054-46.400L971.400-45.800L971.400-62.600L1035.600-63.200L1024.200-55.400Q1025.600-65.400 1023.000-71.700Q1020.400-78 1015.400-80.900Q1010.400-83.800 1004.600-83.800L1004.600-83.800Q997.600-83.800 992.300-80Q987.000-76.200 984.000-69Q981.000-61.800 981.000-51.400L981.000-51.400Q981.000-35 988.100-27.600Q995.200-20.200 1006.200-20.200L1006.200-20.200Q1011.600-20.200 1015.200-21.700Q1018.800-23.200 1021.100-25.500Q1023.400-27.800 1024.700-30.600Q1026-33.400 1026.800-36L1026.800-36L1054.800-30Q1053.200-22.600 1049.700-16.600Q1046.200-10.600 1040.300-6.200Q1034.400-1.800 1026.100 0.500Q1017.800 2.800 1006.400 2.800ZM1116.200 37L1116.200 37Q1098.600 37 1087.300 34.300Q1076 31.600 1070.800 26.300Q1065.600 21 1065.600 13.400L1065.600 13.400Q1065.600 4.200 1072.900-1.600Q1080.200-7.400 1094.400-8.200L1094.400-8.200L1094.400-12.400Q1083.400-12.400 1077.500-14.600Q1071.600-16.800 1071.600-22.800L1071.600-22.800Q1071.600-28.400 1077.400-33Q1083.200-37.600 1096.600-40.200L1096.600-40.200L1096.600-44.400Q1084.400-45.400 1077.200-52.500Q1070-59.600 1070-71.200L1070-71.200Q1070-81 1075.600-89.100Q1081.200-97.200 1092.400-102.100Q1103.600-107 1120.400-107L1120.400-107L1175.200-107L1175.200-82.800L1141.800-87.200L1141.800-82.400Q1154.800-80.600 1160.400-76.400Q1166-72.200 1166-64.600L1166-64.600Q1166-56.600 1160.500-50.400Q1155-44.200 1145-40.700Q1135-37.200 1121.200-37.200L1121.200-37.200Q1118.800-37.200 1115.900-37.400Q1113-37.600 1105.200-38.400L1105.200-38.400Q1102-35.600 1100.200-33.700Q1098.400-31.800 1098.400-30.200L1098.400-30.200Q1098.400-29 1099.400-28.200Q1100.400-27.400 1102.300-27.100Q1104.200-26.800 1106.400-26.800L1106.400-26.800L1138.600-26.800Q1142.600-26.800 1149.100-26.300Q1155.600-25.800 1162.100-23.200Q1168.600-20.600 1173.100-14.800Q1177.600-9 1177.600 1.800L1177.600 1.800Q1177.600 13.600 1171 21.500Q1164.400 29.400 1150.800 33.200Q1137.200 37 1116.200 37ZM1120.400 11.400L1120.400 11.400Q1132 11.400 1138.400 10.200Q1144.800 9 1147.300 6.400Q1149.800 3.800 1149.800 0L1149.800 0Q1149.800-3.600 1148.400-5.700Q1147-7.800 1144.800-8.600Q1142.600-9.400 1140.300-9.600Q1138-9.800 1136.400-9.800L1136.400-9.800L1110.600-9.800Q1103.200-9.800 1099.700-6.300Q1096.200-2.800 1096.200 1.800L1096.200 1.800Q1096.200 5.600 1098.600 7.700Q1101 9.800 1106.300 10.600Q1111.600 11.400 1120.400 11.400ZM1119-53.200L1119-53.200Q1127.600-53.200 1131.900-57.800Q1136.200-62.400 1136.200-69.400L1136.200-69.400Q1136.200-77 1131.800-81.900Q1127.400-86.800 1119.200-86.800L1119.200-86.800Q1111-86.800 1106.400-81.900Q1101.800-77 1101.800-69.400L1101.800-69.400Q1101.800-64.800 1103.800-61.100Q1105.800-57.400 1109.600-55.300Q1113.400-53.200 1119-53.200ZM1227.200 0L1195.000 0L1195.000-105.600L1227.200-105.600L1227.200 0ZM1211.200-120.400L1211.200-120.400Q1202.000-120.400 1197.100-124.300Q1192.200-128.200 1192.200-135.400L1192.200-135.400Q1192.200-143 1197.100-146.900Q1202.000-150.800 1211.200-150.800L1211.200-150.800Q1220.600-150.800 1225.500-146.900Q1230.400-143 1230.400-135.600L1230.400-135.600Q1230.400-128.200 1225.500-124.300Q1220.600-120.400 1211.200-120.400ZM1295.400 2.800L1295.400 2.800Q1284.800 2.800 1276.200 0.900Q1267.600-1 1261.200-4.600Q1254.800-8.200 1250.700-13.300Q1246.600-18.400 1245.000-24.600L1245.000-24.600L1269.000-35.200Q1270.400-31.800 1273.900-28.300Q1277.400-24.800 1283.300-22.600Q1289.200-20.400 1297.600-20.400L1297.600-20.400Q1305.600-20.400 1310.100-22.700Q1314.600-25 1314.600-29.400L1314.600-29.400Q1314.600-32.600 1312.100-34.500Q1309.600-36.400 1304.600-37.900Q1299.600-39.400 1292.200-40.800L1292.200-40.800Q1284.600-42.400 1276.800-44.500Q1269.000-46.600 1262.200-50.300Q1255.400-54 1251.300-60.100Q1247.200-66.200 1247.200-75.600L1247.200-75.600Q1247.200-85.400 1252.400-92.700Q1257.600-100 1267.900-104.200Q1278.200-108.400 1293.000-108.400L1293.000-108.400Q1306.200-108.400 1316.200-105Q1326.200-101.600 1332.900-95.300Q1339.600-89 1342.200-80.200L1342.200-80.200L1316.400-71Q1315.400-75.400 1312.300-78.600Q1309.200-81.800 1304.500-83.500Q1299.800-85.200 1293.400-85.200L1293.400-85.200Q1285.600-85.200 1281.300-82.800Q1277.000-80.400 1277.000-76.400L1277.000-76.400Q1277.000-73.200 1279.900-71.100Q1282.800-69 1288.200-67.600Q1293.600-66.200 1301.000-64.600L1301.000-64.600Q1308.800-63 1316.500-60.900Q1324.200-58.800 1330.500-55.300Q1336.800-51.800 1340.500-46.100Q1344.200-40.400 1344.200-31.400L1344.200-31.400Q1344.200-20.800 1338.600-13.100Q1333.000-5.400 1322.100-1.300Q1311.200 2.800 1295.400 2.800ZM1403.200 2.600L1403.200 2.600Q1384.600 2.600 1375.800-7.300Q1367.000-17.200 1367.000-39L1367.000-39L1367.000-80.400L1352.000-80.400L1352.600-105.400L1363.400-105.400Q1369.800-105.600 1373.100-107.400Q1376.400-109.200 1377.200-114.200L1377.200-114.200L1379.800-129L1398.000-129L1398.000-105.600L1423.400-105.600L1423.400-79.400L1398.000-79.400L1398.000-40.400Q1398.000-33.600 1401.300-30.400Q1404.600-27.200 1411.400-27.200L1411.400-27.200Q1415.200-27.200 1418.600-28Q1422.000-28.800 1424.200-30.200L1424.200-30.200L1424.200-0.400Q1417.800 1.600 1412.500 2.100Q1407.200 2.600 1403.200 2.600ZM1475.600 0L1443.200 0L1443.200-49L1443.200-105.600L1469.600-105.600L1470.200-69.800L1474.200-69.800Q1475.600-83.800 1479.500-92.100Q1483.400-100.400 1490.700-104.200Q1498.000-108 1508.800-108L1508.800-108Q1510.400-108 1512.400-107.900Q1514.400-107.800 1517.000-107.400L1517.000-107.400L1515.800-73Q1512.600-74.600 1508.900-75.100Q1505.200-75.600 1502.400-75.600L1502.400-75.600Q1494.600-75.600 1488.900-72.600Q1483.200-69.600 1479.900-63.400Q1476.600-57.200 1475.600-47.800L1475.600-47.800L1475.600 0ZM1573.000 36.800L1573.000 36.800Q1565.000 36.800 1556.600 35.400Q1548.200 34 1540.700 31.300Q1533.200 28.600 1527.800 24.200L1527.800 24.200L1535.600-4.400Q1542.600 2.200 1552.500 5.400Q1562.400 8.600 1571.600 8.600L1571.600 8.600Q1582.200 8.600 1589.100 4.500Q1596.000 0.400 1599.700-8.100Q1603.400-16.600 1604.000-29.200L1604.000-29.200L1605.000-46.600L1600.200-46.600Q1598.400-33.600 1593.900-25.400Q1589.400-17.200 1582.500-13.300Q1575.600-9.400 1566.200-9.400L1566.200-9.400Q1554.600-9.400 1546.800-15.200Q1539.000-21 1535.100-32.700Q1531.200-44.400 1531.200-61.800L1531.200-61.800L1531.200-105.600L1563.600-105.600L1563.600-69.800Q1563.600-51.400 1567.300-43.500Q1571.000-35.600 1579.000-35.600L1579.000-35.600Q1583.200-35.600 1586.600-38Q1590.000-40.400 1592.400-44.800Q1594.800-49.200 1596.100-55.500Q1597.400-61.800 1597.400-69.600L1597.400-69.600L1597.400-105.600L1629.600-105.600L1629.600-28Q1629.600-15.400 1627.300-5Q1625.000 5.400 1620.500 13.200Q1616.000 21 1609.200 26.300Q1602.400 31.600 1593.400 34.200Q1584.400 36.800 1573.000 36.800Z" fill="#0B1A2E"/>
+</svg></span>
+  </a>
+  <div class="prepared"><span class="pf">Prepared for</span><svg class="rx" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 300 85" role="img" aria-label="RxSight"><defs><radialGradient id="rxA" cx="273.1385" cy="26.1127" r="23.5025" fx="270.8427" fy="19.8072" gradientTransform="matrix(0.8845 -0.4666 0.4491 0.8512 19.8305 131.333)" gradientUnits="userSpaceOnUse"><stop offset="0.2455" stop-color="#A55682"/><stop offset="0.3798" stop-color="#9C4F7E"/><stop offset="0.5993" stop-color="#833B74"/><stop offset="0.6182" stop-color="#813973"/><stop offset="0.7216" stop-color="#78336B"/><stop offset="0.8904" stop-color="#5F2355"/><stop offset="1" stop-color="#4C1643"/></radialGradient><radialGradient id="rxB" cx="277.2256" cy="28.308" r="20.7852" gradientUnits="userSpaceOnUse"><stop offset="0.1459" stop-color="#87A6CB"/><stop offset="0.2513" stop-color="#829FC3"/><stop offset="0.4102" stop-color="#758BAF"/><stop offset="0.5922" stop-color="#606D8F"/><stop offset="0.6678" stop-color="#586889"/><stop offset="0.7819" stop-color="#445879"/><stop offset="0.9196" stop-color="#224060"/><stop offset="1" stop-color="#0B2F4E"/></radialGradient></defs><path fill="url(#rxA)" d="M261.6,33.3c0.8-1.5,1.8-3,3.2-4.4 c4.9-4.9,13.6-7.9,19.6-10.9c3.7-9-3.8-18.1,3.8-11.3c-9.6-9-24.6-8.8-34,0.5c-9.6,9.5-9.7,25.1-0.2,34.7c1.5,1.5,2.6,2.5,3.4,3 c-0.5-0.4-0.9-0.7-1.4-1.1C251,39.2,255.1,36.3,261.6,33.3z"/><path fill="url(#rxB)" d="M288.9,7.2c-0.2-0.2-0.5-0.4-0.7-0.6 C288.5,6.8,288.7,7,288.9,7.2c4.7,4.8,1.3,7.8-4.5,10.7c-0.6,1.4-1.4,2.7-2.5,4c-4.6,5.1-13.7,8.2-20.3,11.3 c-3.5,6.9-1,13.7-4.2,11.6c10.1,7.9,24.6,6.7,33.3-2.9C299.8,31.8,299,16.3,288.9,7.2z"/><path fill="#6FCACF" d="M261.6,33.3c-6.5,3-10.6,5.9-5.6,10.4c0.4,0.4,0.9,0.8,1.4,1.1C260.7,46.9,258.1,40.2,261.6,33.3z"/><path fill="#6FCACF" d="M284.5,17.9c5.8-2.9,9.2-5.9,4.5-10.7c-0.2-0.2-0.5-0.4-0.7-0.7C280.6-0.2,288.1,9,284.5,17.9z"/><g fill="#0B2F4E"><path d="M24.8,66c2.2,0,4.1-0.1,5.6-0.4c1.6-0.3,2.9-0.8,3.9-1.5c1-0.7,1.8-1.6,2.3-2.8c0.5-1.2,0.7-2.7,0.7-4.6v-2.2 c0-1.9-0.2-3.5-0.7-4.7c-0.5-1.2-1.2-2.2-2.2-2.9c-1-0.7-2.3-1.2-3.9-1.5c-1.6-0.3-3.5-0.4-5.7-0.4H1.2C0.5,45,0,45.5,0,46.2v30.6 h7V65.2l18.6,11.6h12.2L19.2,66H24.8z M7,50.9h17.4c1.2,0,2.1,0,2.9,0.1c0.8,0.1,1.4,0.3,1.8,0.6c0.4,0.3,0.7,0.7,0.9,1.2 c0.2,0.5,0.3,1.2,0.3,2.1v1.7c0,0.9-0.1,1.6-0.3,2.1c-0.2,0.5-0.5,0.9-1,1.2c-0.5,0.3-1.1,0.5-1.8,0.6c-0.8,0.1-1.7,0.1-2.9,0.1H7 V50.9z"/><path d="M72.3,51.5h-6c-0.2,0-0.4,0.1-0.6,0.2l-8.2,8.3l-8-8.3c-0.2-0.2-0.4-0.3-0.6-0.3h-6c-0.7,0-1.1,0.9-0.6,1.4 l10.8,10.7L40,76.8h8.5l8.7-9.1l8.5,9.1h8.7L61.6,63.9l11.2-11C73.4,52.4,73,51.5,72.3,51.5z"/><path d="M108.7,59.8c-0.8-0.7-1.8-1.1-3-1.4c-1.2-0.3-2.7-0.4-4.5-0.4H86.3c-1.2,0-2-0.2-2.4-0.6 c-0.5-0.4-0.7-1.1-0.7-2.1v-1c0-1.3,0.3-2.1,0.8-2.5c0.5-0.4,1.3-0.6,2.4-0.6h15c0.7,0,1.3-0.6,1.3-1.3v-3.4c0-0.7-0.6-1.3-1.3-1.3 H85.7c-1.6,0-3,0.2-4.1,0.5c-1.2,0.3-2.1,0.8-2.8,1.5c-0.7,0.7-1.2,1.6-1.6,2.8c-0.3,1.2-0.5,2.5-0.5,4.2v1.6 c0,1.4,0.1,2.6,0.4,3.6c0.3,1,0.7,1.9,1.4,2.5c0.7,0.7,1.6,1.2,2.8,1.5c1.2,0.3,2.6,0.5,4.4,0.5h15.2c1.2,0,2.1,0.2,2.7,0.6 c0.6,0.4,0.8,1.1,0.8,2.1v1.7c0,1.1-0.3,1.8-0.8,2.2c-0.6,0.4-1.5,0.5-2.8,0.5H76.6v6h24.6c1.8,0,3.3-0.2,4.5-0.5 c1.2-0.3,2.2-0.8,3-1.4c0.8-0.7,1.3-1.5,1.7-2.5c0.3-1,0.5-2.3,0.5-3.8V66c0-1.4-0.2-2.7-0.5-3.7C110,61.3,109.5,60.5,108.7,59.8z"/><rect x="115.3" y="45" width="7.1" height="31.8"/><path d="M153.5,59.1v3.6c0,0.7,0.6,1.3,1.3,1.3l2.8,0v1.3c0,1.1-0.1,2-0.3,2.8c-0.2,0.7-0.5,1.3-0.9,1.7 c-0.4,0.4-1,0.7-1.7,0.8c-0.7,0.1-1.5,0.2-2.5,0.2h-12c-1,0-1.9-0.1-2.6-0.2c-0.7-0.1-1.3-0.4-1.7-0.8c-0.4-0.4-0.7-0.9-0.9-1.6 c-0.2-0.7-0.3-1.5-0.3-2.6v-9.4c0-1,0.1-1.8,0.3-2.4c0.2-0.7,0.5-1.2,0.9-1.6c0.4-0.4,1-0.7,1.7-0.9c0.7-0.2,1.6-0.3,2.6-0.3h6.7 c0.7,0,1.3-0.6,1.3-1.3v-3.5c0-0.7-0.6-1.3-1.3-1.3h-7c-2.3,0-4.3,0.2-5.8,0.6c-1.6,0.4-2.8,1-3.7,1.9c-0.9,0.9-1.6,2-2,3.4 c-0.4,1.4-0.6,3.1-0.6,5.1v10c0,2,0.2,3.7,0.6,5.1c0.4,1.4,1.1,2.5,2,3.4c0.9,0.9,2.2,1.5,3.7,1.9c1.6,0.4,3.5,0.6,5.8,0.6h12.6 c2.4,0,4.3-0.2,5.9-0.6c1.6-0.4,2.8-1,3.8-1.9c0.9-0.9,1.6-2,2-3.4c0.4-1.4,0.6-3.1,0.6-5.1v-1.8V58v0h-0.1l-9.8-0.1 C154.1,57.8,153.5,58.4,153.5,59.1z"/><path d="M200.1,57.9h-23.3V46.3c0-0.7-0.6-1.3-1.3-1.3H171c-0.7,0-1.3,0.6-1.3,1.3v30.5h7.1V64.1h23.3v12.7h7V45h-5.8 c-0.7,0-1.3,0.6-1.3,1.3V57.9z"/><path d="M210.8,45v6.1h13.4v25.7h7.1V51.1h12.1c0.7,0,1.3-0.6,1.3-1.3v-3.5c0-0.7-0.6-1.3-1.3-1.3H210.8z"/><path d="M238.5,77.2c-1.8,0-3.2-1.4-3.2-3.2c0-1.7,1.4-3.2,3.2-3.2s3.2,1.4,3.2,3.2C241.7,75.7,240.3,77.2,238.5,77.2z M238.5,71.2c-1.6,0-2.8,1.3-2.8,2.8c0,1.6,1.2,2.8,2.8,2.8c1.6,0,2.8-1.3,2.8-2.8C241.3,72.4,240.1,71.2,238.5,71.2z M239.3,74.4 l0.8,1.2h-0.9l-0.7-1.1H238v1.1h-0.7v-3.4h1.5c0.8,0,1.3,0.4,1.3,1.1C240,73.9,239.7,74.2,239.3,74.4z M238.7,72.9H238v1h0.7 c0.4,0,0.6-0.2,0.6-0.5C239.3,73,239.1,72.9,238.7,72.9z"/></g></svg></div>
+</header>
+
+<main>
+<section class="hero">
+  <div class="wrap">
+    <p class="for">Statement of Work <span class="draft">Draft for review</span></p>
+    <p class="who">For Taryn Conway, Chief Commercial Officer, RxSight &middot; November 10,&nbsp;2026</p>
+    <h1>Help patients find LAL and ask&nbsp;for&nbsp;it&nbsp;by&nbsp;name.</h1>
+    <p class="lede">Local AI Registry will build RxSight&rsquo;s search and AI visibility so patients learn about the Light Adjustable Lens and ask for it at the practices that already offer&nbsp;it.</p>
+    <div class="tiles rv">
+      <div class="tile"><span class="num">$10K</span><span class="n">Strategy and sitemap, one time, before the site build</span></div>
+      <div class="tile"><span class="num">$10K/mo</span><span class="n">Search and AI visibility, starting the month the site&nbsp;launches</span></div>
+      <div class="tile"><span class="num">60</span><span class="n">Practices in the LAL page pilot, 10 per region, $500&nbsp;each</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="part">The goal</p>
+    <h2>Two paths to the same&nbsp;question</h2>
+    <p class="sub">The work covers both ways a patient meets LAL. Path 1 comes first, because those patients are already in a certified surgeon&rsquo;s&nbsp;office.</p>
+    <div class="fig">
+      <div class="paths" id="paths">
+        <div class="path">
+          <p class="lbl"><b>Path 1 &middot; Priority</b> &nbsp;Patient already seeing a surgeon</p>
+          <div class="step"><strong>Searches</strong>their surgeon&rsquo;s name</div>
+          <div class="step"><strong>Finds</strong>the surgeon&rsquo;s RxSight profile</div>
+          <div class="step"><strong>Learns</strong>about LAL next to their surgeon&rsquo;s&nbsp;name</div>
+          <div class="step end"><strong>Asks</strong>their surgeon about&nbsp;LAL</div>
+        </div>
+        <div class="path">
+          <p class="lbl"><b>Path 2</b> &nbsp;Patient researching cataract surgery</p>
+          <div class="step"><strong>Asks</strong>Google or an AI assistant about cataract&nbsp;surgery</div>
+          <div class="step"><strong>Learns</strong>about LAL in the&nbsp;answer</div>
+          <div class="step"><strong>Visits</strong>RxSight&rsquo;s find&#8209;a&#8209;doctor</div>
+          <div class="step end"><strong>Books</strong>with a certified&nbsp;surgeon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="part">The work</p>
+    <h2>Three pieces, one&nbsp;plan</h2>
+    <p class="sub">All content follows RxSight&rsquo;s medical, legal and regulatory review and stays&nbsp;on&#8209;label.</p>
+
+    <div class="phase rv">
+      <div class="head"><h3>Phase 1: Strategy and sitemap</h3><span class="price">$10,000 <small>one time</small></span></div>
+      <p>Done before the new corporate site is built, so nothing has to be redone after&nbsp;launch.</p>
+      <ul class="ticks">
+        <li>SEO and AI search strategy for RxSight and LAL</li>
+        <li>Sitemap: every page the site needs, and what each page is&nbsp;for</li>
+        <li>Content brief for each page: topic, questions it answers, internal&nbsp;links</li>
+        <li>Surgeon profile template for find&#8209;a&#8209;doctor, built to rank for each surgeon&rsquo;s&nbsp;name</li>
+        <li>Technical SEO and structured data requirements for the&nbsp;developer</li>
+        <li>AI visibility baseline: how ChatGPT, Google AI and similar tools answer cataract and LAL questions&nbsp;today</li>
+      </ul>
+    </div>
+
+    <div class="phase rv">
+      <div class="head"><h3>Phase 2: Search and AI visibility</h3><span class="price">$10,000 <small>per month</small></span></div>
+      <p>Starts the month the new site goes live. Nothing is billed for Phase 2 before launch. The budget can move up or down with 30&nbsp;days&rsquo;&nbsp;notice.</p>
+      <ul class="ticks">
+        <li>Surgeon profile pages tuned so name searches lead to the RxSight&nbsp;profile</li>
+        <li>New patient education content on cataract surgery and&nbsp;LAL</li>
+        <li>AI visibility work so assistants describe LAL accurately and point to find&#8209;a&#8209;doctor</li>
+        <li>Technical SEO monitoring and&nbsp;fixes</li>
+        <li>Monthly performance&nbsp;report</li>
+      </ul>
+      <p class="small" style="margin-top:12px">Search and AI results typically build over 30 to 90 days after launch. No specific ranking or result is&nbsp;guaranteed.</p>
+    </div>
+
+    <div class="phase rv">
+      <div class="head"><h3>LAL practice page pilot</h3><span class="price">$500 <small>per install</small></span></div>
+      <p>We install RxSight&rsquo;s approved LAL page on each pilot practice&rsquo;s website as part of onboarding. 60 practices, 10 per&nbsp;region.</p>
+      <ul class="ticks">
+        <li>The approved LAL page, placed and formatted on the practice&rsquo;s&nbsp;site</li>
+        <li>The surgeon listed as a certified LAL&nbsp;provider</li>
+        <li>A link to the surgeon&rsquo;s RxSight find&#8209;a&#8209;doctor profile</li>
+        <li>Clean structure, mobile layout and structured data for the LAL&nbsp;content</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="part">Compliance</p>
+    <h2>How the pilot stays&nbsp;clean</h2>
+    <p class="sub">The pilot is product onboarding, not marketing for the practice. These rules hold for every&nbsp;install.</p>
+    <ul class="ticks guard rv">
+      <li><strong>RxSight pays us directly.</strong> Practices pay nothing for the&nbsp;install.</li>
+      <li><strong>LAL page only.</strong> No SEO, marketing or other work on the practice&rsquo;s&nbsp;site.</li>
+      <li><strong>Approved content only.</strong> On&#8209;label, with fair balance. Practices cannot change the&nbsp;claims.</li>
+      <li><strong>Never tied to volume.</strong> Not linked to past or future LAL procedures or&nbsp;purchases.</li>
+      <li><strong>RxSight compliance picks the practices</strong> and documents how they were&nbsp;chosen.</li>
+      <li><strong>Value reported per practice</strong> so RxSight can handle Open Payments&nbsp;reporting.</li>
+    </ul>
+    <p class="note">A practice that wants SEO or marketing for its own site contracts with Local AI Registry separately, at its own cost, outside this SOW. Final program structure is subject to approval by RxSight&rsquo;s legal and compliance&nbsp;team.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="part">Timeline</p>
+    <h2>From signature to&nbsp;launch</h2>
+    <div class="tl" id="tl">
+      <span class="bar" aria-hidden="true"></span>
+      <ol>
+        <li><b>Sign</b>NDA and SOW&nbsp;approved</li>
+        <li><b>Plan</b>Strategy and sitemap delivered before the&nbsp;build</li>
+        <li><b>Pilot</b>Installs begin once compliance approves content and&nbsp;practices</li>
+        <li class="live"><b>Launch</b>Site live (planned Feb, likely March 2027); Phase 2&nbsp;begins</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section class="alt">
+  <div class="wrap">
+    <p class="part">Investment</p>
+    <h2>What it costs in&nbsp;2027</h2>
+    <div class="offer rv">
+      <p class="part">Estimated 2027 total</p>
+      <span class="num big">$140,000</span>
+      <p>Assumes a March 2027 launch (10 months of Phase 2). A February launch adds&nbsp;$10,000.</p>
+    </div>
+    <div class="tw"><table class="demand">
+      <thead><tr><th>Item</th><th>Billing</th><th class="r">Price</th><th class="r">2027 est.</th></tr></thead>
+      <tbody>
+        <tr><td>Phase 1: Strategy and sitemap</td><td>At signing</td><td class="r">$10,000</td><td class="r">$10,000</td></tr>
+        <tr><td>Phase 2: Search and AI visibility</td><td>Monthly from launch</td><td class="r">$10,000/mo</td><td class="r">$100,000</td></tr>
+        <tr><td>LAL page pilot, 60 practices</td><td>Per completed install</td><td class="r">$500 each</td><td class="r">$30,000</td></tr>
+        <tr><td>Consulting hours (optional)</td><td>As used, approved in writing</td><td class="r">$300/hr</td><td class="r">Not included</td></tr>
+        <tr class="tot"><td>Total</td><td></td><td></td><td class="r">$140,000</td></tr>
+      </tbody>
+    </table></div>
+    <p class="small">Optional consulting hours cover work outside this SOW, such as creative direction, AI strategy, team training or campaign&nbsp;planning.</p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <p class="part">Terms</p>
+    <h2>Who does what</h2>
+    <div class="cols">
+      <div class="box rv">
+        <h3>RxSight provides</h3>
+        <ul>
+          <li>Approved LAL content, claims and brand&nbsp;assets</li>
+          <li>The certified practice list and pilot&nbsp;selection</li>
+          <li>Access to the website team and&nbsp;analytics</li>
+          <li>Legal and compliance review</li>
+        </ul>
+      </div>
+      <div class="box rv">
+        <h3>Terms</h3>
+        <ul>
+          <li>Phase 1 invoiced at signing</li>
+          <li>Phase 2 invoiced monthly in advance, from&nbsp;launch</li>
+          <li>Pilot invoiced monthly for completed&nbsp;installs</li>
+          <li>Either party may end Phase 2 with 30 days&rsquo; written&nbsp;notice</li>
+          <li>RxSight owns all content and pages created under this&nbsp;SOW</li>
+        </ul>
+      </div>
+    </div>
+    <div class="sign">
+      <div><b>RxSight, Inc.</b>Taryn Conway, Chief Commercial Officer, date</div>
+      <div><b>Local AI Registry (Blind LLC)</b>Steve Lee, CEO, date</div>
+    </div>
+  </div>
+</section>
+
+<section class="next">
+  <div class="wrap">
+    <h2>Next step</h2>
+    <p>Taryn, once the NDA is signed, send this to your legal and compliance team. When they approve the pilot structure and practice list, we start Phase 1 and schedule the first&nbsp;installs.</p>
+    <p class="sig">Steve Lee<br><span class="small">CEO, Local AI Registry &middot; (213) 931-5633 &middot; steve@localairegistry.com</span></p>
+  </div>
+</section>
+
+<footer class="wrap src">
+  <p>Local AI Registry is a DBA of Blind LLC, 9891 Irvine Center Dr, Irvine, CA 92618. Confidential: prepared for RxSight, Inc. Local AI Registry is not a law firm, and nothing here is legal advice. Timelines and results are estimates, not&nbsp;guarantees.</p>
+</footer>
+</main>
+
+<script>
+(function(){
+  var els=document.querySelectorAll('.rv,#paths,#tl');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(entries){
+    entries.forEach(function(en){
+      if(!en.isIntersecting)return;
+      var t=en.target;
+      if(t.id==='paths'){
+        t.querySelectorAll('.step').forEach(function(s,i){s.style.transitionDelay=(i%4)*120+'ms';});
+      }
+      t.classList.add('in');io.unobserve(t);
+    });
+  },{threshold:.2});
+  els.forEach(function(e){io.observe(e)});
+})();
+</script>
+</body>
+</html>
