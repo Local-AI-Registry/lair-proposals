@@ -86,6 +86,9 @@ section{scroll-margin-top:110px}
 .bento .card p{margin:0;font-size:16px;color:#3b4d61;max-width:300px}
 .bento .photo{grid-column:span 2;border-radius:22px;overflow:hidden;position:relative;min-height:420px;background:#1b3350}
 .bento .photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.bento .photo.drcard{background:radial-gradient(120% 120% at 75% 45%,#5b80aa 0%,#3c638f 40%,#22466f 100%)}
+.bento .photo img.dr{left:auto;right:4%;width:auto;height:100%;object-fit:contain;object-position:right bottom;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 16%);mask-image:linear-gradient(90deg,transparent 0,#000 16%)}
+@media(max-width:600px){.bento .photo img.dr{right:-10%}}
 .bento .photo .ph{position:absolute;left:24px;bottom:24px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);backdrop-filter:blur(10px);color:#fff;border-radius:14px;padding:14px 18px;font-size:14px}
 .bento .photo .ph strong{display:block;font-family:var(--serif);font-weight:400;font-size:22px;letter-spacing:.01em}
 @media(max-width:960px){.bento{grid-template-columns:1fr}.bento .photo{grid-column:auto}}
@@ -359,9 +362,9 @@ footer .legal a{text-decoration:none;color:#b9cde0}
       <div class="card rv"><h3 class="serif">Board-certified.<br><em>Fellowship-trained.</em></h3><p>Specialized training in cataract and refractive surgery.</p></div>
       <div class="card rv"><h3 class="serif">Surgical Director,<br><em>Largo ASC.</em></h3><p>He leads surgery at the Largo Ambulatory Surgery Center.</p></div>
       <div class="card rv"><h3 class="serif">Teaching tomorrow's<br><em>eye surgeons.</em></h3><p>Associate clinical professor of ophthalmology at the University of South Florida.</p></div>
-      <div class="photo rv">
-        <img src="https://images.pexels.com/photos/5996605/pexels-photo-5996605.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Eye surgeon examining a patient">
-        <div class="ph"><strong>Stock photo</strong>Dr. Weinstock's portrait goes here</div>
+      <div class="photo drcard rv">
+        <img class="dr" src="dr-weinstock.jpg" alt="Dr. Robert J. Weinstock">
+        <div class="ph"><strong>Robert J. Weinstock, MD</strong>Cataract and refractive surgeon</div>
       </div>
       <div class="card rv"><h3 class="serif">More options,<br><em>the right fit.</em></h3><p>From laser cataract surgery to EVO ICL, your procedure is matched to your eyes and your life.</p></div>
     </div>
