@@ -5,7 +5,7 @@ Updated: 2026-11-19
 
 The Vision Library
 
-# Answers from _Dr. Weinstock_
+# Answers from _Dr.  Weinstock_
 
 Plain-language guides to cataracts, vision correction and coverage, written by a surgeon who has spent 25 years in practice in Tampa Bay.
 

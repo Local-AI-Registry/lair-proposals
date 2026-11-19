@@ -6,7 +6,7 @@ Updated: 2026-11-19
 # Cataract Surgery & LASIK in Largo, Florida
 
 Clear vision, close to home.  
-_Care you can count on._
+_Care you can count  on._
 
 Book a Consultation[Meet Dr. Weinstock](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/)
 
@@ -20,28 +20,28 @@ Explore our procedures
 
 Dr. Robert J. Weinstock
 
-## The surgeon _other surgeons read._
+## The surgeon _other surgeons  read._
 
 [Read His Full Bio](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/)
 
 Newsweek · 2022
 
 ### America's Best  
- _Eye Doctors._
+ _Eye  Doctors._
 
 Named to Newsweek's national ranking, chosen by more than 10,000 eye care professionals.
 
 2015 to 2026
 
 ### Chief Medical Editor,  
-_CRS Today._
+_CRS  Today._
 
 Led _Cataract & Refractive Surgery Today_ for 11 years, and wrote 14 textbook chapters other surgeons learn from.
 
 Top 1% nationally · 50,000+ surgeries
 
 ### First in the world  
- _in 3D surgery._
+ _in 3D  surgery._
 
 The first surgeon in the world to perform heads-up 3D digital eye surgery, and top 1% in U.S. cataract volume. [See his firsts](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/#firsts)
 
@@ -50,7 +50,7 @@ The first surgeon in the world to perform heads-up 3D digital eye surgery, and t
 AECOS · President-Elect
 
 ### Chosen to lead  
- _his peers._
+ _his  peers._
 
 President-Elect of the American-European Congress of Ophthalmic Surgery, plus an Ocular Surgery News Premier Surgeon 300 innovator. [See all honors](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/#leadership)
 
@@ -68,14 +68,14 @@ Plan My Cataract Consultation
 Compare Your Options
 
 ## Laser Precision,  
-_Fast Recovery_
+_Fast  Recovery_
 
 Ask About LASIK
 
 Procedures
 
 ## Matched to  
- _your eyes_
+ _your  eyes_
 
 Dr. Weinstock has helped test and refine many of the lenses and lasers he uses. Every plan starts with a full evaluation and a clear recommendation.
 
@@ -97,9 +97,9 @@ Laser Cataract SurgeryRestore clarity and reduce your need for glasses. LASIKLas
 
 Excerpts from patient letters shared by the practice.
 
-## Life, in _Clear Focus_
+## Life, in _Clear  Focus_
 
-## Which procedure _fits you?_
+## Which procedure _fits  you?_
 
 Take the 5-Step Vision Quiz
 
@@ -107,7 +107,7 @@ Step 1 of 5
 
 On Camera
 
-## Patients, _in their own words_
+## Patients, _in their own  words_
 
 > "[A short quote from Dr. Weinstock on his approach to patient care goes here.]"
 
@@ -115,7 +115,7 @@ DR. ROBERT J. WEINSTOCK
 
 The Vision Library
 
-## Answers From _Dr. Weinstock_
+## Answers From _Dr.  Weinstock_
 
 [View All Articles](https://proposals.localairegistry.com/weinstock/articles/)
 
@@ -126,7 +126,7 @@ New PatientsWhat to bring, what to expect and how to prepare for your first visi
 The Practice
 
 ## The team  
- _behind your care_
+ _behind your  care_
 
 Patient-focused, coordinated care in a friendly, caring environment.
 
@@ -135,14 +135,14 @@ Visit the Practice
 Book a Visit
 
 ## Let's talk about  
- _your vision._
+ _your  vision._
 
 Prefer to call? [(727) 518-2020](tel:7275182020)  
 Monday to Friday, 8 AM to 5 PM
 
 Questions
 
-## Answers _before you visit_
+## Answers _before you  visit_
 
 How do I know if I need cataract surgery?
 

@@ -31,7 +31,7 @@ Figures from Dr. Weinstock and his curriculum vitae, updated November 2026.
 
 About Dr. Weinstock
 
-## A surgeon who helps shape _the field he practices in_
+## A surgeon who helps shape _the field he practices  in_
 
 Robert J. Weinstock, MD, is a board-certified ophthalmologist who specializes in cataract and refractive surgery, including laser cataract surgery, premium and light adjustable lens implants, LASIK, EVO ICL and refractive lens exchange. He practices at The Eye Institute of West Florida in Largo and Clearwater, where he is Medical Director, and serves as Regional Medical Director for EyeCare Partners.
 
@@ -62,7 +62,7 @@ Leadership
 
 Firsts & Innovation
 
-## First in the world, _top 1% in the nation_
+## First in the world, _top 1% in the  nation_
 
 A career of firsts in cataract, laser and lens implant surgery.
 
@@ -106,7 +106,7 @@ A pioneer in complex implant surgery, including sutured IOLs, IOL exchanges and 
 
 Honors & Recognition
 
-## 27 honors, _2001 to 2026_
+## 27 honors, _2001 to  2026_
 
 Recognized by national publications, his peers and the industry, from his residency through this year.
 
@@ -236,7 +236,7 @@ American College of Elective Surgery
 
 Leadership & Editorial Roles
 
-## Trusted to lead, _teach and edit_
+## Trusted to lead, _teach and  edit_
 
 Clinical leadership in Tampa Bay, and editorial roles at the publications cataract and refractive surgeons read.
 
@@ -372,7 +372,7 @@ Crystalens IOL (2005)ReSTOR IOL (2005)ReZoom IOL (2005)Verisyse (2005)Visian ICL
 
 Publications & Research
 
-## Writing the textbooks _other surgeons learn from_
+## Writing the textbooks _other surgeons learn  from_
 
 14 textbook chapters, peer-reviewed research, 42 clinical studies more than 200 published articles and more than 500 lectures given internationally.
 
@@ -512,7 +512,7 @@ Professional Memberships
 
 Locations
 
-## See Dr. Weinstock in _Largo and Clearwater_
+## See Dr. Weinstock in _Largo and  Clearwater_
 
 Main office: [(727) 581-8706](tel:7275818706) · Weinstock Laser Eye Center: [(727) 518-2020](tel:7275182020)
 
@@ -536,7 +536,7 @@ Clearwater, FL 33761
 
 Questions
 
-## About _Dr. Weinstock_
+## About _Dr.  Weinstock_
 
 Is Dr. Robert Weinstock board certified?
 
