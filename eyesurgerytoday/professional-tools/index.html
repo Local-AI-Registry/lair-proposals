@@ -253,7 +253,7 @@
             <div class="field"><label for="acd">True ACD <small>(mm)</small></label><input type="number" id="acd" step="0.01" min="1" max="5" placeholder="e.g. 3.25"></div>
             <div class="field"><label for="sph">Sphere <small>(D)</small></label><input type="number" id="sph" step="0.25" min="-25" max="10" placeholder="e.g. -4.50"></div>
             <div class="field"><label for="cyl">Cylinder <small>(D)</small></label><input type="number" id="cyl" step="0.25" min="-8" max="8" placeholder="e.g. -0.75"></div>
-            <div class="field"><label for="ecd">Endothelial count <small>(cells/mm²)</small></label><input type="number" id="ecd" step="25" min="500" max="5000" placeholder="e.g. 2900"></div>
+            <div class="field"><label for="ecd">Endothelial cell count <small>(optional)</small></label><input type="number" id="ecd" step="25" min="500" max="5000" placeholder="e.g. 2900"></div>
             <div class="field"><label for="angle">Angle <small>(gonioscopy)</small></label>
               <select id="angle"><option value="">Select</option><option value="ok">Grade III or IV</option><option value="narrow">Grade II or lower</option></select></div>
           </div>
@@ -280,7 +280,7 @@
             <div class="stat"><small>Spherical equivalent</small><b id="sSE">–</b></div>
             <div class="stat"><small>Lens family</small><b id="sLens">–</b></div>
             <div class="stat"><small>ACD margin</small><b id="sACD">–</b></div>
-            <div class="stat"><small>ECD margin</small><b id="sECD">–</b></div>
+            <div class="stat"><small>Cell count margin</small><b id="sECD">–</b></div>
           </div>
 
           <div class="tabs" role="tablist">
@@ -387,7 +387,7 @@
     return {min: row.v[col], col: ['3.0','3.2','3.5'][col]};
   }
 
-  const PILL = {pass:'<span class="pill p-pass">Meets</span>', check:'<span class="pill p-check">Check</span>', fail:'<span class="pill p-fail">Outside label</span>', na:'<span class="pill p-na">Not entered</span>'};
+  const PILL = {opt:'<span class="pill p-na">Optional</span>', pass:'<span class="pill p-pass">Meets</span>', check:'<span class="pill p-check">Check</span>', fail:'<span class="pill p-fail">Outside label</span>', na:'<span class="pill p-na">Not entered</span>'};
 
   function evaluate(){
     const age=num('age'), acd=num('acd'), sph=num('sph'), cylRaw=num('cyl'), ecd=num('ecd');
@@ -429,13 +429,14 @@
     // ECD
     const m = minECD(age, acd);
     let ecdMargin=null;
-    if(ecd==null || age==null || acd==null) add('Endothelial count','na', ecd!=null ? 'Enter age and ACD to look up the minimum.' : '');
-    else if(!m) add('Endothelial count','na','No minimum applies when ACD is below 3.00 mm.');
+    if(ecd==null) add('Endothelial cell count','opt','Optional. Enter a specular microscopy count (cells/mm²) to check it against the label minimum for this age and ACD.');
+    else if(age==null || acd==null) add('Endothelial cell count','na','Enter age and ACD to look up the minimum.');
+    else if(!m) add('Endothelial cell count','na','No minimum applies when ACD is below 3.00 mm.');
     else {
       ecdMargin = ecd - m.min;
       const pct = Math.round(ecdMargin / m.min * 100);
-      if(ecdMargin<0) add('Endothelial count','fail', `Below the minimum of ${m.min.toLocaleString()} for this age with ACD ≥ ${m.col} mm.`);
-      else add('Endothelial count','pass', `${ecdMargin.toLocaleString()} cells (${pct}%) above the minimum of ${m.min.toLocaleString()} for this age with ACD ≥ ${m.col} mm.`);
+      if(ecdMargin<0) add('Endothelial cell count','fail', `Below the minimum of ${m.min.toLocaleString()} for this age with ACD ≥ ${m.col} mm.`);
+      else add('Endothelial cell count','pass', `${ecdMargin.toLocaleString()} cells (${pct}%) above the minimum of ${m.min.toLocaleString()} for this age with ACD ≥ ${m.col} mm.`);
     }
 
     // Angle
@@ -463,13 +464,14 @@
     $('sECD').textContent = ecdMargin==null ? '–' : (ecdMargin>=0?'+':'') + ecdMargin.toLocaleString();
 
     // Verdict
-    const entered = rows.filter(r=>r.status!=='na').length;
+    const entered = rows.filter(r=>r.status!=='na' && r.status!=='opt').length;
+    const optSkipped = rows.some(r=>r.status==='opt');
     const fails = rows.filter(r=>r.status==='fail'), checks = rows.filter(r=>r.status==='check'), missing = rows.filter(r=>r.status==='na');
     const v=$('verdict'); let cls, dot, title, text;
     if(entered===0){ cls='v-empty'; dot='?'; title="Enter the patient's measurements"; text='The label check, outcomes and economics will appear here.'; }
     else if(fails.length){ cls='v-fail'; dot='✕'; title='Outside the US label'; text=fails.map(f=>f.name).join(', ')+'. See the label check for detail.'; }
     else if(checks.length || missing.length){ cls='v-check'; dot='!'; title= checks.length ? 'Check before booking' : 'So far, so good'; text = [checks.length? checks.map(c=>c.name).join(', ')+' needs a look.' : '', missing.length? 'Still to enter: '+missing.map(m=>m.name.toLowerCase()).join(', ')+'.' : ''].filter(Boolean).join(' '); }
-    else { cls='v-pass'; dot='✓'; title='Meets the US label criteria entered'; text='Next step: calculate lens size and power in STAAR OCOS. Outcomes for this prescription are under the Outcomes tab.'; }
+    else { cls='v-pass'; dot='✓'; title= optSkipped ? 'Meets the criteria entered' : 'Meets the US label criteria entered'; text= optSkipped ? 'Endothelial cell count not entered. Confirm it meets the label minimum for this age and ACD, then calculate lens size and power in STAAR OCOS.' : 'Next step: calculate lens size and power in STAAR OCOS. Outcomes for this prescription are under the Outcomes tab.'; }
     v.className='verdict '+cls; $('vdot').textContent=dot; $('vtitle').textContent=title; $('vtext').textContent=text;
 
     renderEvidence(se, age, lens);
