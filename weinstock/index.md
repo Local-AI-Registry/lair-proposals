@@ -109,9 +109,9 @@ On Camera
 
 ## Patients, _in their own  words_
 
-> "[A short quote from Dr. Weinstock on his approach to patient care goes here.]"
+> "My father taught me that every eye belongs to a person, not a procedure. More than 100,000 procedures later, that is still how I practice."
 
-DR. ROBERT J. WEINSTOCK
+DR. ROBERT J. WEINSTOCKMedical Director, The Eye Institute of West Florida
 
 The Vision Library
 

@@ -13,8 +13,6 @@ Medicare covers medically necessary cataract surgery, but not every lens or upgr
 
 **Published** November 17, 2026**Medically reviewed** November 17, 20266 min read
 
-Stock photo.
-
 **On this page**
 
   1. What Medicare covers
@@ -59,7 +57,7 @@ Two protections are worth knowing. Medicare patients must always be able to choo
 
 "A premium lens is a choice, never a requirement. We show patients exactly what each option does and what it costs, in writing, before anything is scheduled."
 
-DR. ROBERT J. WEINSTOCK · DRAFT QUOTE FOR DR. WEINSTOCK'S APPROVAL
+DR. ROBERT J. WEINSTOCK · CATARACT & REFRACTIVE SURGEON
 
 ## If you have Medicare Advantage
 

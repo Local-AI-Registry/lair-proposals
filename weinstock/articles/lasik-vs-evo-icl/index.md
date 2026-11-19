@@ -13,8 +13,6 @@ Both can free you from glasses and contacts, but they work in very different way
 
 **Published** November 17, 2026**Medically reviewed** November 17, 20267 min read
 
-Stock photo.
-
 **On this page**
 
   1. How each procedure works
@@ -71,7 +69,7 @@ EVO ICL is often considered when LASIK is not the best fit: higher amounts of ne
 
 "Patients often come in asking for LASIK by name. My job is to measure their eyes and tell them honestly which procedure will give them the best long-term result."
 
-DR. ROBERT J. WEINSTOCK · DRAFT QUOTE FOR DR. WEINSTOCK'S APPROVAL
+DR. ROBERT J. WEINSTOCK · CATARACT & REFRACTIVE SURGEON
 
 ## What if you're over 45?
 

@@ -13,8 +13,6 @@ Cataracts creep in slowly, so most people adapt without noticing. Here are the s
 
 **Published** November 17, 2026**Medically reviewed** November 17, 20266 min read
 
-Stock photo.
-
 **On this page**
 
   1. What is a cataract?
@@ -85,7 +83,7 @@ A comprehensive eye exam is the only way to confirm a cataract and rule out othe
 
 "The question I ask patients is simple: what are you no longer doing because of your eyes? That answer usually tells us when the time is right."
 
-DR. ROBERT J. WEINSTOCK · DRAFT QUOTE FOR DR. WEINSTOCK'S APPROVAL
+DR. ROBERT J. WEINSTOCK · CATARACT & REFRACTIVE SURGEON
 
 ## What cataract surgery involves
 
