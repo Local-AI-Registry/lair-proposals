@@ -1,0 +1,19 @@
+# The Weinstock Laser Eye Center (Weinstock Vision)
+
+> Laser cataract surgery, LASIK, EVO ICL and lens replacement in Largo, FL with Dr. Robert J. Weinstock, a board-certified cataract and refractive surgeon.
+
+Address: 1225 West Bay Drive, Largo, FL 33770. Phone: (727) 518-2020. Hours: Monday to Friday, 8 am to 5 pm. Surgeon: Robert J. Weinstock, MD.
+
+## Key pages
+- [Home](https://proposals.localairegistry.com/weinstock/): procedures, the surgeon, reviews, FAQ, map, hours and the consultation form.
+- [Dr. Robert J. Weinstock, MD](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/): full bio with honors, leadership, training, research and sources.
+- [Book a consultation](https://proposals.localairegistry.com/weinstock/#contact): request form; the practice calls back to schedule.
+- [Location and hours](https://proposals.localairegistry.com/weinstock/#visit): address, map, directions and hours.
+
+## Articles (written by Dr. Weinstock)
+- [7 signs it may be time for cataract surgery](https://proposals.localairegistry.com/weinstock/articles/signs-you-need-cataract-surgery/)
+- [LASIK vs. EVO ICL: how to know which fits you](https://proposals.localairegistry.com/weinstock/articles/lasik-vs-evo-icl/)
+- [What Medicare covers for cataract surgery](https://proposals.localairegistry.com/weinstock/articles/does-medicare-cover-cataract-surgery/)
+
+## Full text
+- [llms-full.txt](https://proposals.localairegistry.com/weinstock/llms-full.txt): the text of every key page in one file.
