@@ -12,11 +12,11 @@ Book a Consultation[Meet Dr. Weinstock](https://proposals.localairegistry.com/we
 
 Explore our procedures
 
-  * Laser Cataract Surgery
-  * LASIK
-  * EVO ICL
-  * Clear Lens Exchange
-  * Premium Lens Implants
+  * [Laser Cataract Surgery](https://proposals.localairegistry.com/weinstock/procedures/laser-cataract-surgery/)
+  * [LASIK](https://proposals.localairegistry.com/weinstock/procedures/lasik/)
+  * [EVO ICL](https://proposals.localairegistry.com/weinstock/procedures/evo-icl/)
+  * [Clear Lens Exchange](https://proposals.localairegistry.com/weinstock/procedures/clear-lens-exchange/)
+  * [Premium Lens Implants](https://proposals.localairegistry.com/weinstock/procedures/premium-lens-implants/)
 
 Dr. Robert J. Weinstock
 

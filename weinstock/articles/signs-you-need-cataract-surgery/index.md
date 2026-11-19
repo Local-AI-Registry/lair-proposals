@@ -89,7 +89,7 @@ DR. ROBERT J. WEINSTOCK · CATARACT & REFRACTIVE SURGEON
 
 Cataract surgery removes the cloudy natural lens and, in most cases, replaces it with a clear artificial lens called an intraocular lens (IOL).5 It is an outpatient procedure.
 
-Today's lens options can do more than restore clarity. With the right lens, cataract surgery can also correct nearsightedness, farsightedness or astigmatism, which means less dependence on glasses afterward. Dr. Weinstock has served as a principal investigator on dozens of clinical studies of new intraocular lenses and surgical systems, so lens selection is a big part of every consultation.
+Today's lens options can do more than restore clarity. With the right lens, cataract surgery can also correct nearsightedness, farsightedness or astigmatism, which means less dependence on glasses afterward. Dr. Weinstock has served as a principal investigator on dozens of clinical studies of new intraocular lenses and surgical systems, so lens selection is a big part of every consultation. Learn more about [laser cataract surgery in Largo](https://proposals.localairegistry.com/weinstock/procedures/laser-cataract-surgery/) and [premium lens implants](https://proposals.localairegistry.com/weinstock/procedures/premium-lens-implants/).
 
 Wondering what it costs? Read [what Medicare covers for cataract surgery](https://proposals.localairegistry.com/weinstock/articles/does-medicare-cover-cataract-surgery/).
 

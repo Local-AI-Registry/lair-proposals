@@ -53,7 +53,7 @@ Book a consultation with Dr. Weinstock in Largo.
 
 Medicare pays for what it takes to restore functional vision, which is surgery with a conventional lens. If you choose a lens that also corrects astigmatism or reduces your need for reading glasses, you can pay the difference for the premium portion.4
 
-Two protections are worth knowing. Medicare patients must always be able to choose the standard lens, and a surgeon cannot require a premium lens as a condition of surgery.4
+Compare [premium lens implant options](https://proposals.localairegistry.com/weinstock/procedures/premium-lens-implants/). Two protections are worth knowing. Medicare patients must always be able to choose the standard lens, and a surgeon cannot require a premium lens as a condition of surgery.4
 
 "A premium lens is a choice, never a requirement. We show patients exactly what each option does and what it costs, in writing, before anything is scheduled."
 

@@ -49,7 +49,7 @@ Reversible| No| The lens can be removed
 Often a good fit for| Stable prescriptions and healthy corneas| Higher prescriptions, thinner corneas or dry eye concerns  
 Treats reading vision with age| No| No  
   
-The right choice depends on measurements only a full exam can provide, including your prescription, corneal thickness and shape, and the space inside your eye.
+The right choice depends on measurements only a full exam can provide, including your prescription, corneal thickness and shape, and the space inside your eye. Learn more about [LASIK in Largo](https://proposals.localairegistry.com/weinstock/procedures/lasik/) and [EVO ICL in Largo](https://proposals.localairegistry.com/weinstock/procedures/evo-icl/).
 
 Questions about your own eyes?
 
@@ -75,7 +75,7 @@ DR. ROBERT J. WEINSTOCK · CATARACT & REFRACTIVE SURGEON
 
 Around your mid-40s, the eye's natural lens starts losing its ability to focus up close, a condition called presbyopia. Neither LASIK nor ICL stops that, and the FDA notes that people who used reading glasses before LASIK may still need them afterward.7
 
-For many people in this stage, a lens-based procedure such as Clear Lens Exchange can address near and distance vision together and remove the chance of a future cataract.
+For many people in this stage, a lens-based procedure such as Clear Lens Exchange can address near and distance vision together and remove the chance of a future cataract. See [Clear Lens Exchange in Largo](https://proposals.localairegistry.com/weinstock/procedures/clear-lens-exchange/).
 
 ## Questions to ask your surgeon
 
