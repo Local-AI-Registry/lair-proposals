@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>LAIR Commission Calculator</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Cormorant:wght@600;700&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1F4FE0; --ink:#0B1A2E; --coral:#FF5A3C; --paper:#F4F1EA;
+    --line:#DDD7CA; --muted:#5A6577; --card:#FFFFFF; --soft:#E9EEFC;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.45;color-scheme:light}
+  .wrap{max-width:760px;margin:0 auto;padding:24px 16px 56px}
+  .concept{background:#FFF7E0;border:1px solid #E9D48A;border-radius:12px;padding:14px 16px;margin-bottom:20px;font-size:15px}
+  .concept b{font-family:"Bricolage Grotesque",sans-serif;display:block;font-size:13px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:4px;color:#7A5B00}
+  .brand{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13px;letter-spacing:.08em;text-transform:uppercase;color:var(--blue)}
+  h1{font-family:"Cormorant",serif;font-weight:700;font-size:38px;line-height:1.05;margin:6px 0 8px}
+  .lede{color:var(--muted);margin:0 0 20px;max-width:560px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px;margin-bottom:14px}
+  .card h2{font-family:"Bricolage Grotesque",sans-serif;font-size:17px;font-weight:700;margin:0 0 4px;display:flex;justify-content:space-between;align-items:baseline;gap:8px}
+  .card h2 .rate{color:var(--blue);font-size:15px;white-space:nowrap}
+  .hint{color:var(--muted);font-size:14px;margin:0 0 14px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  @media(max-width:520px){.grid{grid-template-columns:1fr}}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:4px}
+  input,select{width:100%;font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1px solid var(--line);border-radius:9px;padding:10px 11px}
+  input:focus,select:focus{outline:2px solid var(--blue);outline-offset:-1px;border-color:var(--blue)}
+  .seg{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:14px}
+  .seg button{font:inherit;font-weight:600;font-size:14px;padding:11px 10px;border-radius:10px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer;text-align:left;line-height:1.3}
+  .seg button small{display:block;font-weight:500;color:var(--muted);font-size:13px}
+  .seg button.on{border-color:var(--blue);background:var(--soft);box-shadow:inset 0 0 0 1px var(--blue)}
+  .people{display:flex;flex-direction:column;gap:8px}
+  .person{display:grid;grid-template-columns:1fr 96px 38px;gap:8px;align-items:center}
+  .person .pct{position:relative}
+  .person .pct input{padding-right:24px}
+  .person .pct span{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--muted);font-size:14px;pointer-events:none}
+  .x{width:38px;height:42px;border-radius:9px;border:1px solid var(--line);background:#fff;color:var(--muted);font-size:18px;cursor:pointer}
+  .add{margin-top:10px;font:inherit;font-weight:600;font-size:14px;color:var(--blue);background:none;border:none;padding:4px 0;cursor:pointer}
+  .warn{color:var(--coral);font-size:14px;font-weight:600;margin-top:8px;display:none}
+  .results{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .results h2{color:#fff}
+  .kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:12px 0 16px}
+  @media(max-width:520px){.kpis{grid-template-columns:1fr 1fr}}
+  .kpi{background:rgba(255,255,255,.07);border-radius:10px;padding:12px}
+  .kpi .v{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;line-height:1.1}
+  .kpi .l{font-size:12px;color:#B9C3D6;margin-top:4px}
+  table{width:100%;border-collapse:collapse;font-size:15px}
+  th{text-align:left;font-size:12px;font-weight:600;color:#B9C3D6;text-transform:uppercase;letter-spacing:.05em;padding:6px 0;border-bottom:1px solid rgba(255,255,255,.15)}
+  th.n,td.n{text-align:right}
+  td{padding:10px 0;border-bottom:1px solid rgba(255,255,255,.08);vertical-align:top}
+  td .role{display:block;font-size:12px;color:#B9C3D6}
+  tr.house td{color:#B9C3D6}
+  .rules{font-size:14px;color:var(--muted)}
+  .rules li{margin-bottom:6px}
+  .flag{display:inline-block;font-size:12px;font-weight:700;padding:3px 8px;border-radius:99px;margin-top:10px}
+  .flag.ok{background:#E3F5EA;color:#146B3A}
+  .flag.bad{background:#FFE6E0;color:#B3301A}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="concept"><b>Concept draft for discussion</b>This is an early idea, not a final compensation plan. Names and numbers are examples only. Nothing on this page changes anyone's current pay or any past deal.</div>
+  <div class="brand">Local AI Registry</div>
+  <h1>Commission calculator</h1>
+  <p class="lede">Source credit is 5% or 15% depending on who brought the deal in. Closing is always 10% to whoever gets it signed. If one person does both, they earn both.</p>
+
+  <div class="card">
+    <h2>The deal</h2>
+    <p class="hint">Commission is paid on what the client actually pays, after discounts.</p>
+    <div class="grid">
+      <div><label for="price">Monthly price collected ($)</label><input id="price" type="number" inputmode="decimal" min="0" step="100" value="5000"></div>
+      <div><label for="months">Months commission is paid</label><input id="months" type="number" inputmode="numeric" min="1" step="1" value="12"></div>
+      <div><label for="cogs">Delivery cost (COGS %)</label><input id="cogs" type="number" inputmode="decimal" min="0" max="100" step="1" value="50"></div>
+      <div><label for="client">Client name (optional)</label><input id="client" type="text" placeholder="e.g. Dr. Smith"></div>
+    </div>
+  </div>
+
+  <div class="card">
+    <h2>Source and book <span class="rate" id="srcRate">15%</span></h2>
+    <p class="hint">Who found the client and got the meeting booked.</p>
+    <div class="seg" id="srcSeg">
+      <button type="button" data-rate="5">Team member<small>5% for everyone else</small></button>
+      <button type="button" data-rate="15" class="on">KOL or partner<small>15% if they source and book it</small></button>
+    </div>
+    <div class="people" id="srcPeople"></div>
+    <button type="button" class="add" data-role="src">+ Split with another person</button>
+    <div class="warn" id="srcWarn"></div>
+  </div>
+
+  <div class="card">
+    <h2>Demo and close <span class="rate">10%</span></h2>
+    <p class="hint">Who ran the demo and got the contract signed. Always 10%.</p>
+    <div class="people" id="closePeople"></div>
+    <button type="button" class="add" data-role="close">+ Split with another person</button>
+    <div class="warn" id="closeWarn"></div>
+  </div>
+
+  <div class="card results">
+    <h2>Payouts <span class="rate" id="client-out" style="color:#B9C3D6"></span></h2>
+    <div class="kpis">
+      <div class="kpi"><div class="v" id="kTotalPct">25%</div><div class="l">Total commission</div></div>
+      <div class="kpi"><div class="v" id="kMonthly">$0</div><div class="l">Commission per month</div></div>
+      <div class="kpi"><div class="v" id="kTerm">$0</div><div class="l">Commission over term</div></div>
+      <div class="kpi"><div class="v" id="kKeep">$0</div><div class="l">LAIR keeps per month</div></div>
+      <div class="kpi"><div class="v" id="kMargin">0%</div><div class="l">LAIR margin during term</div></div>
+      <div class="kpi"><div class="v" id="kAfter">0%</div><div class="l">LAIR margin after term</div></div>
+    </div>
+    <table>
+      <thead><tr><th>Person</th><th class="n">Rate</th><th class="n">Per month</th><th class="n">Over term</th></tr></thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div id="flag"></div>
+  </div>
+
+  <div class="card">
+    <h2>The rules</h2>
+    <ul class="rules">
+      <li><b>Source and book:</b> 5% for team members, 15% for KOLs and partners who bring in the client and get the meeting booked.</li>
+      <li><b>Close:</b> 10%, fixed, to whoever gets the contract signed.</li>
+      <li><b>Splits:</b> if two people share a role, they split that role's percentage. Shares must add up to 100%.</li>
+      <li><b>One person, both roles:</b> they earn both shares, up to 25%.</li>
+      <li><b>Paid on cash collected</b>, monthly, for the agreed number of months.</li>
+    </ul>
+  </div>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  let srcRate = 15;
+  const state = {
+    src:[{name:"Partner A", share:100}],
+    close:[{name:"Team member B", share:100}]
+  };
+  const money = n => "$" + Math.round(n).toLocaleString("en-US");
+  const pct = n => (Math.round(n*10)/10).toString().replace(/\.0$/,"") + "%";
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+  function renderPeople(role){
+    const box = $(role==="src"?"srcPeople":"closePeople");
+    box.innerHTML = "";
+    state[role].forEach((p,i)=>{
+      const row = document.createElement("div");
+      row.className = "person";
+      row.innerHTML =
+        '<input type="text" placeholder="Name" value="'+esc(p.name)+'" aria-label="Name">' +
+        '<div class="pct"><input type="number" inputmode="decimal" min="0" max="100" step="5" value="'+p.share+'" aria-label="Share of this role"><span>%</span></div>' +
+        '<button type="button" class="x" aria-label="Remove">&times;</button>';
+      const [nameIn] = row.querySelectorAll('input[type="text"]');
+      const shareIn = row.querySelector('input[type="number"]');
+      nameIn.addEventListener("input", e=>{p.name=e.target.value; calc();});
+      shareIn.addEventListener("input", e=>{p.share=parseFloat(e.target.value)||0; calc();});
+      const x = row.querySelector(".x");
+      if(state[role].length===1){ x.style.visibility="hidden"; }
+      x.addEventListener("click", ()=>{ state[role].splice(i,1); evenSplit(role); renderPeople(role); calc(); });
+      box.appendChild(row);
+    });
+  }
+
+  function evenSplit(role){
+    const n = state[role].length;
+    const base = Math.floor(100/n);
+    state[role].forEach((p,i)=>{ p.share = i===n-1 ? 100-base*(n-1) : base; });
+  }
+
+  document.querySelectorAll(".add").forEach(b=>b.addEventListener("click", ()=>{
+    const role = b.dataset.role;
+    state[role].push({name:"", share:0});
+    evenSplit(role);
+    renderPeople(role); calc();
+  }));
+
+  document.querySelectorAll("#srcSeg button").forEach(b=>b.addEventListener("click", ()=>{
+    document.querySelectorAll("#srcSeg button").forEach(x=>x.classList.remove("on"));
+    b.classList.add("on");
+    srcRate = parseFloat(b.dataset.rate);
+    $("srcRate").textContent = srcRate + "%";
+    calc();
+  }));
+
+  ["price","months","cogs","client"].forEach(id=>$(id).addEventListener("input", calc));
+
+  function checkSum(role, warnId){
+    const sum = state[role].reduce((a,p)=>a+(p.share||0),0);
+    const w = $(warnId);
+    if(Math.abs(sum-100)>0.01){ w.style.display="block"; w.textContent = "Shares add up to " + pct(sum) + ". They need to total 100%."; }
+    else { w.style.display="none"; }
+  }
+
+  function calc(){
+    const price = Math.max(0, parseFloat($("price").value)||0);
+    const months = Math.max(1, parseFloat($("months").value)||1);
+    const cogs = Math.min(100, Math.max(0, parseFloat($("cogs").value)||0));
+    const client = $("client").value.trim();
+    $("client-out").textContent = client;
+
+    checkSum("src","srcWarn"); checkSum("close","closeWarn");
+
+    // aggregate per person (same name across roles combines)
+    const people = new Map();
+    const addPay = (name, rate, roleLabel) => {
+      const key = (name||"").trim() || "(unnamed)";
+      const k = key.toLowerCase();
+      if(!people.has(k)) people.set(k,{name:key, rate:0, roles:[]});
+      const e = people.get(k);
+      e.rate += rate;
+      if(!e.roles.includes(roleLabel)) e.roles.push(roleLabel);
+    };
+    state.src.forEach(p=> addPay(p.name, srcRate*(p.share||0)/100, srcRate===15?"Source (KOL/partner)":"Source (team)"));
+    state.close.forEach(p=> addPay(p.name, 10*(p.share||0)/100, "Close"));
+
+    let totalRate = 0;
+    const rows = [];
+    people.forEach(e=>{
+      totalRate += e.rate;
+      const m = price*e.rate/100;
+      rows.push('<tr><td>'+esc(e.name)+'<span class="role">'+e.roles.join(" + ")+'</span></td><td class="n">'+pct(e.rate)+'</td><td class="n">'+money(m)+'</td><td class="n">'+money(m*months)+'</td></tr>');
+    });
+
+    const commMonthly = price*totalRate/100;
+    const gross = price*(1-cogs/100);
+    const keep = gross - commMonthly;
+    const marginTerm = price>0 ? keep/price*100 : 0;
+    const marginAfter = price>0 ? gross/price*100 : 0;
+
+    rows.push('<tr class="house"><td>LAIR (after delivery cost)<span class="role">During the commission term</span></td><td class="n">'+pct(marginTerm)+'</td><td class="n">'+money(keep)+'</td><td class="n">'+money(keep*months)+'</td></tr>');
+    $("rows").innerHTML = rows.join("");
+
+    $("kTotalPct").textContent = pct(totalRate);
+    $("kMonthly").textContent = money(commMonthly);
+    $("kTerm").textContent = money(commMonthly*months);
+    $("kKeep").textContent = money(keep);
+    $("kMargin").textContent = pct(marginTerm);
+    $("kAfter").textContent = pct(marginAfter);
+
+    const flag = $("flag");
+    if(keep < 0){
+      flag.innerHTML = '<span class="flag bad">LAIR loses money on this deal during the term</span>';
+    } else if(totalRate > 25.01){
+      flag.innerHTML = '<span class="flag bad">Over the 25% cap</span>';
+    } else {
+      flag.innerHTML = '<span class="flag ok">Within the 25% cap</span>';
+    }
+  }
+
+  renderPeople("src"); renderPeople("close"); calc();
+})();
+</script>
+</body>
+</html>
