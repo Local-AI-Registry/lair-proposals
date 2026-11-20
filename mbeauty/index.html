@@ -799,11 +799,21 @@ h2[id],section[id]{scroll-margin-top:110px}
 .bento .photo.drcard{background:#141112!important;min-height:460px}
 .bento .photo img.dr{left:auto!important;right:0!important;top:0;width:58%!important;height:100%!important;object-fit:cover!important;object-position:50% 18%!important;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 35%);mask-image:linear-gradient(90deg,transparent 0%,#000 35%);opacity:1!important}
 .bento .photo.drcard .ph{z-index:2}
+.bento .photo img.dr{transform:none!important}
 @media(max-width:760px){
  .bento .photo.drcard{min-height:520px}
- .bento .photo img.dr{width:100%!important;object-position:50% 12%!important;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 92%);mask-image:linear-gradient(180deg,#000 55%,transparent 92%)}
+ .bento .photo img.dr{width:100%!important;object-position:72% 12%!important;-webkit-mask-image:linear-gradient(180deg,#000 55%,transparent 92%);mask-image:linear-gradient(180deg,#000 55%,transparent 92%)}
 }
 .vcta .frame::after{background:linear-gradient(180deg,rgba(16,12,13,.1) 30%,rgba(16,12,13,.85) 100%)!important}
+
+/* v5 phone walkthrough fixes */
+.formbox em,.test em,.approach:not(.alt) em,.cand em,.tabsmod em,.vcta em,.quote em{color:var(--gold-l)!important}
+.affil .lbl{color:var(--gold-l)!important}
+@media(max-width:560px){.affil{gap:10px 18px!important;justify-content:center}.affil .lbl{flex-basis:100%;text-align:center}.affil span{font-size:16px!important}}
+.svc.res img{inset:0 0 96px 0!important;height:auto!important}
+.svc.res::after{background:linear-gradient(180deg,rgba(0,0,0,0) 70%,rgba(15,12,13,1) 82%)!important}
+.cand .hero2::after{background:linear-gradient(180deg,rgba(12,8,9,.55),rgba(12,8,9,.7))!important}
+.svc .t h3{overflow-wrap:break-word}
 </style>
 <script id="sop-ai-ref">(function(){try{var map={'chatgpt.com':'ChatGPT','chat.openai.com':'ChatGPT','perplexity.ai':'Perplexity','gemini.google.com':'Gemini','copilot.microsoft.com':'Copilot','bing.com/chat':'Copilot','claude.ai':'Claude','meta.ai':'Meta AI','grok.com':'Grok'};
 var ref=document.referrer||'',utm=(new URLSearchParams(location.search).get('utm_source')||'').toLowerCase(),src='';
@@ -977,7 +987,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       </div>
     </div>
     <div class="track" id="track2">
-      <a class="svc" href="#time-machine"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AB1F6Cj4xHC9U9lBAxPtW7o/Time%20Machine%20B%26A/1.%20Nathalie%20Time%20Machine%20B%26A.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="" style="object-position:50% 30%"><div class="t"><h3>The Time Machine&nbsp;Procedure&trade;</h3><p>Look years younger with no&nbsp;surgery.</p></div></a>
+      <a class="svc" href="#time-machine"><img src="https://images.pexels.com/photos/3985361/pexels-photo-3985361.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=900" alt=""><div class="t"><h3>The Time Machine<br>Procedure&trade;</h3><p>Look years younger with no&nbsp;surgery.</p></div></a>
       <a class="svc" href="#contact" data-interest="Botox and Fillers"><img src="https://images.pexels.com/photos/4586711/pexels-photo-4586711.jpeg?auto=compress&cs=tinysrgb&w=900" alt=""><div class="t"><h3>Botox and&nbsp;Fillers</h3><p>Soften lines and restore lost&nbsp;volume.</p></div></a>
       <a class="svc" href="#contact" data-interest="Regenerative Medicine"><img src="https://images.pexels.com/photos/16378451/pexels-photo-16378451.jpeg?auto=compress&cs=tinysrgb&w=900" alt=""><div class="t"><h3>Regenerative&nbsp;Medicine</h3><p>ALMI fat transfer and stem cell&nbsp;therapy.</p></div></a>
       <a class="svc" href="#contact" data-interest="Skin Brightening"><img src="https://images.pexels.com/photos/5069493/pexels-photo-5069493.jpeg?auto=compress&cs=tinysrgb&w=900" alt=""><div class="t"><h3>Skin&nbsp;Brightening</h3><p>Even out dark spots and dull&nbsp;tone.</p></div></a>
@@ -1044,7 +1054,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
   <div class="container">
     <div class="box rv">
       <blockquote>&ldquo;We are a family business, and we treat every patient like family. That means we only recommend treatments we know are safe and&nbsp;effective.&rdquo;</blockquote>
-      <cite>DR. TESS MAURICIO AND DR. JAMES LEE<span>Founders, M Beauty Clinic by Dr.&nbsp;Tess</span></cite>
+      <cite><span class="nw" style="display:inline;margin:0;font-size:inherit;color:inherit;letter-spacing:inherit">DR. TESS MAURICIO</span> <span class="nw" style="display:inline;margin:0;font-size:inherit;color:inherit;letter-spacing:inherit">AND DR. JAMES&nbsp;LEE</span><span>Founders, M Beauty Clinic by Dr.&nbsp;Tess</span></cite>
     </div>
   </div>
 </section>
