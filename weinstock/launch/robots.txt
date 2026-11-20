@@ -53,6 +53,7 @@ Content-Signal: search=yes, ai-input=yes, ai-train=yes
 
 User-agent: *
 Allow: /
+Disallow: /admin/
 Disallow: /wp-admin/
 Allow: /wp-admin/admin-ajax.php
 Content-Signal: search=yes, ai-input=yes, ai-train=yes

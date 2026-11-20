@@ -1,0 +1,83 @@
+{
+ "version": 1,
+ "blocks": [
+  {
+   "id": "home.hero_tagline",
+   "file": "index.html",
+   "label": "Homepage: large headline over the video",
+   "maxChars": 120
+  },
+  {
+   "id": "home.cataract_body",
+   "file": "index.html",
+   "label": "Homepage: cataract section paragraph",
+   "maxChars": 600
+  },
+  {
+   "id": "home.quote",
+   "file": "index.html",
+   "label": "Homepage: quote from Dr. Weinstock",
+   "maxChars": 260
+  },
+  {
+   "id": "home.team_body",
+   "file": "index.html",
+   "label": "Homepage: team section sentence",
+   "maxChars": 200
+  },
+  {
+   "id": "home.newpatients_body",
+   "file": "index.html",
+   "label": "Homepage: New Patients card text",
+   "maxChars": 200
+  },
+  {
+   "id": "home.financing_body",
+   "file": "index.html",
+   "label": "Homepage: Financing card text",
+   "maxChars": 200
+  },
+  {
+   "id": "home.review_1",
+   "file": "index.html",
+   "label": "Homepage: patient review 1 (quote text)",
+   "maxChars": 240
+  },
+  {
+   "id": "home.review_2",
+   "file": "index.html",
+   "label": "Homepage: patient review 2 (quote text)",
+   "maxChars": 240
+  },
+  {
+   "id": "home.review_3",
+   "file": "index.html",
+   "label": "Homepage: patient review 3 (quote text)",
+   "maxChars": 240
+  },
+  {
+   "id": "home.review_4",
+   "file": "index.html",
+   "label": "Homepage: patient review 4 (quote text)",
+   "maxChars": 240
+  },
+  {
+   "id": "home.review_5",
+   "file": "index.html",
+   "label": "Homepage: patient review 5 (quote text)",
+   "maxChars": 240
+  },
+  {
+   "id": "bio.intro",
+   "file": "dr-robert-weinstock/index.html",
+   "label": "Bio page: opening paragraph",
+   "maxChars": 700
+  },
+  {
+   "id": "bio.personal",
+   "file": "dr-robert-weinstock/index.html",
+   "label": "Bio page: personal paragraph (articles, lectures, family, hobbies)",
+   "maxChars": 600
+  }
+ ]
+}

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow, noarchive">
+<meta name="color-scheme" content="light">
+<title>Website Editor | Weinstock Vision</title>
+<link rel="icon" type="image/png" href="../favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<script src="config.js"></script>
+<style>
+:root{--ink:#0d1f33;--navy:#19324f;--blue:#426c9d;--gold:#8a6a3a;--gold-l:#d4b483;--fog:#f4efe6;--line:#e3e7ec;--muted:#5b6b7c;--serif:'Playfair Display',Georgia,serif;--sans:'Figtree',system-ui,sans-serif;color-scheme:light}
+*{box-sizing:border-box}html,body{height:100%;margin:0}
+body{font-family:var(--sans);color:var(--ink);background:#fff;-webkit-font-smoothing:antialiased}
+h1,h2,h3,p{text-wrap:balance}
+button,input,textarea{font:inherit;color:inherit}
+.hidden{display:none!important}
+/* login */
+.login{min-height:100%;display:grid;place-items:center;padding:24px;background:linear-gradient(180deg,#fff 0%,var(--fog) 100%)}
+.card{width:min(420px,100%);background:#fff;border:1px solid var(--line);border-radius:28px;padding:38px 34px;box-shadow:0 30px 60px rgba(13,31,51,.08)}
+.card img{height:52px;width:auto;display:block;margin-bottom:26px}
+.card h1{font:400 32px/1.15 var(--serif);margin:0 0 6px}
+.card p.sub{margin:0 0 26px;color:var(--muted);font-size:15.5px}
+label{display:block;font-weight:600;font-size:14px;margin:0 0 6px}
+.field{width:100%;padding:13px 16px;border:1px solid var(--line);border-radius:14px;margin-bottom:16px;font-size:16px;background:#fff}
+.field:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:999px;padding:13px 22px;font-weight:700;cursor:pointer;background:var(--ink);color:#fff;box-shadow:inset 0 -3px 0 var(--gold-l)}
+.btn:hover{background:var(--gold)}.btn:disabled{opacity:.5;cursor:default}
+.btn.full{width:100%}
+.err{color:#b42318;font-size:14.5px;min-height:20px;margin:4px 0 0}
+.fine{font-size:12.5px;color:var(--muted);margin-top:20px;text-align:center}
+/* app */
+.app{height:100%;display:flex;flex-direction:column}
+.top{display:flex;align-items:center;gap:14px;padding:12px 20px;border-bottom:1px solid var(--line);background:#fff}
+.top img{height:38px;width:auto}
+.top .ttl{font:400 20px var(--serif);margin-right:auto;white-space:nowrap}
+.top a,.top button.link{background:none;border:0;color:var(--blue);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:none;padding:8px 6px}
+.wrap{flex:1;overflow:auto;background:linear-gradient(180deg,#fff 0%,#faf8f4 100%)}
+.thread{max-width:760px;margin:0 auto;padding:28px 20px 30px;display:flex;flex-direction:column;gap:18px}
+.msg{display:flex;gap:12px;align-items:flex-start}
+.msg .av{flex:none;width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 13px var(--sans);background:var(--ink);color:#fff}
+.msg.user{flex-direction:row-reverse}.msg.user .av{background:var(--gold-l);color:var(--ink)}
+.bubble{max-width:min(600px,85%);padding:14px 18px;border-radius:20px;font-size:16px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word}
+.msg.bot .bubble{background:#fff;border:1px solid var(--line);border-top-left-radius:6px}
+.msg.user .bubble{background:var(--ink);color:#fff;border-top-right-radius:6px}
+.bubble a{color:var(--blue);font-weight:600}.msg.user .bubble a{color:var(--gold-l)}
+.change{margin-top:10px;padding:10px 14px;border-radius:14px;background:#eef7f0;border:1px solid #cfe8d6;font-size:14px;white-space:normal}
+.change b{display:block;color:#1d6b3a}
+.typing span{display:inline-block;width:7px;height:7px;margin:0 2px;border-radius:50%;background:#9aa8b6;animation:b 1s infinite}
+.typing span:nth-child(2){animation-delay:.15s}.typing span:nth-child(3){animation-delay:.3s}
+@keyframes b{0%,80%,100%{opacity:.3;transform:translateY(0)}40%{opacity:1;transform:translateY(-3px)}}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;padding-left:46px}
+.chip{border:1px solid var(--line);background:#fff;border-radius:999px;padding:9px 14px;font-size:14px;cursor:pointer}
+.chip:hover{border-color:var(--blue);color:var(--blue)}
+.lock{max-width:760px;margin:0 auto;padding:0 20px}
+.lock details{background:var(--fog);border-radius:16px;padding:12px 16px;font-size:14px;color:#3b4d61}
+.lock summary{cursor:pointer;font-weight:700;color:var(--ink)}
+.lock ul{margin:10px 0 2px;padding-left:20px}.lock li{margin:4px 0}
+.composer{border-top:1px solid var(--line);background:#fff;padding:14px 20px calc(14px + env(safe-area-inset-bottom))}
+.composer form{max-width:760px;margin:0 auto;display:flex;gap:10px;align-items:flex-end}
+.composer textarea{flex:1;resize:none;max-height:180px;min-height:52px;padding:14px 16px;border:1px solid var(--line);border-radius:18px;font-size:16px;line-height:1.45}
+.composer textarea:focus{outline:2px solid var(--blue);outline-offset:1px;border-color:transparent}
+.composer .btn{height:52px;width:52px;padding:0;border-radius:50%}
+.note{max-width:760px;margin:8px auto 0;font-size:12.5px;color:var(--muted);text-align:center}
+.banner{background:#fff7e6;border-bottom:1px solid #f1dfb9;color:#6b4e16;font-size:14px;padding:10px 20px;text-align:center}
+@media(max-width:560px){.top .ttl{font-size:17px}.top img{height:32px}.bubble{max-width:88%;font-size:15.5px}.chips{padding-left:0}}
+</style>
+</head>
+<body>
+
+<main id="login" class="login">
+  <form class="card" id="loginForm" autocomplete="on">
+    <img src="../logo.png" alt="Weinstock Vision">
+    <h1>Website editor</h1>
+    <p class="sub">Sign in to update your website by chatting, like texting your web&nbsp;team.</p>
+    <label for="u">Username</label>
+    <input class="field" id="u" name="username" autocomplete="username" autocapitalize="none" required>
+    <label for="p">Password</label>
+    <input class="field" id="p" name="password" type="password" autocomplete="current-password" required>
+    <button class="btn full" id="loginBtn" type="submit">Sign in</button>
+    <p class="err" id="loginErr" role="alert"></p>
+    <p class="fine">Powered by Local AI Registry</p>
+  </form>
+</main>
+
+<div id="app" class="app hidden">
+  <div class="banner hidden" id="banner"></div>
+  <header class="top">
+    <img src="../logo.png" alt="Weinstock Vision">
+    <span class="ttl">Website editor</span>
+    <a href="../" target="_blank" rel="noopener">View site</a>
+    <button class="link" id="logout" type="button">Sign out</button>
+  </header>
+  <div class="wrap" id="wrap">
+    <div class="thread" id="thread" aria-live="polite"></div>
+    <div class="lock">
+      <details>
+        <summary>What's locked, and why</summary>
+        <p style="margin:10px 0 0">Some parts of the site are locked so they always match Google, ChatGPT and medical directories. That is how the practice gets found and trusted. Your Local AI Registry team manages these for&nbsp;you:</p>
+        <ul>
+          <li>Search data behind the scenes (schema), page titles and descriptions</li>
+          <li>Main headings, page addresses, menus and links between pages</li>
+          <li>Practice name, address, phone, hours, license and credentials</li>
+          <li>Procedure pages, location pages and medical articles</li>
+        </ul>
+        <p style="margin:8px 0 0">Ask for any of these anyway, and the assistant will send the request to your team.</p>
+      </details>
+    </div>
+    <div style="height:18px"></div>
+  </div>
+  <div class="composer">
+    <form id="chatForm">
+      <textarea id="input" rows="1" placeholder="Ask for a change, like &ldquo;Update my quote on the homepage&rdquo;" aria-label="Message"></textarea>
+      <button class="btn" id="send" type="submit" aria-label="Send"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <p class="note">Changes go live in about a minute. The assistant can make mistakes, so check the page after each&nbsp;change.</p>
+  </div>
+</div>
+
+<script>
+(function(){
+  const API=(window.WEINSTOCK_EDITOR_API||'').replace(/\/$/,'');
+  const $=id=>document.getElementById(id);
+  let token=sessionStorage.getItem('wv_token')||'';
+  let history=[];
+  try{history=JSON.parse(sessionStorage.getItem('wv_hist')||'[]')}catch(e){history=[]}
+
+  const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+  const linkify=s=>esc(s).replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/(https:\/\/proposals\.localairegistry\.com\/weinstock\/[^\s)<]*)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+
+  function add(role,text,changes){
+    const m=document.createElement('div');m.className='msg '+(role==='user'?'user':'bot');
+    m.innerHTML='<div class="av" aria-hidden="true">'+(role==='user'?'You':'W')+'</div><div class="bubble">'+linkify(text)+'</div>';
+    if(changes&&changes.length){const b=m.querySelector('.bubble');changes.forEach(c=>{const d=document.createElement('div');d.className='change';d.innerHTML='<b>Updated: '+esc(c.label)+'</b>Live on the site in about a minute.';b.appendChild(d)})}
+    $('thread').appendChild(m);$('wrap').scrollTop=$('wrap').scrollHeight;return m;
+  }
+  function typing(on){
+    let t=$('typing');
+    if(on&&!t){t=document.createElement('div');t.id='typing';t.className='msg bot';t.innerHTML='<div class="av" aria-hidden="true">W</div><div class="bubble typing" aria-label="Assistant is typing"><span></span><span></span><span></span></div>';$('thread').appendChild(t);$('wrap').scrollTop=$('wrap').scrollHeight}
+    if(!on&&t)t.remove();
+  }
+  function welcome(){
+    add('assistant','Hi Dr. Weinstock. Tell me what you would like to change on your website and I will take care of it.\n\nI can update things like your homepage headline, your quote, patient reviews, the cataract, team, new patient and financing sections, and the opening and personal paragraphs of your bio.\n\nFor bigger changes, like new photos, hours or a new page, I will send the request to your Local AI Registry team.');
+    const c=document.createElement('div');c.className='chips';
+    ['What can I change?','Update my quote on the homepage','Change a patient review','We have new office hours'].forEach(t=>{const b=document.createElement('button');b.type='button';b.className='chip';b.textContent=t;b.onclick=()=>{c.remove();send(t)};c.appendChild(b)});
+    $('thread').appendChild(c);
+  }
+  function showApp(){
+    $('login').classList.add('hidden');$('app').classList.remove('hidden');
+    $('thread').innerHTML='';
+    if(history.length)history.forEach(h=>add(h.role,h.content,h.changes));else welcome();
+    if(!API){$('banner').textContent='Preview: the editing service is being connected. Messages will work once your Local AI Registry team turns it on.';$('banner').classList.remove('hidden')}
+    $('input').focus();
+  }
+  async function api(path,body){
+    const r=await fetch(API+path,{method:'POST',headers:{'content-type':'application/json',...(token?{authorization:'Bearer '+token}:{})},body:JSON.stringify(body)});
+    const d=await r.json().catch(()=>({error:'Unexpected response.'}));
+    if(r.status===401&&path!=='/api/login'){logout('Your session ended. Please sign in again.');throw new Error('auth')}
+    if(!r.ok)throw new Error(d.error||'Something went wrong.');
+    return d;
+  }
+  async function send(text){
+    text=text.trim();if(!text)return;
+    add('user',text);history.push({role:'user',content:text});
+    $('input').value='';autosize();$('send').disabled=true;typing(true);
+    try{
+      if(!API)throw new Error('The editing service is not connected yet, so I cannot make changes right now. Your Local AI Registry team is finishing setup.');
+      const d=await api('/api/chat',{messages:history.map(h=>({role:h.role,content:h.content}))});
+      typing(false);add('assistant',d.reply||'Done.',d.changes);history.push({role:'assistant',content:d.reply||'Done.',changes:d.changes||[]});
+    }catch(e){typing(false);if(e.message!=='auth'){add('assistant',e.message);history.push({role:'assistant',content:e.message})}}
+    sessionStorage.setItem('wv_hist',JSON.stringify(history.slice(-40)));
+    $('send').disabled=false;$('input').focus();
+  }
+  function logout(msg){token='';history=[];sessionStorage.removeItem('wv_token');sessionStorage.removeItem('wv_hist');$('app').classList.add('hidden');$('login').classList.remove('hidden');$('loginErr').textContent=msg||''}
+  function autosize(){const t=$('input');t.style.height='auto';t.style.height=Math.min(t.scrollHeight,180)+'px'}
+
+  $('loginForm').addEventListener('submit',async e=>{
+    e.preventDefault();$('loginErr').textContent='';$('loginBtn').disabled=true;
+    const username=$('u').value.trim(),password=$('p').value;
+    try{
+      if(!API){
+        // Preview only: the real check happens on the editing service once it is connected.
+        const h=Array.from(new Uint8Array(await crypto.subtle.digest('SHA-256',new TextEncoder().encode(username.toLowerCase()+':'+password)))).map(b=>b.toString(16).padStart(2,'0')).join('');
+        if(h!=='427c2f3377827a06ed7e82c60f6fd930f4c5ebecd3af53b1b9012b46c0a6d9c6')throw new Error('That username or password is not right.');
+        token='preview';
+      }else{
+        token=(await api('/api/login',{username,password})).token;
+      }
+      sessionStorage.setItem('wv_token',token);showApp();
+    }catch(err){$('loginErr').textContent=err.message}
+    $('loginBtn').disabled=false;
+  });
+  $('chatForm').addEventListener('submit',e=>{e.preventDefault();send($('input').value)});
+  $('input').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();send($('input').value)}});
+  $('input').addEventListener('input',autosize);
+  $('logout').addEventListener('click',()=>logout(''));
+  if(token)showApp();
+})();
+</script>
+</body>
+</html>
