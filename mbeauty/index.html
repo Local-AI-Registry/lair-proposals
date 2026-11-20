@@ -814,6 +814,15 @@ h2[id],section[id]{scroll-margin-top:110px}
 .svc.res::after{background:linear-gradient(180deg,rgba(0,0,0,0) 70%,rgba(15,12,13,1) 82%)!important}
 .cand .hero2::after{background:linear-gradient(180deg,rgba(12,8,9,.55),rgba(12,8,9,.7))!important}
 .svc .t h3{overflow-wrap:break-word}
+
+/* v6 results cards sized to their photos */
+.track .svc.res{height:auto!important;flex:0 0 min(420px,86vw)!important;display:flex;flex-direction:column;background:#fff!important;align-self:flex-start}
+.svc.res img{position:static!important;inset:auto!important;width:100%!important;height:auto!important;object-fit:initial!important;display:block}
+.svc.res:hover img{transform:none}
+.svc.res::after{display:none!important}
+.svc.res .t{position:static!important;padding:18px 22px 22px;background:#1c1718}
+.svc.res h3{font-size:26px}
+#results .track{align-items:flex-start}
 </style>
 <script id="sop-ai-ref">(function(){try{var map={'chatgpt.com':'ChatGPT','chat.openai.com':'ChatGPT','perplexity.ai':'Perplexity','gemini.google.com':'Gemini','copilot.microsoft.com':'Copilot','bing.com/chat':'Copilot','claude.ai':'Claude','meta.ai':'Meta AI','grok.com':'Grok'};
 var ref=document.referrer||'',utm=(new URLSearchParams(location.search).get('utm_source')||'').toLowerCase(),src='';
