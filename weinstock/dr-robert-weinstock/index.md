@@ -59,6 +59,8 @@ Surgery center
     Medical Director, Largo ASC
 Leadership
     President-Elect, AECOS
+Florida license
+    [ME82709](https://mqa-internet.doh.state.fl.us/MQASearchServices/HealthCareProviders)
 
 Firsts & Innovation
 
@@ -533,6 +535,58 @@ Clearwater
 Clearwater, FL 33761
 
 [Get directions](https://www.google.com/maps/search/?api=1&query=The%20Eye%20Institute%20of%20West%20Florida%203220%20McMullen%20Booth%20Road%20Clearwater%20FL)
+
+On Camera
+
+## Dr. Weinstock _on  Eyetube_
+
+Eyetube is the ophthalmology video library published by Bryn Mawr Communications. Dr. Weinstock has appeared in 19 videos there, from meeting interviews to narrated surgery.
+
+### Talks and interviews
+
+  * [Digital Visualization in Ophthalmic Surgery](https://eyetube.net/meeting-coverage/ascrs-2025/ascrs-2025-weinstock) 2025  
+ASCRS 2025 meeting coverage: digital visualization, augmented reality and heads-up 3D displays.
+  * [Challenging Dogmas](https://eyetube.net/meeting-coverage/millennialeye-live-2022/me-live-2022-meeting-coverage-weinstock) 2022  
+MillennialEYE Live 2022 panel with William F. Wiley, MD, moderated by Blake K. Williamson, MD.
+  * [The 3D Surgical Landscape](https://eyetube.net/meeting-coverage/cancun-2020/the-3d-surgical-landscape) 2020  
+His experience with heads-up 3D cataract surgery and digital visualization systems.
+  * [Addressing Cyclotorsion During Laser Cataract Surgery](https://eyetube.net/series/clinical-minute/addressing-cyclotorsion-during-laser-cataract-surgery) 2018  
+With Neda Shamie, MD, on a study of eye rotation during laser cataract surgery and astigmatism correction.
+  * [Accommodating IOL Implantation in Post-LASIK Patients](https://eyetube.net/meeting-coverage/new-orleans-2016/accommodating-iol-implantation-in-post-lasik-patients) 2016  
+Findings from a series of accommodating lens implants in patients who previously had LASIK.
+  * [Updates With Rho Kinase](https://eyetube.net/meeting-coverage/caribbean-eye-2016/updates-with-rho-kinase--afite) 2016  
+Interview with Jason Bacharach, MD, on a new class of glaucoma medications.
+  * [Identifying the Cause of Dry Eye](https://eyetube.net/meeting-coverage/caribbean-eye-2016/identifying-the-cause-of-dry-eye) 2016  
+Interview with Alan Carlson, MD, on diagnosing and treating dry eye.
+  * [Evolution of Laser Refractive Cataract Surgery](https://eyetube.net/meeting-coverage/caribbean-eye-2015/evolution-of-laser-refractive-cataract-surgery--oofak) 2015  
+How laser refractive cataract surgery has evolved.
+  * [Balancing Interests and Integrity](https://eyetube.net/meeting-coverage/austin-2014/balancing-interests-and-integrity) 2014  
+Conversation with Sumitra Khandelwal, MD.
+
+### Surgical videos for eye care professionals
+
+  * [Routine Cataract Case](https://eyetube.net/videos/routine-cataract-case-by-dr-rob-weinstock) 2020  
+A routine cataract surgery case.
+  * [Routine Case, Video Journal of Cataract, Refractive and Glaucoma Surgery](https://eyetube.net/series/vjcrgs-volume33-issue4/vj471)  
+Routine case published in the Video Journal series.
+  * [Routine Cataract Surgery](https://eyetube.net/videos/routine-cataract-surgery)  
+His typical approach and instrumentation.
+  * [VICTUS Femtosecond Laser Planning](https://eyetube.net/videos/victus-femtosecond-laser-planning)  
+Docking, incision planning and laser application.
+  * [Managing the Posterior Capsular Tear](https://eyetube.net/videos/managing-the-posterior-capsular-tear--zogef)  
+Managing an unexpected complication in a dense cataract.
+  * [Dense Cataract with Fibrotic Capsule and Posterior Capsular Tear](https://eyetube.net/videos/dense-cataract-with-fibrotic-capsule-and-posterior-capsular-tear--pevop)  
+Nominated by a CRST Europe editorial board member as a favorite Eyetube video.
+  * [BMICS in a Patient with Fuchs Dystrophy, Dense Cataract and IFIS](https://eyetube.net/videos/bmics-in-a-patient-with-fuchs-dystrophy-dense-cataract-and-ifis)  
+A challenging case with multiple eye conditions.
+  * [Simplifying the Crystalens Procedure](https://eyetube.net/videos/simplifying-the-crystalens-procedure-with-the-stellaris-vision-enhancement-system)  
+Crystalens Symposium presentation on surgical technique.
+  * [Biaxial MICS with the Stellaris and Akreos Implant](https://eyetube.net/videos/biaxial-mics-using-the-stellaris-and-akreos-implant)  
+Microincisional cataract surgery through a 1.6 mm incision.
+  * [Advances in Presbyopic Microincision Cataract Surgery](https://eyetube.net/videos/advances-in-presbyopic-micro-incision-cataract-surgery-rilipo) 2008  
+Bimanual microincisional surgery with a Crystalens HD implant.
+
+These videos show live surgery and are intended for eye care professionals.
 
 Questions
 

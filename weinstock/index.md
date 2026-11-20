@@ -111,7 +111,7 @@ On Camera
 
 [ ASCRS 2025 · Eyetube Watch on EyetubeDigital Visualization in Eye Surgery ](https://eyetube.net/meeting-coverage/ascrs-2025/ascrs-2025-weinstock) [ 2020 · Eyetube Watch on EyetubeThe 3D Surgical Landscape ](https://eyetube.net/meeting-coverage/cancun-2020/the-3d-surgical-landscape)
 
-[More of Dr. Weinstock's surgical and teaching videos on Eyetube](https://eyetube.net/search?q=weinstock)
+[See all 19 of Dr. Weinstock's Eyetube videos](https://proposals.localairegistry.com/weinstock/dr-robert-weinstock/#videos)
 
 > "My father taught me that every eye belongs to a person, not a procedure. More than 100,000 procedures later, that is still how I practice."
 
