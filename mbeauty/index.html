@@ -823,6 +823,17 @@ h2[id],section[id]{scroll-margin-top:110px}
 .svc.res .t{position:static!important;padding:18px 22px 22px;background:#1c1718}
 .svc.res h3{font-size:26px}
 #results .track{align-items:flex-start}
+
+/* v7 real logo + even result cards on desktop */
+.nav .logo{display:block;flex:0 0 auto}
+.nav .logo img{height:44px!important;width:auto;display:block}
+.flogo img{height:56px;width:auto;display:block;margin-bottom:14px}
+@media(max-width:560px){.nav .logo img{height:36px!important}}
+@media(min-width:761px){
+ .track .svc.res{flex:0 0 auto!important;width:auto!important}
+ .svc.res img{height:440px!important;width:auto!important;max-width:none}
+ .svc.res .t{width:0;min-width:100%;box-sizing:border-box}
+}
 </style>
 <script id="sop-ai-ref">(function(){try{var map={'chatgpt.com':'ChatGPT','chat.openai.com':'ChatGPT','perplexity.ai':'Perplexity','gemini.google.com':'Gemini','copilot.microsoft.com':'Copilot','bing.com/chat':'Copilot','claude.ai':'Claude','meta.ai':'Meta AI','grok.com':'Grok'};
 var ref=document.referrer||'',utm=(new URLSearchParams(location.search).get('utm_source')||'').toLowerCase(),src='';
@@ -837,7 +848,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
 
 <header class="nav" id="nav">
   <div class="in">
-    <a class="logo ftxt dark" href="#top" aria-label="M Beauty Clinic by Dr. Tess home"><span class="fm">M</span><span>M BEAUTY CLINIC<small>BY DR. TESS MAURICIO</small></span></a>
+    <a class="logo" href="#top" aria-label="M Beauty Clinic by Dr. Tess home"><img src="logo.png" alt="M Beauty Clinic, Dr. Tess Mauricio, est. 2004" width="1160" height="252"></a>
     <nav class="links" aria-label="Main">
       <a href="#dr-tess">Dr. Tess</a>
       <a href="#time-machine">Time Machine</a>
@@ -1147,7 +1158,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
 <footer>
   <div class="container fcols">
     <div class="fbrand">
-      <a href="#top" aria-label="Back to top" class="ftxt"><span class="fm">M</span><span>M BEAUTY CLINIC<small>BY DR. TESS MAURICIO</small></span></a>
+      <a href="#top" aria-label="Back to top" class="flogo"><img src="logo-white.png" alt="M Beauty Clinic, Dr. Tess Mauricio, est. 2004" width="1160" height="252"></a>
       <p>Cosmetic dermatology, regenerative medicine and medical dermatology with Dr. Tess Mauricio, MD,&nbsp;FAAD.</p>
       <div class="soc"><a href="https://www.instagram.com/mbeautyclinic/" target="_blank" rel="me noopener" aria-label="M Beauty Clinic on Instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor"/></svg></a><a href="https://www.facebook.com/mbeautyclinic" target="_blank" rel="me noopener" aria-label="M Beauty Clinic on Facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M14 8h3V4h-3c-2.8 0-4 1.8-4 4.3V10H7v4h3v8h4v-8h3l1-4h-4V8.6c0-.4.3-.6.6-.6z"/></svg></a><a href="https://www.youtube.com/@drtessmbeauty" target="_blank" rel="me noopener" aria-label="Dr. Tess on YouTube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 8.2a3 3 0 0 0-2.1-2.1C18 5.6 12 5.6 12 5.6s-6 0-7.9.5A3 3 0 0 0 2 8.2 31 31 0 0 0 1.6 12 31 31 0 0 0 2 15.8a3 3 0 0 0 2.1 2.1c1.9.5 7.9.5 7.9.5s6 0 7.9-.5a3 3 0 0 0 2.1-2.1c.3-1.2.4-2.5.4-3.8s-.1-2.6-.4-3.8zM10 15V9l5.2 3z"/></svg></a><a href="https://twitter.com/DrTessMauricio" target="_blank" rel="me noopener" aria-label="Dr. Tess on X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.8 3h3.3l-7.2 8.2L22.4 21h-6.6l-5.2-6.8L4.7 21H1.4l7.7-8.8L1 3h6.8l4.7 6.2zm-1.2 16h1.8L6.5 4.9H4.6z"/></svg></a><a href="https://www.google.com/maps/place/?q=place_id:ChIJ-7NuAfi7woARe5iHGB4tre0" target="_blank" rel="me noopener" aria-label="M Beauty Clinic Beverly Hills on Google"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 12.2c0-.7-.1-1.4-.2-2H12v3.8h5.4a4.6 4.6 0 0 1-2 3v2.5h3.2c1.9-1.7 3-4.3 3-7.3zM12 22c2.7 0 5-.9 6.6-2.5l-3.2-2.5c-.9.6-2 1-3.4 1-2.6 0-4.8-1.8-5.6-4.1H3.1v2.6A10 10 0 0 0 12 22zM6.4 13.9a6 6 0 0 1 0-3.8V7.5H3.1a10 10 0 0 0 0 9zM12 6c1.5 0 2.8.5 3.8 1.5l2.9-2.9A10 10 0 0 0 3.1 7.5l3.3 2.6C7.2 7.8 9.4 6 12 6z"/></svg></a></div>
     </div>
