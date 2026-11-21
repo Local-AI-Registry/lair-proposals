@@ -381,3 +381,6 @@ html,body{overflow-x:clip}
 @media (max-width:640px){.hero .display{font-size:36px}.h2{font-size:34px}}
 .show-m{display:none}
 @media (max-width:640px){.hide-m{display:none}.show-m{display:inline}}
+.scroller li,.scroller li.on{font-size:clamp(20px,2vw,26px);transition:color .3s,transform .3s}
+.scroller li.on{transform:scale(1.28)}
+@media (max-width:640px){.scroller li,.scroller li.on{font-size:19px}.scroller li.on{transform:scale(1.2)}}
