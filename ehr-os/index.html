@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LAIR OS</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Cormorant:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --blue:#1F4FE0;--blue-700:#1A3FB8;--blue-400:#5B7DF0;--tint:#E7EDFC;
+  --ink:#0B1A2E;--ink-600:#556070;--ink-400:#8E9AAB;
+  --coral:#FF5A3C;--coral-tint:#FFE6E0;--paper:#F4F1EA;--deep:#ECE6D6;
+  --hair:rgba(11,26,46,.09);--hair-2:rgba(11,26,46,.16);
+  --lift:0 10px 32px rgba(11,26,46,.12),0 2px 6px rgba(11,26,46,.05);
+  --ease:cubic-bezier(.2,.6,.2,1);
+  --display:'Cormorant',serif;--loud:'Bricolage Grotesque',sans-serif;--body:'Hanken Grotesk',sans-serif;
+}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;overflow:hidden;background:#E4EAF6;color:var(--ink);font-family:var(--body);font-size:14px;line-height:1.5;-webkit-font-smoothing:antialiased}
+button,textarea,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+#map{position:fixed;inset:0}
+.float{position:fixed;background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:var(--lift)}
+
+/* Left column */
+#left{position:fixed;left:20px;top:20px;bottom:20px;width:420px;display:flex;flex-direction:column;gap:10px;z-index:5;pointer-events:none}
+#left>*{pointer-events:auto}
+.brandbar{display:flex;align-items:center;gap:10px;background:#fff;border:1px solid var(--hair);border-radius:14px;padding:7px 8px 7px 12px;box-shadow:var(--lift)}
+.brandbar b{font-family:var(--loud);font-weight:800;font-size:16px;letter-spacing:-.02em;white-space:nowrap}
+.brandbar .prac{color:var(--ink-600);font-size:13px;border-left:1px solid var(--hair-2);padding-left:10px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brandbar .sp{flex:1}
+.ibtn{position:relative;height:34px;min-width:34px;padding:0 9px;border-radius:10px;border:1px solid var(--hair);background:#fff;display:inline-flex;align-items:center;justify-content:center;gap:6px;cursor:pointer;font-size:12px;font-weight:600;color:var(--ink-600)}
+.ibtn:hover{border-color:var(--hair-2);color:var(--ink)}
+.ibtn.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.badge{position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 5px;border-radius:9px;background:var(--coral);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;border:2px solid #fff}
+.badge:empty{display:none}
+.searchbox{position:relative}
+.sb{display:flex;align-items:center;gap:8px;height:54px;padding:0 8px 0 16px;background:#fff;border:1px solid var(--hair);border-radius:16px;box-shadow:var(--lift)}
+.sb:focus-within{border-color:var(--blue);box-shadow:var(--lift),0 0 0 4px rgba(31,79,224,.12)}
+.sb input{flex:1;border:0;outline:0;font-size:15.5px;background:transparent;min-width:0}
+.sb input::placeholder{color:var(--ink-400)}
+.kbd{font-family:var(--loud);font-size:11px;font-weight:600;color:var(--ink-400);border:1px solid var(--hair-2);border-radius:6px;padding:0 6px}
+.send{width:38px;height:38px;border-radius:11px;border:0;background:var(--blue);color:#fff;display:grid;place-items:center;cursor:pointer;flex:0 0 auto}
+.send:hover{background:var(--blue-700)}
+.send:disabled{opacity:.4;cursor:default}
+.mic{width:38px;height:38px;border-radius:11px;border:0;background:transparent;display:grid;place-items:center;cursor:pointer;color:var(--ink-600)}
+.mic:hover{background:var(--paper)}
+#ta{position:absolute;left:0;right:0;top:60px;background:#fff;border:1px solid var(--hair);border-radius:16px;box-shadow:var(--lift);padding:6px;display:none;z-index:3;max-height:380px;overflow:auto}
+#ta.on{display:block}
+.ta-row{display:flex;align-items:center;gap:12px;padding:8px 10px;border-radius:12px;cursor:pointer;width:100%;border:0;background:transparent;text-align:left}
+.ta-row:hover,.ta-row.sel{background:var(--paper)}
+.ta-row img{width:32px;height:32px;border-radius:50%}
+.ta-ic{width:32px;height:32px;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--blue);flex:0 0 auto;font-size:14px}
+.ta-label{font-size:11px;font-family:var(--loud);font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-400);padding:8px 10px 4px}
+.ta-row small{color:var(--ink-600)}
+#thread{flex:0 1 auto;min-height:0;overflow:auto;background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:var(--lift);padding:18px;display:flex;flex-direction:column;gap:16px}
+.msg{display:flex;flex-direction:column;gap:8px;animation:rise 300ms var(--ease)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.msg.user{align-items:flex-end}
+.bubble-u{background:var(--ink);color:#fff;border-radius:16px 16px 4px 16px;padding:9px 14px;max-width:85%;word-wrap:break-word;overflow-wrap:anywhere}
+.agent{display:flex;align-items:center;gap:8px;font-family:var(--loud);font-weight:700;font-size:11.5px;letter-spacing:.08em;color:var(--blue)}
+.agent i{width:22px;height:22px;border-radius:7px;background:var(--tint);display:grid;place-items:center;font-style:normal;font-size:12px}
+.agent .when{margin-left:auto;font-family:var(--body);font-weight:500;letter-spacing:0;color:var(--ink-400)}
+.msg.nudge{border:1px solid rgba(255,90,60,.35);background:#FFFBFA;border-radius:16px;padding:12px 14px}
+.msg.nudge .agent{color:#C2381E}
+.msg.nudge .agent i{background:var(--coral-tint)}
+.msg.resolved{opacity:.55}
+.steps{display:flex;flex-direction:column;gap:4px;font-size:13px;color:var(--ink-600)}
+.step{display:flex;align-items:center;gap:8px}
+.step .ck{width:15px;height:15px;border-radius:50%;background:var(--blue);display:grid;place-items:center;flex:0 0 auto}
+.step .spin{width:15px;height:15px;border-radius:50%;border:2px solid var(--tint);border-top-color:var(--blue);animation:spin .8s linear infinite;flex:0 0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
+.text{font-size:14.5px;line-height:1.55}
+.hello{font-family:var(--display);font-weight:500;font-size:34px;line-height:1.05;margin:0}
+.chips{display:flex;flex-wrap:wrap;gap:7px}
+.chip-ask{border:1px solid var(--hair-2);background:#fff;border-radius:999px;padding:6px 12px;font-size:13px;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip-ask img{width:20px;height:20px;border-radius:50%;margin-left:-4px}
+.chip-ask:hover{border-color:var(--blue);background:var(--tint);color:var(--blue-700)}
+.cardx{border:1px solid var(--hair);border-radius:14px;padding:12px 14px;background:#fff}
+.cardx h4{margin:0 0 4px;font-family:var(--loud);font-weight:600;font-size:13.5px;display:flex;justify-content:space-between;align-items:center;gap:8px}
+.cardx h4 small{font-family:var(--body);font-weight:500;color:var(--ink-600);font-size:12px}
+.cardx + .cardx{margin-top:8px}
+.rowx{display:flex;align-items:center;gap:10px;padding:8px 0;border-top:1px solid var(--hair)}
+.cardx h4 + .rowx{border-top:0}
+.rowx.click{cursor:pointer;border-radius:10px;margin:0 -6px;padding:8px 6px}
+.rowx.click:hover{background:var(--paper)}
+.rowx img,.rowx .av0{width:32px;height:32px;border-radius:50%;flex:0 0 auto}
+.av0{background:var(--paper);display:grid;place-items:center;font-family:var(--loud);font-weight:700;font-size:11px;color:var(--ink-600)}
+.rowx .g{flex:1;min-width:0}
+.rowx .g b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rowx small{color:var(--ink-600);font-size:12px;line-height:1.35;display:block}
+.rowx .t{font-family:var(--loud);font-weight:700;font-size:12.5px;width:44px;flex:0 0 auto;color:var(--ink-600)}
+.rowx.past{opacity:.5}
+.num{font-family:var(--loud);font-weight:800;letter-spacing:-.03em;line-height:1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.stat{background:var(--paper);border-radius:12px;padding:10px 12px}
+.stat .num{font-size:21px}
+.stat small{display:block;color:var(--ink-600);font-size:11.5px;margin-top:4px;line-height:1.3}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;height:36px;padding:0 13px;border-radius:11px;border:0;background:var(--blue);color:#fff;font-family:var(--loud);font-weight:600;font-size:13px;cursor:pointer;white-space:nowrap}
+.btn:hover{background:var(--blue-700)}
+.btn:active{transform:scale(.985)}
+.btn.ghost{background:#fff;color:var(--ink);border:1px solid var(--hair-2)}
+.btn.ghost:hover{border-color:rgba(11,26,46,.3)}
+.btn.danger{background:#C2381E}.btn.danger:hover{background:#A8321C}
+.btn:disabled{opacity:.45;cursor:default}
+.btns{display:flex;gap:7px;flex-wrap:wrap;margin-top:6px}
+.tag{display:inline-flex;align-items:center;gap:5px;padding:1px 8px;border-radius:999px;font-size:11.5px;font-weight:600;background:var(--deep);color:#3D4757;white-space:nowrap}
+.tag.blue{background:var(--tint);color:var(--blue-700)}
+.tag.coral{background:var(--coral-tint);color:#A8321C}
+.tag.ink{background:var(--ink);color:#fff}
+.bar{height:6px;background:var(--paper);border-radius:99px;overflow:hidden}
+.bar i{display:block;height:100%;background:var(--blue);border-radius:99px}
+.draft{width:100%;min-height:76px;border:1px solid var(--hair-2);border-radius:12px;padding:10px 12px;resize:vertical;font-size:14px;line-height:1.5;background:var(--paper)}
+.draft:focus{outline:none;border-color:var(--blue);background:#fff}
+.meta{font-size:12px;color:var(--ink-600)}
+.warn{background:var(--coral-tint);color:#8F2A17;border-radius:12px;padding:10px 12px;font-size:13px}
+.ok{background:var(--tint);color:var(--blue-700);border-radius:12px;padding:10px 12px;font-size:13px}
+
+/* Up next */
+#next{position:fixed;top:20px;left:calc(50% + 50px);transform:translateX(-50%);display:flex;align-items:center;gap:10px;padding:6px 8px 6px 6px;border-radius:999px;z-index:4;cursor:pointer;max-width:calc(100vw - 900px);border:1px solid var(--hair)}
+#next img{width:34px;height:34px;border-radius:50%}
+#next .lbl{font-family:var(--loud);font-weight:700;font-size:11px;letter-spacing:.1em;color:var(--blue);text-transform:uppercase}
+#next .who{font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#next .in{font-family:var(--loud);font-weight:700;font-size:12px;background:var(--tint);color:var(--blue-700);border-radius:999px;padding:3px 10px;white-space:nowrap}
+#next .in.soon{background:var(--coral-tint);color:#A8321C}
+#next:hover{border-color:var(--hair-2)}
+#clock{font-size:11px;color:var(--ink-400);white-space:nowrap;padding-right:6px}
+
+/* Map controls */
+#mapctl{position:fixed;right:20px;top:72px;width:290px;padding:12px 14px;z-index:4;max-height:calc(100vh - 150px);overflow:auto}
+.flabel{font-size:11.5px;font-weight:600;color:var(--ink-600);margin:8px 0 4px}
+.fchips{display:flex;flex-wrap:wrap;gap:4px}
+.fc{border:1px solid var(--hair-2);background:#fff;border-radius:999px;height:28px;padding:0 8px;font-size:11.5px;font-weight:600;cursor:pointer;color:var(--ink-600)}
+.fc:hover{border-color:var(--blue);color:var(--blue-700)}
+.fc.on{background:var(--ink);border-color:var(--ink);color:#fff}
+.fres{background:var(--paper);border-radius:12px;padding:10px 12px;margin-top:10px;font-size:12.5px;color:var(--ink-600)}
+.fres .num{font-size:22px;color:var(--ink)}
+.fres .row2{display:flex;gap:12px;margin:6px 0 8px}
+.fres .row2 b{color:var(--ink);font-family:var(--loud)}
+.fres .btns{margin-top:4px}
+.lgd{display:flex;gap:14px;font-size:12px;color:var(--ink-600);margin-top:10px}
+.lgd i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:5px}
+#mapctl h5{margin:0 0 8px;font-family:var(--loud);font-weight:700;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-600);display:flex;justify-content:space-between;align-items:center}
+.seg{display:flex;background:var(--paper);border-radius:10px;padding:3px;gap:2px;margin-bottom:10px}
+.seg button{flex:1;border:0;background:transparent;height:30px;border-radius:8px;font-family:var(--loud);font-weight:600;font-size:12px;color:var(--ink-600);cursor:pointer}
+.seg button.on{background:#fff;color:var(--ink);box-shadow:0 1px 3px rgba(11,26,46,.1)}
+.tog{display:flex;align-items:center;gap:8px;font-size:13px;padding:5px 0;cursor:pointer;user-select:none}
+.tog input{accent-color:var(--blue);width:16px;height:16px}
+.tog i{width:10px;height:10px;border-radius:50%;display:inline-block;margin-left:auto}
+.ramp{height:8px;border-radius:99px;background:linear-gradient(90deg,#F9F9FB,#E8EDFB,#CDD8F8,#A0B6F3);margin-top:4px}
+.ramp-l{display:flex;justify-content:space-between;font-size:11px;color:var(--ink-600);margin-top:3px}
+.zoomrow{display:flex;gap:6px;margin-top:10px}
+.zoomrow button{flex:1;height:32px;border-radius:9px;border:1px solid var(--hair);background:#fff;cursor:pointer;font-family:var(--loud);font-weight:700}
+.zoomrow button:hover{border-color:var(--hair-2)}
+#mapctl.min .body{display:none}
+#mapctl.min{width:auto}
+
+/* Today rail */
+#rail{position:fixed;bottom:20px;left:calc(50% + 225px);transform:translateX(-50%);display:flex;align-items:stretch;gap:4px;padding:8px;border-radius:18px;z-index:4;max-width:calc(100vw - 500px);overflow-x:auto}
+#rail .rl2{display:flex;flex-direction:column;justify-content:center;padding:0 12px 0 6px;border-right:1px solid var(--hair);margin-right:4px;white-space:nowrap}#rail .rl2 b{font-family:var(--loud);font-size:13px}#rail .rl2 span{font-size:12px;color:var(--ink-600)}#rail .rl2 small{font-size:10.5px;color:var(--ink-400)}
+#rail .rl{font-family:var(--loud);font-weight:700;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-600);writing-mode:vertical-rl;transform:rotate(180deg);text-align:center;padding:0 2px;border-right:1px solid var(--hair);margin-right:4px}
+.ri{display:flex;flex-direction:column;align-items:center;gap:3px;padding:6px 8px;border-radius:12px;cursor:pointer;border:0;background:transparent;min-width:62px;position:relative}
+.ri:hover{background:var(--paper)}
+.ri img,.ri .av0{width:36px;height:36px;border-radius:50%;box-shadow:0 0 0 2px #fff,0 0 0 3px var(--hair-2)}
+.ri .tt{font-family:var(--loud);font-weight:700;font-size:11.5px;white-space:nowrap}
+.ri .nm{font-size:11px;color:var(--ink-600);max-width:70px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ri.past{opacity:.45}
+.ri.now img,.ri.now .av0{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--blue)}
+.ri.next img,.ri.next .av0{box-shadow:0 0 0 2px #fff,0 0 0 4px var(--coral)}
+.ri .flag{position:absolute;top:2px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--coral);border:2px solid #fff}
+.ri.noshow .tt{color:#C2381E}
+
+/* Tooltip */
+#tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;border-radius:12px;padding:9px 12px;font-size:12.5px;line-height:1.45;z-index:9;opacity:0;transition:opacity 120ms;max-width:280px}
+#tip.on{opacity:1}
+#tip .q{color:#AFC1F6}
+
+/* EHR */
+#ehr{position:fixed;right:20px;top:20px;bottom:20px;width:470px;z-index:6;display:flex;flex-direction:column;overflow:hidden;transform:translateX(calc(100% + 40px));transition:transform 360ms var(--ease)}
+#ehr.on{transform:none}
+.ehr-head{padding:18px 20px 0;display:flex;flex-direction:column;gap:10px}
+.ehr-top{display:flex;gap:14px;align-items:center}
+.ehr-top img{width:66px;height:66px;border-radius:50%;box-shadow:0 0 0 3px #fff,0 0 0 5px var(--hair-2)}
+.ehr-name{font-family:var(--display);font-weight:500;font-size:32px;line-height:1;margin:0}
+.ehr-sub{color:var(--ink-600);font-size:13px;margin-top:4px}
+.x{margin-left:auto;align-self:flex-start;width:34px;height:34px;border-radius:10px;border:1px solid var(--hair);background:#fff;cursor:pointer;display:grid;place-items:center;flex:0 0 auto}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--hair);padding:0 16px;margin-top:2px;overflow-x:auto}
+.tabs button{border:0;background:transparent;height:42px;padding:0 11px;font-family:var(--loud);font-weight:600;font-size:13px;color:var(--ink-600);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;white-space:nowrap}
+.tabs button.on{color:var(--ink);border-bottom-color:var(--coral)}
+.ehr-body{flex:1;overflow:auto;padding:16px 20px 22px;display:flex;flex-direction:column;gap:12px}
+.sec{border:1px solid var(--hair);border-radius:14px;padding:12px 14px}
+.sec h4{margin:0 0 6px;font-family:var(--loud);font-weight:600;font-size:13.5px;display:flex;justify-content:space-between;align-items:center}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-top:1px solid var(--hair);font-size:13.5px}
+.sec h4 + .kv{border-top:0}
+.kv span{color:var(--ink-600)}
+.kv b{text-align:right;font-weight:600}
+.alert{background:var(--coral-tint);color:#8F2A17;border-radius:12px;padding:9px 12px;font-size:13px}
+.nba{background:var(--tint);border-radius:14px;padding:14px;display:flex;flex-direction:column;gap:6px}
+.nba p{margin:0}
+.nba .big{font-family:var(--display);font-weight:500;font-size:25px;line-height:1.1}
+.tl{display:flex;gap:12px;padding:9px 0;border-top:1px solid var(--hair)}
+.sec h4 + .tl{border-top:0}
+.tl .ic{width:28px;height:28px;border-radius:8px;background:var(--paper);display:grid;place-items:center;flex:0 0 auto;color:var(--blue)}
+.tl.search .ic{background:var(--coral-tint);color:var(--coral)}
+.wallet{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.wcard{border-radius:12px;padding:12px;color:#fff;display:flex;flex-direction:column;gap:12px;min-height:92px;justify-content:space-between}
+.soap p{margin:5px 0;font-size:13.5px}
+.soap b{font-family:var(--loud);font-size:12px;letter-spacing:.08em;color:var(--blue)}
+
+#toast{position:fixed;left:50%;bottom:110px;transform:translate(-50%,10px);opacity:0;background:var(--ink);color:#fff;padding:11px 16px;border-radius:12px;font-size:14px;pointer-events:none;transition:opacity 220ms,transform 220ms;z-index:20;max-width:90vw}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+#boot{position:fixed;inset:0;display:grid;place-items:center;background:var(--paper);z-index:30;transition:opacity 500ms}
+#boot.off{opacity:0;pointer-events:none}
+#boot div{display:flex;flex-direction:column;align-items:center;gap:14px;font-family:var(--loud);font-weight:700;color:var(--ink-600);text-align:center;padding:20px}
+body.ehr-open #mapctl,body.ehr-open #rail,body.ehr-open #next{opacity:0;pointer-events:none}
+#mapctl,#rail,#next{transition:opacity 200ms}
+#thread.empty{display:none}
+.thead{position:sticky;top:-18px;margin:-18px -18px 0;padding:12px 18px 10px;background:#fff;border-bottom:1px solid var(--hair);display:flex;align-items:center;justify-content:space-between;z-index:2;border-radius:18px 18px 0 0}
+.thead span{font-family:var(--loud);font-weight:700;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-600)}
+.tclose{border:0;background:transparent;font-weight:600;font-size:13px;color:var(--ink-600);cursor:pointer;padding:4px 8px;border-radius:8px}
+.tclose:hover{background:var(--paper);color:var(--ink)}
+#brief:empty,#notice:empty{display:none}
+.bcard{background:#fff;border:1px solid var(--hair);border-radius:18px;box-shadow:var(--lift);padding:16px 18px;display:flex;flex-direction:column;gap:8px;animation:rise 300ms var(--ease)}
+.bcard .bt{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.bcard .bt b{font-family:var(--display);font-weight:500;font-size:26px;line-height:1.05}
+.bcard p{margin:0;color:var(--ink-600);font-size:14px}
+.bcard p b{color:var(--ink)}
+.bx{border:0;background:transparent;width:28px;height:28px;border-radius:8px;cursor:pointer;color:var(--ink-400);flex:0 0 auto}
+.bx:hover{background:var(--paper);color:var(--ink)}
+#notice .msg.nudge{background:#fff;box-shadow:var(--lift);margin:0}
+#tr{position:fixed;right:20px;top:20px;display:flex;gap:8px;z-index:5}
+.pill{position:relative;height:42px;padding:0 14px;border-radius:13px;border:1px solid var(--hair);background:#fff;box-shadow:var(--lift);display:inline-flex;align-items:center;gap:8px;cursor:pointer;font-family:var(--loud);font-weight:600;font-size:13.5px;color:var(--ink)}
+.pill.icon{width:42px;padding:0;justify-content:center;color:var(--ink-600)}
+.pill:hover{border-color:var(--hair-2)}
+.pill.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.pn{background:var(--blue);color:#fff;border-radius:999px;font-size:11px;min-width:18px;height:18px;padding:0 5px;display:none;place-items:center}
+.pn.show{display:grid}
+#mapctl.hidden{display:none}
+#legend{left:calc(50% + 220px);transform:translateX(-50%);bottom:20px;border-radius:999px;padding:8px 8px 8px 16px;display:flex;align-items:center;gap:14px;font-size:13px;color:var(--ink-600);z-index:4;white-space:nowrap;max-width:calc(100vw - 560px);overflow:hidden}
+#legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px}
+#legend b{color:var(--ink);font-family:var(--loud)}
+#legend .fl{background:var(--paper);border-radius:999px;padding:4px 6px 4px 12px;display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600;overflow:hidden;text-overflow:ellipsis}
+#legend .fl button{border:0;background:#fff;border-radius:999px;width:22px;height:22px;cursor:pointer;font-size:12px}
+#zoomctl{right:20px;bottom:20px;display:flex;flex-direction:column;padding:4px;border-radius:14px;z-index:4}
+#zoomctl button{width:36px;height:36px;border:0;background:transparent;border-radius:10px;cursor:pointer;display:grid;place-items:center;font-family:var(--loud);font-weight:700;font-size:16px;color:var(--ink-600)}
+#zoomctl button:hover{background:var(--paper);color:var(--ink)}
+body.ehr-open #tr,body.ehr-open #legend,body.ehr-open #zoomctl{opacity:0;pointer-events:none}
+#tr,#legend,#zoomctl{transition:opacity 200ms}
+@media (prefers-reduced-motion: reduce){*{animation:none!important;transition:none!important}}
+@media (max-width:1180px){#next{display:none}#legend{left:460px;transform:none}#rail{left:470px;right:20px;transform:none;max-width:none}}
+@media (max-width:900px){#legend{display:none}}
+@media (max-width:720px){
+  #left{left:10px;right:10px;width:auto;top:auto;bottom:10px;height:62vh}
+  #ehr{left:10px;right:10px;width:auto;top:10px;bottom:10px}
+}
+</style>
+</head>
+<body>
+<div id="boot"><div><svg width="44" height="44" viewBox="0 0 100 100" aria-hidden="true"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg><span id="bootMsg">Loading your day</span></div></div>
+<div id="map" aria-label="Map of patients and local search demand around the practice"></div>
+
+<div id="left">
+  <div class="searchbox">
+    <form class="sb" id="form" autocomplete="off">
+      <svg width="24" height="24" viewBox="0 0 100 100" aria-hidden="true" style="flex:0 0 auto"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg>
+      <label for="q" class="sr">Ask LAIR OS or search a patient</label>
+      <input id="q" placeholder="Ask LAIR OS or search a patient" maxlength="300">
+      <button type="button" class="mic" aria-label="Voice input" id="mic"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3"/></svg></button>
+      <button class="send" aria-label="Send" id="sendBtn"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </form>
+    <div id="ta" role="listbox" aria-label="Suggestions"></div>
+  </div>
+  <div id="brief"></div>
+  <div id="notice" aria-live="polite"></div>
+  <div id="thread" class="empty" aria-live="polite"><div class="thead"><span>Conversation</span><button class="tclose" id="hideThread" aria-label="Close conversation">Close</button></div></div>
+</div>
+
+<div class="float" id="next" role="button" tabindex="0" aria-label="Up next"></div>
+
+<div id="tr">
+  <button class="pill" id="filterBtn" aria-expanded="false"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M7 12h10M10 18h4"/></svg>Filter people<span class="pn" id="fN"></span></button>
+  <button class="pill icon" id="bell" aria-label="Things that need you"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg><span class="badge" id="bellN"></span></button>
+  <button class="pill icon" id="pause" aria-pressed="false" title="Pause suggestions" aria-label="Pause suggestions"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg></button>
+</div>
+<div class="float hidden" id="mapctl">
+  <h5>Filter people <button class="ibtn" id="ctlMin" style="height:26px;min-width:26px;padding:0 7px" aria-label="Close filters">✕</button></h5>
+  <div class="body">
+    <div class="seg" role="group" aria-label="Who" id="fWho"><button class="on" data-who="all">Everyone</button><button data-who="patients">Patients</button><button data-who="not">Not yet</button></div>
+    <div class="flabel">Sex</div><div class="fchips" id="fSex"><button class="fc on" data-sex="all">All</button><button class="fc" data-sex="F">Women</button><button class="fc" data-sex="M">Men</button></div>
+    <div class="flabel">Age</div><div class="fchips" id="fAge"></div>
+    <div class="flabel">Household income</div><div class="fchips" id="fInc"><button class="fc on" data-inc="0">Any</button><button class="fc" data-inc="100">100k+</button><button class="fc" data-inc="150">150k+</button><button class="fc" data-inc="250">250k+</button></div>
+    <label class="tog"><input type="checkbox" id="fOwn"> Homeowners</label>
+    <label class="tog"><input type="checkbox" id="fSrch"> Searching for treatments now</label>
+    <label class="tog"><input type="checkbox" id="fLook"> Looks like my best patients</label>
+    <div class="fres" id="fRes"></div>
+  </div>
+</div>
+<div class="float" id="legend"></div>
+<div class="float" id="zoomctl"><button id="zin" aria-label="Zoom in">+</button><button id="zout" aria-label="Zoom out">−</button><button id="zhome" aria-label="Recenter on the practice"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4"/></svg></button></div>
+<aside class="float" id="ehr" aria-label="Patient chart"></aside>
+<div id="tip"></div>
+<div id="toast" role="status"></div>
+
+<script src="deck.min.js"></script>
+<script>
+(function(){
+"use strict";
+var $=function(s,r){return (r||document).querySelector(s);};
+var $$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s==null?"":s).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c];});}
+function fmt(n){return Math.round(n).toLocaleString("en-US");}
+var toastT;function say(m){var t=$("#toast");t.textContent=m;t.classList.add("on");clearTimeout(toastT);toastT=setTimeout(function(){t.classList.remove("on");},2600);}
+var seed=11;function rnd(){seed=(seed*16807)%2147483647;return (seed-1)/2147483646;}
+function pickW(a,w){var r=rnd()*w.reduce(function(x,y){return x+y;},0);for(var i=0;i<a.length;i++){r-=w[i];if(r<=0)return a[i];}return a[a.length-1];}
+if(!window.deck){$("#bootMsg").textContent="The map library did not load. Check your connection and refresh.";return;}
+
+/* ---------- Demo clock: Friday Nov 20, starts at 12:35 pm and runs in real time ---------- */
+var CLOCK0=12*60+35, T0=Date.now();
+function nowMin(){return CLOCK0+(Date.now()-T0)/60000;}
+function hm(m){m=Math.round(m);var h=Math.floor(m/60),mm=m%60,ap=h>=12?"pm":"am";var h12=h%12||12;return h12+":"+(mm<10?"0":"")+mm+" "+ap;}
+function hmShort(m){return hm(m).replace(/ (am|pm)$/,"");}
+function until(m){var d=Math.round(m-nowMin());if(d<=0)return "now";if(d<60)return "in "+d+" min";var h=Math.floor(d/60),r=d%60;return "in "+h+" hr"+(r?" "+r+" min":"");}
+function greet(){var m=nowMin();return m<12*60?"Good morning":m<17*60?"Good afternoon":"Good evening";}
+
+/* ---------- Constants ---------- */
+var PRACTICE={lon:-117.7430,lat:33.6505};
+var HOME={longitude:-117.79,latitude:33.64,zoom:10.3,pitch:0,bearing:0};
+var STATUS={member:{label:"Glow Club member",low:"Glow Club member",c:[11,26,46]},active:{label:"Active patient",low:"active patient",c:[31,79,224]},lead:{label:"New lead",low:"new lead",c:[255,90,60]},lapsed:{label:"Lapsed",low:"lapsed patient",c:[168,178,193]}};
+var TREAT=[
+  {k:"botox",label:"Botox and Dysport",q:["botox near me","best botox irvine","baby botox","natural looking botox","botox price"]},
+  {k:"filler",label:"Lip and cheek filler",q:["lip filler near me","lip filler newport beach","cheek filler","lip flip vs filler"]},
+  {k:"laser",label:"Laser and skin",q:["laser hair removal","ipl photofacial","morpheus8 near me"]},
+  {k:"facial",label:"Facials",q:["hydrafacial near me","best facial orange county","chemical peel near me"]},
+  {k:"body",label:"Body and wellness",q:["semaglutide clinic","coolsculpting irvine","sculptra near me"]}
+];
+var ENG=[["Google",44],["ChatGPT",19],["Instagram",14],["TikTok",9],["Gemini",7],["Perplexity",7]];
+function kmTo(lon,lat){var dx=(lon-PRACTICE.lon)*92.5,dy=(lat-PRACTICE.lat)*111;return Math.sqrt(dx*dx+dy*dy);}
+function inRing(pt,ring){var x=pt[0],y=pt[1],ins=false;for(var i=0,j=ring.length-1;i<ring.length;j=i++){var xi=ring[i][0],yi=ring[i][1],xj=ring[j][0],yj=ring[j][1];if(((yi>y)!==(yj>y))&&(x<(xj-xi)*(y-yi)/(yj-yi)+xi))ins=!ins;}return ins;}
+function randIn(f){var P=f.geometry.coordinates,bb=f._bb;for(var t=0;t<80;t++){var p=[bb[0]+rnd()*(bb[2]-bb[0]),bb[1]+rnd()*(bb[3]-bb[1])];for(var k=0;k<P.length;k++)if(inRing(p,P[k][0]))return p;}return [f.properties.lon,f.properties.lat];}
+
+/* ---------- Data ---------- */
+var ZIPS=[],CTX=null,AV={},SEARCHERS=[],ANON=[],POP=[],NAMED=[],CITIES=[],byZip={};
+var OPP={"92657":0.18,"92625":0.35,"92677":0.4,"92651":0.45,"92692":0.4};
+function buildData(oc){
+  oc.features.forEach(function(f){
+    var bb=[999,999,-999,-999];f.geometry.coordinates.forEach(function(p){p[0].forEach(function(c){bb[0]=Math.min(bb[0],c[0]);bb[1]=Math.min(bb[1],c[1]);bb[2]=Math.max(bb[2],c[0]);bb[3]=Math.max(bb[3],c[1]);});});
+    f._bb=bb;var pr=f.properties,d=kmTo(pr.lon,pr.lat);
+    var base=Math.max(120,(2600*Math.exp(-d/16)+260)*(0.75+rnd()*0.5));
+    if(["92657","92625","92660","92651","92663","92661","92662","92603"].indexOf(pr.zip)>=0)base*=1.5;
+    if(pr.zip==="92676"||pr.zip==="92678")base*=0.35;
+    var mix=[0.34,0.27,0.17,0.13,0.09].map(function(v){return v*(0.7+rnd()*0.6);}),ms=mix.reduce(function(a,b){return a+b;},0);
+    var byT={};TREAT.forEach(function(t,i){byT[t.k]=Math.round(base*mix[i]/ms);});
+    if(pr.zip==="92657")byT.filler=Math.round(byT.filler*1.6);
+    var s=0;for(var k in byT)s+=byT[k];
+    var cap=OPP[pr.zip]!=null?OPP[pr.zip]*0.06:Math.max(0.004,0.075*Math.exp(-d/9));
+    var z={f:f,zip:pr.zip,city:pr.city,lon:pr.lon,lat:pr.lat,dist:d,searches:s,byT:byT,capture:cap,patients:Math.round(s*12*cap/7),growth:Math.round(6+rnd()*30)};
+    z.top=TREAT.slice().sort(function(a,b){return byT[b.k]-byT[a.k];})[0].q[0];
+    if(pr.zip==="92657")z.growth=38;
+    f.properties.z=z;ZIPS.push(z);byZip[pr.zip]=z;
+  });
+  var cm={};ZIPS.forEach(function(z){var c=cm[z.city]||(cm[z.city]={city:z.city,lon:0,lat:0,n:0,s:0});c.lon+=z.lon;c.lat+=z.lat;c.n++;c.s+=z.searches;});
+  CITIES=Object.keys(cm).map(function(k){var c=cm[k];return {city:c.city,pos:[c.lon/c.n,c.lat/c.n],s:c.s};}).filter(function(c){return c.s>1100||["Newport Coast","Laguna Beach"].indexOf(c.city)>=0;});
+  var tot=ZIPS.reduce(function(a,z){return a+z.searches;},0);
+  var RICH=["92657","92625","92660","92651","92663","92661","92662","92603","92694","92679","92677"];
+  ZIPS.forEach(function(z){
+    var n=Math.round(z.searches*0.28),k=Math.min(n,z.patients),rich=RICH.indexOf(z.zip)>=0;
+    for(var i=0;i<n;i++){
+      var isPt=i<k,sex,age,inc;
+      if(isPt){sex=rnd()<0.86?"F":"M";age=Math.round(27+rnd()*32);}
+      else{sex=rnd()<0.51?"F":"M";age=Math.round(18+Math.pow(rnd(),1.15)*64);}
+      inc=Math.round((rich?150:85)*Math.exp((rnd()+rnd()+rnd()-1.5)*0.7)/5)*5;if(isPt)inc=Math.max(inc,70);
+      var own=rnd()<Math.min(0.92,0.25+inc/400+(age>35?0.2:0)),kids=age>28&&age<55&&rnd()<0.45;
+      var srch=rnd()<(isPt?0.05:0.085)&&age<70,t=srch?pickW(TREAT,TREAT.map(function(t){return z.byT[t.k];})):null;
+      var pr={pos:randIn(z.f),zip:z.zip,city:z.city,sex:sex,age:age,inc:inc,own:own,kids:kids,
+        st:isPt?pickW(["member","active","lead","lapsed"],[19,49,2.4,29.6]):null,
+        t:t?t.k:null,q:t?t.q[Math.floor(rnd()*t.q.length)]:null,eng:t?pickW(ENG.map(function(e){return e[0];}),ENG.map(function(e){return e[1];})):null,ago:1+Math.floor(rnd()*29)};
+      pr.look=sex==="F"&&age>=30&&age<=55&&inc>=100&&z.dist<16;
+      POP.push(pr);
+    }
+  });
+  ANON=POP.filter(function(x){return x.st;});
+  SEARCHERS=POP.filter(function(x){return x.t;});
+}
+
+/* name, age, zip, status, treatment, ltv, engine, first search, when, sex */
+var PEOPLE=[
+ ["Maya Torres",34,"92604","member","Botox every 12 weeks",6840,"ChatGPT","natural looking botox irvine","Mar 2023","F"],
+ ["Sofia Bennett",29,"92780","lead","Lip filler",0,"Instagram","lip filler near me","4 min ago","F"],
+ ["Daniel Okafor",41,"92612","lead","Botox for forehead lines",0,"Google","botox price","5 hrs ago","M"],
+ ["Rachel Kim",33,"92626","lead","Laser hair removal",0,"Google","laser hair removal","26 hrs ago","F"],
+ ["Lauren Hayes",31,"92620","lead","Botox",0,"Referral","","1 day ago","F"],
+ ["Aisha Rahman",46,"92660","active","Sculptra",2350,"Perplexity","sculptra for cheeks","Jan 2026","F"],
+ ["Chris Morales",52,"92705","active","Hair restoration",1800,"Google","prp hair loss orange county","Aug 2026","M"],
+ ["Nina Patel",27,"92614","lead","Lip filler consult",0,"TikTok","lip flip vs filler","2 days ago","F"],
+ ["Emily Chen",36,"92618","active","Botox, 32 units",448,"ChatGPT","best botox irvine","Oct 2026","F"],
+ ["Marcus Reed",39,"92606","active","Hydrafacial",225,"Google","hydrafacial near me","Nov 2026","M"],
+ ["Jessica Alvarez",44,"92657","member","Botox and filler",4210,"Instagram","lip filler newport beach","Jun 2024","F"],
+ ["Tom Nguyen",48,"92683","active","Neurotoxin",2950,"Google","dysport near me","Feb 2024","M"],
+ ["Hannah Brooks",38,"92630","active","Botox",1620,"Google","botox near me","May 2025","F"],
+ ["Olivia Grant",42,"92625","lapsed","Cheek filler",2740,"Instagram","cheek filler","Dec 2024","F"],
+ ["Priya Desai",30,"92603","active","Facial series",1100,"Gemini","best facial orange county","Jul 2026","F"],
+ ["Kevin Walsh",45,"92627","lapsed","Dysport",980,"Google","dysport near me","Mar 2025","M"],
+ ["Megan Price",37,"92656","lapsed","Microneedling",1460,"Instagram","morpheus8 near me","Feb 2025","F"],
+ ["Grace Liu",32,"92602","active","Botox",1320,"ChatGPT","baby botox","Apr 2025","F"],
+ ["Sam Ortega",35,"92708","active","Hydrafacial",640,"Google","hydrafacial near me","Sep 2025","M"],
+ ["Ava Cohen",28,"92663","member","Lip filler",3880,"TikTok","lip filler near me","Nov 2023","F"],
+ ["Leah Shah",40,"92651","member","Botox and IPL",5120,"Google","ipl photofacial","Aug 2023","F"],
+ ["Isabel Ramos",33,"92701","active","Laser hair removal",1240,"Instagram","laser hair removal","Jan 2026","F"],
+ ["Zoe Hall",26,"92617","lead","Botox",0,"ChatGPT","baby botox","3 hrs ago","F"],
+ ["Ethan Ito",50,"92646","active","Botox",870,"Google","botox for men","May 2026","M"],
+ ["Mia Silva",31,"92677","lapsed","Lip filler",1150,"Instagram","lip filler near me","Jan 2025","F"],
+ ["Chloe Moreno",35,"92692","active","Morpheus8",2200,"TikTok","morpheus8 near me","Mar 2026","F"],
+ ["Ryan Fox",43,"92649","lapsed","Botox",760,"Google","botox near me","Apr 2025","M"],
+ ["Elena Ward",47,"92657","lead","Lip filler",0,"ChatGPT","best lip filler newport coast","1 hr ago","F"],
+ ["Jade Park",29,"92604","member","Lip filler",3360,"Instagram","lip filler near me","Sep 2024","F"],
+ ["Noah Bishop",38,"92610","active","Semaglutide",2980,"Google","semaglutide clinic","Feb 2026","M"],
+ ["Camila Reyes",34,"92688","active","Botox",1180,"Gemini","botox near me","Jun 2026","F"],
+ ["Brooke Adams",41,"92694","member","Botox and filler",4680,"Perplexity","best med spa ladera ranch","Oct 2023","F"],
+ ["Natalie Vu",30,"92704","lead","Hydrafacial",0,"TikTok","hydrafacial near me","6 hrs ago","F"],
+ ["Diana Flores",55,"92653","active","Sculptra",2640,"Google","sculptra near me","Nov 2025","F"],
+ ["Vanessa Lim",39,"92625","lead","Botox",0,"ChatGPT","natural looking botox","40 min ago","F"],
+ ["Tara Singh",36,"92618","member","Botox and facials",5560,"Google","best botox irvine","Jan 2023","F"],
+ ["Sarah Kim",37,"92606","active","Botox and Hydrafacial",1980,"Google","botox near me","Mar 2025","F"]
+];
+/* Clinical and front-desk flags per patient */
+var FLAGS={
+ "Maya Torres":{allergy:"Lidocaine",meds:"Oral contraceptive",lot:"C5521",units:44,due:9,phone:"(949) 555-0142",bday:null,notes:"Prefers texts. Asked about the Saturday after Thanksgiving."},
+ "Nina Patel":{consentMissing:true,phone:"(949) 555-0187",notes:"Asked about pricing on the phone. Nervous about needles."},
+ "Leah Shah":{bday:true,lot:"C5498",units:40,phone:"(949) 555-0131"},
+ "Grace Liu":{balance:120,phone:"(949) 555-0160",due:-3},
+ "Aisha Rahman":{bloodThinner:"Low-dose aspirin",late:10,phone:"(949) 555-0155"},
+ "Hannah Brooks":{noShows:2,due:-14,phone:"(949) 555-0122"},
+ "Tom Nguyen":{lot:"C5521",units:36,phone:"(714) 555-0170"},
+ "Jessica Alvarez":{lot:"C5521",units:28,phone:"(949) 555-0109"},
+ "Priya Desai":{phone:"(949) 555-0148",notes:"Facial series, session 4 of 6."},
+ "Camila Reyes":{due:5},"Tara Singh":{due:12,lot:"C5498"},"Emily Chen":{lot:"C5560",units:32},
+ "Rachel Kim":{waitingHrs:26,phone:"(714) 555-0193"},"Sofia Bennett":{phone:"(714) 555-0102"},
+ "Sarah Kim":{due:20}
+};
+var STAFF=[
+ {name:"Jordan Lee",role:"NP · Injector",util:92,today:"Booked until 6:00 pm, one open slot at 3:00"},
+ {name:"Priya Shah",role:"MD · Medical director",util:78,today:"Consults all afternoon, chart review at 2:00",title:"Dr. Priya Shah"},
+ {name:"Ana Ruiz",role:"RN · Injector",util:64,today:"Two open slots: 1:30 and 3:00"},
+ {name:"Kim Park",role:"Esthetician",util:94,today:"Fully booked, waitlist of 2"}
+];
+var CANDIDATES=[{name:"Sam Rivera",role:"RN · Injector · 4 years"},{name:"Morgan Diaz",role:"NP · Fillers and Sculptra · 7 years"},{name:"Jamie Lin",role:"Esthetician · laser certified"}];
+/* Today: minutes since midnight, who, what, kind (pt/meet), status override */
+var TODAY=[
+ {m:8*60+45,who:"Team huddle",what:"Morning huddle, 15 min",kind:"meet",init:"TH"},
+ {m:9*60,who:"Tom Nguyen",what:"Botox, 36 units",kind:"pt",prov:"Jordan"},
+ {m:9*60+30,who:"Jessica Alvarez",what:"Botox and filler",kind:"pt",prov:"Jordan"},
+ {m:10*60+30,who:"Emily Chen",what:"2-week check",kind:"pt",prov:"Jordan"},
+ {m:11*60,who:"Marcus Reed",what:"Hydrafacial",kind:"pt",prov:"Kim"},
+ {m:11*60+45,who:"Hannah Brooks",what:"Botox",kind:"pt",prov:"Ana",noshow:true},
+ {m:12*60+15,who:"Dana Whitfield",what:"Allergan rep · new pricing and Allē promo",kind:"meet",end:12*60+45},
+ {m:13*60,who:"Nina Patel",what:"Lip filler consult · new patient",kind:"pt",prov:"Jordan"},
+ {m:13*60+45,who:"Leah Shah",what:"IPL photofacial",kind:"pt",prov:"Kim"},
+ {m:14*60+30,who:"Grace Liu",what:"Botox",kind:"pt",prov:"Jordan"},
+ {m:15*60+30,who:"Priya Desai",what:"Facial, session 4 of 6",kind:"pt",prov:"Kim"},
+ {m:16*60,who:"Aisha Rahman",what:"Sculptra",kind:"pt",prov:"Ana"},
+ {m:17*60+30,who:"Sam Rivera",what:"Interview · RN injector candidate",kind:"meet"}
+];
+var TOMORROW=[["9:00","Brooke Adams","Botox and filler"],["10:00","Maya Torres","Botox touch-up (proposed)"],["11:00","Tara Singh","Facial"],["12:30","Chloe Moreno","Morpheus8"],["2:00","Ethan Ito","Botox"],["3:00","Sarah Kim","Hydrafacial"]];
+function buildNamed(){PEOPLE.forEach(function(p,i){var z=byZip[p[2]],pos=z?randIn(z.f):[PRACTICE.lon,PRACTICE.lat];NAMED.push({id:i,name:p[0],age:p[1],zip:p[2],city:z?z.city:"Irvine",st:p[3],tx:p[4],ltv:p[5],eng:p[6],q:p[7],when:p[8],sex:p[9],pos:pos,dist:z?kmTo(pos[0],pos[1])*0.621:2,f:FLAGS[p[0]]||{}});});}
+function P(name){for(var i=0;i<NAMED.length;i++)if(NAMED[i].name===name)return NAMED[i];return null;}
+function first(p){return p.name.split(" ")[0];}
+function pron(p,k){var m=p.sex==="M";return {s:m?"he":"she",o:m?"him":"her",p:m?"his":"her",S:m?"He":"She",P:m?"His":"Her"}[k];}
+function apptOf(name){for(var i=0;i<TODAY.length;i++)if(TODAY[i].who===name)return TODAY[i];return null;}
+function apptStatus(a){var n=nowMin();if(a.noshow&&n>a.m+15)return "noshow";if(a.end&&n>=a.m&&n<a.end)return "now";if(n>=a.m+(a.kind==="meet"?30:45))return "past";if(n>=a.m&&n<a.m+45)return "now";return "up";}
+function nextAppt(){var n=nowMin();for(var i=0;i<TODAY.length;i++){if(TODAY[i].m>n&&!TODAY[i].noshow)return TODAY[i];}return null;}
+function avatar(name,cls){return AV[name]?'<img src="'+AV[name]+'" alt=""'+(cls?' class="'+cls+'"':'')+'>':'<span class="av0">'+esc(name.split(" ").map(function(s){return s[0];}).join("").slice(0,2))+'</span>';}
+
+/* ---------- Map ---------- */
+var state={patients:true,treat:null,highlight:null,hlKey:"",focus:null,focusZip:null};
+var F={who:"all",ages:[],sex:"all",inc:0,own:false,srch:false,look:false,city:null,treat:null};
+var AGEB=[[18,29,"18–29"],[30,39,"30s"],[40,49,"40s"],[50,59,"50s"],[60,120,"60+"]];
+function fKey(){return JSON.stringify(F)+"|"+state.hlKey;}
+function passF(d){
+  if(F.who==="patients"&&!d.st)return false;
+  if(F.who==="not"&&d.st)return false;
+  if(F.sex!=="all"&&d.sex!==F.sex)return false;
+  if(F.ages.length&&!F.ages.some(function(b){return d.age>=b[0]&&d.age<=b[1];}))return false;
+  if(F.inc&&d.inc<F.inc)return false;
+  if(F.own&&!d.own)return false;
+  if(F.srch&&!d.t)return false;
+  if(F.treat&&d.t!==F.treat)return false;
+  if(F.look&&!d.look)return false;
+  if(F.city&&d.city!==F.city)return false;
+  return true;
+}
+function anyF(){return F.who!=="all"||F.ages.length||F.sex!=="all"||F.inc||F.own||F.srch||F.look||F.city||F.treat;}
+function fCount(){var m=0,pt=0;for(var i=0;i<POP.length;i++){var d=POP[i];if(passF(d)){m++;if(d.st)pt++;}}return {m:m,pt:pt,not:m-pt};}
+function fDesc(){var o=[];if(F.who==="patients")o.push("patients");if(F.who==="not")o.push("not patients yet");if(F.sex==="F")o.push("women");if(F.sex==="M")o.push("men");
+  if(F.ages.length)o.push("ages "+F.ages.map(function(b){return b[2];}).join(", "));if(F.inc)o.push("$"+F.inc+"k+ income");if(F.own)o.push("homeowners");if(F.srch||F.treat)o.push(F.treat?"searching "+TREAT.filter(function(t){return t.k===F.treat;})[0].label:"searching now");
+  if(F.look)o.push("like your best patients");if(F.city)o.push("in "+F.city);return o.length?o.join(" · "):"everyone";}
+var viewState=Object.assign({},HOME),deckgl,MAXS=1,t0=performance.now();
+var CACHE={};function memo(k,sig,fn){var c=CACHE[k];if(!c||c.sig!==sig){c=CACHE[k]={sig:sig,v:fn()};}return c.v;}
+var FONT={sdf:true,fontSize:64,buffer:6};var TR={getFillColor:400};var HEAT=[[244,246,252],[201,213,247],[127,155,240],[31,79,224],[26,63,184],[11,26,46]];
+function ramp(t){var S=[[249,249,251],[232,237,251],[205,216,248],[160,182,243]];t=Math.max(0,Math.min(1,t));var x=t*3,i=Math.min(2,Math.floor(x)),f=x-i;return S[i].map(function(c,k){return Math.round(c+(S[i+1][k]-c)*f);});}
+function fillOf(z){
+  if(state.shade==="none"||state.heat)return [250,248,243,255];
+  if(state.shade==="opp")return OPP[z.zip]!=null?[255,140,118,state.focusZip===z.zip?235:190]:[249,248,244,255];
+  var v=state.treat?z.byT[state.treat]:z.searches,m=state.treat?Math.max.apply(null,ZIPS.map(function(q){return q.byT[state.treat];})):MAXS;
+  var c=ramp(Math.sqrt(v/m));c.push(state.focusZip===z.zip?255:235);return c;
+}
+function passNamed(d){if(F.who==="not")return false;if(F.sex!=="all"&&d.sex!==F.sex)return false;if(F.ages.length&&!F.ages.some(function(b){return d.age>=b[0]&&d.age<=b[1];}))return false;if(F.city&&d.city!==F.city)return false;if(F.srch||F.treat||F.look||F.inc||F.own)return false;return true;}
+function hl(d){if(!state.highlight)return true;try{return !!state.highlight(d);}catch(e){return false;}}
+var PIN=null,PRACT=[PRACTICE];
+function layers(){
+  var now=(performance.now()-t0)/1000,L=[];
+  L.push(new deck.GeoJsonLayer({id:"ctx",data:CTX,filled:true,stroked:true,getFillColor:[246,243,236],getLineColor:[230,224,210],lineWidthMinPixels:1}));
+  L.push(new deck.GeoJsonLayer({id:"zips",data:memo("z","1",function(){return {type:"FeatureCollection",features:ZIPS.map(function(z){return z.f;})};}),filled:true,stroked:true,getFillColor:[251,250,247],getLineColor:[251,250,247],lineWidthMinPixels:1,pickable:false}));
+  L.push(new deck.TextLayer({id:"cities",data:CITIES,getPosition:function(d){return d.pos;},getText:function(d){return d.city.toUpperCase();},getSize:11,getColor:[85,96,112,230],fontFamily:"Bricolage Grotesque, sans-serif",fontWeight:700,characterSet:"auto",fontSettings:FONT,outlineWidth:5,outlineColor:[251,249,244,235]}));
+  if(false)L.push(new deck.ScatterplotLayer({id:"searchers",data:memo("sd",String(state.treat),function(){return SEARCHERS.filter(function(s){return !state.treat||s.t===state.treat;});}),getPosition:function(d){return d.pos;},getRadius:2.2,radiusUnits:"pixels",getFillColor:[91,125,240,150],pickable:true}));
+  if(state.patients){
+    var fk=fKey(),filt=anyF()||!!state.highlight;
+    L.push(new deck.ScatterplotLayer({id:"pop",data:POP,getPosition:function(d){return d.pos;},getRadius:function(d){return d.st?70:55;},radiusUnits:"meters",radiusMinPixels:1.4,radiusMaxPixels:5,
+      getFillColor:function(d){var on=passF(d)&&hl(d);if(!on)return d.st?[31,79,224,22]:[150,160,175,16];return d.st?(filt?[31,79,224,235]:[31,79,224,150]):(filt?[86,98,116,200]:[160,168,182,80]);},
+      pickable:true,updateTriggers:{getFillColor:fk,getRadius:"1"}}));
+    var nd=memo("nd",fKey()+"|"+state.focus,function(){var showAll=!!state.highlight||anyF();return NAMED.filter(function(d){return (showAll||apptOf(d.name)||state.focus===d.id)&&hl(d)&&passNamed(d);});});
+    L.push(new deck.ScatterplotLayer({id:"ring",data:nd,getPosition:function(d){return d.pos;},getRadius:function(d){return state.focus===d.id?22:(apptOf(d.name)?17:13);},radiusUnits:"pixels",getFillColor:[255,255,255,255],stroked:true,getLineColor:function(d){return STATUS[d.st].c.concat([255]);},lineWidthMinPixels:2.5,updateTriggers:{getRadius:state.focus}}));
+    L.push(new deck.IconLayer({id:"avatars",data:nd,getPosition:function(d){return d.pos;},getIcon:function(d){return {url:AV[d.name],width:96,height:96,id:d.name};},getSize:function(d){return state.focus===d.id?40:(apptOf(d.name)?30:22);},sizeUnits:"pixels",pickable:true,updateTriggers:{getSize:state.focus}}));
+  }
+  L.push(new deck.IconLayer({id:"pin",data:PRACT,getPosition:function(d){return [d.lon,d.lat];},getIcon:function(){return {url:PIN,width:160,height:64,anchorY:32,id:"pin"};},getSize:48,sizeUnits:"pixels",pickable:true}));
+  if(state.focus!=null){var fp=memo("fp",String(state.focus),function(){return [NAMED[state.focus]];}),a=(now%1.6)/1.6;
+    L.push(new deck.ScatterplotLayer({id:"fpulse",data:fp,getPosition:function(d){return d.pos;},getRadius:22+a*26,radiusUnits:"pixels",filled:false,stroked:true,getLineColor:[255,90,60,Math.round(255*(1-a))],lineWidthMinPixels:2.5,updateTriggers:{getRadius:now,getLineColor:now}}));}
+  return L;
+}
+function render(){if(deckgl)deckgl.setProps({layers:layers()});}
+var lastF=0;function loop(t){if(state.focus!=null&&t-lastF>40){render();lastF=t;}requestAnimationFrame(loop);}
+function clampView(v){v.zoom=Math.max(8.6,Math.min(15.5,v.zoom));v.longitude=Math.max(-118.4,Math.min(-117.2,v.longitude));v.latitude=Math.max(33.3,Math.min(34.1,v.latitude));return v;}
+function fly(v,dur){var t=clampView(Object.assign({},viewState,v,{pitch:0,bearing:0}));t.transitionDuration=dur||1500;t.transitionInterpolator=new deck.FlyToInterpolator({speed:1.6});deckgl.setProps({initialViewState:t});}
+var tip=$("#tip");
+function onHover(info){
+  if(!info.object||!info.layer){tip.classList.remove("on");return;}
+  var o=info.object,id=info.layer.id,h="";
+  if(id==="zips"){var z=o.properties.z;h='<b>'+esc(z.city)+' · '+z.zip+'</b><br>'+fmt(z.searches)+' searches a month<br>'+z.patients+' of your patients live here<br><span class="q">Top search: “'+esc(z.top)+'”</span>';}
+  else if(id==="searchers")h='<b>Someone in '+esc(o.city)+'</b><br><span class="q">“'+esc(o.q)+'”</span> on '+o.eng+'<br>'+o.ago+' min ago';
+  else if(id==="pop")h='<b>'+(o.sex==="F"?"Woman":"Man")+', '+o.age+'</b> · '+esc(o.city)+'<br>'+(o.st?'<span style="color:#AFC1F6">'+STATUS[o.st].label+'</span>':'Not a patient')+' · $'+o.inc+'k household'+(o.own?' · owns home':'')+(o.t?'<br><span class="q">Searched “'+esc(o.q)+'” on '+o.eng+' · '+o.ago+'d ago</span>':'')+(o.look&&!o.st?'<br><span class="q">Looks like your best patients</span>':'');
+  else if(id==="avatars"){var a=apptOf(o.name);h='<b>'+esc(o.name)+'</b><br>'+STATUS[o.st].label+' · '+esc(o.city)+(a?'<br><span class="q">Today '+hm(a.m)+' · '+esc(a.what)+'</span>':'');}
+  else if(id==="pin")h='<b>Lumen Aesthetics</b><br>Your practice';
+  if(!h){tip.classList.remove("on");return;}
+  tip.innerHTML=h;var x=info.x+16,y=info.y+16;if(x>window.innerWidth-300)x=info.x-296;if(y>window.innerHeight-120)y=info.y-110;tip.style.left=x+"px";tip.style.top=y+"px";tip.classList.add("on");
+}
+function onClick(info){
+  if(!info.object||!info.layer)return;var id=info.layer.id,o=info.object;
+  if(id==="avatars"){openPatient(o.id);botSay("clin",'Opened <b>'+esc(o.name)+'</b>.');}
+  else if(id==="zips"){var z=o.properties.z;ask("Tell me about "+z.city+" "+z.zip,{silent:true});}
+  else if(id==="searchers")say("Anonymous searcher in "+o.city+": “"+o.q+"” on "+o.eng);
+  else if(id==="pop")personClick(o);
+  else if(id==="pin")fly(HOME);
+}
+
+/* ---------- Chat infrastructure ---------- */
+var thread=$("#thread"),busy=false,queue=[],ctx={patient:null,lastIntent:null};
+function scrollDown(){thread.scrollTop=thread.scrollHeight;}
+function add(html,cls){thread.classList.remove("empty");$("#brief").innerHTML="";var d=document.createElement("div");d.className="msg"+(cls?" "+cls:"");d.innerHTML=html;thread.appendChild(d);scrollDown();return d;}
+function userMsg(t){add('<div class="bubble-u">'+esc(t)+'</div>',"user");}
+var AG={desk:["Front desk agent","◎"],demand:["Demand agent","↗"],inv:["Inventory agent","▤"],staff:["Staffing agent","☺"],clin:["Clinical agent","✚"],grow:["Growth agent","✦"],fin:["Finance agent","$"],os:["LAIR OS","◆"]};
+function head(k,extra){var a=AG[k];return '<div class="agent"><i>'+a[1]+'</i>'+a[0].toUpperCase()+'<span class="when">'+(extra||hm(nowMin()))+'</span></div>';}
+var rq=[];
+function reply(k,steps,text,card,after){
+  if(busy){rq.push([k,steps,text,card,after]);return;}
+  busy=true;
+  var m=add(head(k)+'<div class="steps"></div><div class="text"></div><div class="cs"></div>');
+  var st=$(".steps",m),i=0;
+  (function nx(){
+    if(i>0){var pr=st.children[i-1];pr.querySelector(".spin").outerHTML='<span class="ck"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12 5 5 9-10"/></svg></span>';}
+    if(i<steps.length){var s=document.createElement("div");s.className="step";s.innerHTML='<span class="spin"></span>'+steps[i];st.appendChild(s);i++;scrollDown();setTimeout(nx,320+Math.random()*220);}
+    else{st.remove();try{after&&after();}catch(e){console.error(e);}stream($(".text",m),text,function(){if(card)$(".cs",m).innerHTML=card;scrollDown();busy=false;if(rq.length){var r=rq.shift();setTimeout(function(){reply.apply(null,r);},150);}else if(queue.length){var n=queue.shift();setTimeout(function(){handle(n.t,n.o);},200);}});}
+  })();
+}
+function botSay(k,text,card){reply(k,[],text,card);}
+function stream(el,html,done){var parts=html.split(/(\s+)/),i=0;(function t(){i+=4;el.innerHTML=parts.slice(0,i).join("");scrollDown();if(i<parts.length)setTimeout(t,14);else{el.innerHTML=html;done&&done();}})();}
+function chips(list,all){if(!all)list=list.slice(0,3);return '<div class="chips">'+list.map(function(c){var t=typeof c==="string"?c:c.t,img=c.img?'<img src="'+c.img+'" alt="">':'';return '<button class="chip-ask" data-ask="'+esc(c.ask||t)+'">'+img+esc(t)+'</button>';}).join("")+'</div>';}
+function prow(p,sub,extra){return '<div class="rowx click" data-p="'+p.id+'">'+avatar(p.name)+'<div class="g"><b>'+esc(p.name)+'</b><small>'+sub+'</small></div>'+(extra||'')+'</div>';}
+function setHL(fn,key){state.highlight=fn;state.hlKey=key||"";render();}
+function clearMapFocus(){state.focusZip=null;state.treat=null;setHL(null);}
+
+/* ---------- Entity resolution ---------- */
+function lev(a,b){var m=a.length,n=b.length;if(!m)return n;if(!n)return m;var d=[];for(var i=0;i<=m;i++){d[i]=[i];}for(var j=0;j<=n;j++)d[0][j]=j;for(i=1;i<=m;i++)for(j=1;j<=n;j++)d[i][j]=Math.min(d[i-1][j]+1,d[i][j-1]+1,d[i-1][j-1]+(a[i-1]===b[j-1]?0:1));return d[m][n];}
+var STOP=" i me my we our you the a an to of in on at for and or is are was be do does did can could should would will what who whos who's whats how when where which why show tell find open get give pull up about see look need any anyone everyone today tomorrow now next her him his them she he their this that patient patients chart please hey hi hello thanks thank ok okay yes no new lead leads book text call email message charge cancel reschedule move due last time with from near search searching ";
+function words(s){return s.split(/\s+/).filter(Boolean);}
+function resolvePeople(s){
+  var out=[],seen={};
+  function push(o){var k=o.type+o.name;if(!seen[k]){seen[k]=1;out.push(o);}}
+  var all=NAMED.map(function(p){return {type:"patient",name:p.name,ref:p};}).concat(STAFF.map(function(x){return {type:"staff",name:x.name,ref:x};})).concat(CANDIDATES.map(function(x){return {type:"candidate",name:x.name,ref:x};}));
+  all.forEach(function(e){if(s.indexOf(e.name.toLowerCase())>=0)push(e);});
+  if(out.length)return {hits:out,how:"exact"};
+  var ws=words(s).map(function(w){return w.replace(/'s$/,"");}).filter(function(w){return w.length>1&&STOP.indexOf(" "+w+" ")<0;});
+  var shortMsg=words(s).length<=3||/\b(text|message|call|book|cancel|charge|email|open|prep|chart|allerg|units|consent|balance|meds|medication|reschedule|remind|does|is|has|did)\b/.test(s);
+  all.forEach(function(e){var nm=e.name.toLowerCase().split(" ");ws.forEach(function(w){if(nm[0]===w||(shortMsg&&nm[1]===w))push(e);});});
+  if(out.length){
+    var lastOnly=out.length===1&&ws.length>=2&&ws.indexOf(out[0].name.toLowerCase().split(" ")[0])<0&&ws.indexOf(out[0].name.toLowerCase().split(" ")[1])>0&&/^[a-z]+ [a-z]+$/.test(ws.slice(-2).join(" "));
+    return {hits:out,how:lastOnly?"fuzzy":"part"};
+  }
+  if(!shortMsg||treatOf(s))return {hits:[],how:"none"};
+  // fuzzy
+  var best=[];all.forEach(function(e){var nm=e.name.toLowerCase(),parts=nm.split(" ");
+    var dFull=ws.length>=2?lev(ws.slice(-2).join(" "),nm):99;
+    var dPart=Math.min.apply(null,ws.map(function(w){return Math.min.apply(null,parts.map(function(pp){return pp.length>3&&w.length>3?lev(w,pp):99;}));}).concat([99]));
+    var d=Math.min(dFull<=3?dFull:99,dPart<=1?dPart+1:99);if(d<99)best.push({e:e,d:d});});
+  best.sort(function(a,b){return a.d-b.d;});
+  if(best.length)return {hits:best.filter(function(b){return b.d===best[0].d;}).map(function(b){return b.e;}),how:"fuzzy"};
+  return {hits:[],how:"none"};
+}
+function findZip(s){
+  var m=s.match(/\b9\d{4}\b/);if(m&&byZip[m[0]])return byZip[m[0]];
+  if(m&&!byZip[m[0]])return {missing:m[0]};
+  var cs=ZIPS.slice().sort(function(a,b){return b.city.length-a.city.length;});
+  for(var i=0;i<cs.length;i++)if(new RegExp("\\b"+cs[i].city.toLowerCase()+"\\b").test(s)){var all=ZIPS.filter(function(z){return z.city===cs[i].city;});return all.sort(function(a,b){return b.searches-a.searches;})[0];}
+  return null;
+}
+function findPhone(s){var d=s.replace(/\D/g,"");if(d.length<7)return null;var tail=d.slice(-7);for(var i=0;i<NAMED.length;i++){var ph=(NAMED[i].f.phone||"").replace(/\D/g,"");if(ph&&ph.slice(-7)===tail)return NAMED[i];}return {none:true,digits:d};}
+function treatOf(s){if(/\blip|filler|cheek/.test(s))return "filler";if(/botox|dysport|\btox|wrinkle|neurotoxin/.test(s))return "botox";if(/laser|\bipl\b|morpheus/.test(s))return "laser";if(/facial|hydrafacial|peel/.test(s))return "facial";if(/semaglutide|weight loss|coolsculpt|sculptra/.test(s))return "body";return null;}
+
+/* ---------- Main router ---------- */
+function ask(text,opts){
+  opts=opts||{};text=String(text||"").replace(/\s+/g," ").trim();
+  if(!text)return;
+  if(text.length>300)text=text.slice(0,300);
+  if(!opts.silent)userMsg(text);
+  if(busy){queue.push({t:text,o:opts});return;}
+  setTimeout(function(){handle(text,opts);},200);
+}
+function handle(raw,opts){
+  var s=raw.toLowerCase().replace(/[“”"?!,]/g," ").replace(/\.(?!\d)/g," ").replace(/\s+/g," ").trim();
+  ctx.last=s;
+  try{ routeIntent(s,raw); }catch(e){console.error(e);reply("os",[],"Something went wrong on my side while answering that. Try asking another way.",chips(["Who am I meeting today?","What needs my attention?"]));}
+}
+function has(s,re){return re.test(s);}
+function routeIntent(s,raw){
+  // greetings and help
+  if(/^(hi|hey|hello|yo|good (morning|afternoon|evening)|sup)\b/.test(s)&&s.split(" ").length<=3)return briefing(true);
+  if(/^(help|what can you do|commands|how does this work)/.test(s))return helpMsg();
+  if(/^(thanks|thank you|ty|great|cool|nice|perfect|awesome|ok|okay)\b/.test(s)&&s.split(" ").length<=4)return botSay("os","Anytime.",chips(["What needs my attention?","Who's next?"]));
+  // privacy guardrails
+  if(/(everyone'?s|all (patients|the patients)'?s?|every patient'?s?) (phone|number|email|address|dob|birthday)|export (all|every|the) patients|download (all|the) patients|patient list csv/.test(s))
+    return botSay("os","I only show contact details one patient at a time, and only to signed-in staff. Exporting the full patient list needs an owner to approve it in Settings, and every export is logged.",chips(["Show my leads","Who am I meeting today?"]));
+  // pronoun follow-ups
+  var pron=/\b(her|him|them|she|he|their|this patient|that patient)\b/.test(s)&&!/\b(text|message|call)\b/.test(s)?true:/\b(her|him|them|she|he|their|this patient|that patient)\b/.test(s);
+  // phone lookup
+  if(/\d{3}[\s\-.)]*\d{3}[\s\-.]*\d{4}|\d{7,}/.test(s)){var ph=findPhone(s);if(ph&&!ph.none)return showPatient(ph,"Matched the phone number to "+ph.name+".");if(ph&&ph.none)return botSay("desk","No patient has that phone number. It could be a new caller.",'<div class="btns"><button class="btn" data-act="newpt">Add as a new lead</button></div>');}
+  // people first when there is an action or clinical question
+  var r0=resolvePeople(s),p0=null,pron0=/\b(her|him|them|she|he|their|this patient|that patient)\b/.test(s);
+  var pts0=r0.hits.filter(function(h){return h.type==="patient";});
+  if(pts0.length===1&&r0.how!=="fuzzy")p0=pts0[0].ref;else if(pron0&&ctx.patient&&r0.how!=="exact"&&r0.how!=="part")p0=ctx.patient;
+  var act0=/\b(text|message|sms|call|phone|ring|book|schedule|reschedule|move|cancel|charge|bill|email|remind)\b/.exec(s);
+  if(p0&&act0&&!(r0.hits.length>1&&r0.how!=="exact"))return actionMsg(act0[1],p0,s);
+  if(p0&&/\b(prep|brief|prepare)\b/.test(s)){var ap0=apptOf(p0.name);if(ap0)return prepMsg(s,ap0);return showPatient(p0,p0.name+" is not on today's schedule.");}
+  if(has(s,/waitlist|open slots?|fill (the )?(gaps?|slots?)/))return waitlistMsg();
+  // day and schedule
+  if(has(s,/who (am i|are we|do i|we) (meeting|seeing)|meeting today|meetings today|my (day|schedule|meetings|calendar)|what'?s (on )?(today|my day|the schedule)|today'?s (schedule|patients|appointments)|schedule today|appointments today|on the books|who'?s coming in|who is coming in/))return todayMsg();
+  if(has(s,/tomorrow/))return tomorrowMsg();
+  if(has(s,/this week|the week|weekly/)&&!has(s,/revenue|money/))return weekMsg();
+  if(has(s,/who'?s next|who is next|next (appointment|patient|up)|up next|prep me|brief me|prepare me|my next|\bmy \d{1,2}(:\d\d)?\b|\d{1,2}:\d\d (meeting|appointment)|(meeting|appointment) at \d/))return prepMsg(s);
+  if(has(s,/this morning|earlier today|already (seen|came)|who (did|have) (i|we) see/))return pastMsg();
+  if(has(s,/\blate\b|running behind|delayed/))return lateMsg();
+  if(has(s,/no.?show|didn'?t show|missed (her|his|their) appointment|stood (me|us) up/))return noShowMsg();
+  if(has(s,/checked in|here yet|in the (lobby|waiting room)|arrived/))return arrivedMsg();
+  if(has(s,/attention|urgent|need(s)? me|to.?do|todo|priorit|what should i do|anything (i should|important)|catch me up|what did i miss|what'?s going on/))return attentionMsg();
+  if(has(s,/birthday/))return birthdayMsg();
+  if(has(s,/\blot\b|recall/))return lotMsg(s);
+  // resolve people
+  var r=resolvePeople(s),p=null;
+  if(r.how==="exact"){r.hits.forEach(function(h){s=s.replace(h.name.toLowerCase(),"");});s=s.replace(/\s+/g," ").trim();}
+  if(pron&&ctx.patient&&(r.how==="none"||r.how==="fuzzy"))p=ctx.patient;
+  var pts=r.hits.filter(function(h){return h.type==="patient";});
+  var staffHit=r.hits.filter(function(h){return h.type==="staff";})[0];
+  var candHit=r.hits.filter(function(h){return h.type==="candidate";})[0];
+  var actionWord=/\b(text|message|sms|call|phone|ring|book|schedule|reschedule|move|cancel|charge|bill|email|remind)\b/.exec(s);
+  var clinWord=/allerg|medication|meds\b|contraind|can (i|we) (give|do|treat|inject)|safe to|units|last (time|visit|treatment)|history|notes?\b|consent|balance|owe|pregnan|blood thinner|lot/.test(s);
+  if(!p&&r.hits.length>1&&r.how!=="exact"){
+    // disambiguate
+    if(staffHit&&/working|busy|schedule|available|open slot|free|training/.test(s)&&!pts.length)return staffMsg(staffHit.ref);
+    return botSay("desk",'I found more than one match for that name. Which one?',chips(r.hits.slice(0,5).map(function(h){var sub=h.type==="patient"?STATUS[h.ref.st].label:h.type==="staff"?"Staff, "+h.ref.role:"Candidate";return {t:h.name+" · "+sub,ask:(h.type==="staff"?"How busy is ":h.type==="candidate"?"Tell me about candidate ":"Open ")+h.name,img:AV[h.name]};})));
+  }
+  if(!p&&pts.length===1)p=pts[0].ref;
+  if(!p&&r.hits.length===1&&r.hits[0].type==="staff")return staffMsg(r.hits[0].ref);
+  if(!p&&r.hits.length===1&&r.hits[0].type==="candidate")return candidateMsg(r.hits[0].ref);
+  if(p&&r.how==="fuzzy"&&!pron){
+    return reply("desk",["Looking for “"+esc(raw)+"”"],'No exact match. Did you mean <b>'+esc(p.name)+'</b>?',chips([{t:"Yes, open "+p.name,ask:"Open "+p.name,img:AV[p.name]},{t:"No, add a new patient",ask:"Add a new patient"}]));
+  }
+  if(p&&actionWord)return actionMsg(actionWord[1],p,s);
+  if(p&&clinWord)return clinMsg(p,s);
+  if(pron&&!p&&(actionWord||clinWord))return botSay("os","Who do you mean? Open a patient first or say their name.",chips(["Who's next?","Who am I meeting today?"]));
+  // non-person intents
+  if(has(s,/add (a )?new (patient|lead)|new patient form|create (a )?patient/))return newPatientMsg();
+  if(has(s,/campaign|advertis|market(ing)? (in|to)|where should i (advertise|market)|gaps?\b|underserved|opportunit/))return campaignMsg(raw);
+  if(has(s,/\bprice|\bcost|how much (is|are|does|do|for)|pricing|charge for/)&&!has(s,/search/))return priceMsg(treatOf(s));
+  if(has(s,/clear (the )?filters?|remove filters?|no filters?/)){clearF();setHL(null);syncCtl();return botSay("os","Filters cleared. Showing everyone.","");}
+  if(has(s,/only (the ones|people) searching|only searching/)){F.srch=true;syncCtl();var c2=fCount();return botSay("grow",'<b>'+fmt(c2.not)+'</b> of them searched for treatments this month.','<div class="btns"><button class="btn" data-act="reach">Reach the '+fmt(c2.not)+'</button></div>');}
+  if(has(s,/\b(women|men|woman|man|female|male|ladies|guys|homeowners?|income|wealthy|affluent|\d{2}s\b|ages?\b|years old|lookalike|look like my|like my best|not (yet )?patients|non.?patients|prospects|everyone in|people in|people searching|searching in|residents)\b/)&&audienceMsg(s))return;
+  var z=findZip(s);
+  if(z&&z.missing)return botSay("demand","ZIP code "+esc(z.missing)+" is outside your area. Your map covers Orange County.",chips(["Who is searching near me?"]));
+  if(z&&!p)return zipMsg(z);
+  if(has(s,/heat ?map/))return heatMsg(true);
+  if(has(s,/(turn off|hide|remove) (the )?heat/))return heatMsg(false);
+  var tr=treatOf(s);
+  if(has(s,/\bprice|\bcost|how much (is|are|does|do|for)|pricing|charge for/)&&!has(s,/search/))return priceMsg(tr);
+  if(has(s,/who'?s due|who is due|due for|overdue|need(s)? (a )?touch.?up/))return dueMsg(tr);
+  if(has(s,/how many|count|number of|total/))return countMsg(s);
+  if(has(s,/\b(order|inventory|stock|supplies|vials?|run(ning)? out|reorder)\b/))return orderMsg(tr);
+  if(has(s,/hire|hiring|staffing|injector|capacity|candidate|interview|who'?s working|who is working|team|train/))return staffingMsg(s);
+  if(has(s,/win.?back|lapsed|haven'?t (been|come)|lost patients|inactive/))return winbackMsg();
+  if(has(s,/\bleads?\b|inquir|new people|who called|missed calls?/))return leadsMsg();
+  if(has(s,/best patients|vip|top patients|most valuable|members?\b/))return vipMsg();
+  if(has(s,/revenue|money|sales|forecast|financ|how (are|did) we (doing|do)|how'?s business|profit|how did today go|end of day|eod/))return financeMsg(s);
+  if(has(s,/\bai\b|chatgpt|gemini|perplexity|recommend(ing)? (me|us)|reviews?/))return aiMsg(s);
+  if(has(s,/full price list/))return priceMsg(null);
+  if(has(s,/search|demand|near me|looking for|trend|popular|what do people want|all treatments/)||tr)return demandMsg(tr);
+  if(has(s,/reset|start over|clear (the )?map|zoom out|show everyone|everyone|overview|home/))return resetMsg();
+  if(has(s,/weather|joke|news|stock price|sports|recipe/))return botSay("os","That's outside what I can help with here. I know your patients, schedule, inventory, team and local demand.",chips(["What needs my attention?","Who is searching near me?"]));
+  if(p)return showPatient(p);
+  if(/^[a-z]+( [a-z]+)?$/.test(s)&&s.length<25)return reply("desk",["Searching patients, staff and candidates for “"+esc(raw)+"”"],"I couldn't find a patient, staff member or candidate called “"+esc(raw)+"”.",'<div class="btns"><button class="btn" data-act="newpt" data-name="'+esc(raw)+'">Add “'+esc(raw)+'” as a new patient</button><button class="btn ghost" data-ask="Show my leads">See leads</button></div>');
+  return helpMsg(raw);
+}
+
+/* ---------- Proactive briefing ---------- */
+function attentionItems(){
+  var n=nowMin(),items=[];
+  items.push({k:"lead",t:"Rachel Kim has waited 26 hours for a call back",s:"Laser hair removal lead from Google",p:"Rachel Kim",act:'<button class="btn" data-act="call" data-p="'+P("Rachel Kim").id+'">Call</button>'});
+  var nx=nextAppt();
+  if(P("Nina Patel")&&n<13*60+5)items.push({k:"consent",t:"Nina Patel's consent form is not signed",s:"Her lip filler consult is at 1:00",p:"Nina Patel",act:'<button class="btn" data-act="sendform" data-p="'+P("Nina Patel").id+'">Send form</button>'});
+  if(n>11*60+60)items.push({k:"noshow",t:"Hannah Brooks did not show at 11:45",s:"Second no-show this year. Botox is 2 weeks overdue.",p:"Hannah Brooks",act:'<button class="btn ghost" data-act="text" data-p="'+P("Hannah Brooks").id+'" data-tpl="noshow">Text to rebook</button>'});
+  items.push({k:"stock",t:"Botox runs out around Dec 9",s:"At the current pace. The vendor's next price tier starts at 10 vials.",act:'<button class="btn ghost" data-ask="What should I order?">Review order</button>'});
+  items.push({k:"reviews",t:"3 new Google reviews need a reply",s:"Drafts are ready for you to approve",act:'<button class="btn ghost" data-ask="Show my reviews">Review</button>'});
+  return items;
+}
+function briefing(short){
+  if(short){var nx0=nextAppt();return reply("os",[],greet()+', Jordan. '+(nx0?'Next is <b>'+esc(nx0.who)+'</b> at '+hm(nx0.m)+'.':'Nothing else today.')+' '+attentionItems().length+' things need you.',chips(["Who am I meeting today?","What needs my attention?"]));}
+  renderBrief();
+}
+function renderBrief(){
+  var rest=TODAY.filter(function(a){return a.m>nowMin()-10&&!a.noshow;}),pts=rest.filter(function(a){return a.kind==="pt";}).length,meets=rest.length-pts,n=attentionItems().length;
+  $("#brief").innerHTML='<div class="bcard"><div class="bt"><b>'+greet()+', Jordan</b><button class="bx" id="briefX" aria-label="Dismiss">✕</button></div><p><b>'+pts+' patients</b>'+(meets?' and <b>'+meets+' meeting'+(meets>1?'s':'')+'</b>':'')+' left today. <b>'+n+' things</b> need you.</p><div class="btns"><button class="btn" data-ask="What needs my attention?">See what needs me</button><button class="btn ghost" data-ask="Who am I meeting today?">My day</button></div></div>';
+  $("#briefX").onclick=function(){$("#brief").innerHTML="";};
+}
+function apptRow(a){
+  var st=apptStatus(a),p=P(a.who),flags=apptFlags(a);
+  var tag=st==="now"?'<span class="tag blue">Now</span>':st==="noshow"?'<span class="tag coral">No-show</span>':st==="past"?'<span class="tag">Done</span>':flags.length?'<span class="tag coral">'+flags[0]+'</span>':'';
+  var attrs=p?' data-p="'+p.id+'"':(a.kind==="meet"?' data-ask="Tell me about my '+hmShort(a.m)+' meeting"':'');
+  return '<div class="rowx click'+(st==="past"||st==="noshow"?' past':'')+'"'+attrs+'><span class="t">'+hmShort(a.m)+'</span>'+avatar(a.who)+'<div class="g"><b>'+esc(a.who)+'</b><small>'+esc(a.what)+(a.prov?' · '+a.prov:'')+'</small></div>'+tag+'</div>';
+}
+function apptFlags(a){var p=P(a.who);if(!p)return a.kind==="meet"?[]:[];var f=p.f,o=[];if(f.allergy)o.push("Allergy");if(f.consentMissing)o.push("Consent unsigned");if(f.bloodThinner)o.push("Blood thinner");if(f.balance)o.push("$"+f.balance+" due");if(f.bday)o.push("Birthday");if(f.late)o.push(f.late+" min late");if(p.st==="lead")o.push("New patient");return o;}
+function itemRow(it){var p=it.p?P(it.p):null;return '<div class="rowx">'+(p?avatar(p.name):'<span class="av0">!</span>')+'<div class="g"><b style="white-space:normal">'+esc(it.t)+'</b><small>'+esc(it.s)+'</small></div>'+(it.act||'')+'</div>';}
+function helpMsg(raw){
+  reply("os",raw?["Trying to understand “"+esc(raw)+"”"]:[],(raw?"I'm not sure what you need there. ":"")+"Ask me in plain words. I can find any patient, prep you for appointments, answer clinical questions about a patient, draft texts and bookings for you to approve, and show local search demand, orders, staffing and campaigns.",
+    chips(["Who am I meeting today?","Prep me for my 1:00","Does Maya have allergies?","Text Sofia","Who got lot C5521?","Who's due for Botox?","Who is searching near me?"]));
+}
+
+/* ---------- Day intents ---------- */
+function todayMsg(){
+  var names=TODAY.map(function(a){return a.who;});setHL(function(d){return names.indexOf(d.name)>=0;},"today");
+  var left=TODAY.filter(function(a){return apptStatus(a)==="up"||apptStatus(a)==="now";}).length;
+  reply("desk",["Opening today's schedule and meetings"],'Here is your Friday. <b>'+left+'</b> still ahead, including '+TODAY.filter(function(a){return a.kind==="meet"&&apptStatus(a)!=="past";}).length+' non-patient meetings. Everyone coming in today is shown on the map.',
+    '<div class="cardx"><h4>Friday, Nov 20 <small>'+TODAY.length+' total</small></h4>'+TODAY.map(apptRow).join("")+'</div>'+chips(["Prep me for my next appointment","Who is running late?","Tomorrow"]),
+    function(){closePatient(true);fly({longitude:-117.78,latitude:33.64,zoom:10.7});});
+}
+function tomorrowMsg(){
+  var names=TOMORROW.map(function(t){return t[1];});setHL(function(d){return names.indexOf(d.name)>=0;},"tomorrow");
+  reply("desk",["Opening Saturday's schedule"],'Tomorrow is lighter: <b>'+TOMORROW.length+' patients</b>, done by 4:00. Maya Torres is only proposed, since she hasn\'t confirmed the 10:00 yet.',
+    '<div class="cardx"><h4>Saturday, Nov 21</h4>'+TOMORROW.map(function(t){var p=P(t[1]);return '<div class="rowx click" data-p="'+p.id+'"><span class="t">'+t[0]+'</span>'+avatar(p.name)+'<div class="g"><b>'+esc(p.name)+'</b><small>'+esc(t[2])+'</small></div>'+(/proposed/.test(t[2])?'<span class="tag coral">Unconfirmed</span>':'')+'</div>';}).join("")+'</div>'+
+    '<div class="btns"><button class="btn" data-act="text" data-p="'+P("Maya Torres").id+'" data-tpl="confirm">Ask Maya to confirm</button></div>');
+}
+function weekMsg(){
+  reply("desk",["Adding up the week"],"This week you have <b>94 appointments</b>, 8 open slots and 3 new-patient consults left. Saturday is the lightest day.",'<div class="stats"><div class="stat"><div class="num">94</div><small>Appointments</small></div><div class="stat"><div class="num">8</div><small>Open slots</small></div><div class="stat"><div class="num">$38.4k</div><small>Booked revenue</small></div></div>'+chips(["Tomorrow","Text the waitlist about open slots"]));
+}
+function timeAppt(s){
+  var map={one:1,two:2,three:3,four:4,five:5,six:6,nine:9,ten:10,eleven:11,twelve:12};
+  var m=s.match(/\b(1[0-2]|[1-9]|one|two|three|four|five|six|nine|ten|eleven|twelve)(?::(\d\d))?\s*(am|pm)?\b/);
+  if(!m)return null;var h=+(map[m[1]]||m[1]),mm=m[2]?+m[2]:null;
+  if(m[3]==="pm"&&h<12)h+=12;else if(!m[3]&&h<8)h+=12;
+  var hit=TODAY.filter(function(a){return Math.floor(a.m/60)===h&&(mm==null||a.m%60===mm);})[0];
+  return {hit:hit,label:m[0]+(m[2]?"":":00")};
+}
+function prepMsg(s,forced){
+  var target=forced||null;
+  if(!target&&/\d|one|two|three|four|five|six|nine|ten|eleven|twelve/.test(s.replace(/next/g,""))){var ta0=timeAppt(s);
+    if(ta0&&!ta0.hit)return botSay("desk","You have nothing booked at "+esc(ta0.label)+" today.",chips(["Who am I meeting today?"]));
+    if(ta0)target=ta0.hit;}
+  target=target||nextAppt();
+  if(!target)return botSay("desk","You're done for today. Nothing else is booked.",chips(["Tomorrow","How did today go?"]));
+  if(target.kind==="meet")return meetingMsg(target);
+  var p=P(target.who),f=p.f;
+  var talk=p.st==="lead"?["Found you by searching “"+esc(p.q)+"” on "+p.eng,"Asked about pricing on the phone. Have the lip filler price sheet ready.","Mentioned being nervous about needles. Offer numbing cream and walk through each step."]
+    :["Usual: "+esc(p.tx),f.due&&f.due<0?"Overdue by "+(-f.due)+" days":"On her normal schedule".replace("her",pron(p,"p")),"Lifetime value $"+fmt(p.ltv)];
+  reply("clin",["Reading "+esc(p.name)+"'s chart","Checking forms, payments and alerts"],'Your '+hm(target.m)+' is <b>'+esc(p.name)+'</b>: '+esc(target.what)+' with '+target.prov+', '+until(target.m)+'.',
+    (apptFlags(target).length?'<div class="warn">'+apptFlags(target).map(esc).join(" · ")+'</div>':'<div class="ok">Forms signed, no alerts, nothing owed.</div>')+
+    '<div class="cardx" style="margin-top:8px"><h4>What to know</h4>'+talk.map(function(t){return '<div class="rowx"><div class="g"><small style="color:#0B1A2E;font-size:13px">'+t+'</small></div></div>';}).join("")+'</div>'+
+    '<div class="btns">'+(f.consentMissing?'<button class="btn" data-act="sendform" data-p="'+p.id+'">Send consent form</button>':'')+'<button class="btn ghost" data-chart="'+p.id+'">Open chart</button><button class="btn ghost" data-act="text" data-p="'+p.id+'" data-tpl="reminder">Text a reminder</button></div>',
+    function(){openPatient(p.id);});
+}
+function meetingMsg(a){
+  var txt=a.who==="Dana Whitfield"?'Your '+hm(a.m)+' is <b>Dana Whitfield from Allergan</b>. She is bringing new pricing tiers and an Allē promo. Worth asking about the 10-vial Botox tier, since you need to reorder before Dec 9.'
+    :a.who==="Sam Rivera"?'Your '+hm(a.m)+' is an interview with <b>Sam Rivera, RN</b>. Sam has 4 years as an injector, lives in Mission Viejo where demand is growing, and is free Tuesdays and Thursdays.'
+    :'Your '+hm(a.m)+' was the <b>team huddle</b>.';
+  reply("desk",["Opening the meeting"],txt,a.who==="Sam Rivera"?chips(["Do I need to hire?"]):a.who==="Dana Whitfield"?chips(["What should I order?"]):"");
+}
+function pastMsg(){
+  var done=TODAY.filter(function(a){var s=apptStatus(a);return s==="past"||s==="noshow";});
+  reply("desk",["Looking back at today"],'So far today you have seen <b>'+done.filter(function(a){return a.kind==="pt"&&!a.noshow;}).length+' patients</b>. Hannah Brooks did not show.','<div class="cardx"><h4>Earlier today</h4>'+done.map(apptRow).join("")+'</div>');
+}
+function lateMsg(){var p=P("Aisha Rahman");reply("desk",["Checking texts and check-ins"],'<b>Aisha Rahman</b> texted that she is running about 10 minutes late for her 4:00 with Ana. Everyone else is on time so far.',prow(p,"Sculptra · 4:00 with Ana")+'<div class="btns"><button class="btn" data-act="move" data-p="'+p.id+'">Move her to 4:15</button><button class="btn ghost" data-act="tellstaff">Let Ana know</button></div>');}
+function noShowMsg(){var p=P("Hannah Brooks");reply("desk",["Checking today's no-shows"],'<b>Hannah Brooks</b> missed her 11:45 Botox. It is her second no-show this year, and she is 2 weeks overdue. Consider asking for a card hold on her next booking.',prow(p,"Botox · 11:45 with Ana · 2 no-shows")+'<div class="btns"><button class="btn" data-act="text" data-p="'+p.id+'" data-tpl="noshow">Text to rebook</button></div>');}
+function arrivedMsg(){var n=nowMin();var a=TODAY.filter(function(x){return x.kind==="pt"&&x.m<=n+20&&x.m>=n-30&&!x.noshow;});reply("desk",["Checking the front desk"],a.length?'Checked in right now: '+a.map(function(x){return '<b>'+esc(x.who)+'</b>';}).join(", ")+'.':'Nobody is in the waiting room right now. Dana Whitfield from Allergan is with you until 12:45.',chips(["Who's next?"]));}
+function attentionMsg(){var it=attentionItems();reply("os",["Checking leads, forms, payments, stock and reviews"],'<b>'+it.length+' things</b> need you, most urgent first.','<div class="cardx">'+it.map(itemRow).join("")+'</div>');}
+function birthdayMsg(){var p=P("Leah Shah");reply("desk",["Checking birthdays"],'It is <b>Leah Shah\'s</b> birthday today, and she is coming in at 1:45 for IPL.',prow(p,"Glow Club member · in at 1:45")+'<div class="btns"><button class="btn" data-act="text" data-p="'+p.id+'" data-tpl="bday">Send a birthday perk</button></div>');}
+function lotMsg(s){
+  var m=s.match(/\b([a-z]\d{3,5})\b/i);
+  if(!m)return botSay("clin","Which lot number? For example: who got lot C5521?",chips(["Who got lot C5521?"]));
+  var lot=m[1].toUpperCase(),hits=NAMED.filter(function(p){return p.f.lot===lot;});
+  if(!hits.length)return reply("clin",["Searching treatment records for lot "+esc(lot)],"No patient received lot <b>"+esc(lot)+"</b>. Check the number on the box.","");
+  setHL(function(d){return d.f&&d.f.lot===lot;},"lot"+lot);
+  reply("clin",["Searching every treatment record for lot "+esc(lot)],'<b>'+hits.length+' patients</b> received lot '+esc(lot)+'. They are lit up on the map.','<div class="cardx"><h4>Lot '+esc(lot)+' <small>Botox</small></h4>'+hits.map(function(p){return prow(p,p.f.units+' units · '+esc(p.city));}).join("")+'</div><div class="btns"><button class="btn" data-act="lotnotice" data-n="'+hits.length+'">Draft a notice to all '+hits.length+'</button></div>',function(){fly({zoom:10.6});});
+}
+
+/* ---------- Patient intents ---------- */
+function showPatient(p,lead){
+  var f=p.f,fn=first(p);
+  var line=p.st==="lead"?fn+' came in '+esc(p.when)+(p.eng!=="Referral"?' after searching “'+esc(p.q)+'” on '+p.eng:' through a referral')+'.':p.st==="lapsed"?fn+' has not been in for over 6 months.':fn+' comes in for '+esc(p.tx)+'.';
+  var a=apptOf(p.name);
+  reply("desk",["Searching patients","Found "+esc(p.name)],(lead?esc(lead)+' ':'')+'<b>'+esc(p.name)+'</b>, '+STATUS[p.st].low+' in '+esc(p.city)+', '+p.dist.toFixed(1)+' miles away. '+line+(a?' '+pron(p,"S")+' is on today\'s schedule at '+hm(a.m)+'.':'')+' The chart is open on the right.',
+    '<div class="btns"><button class="btn" data-act="text" data-p="'+p.id+'">Text '+esc(fn)+'</button><button class="btn ghost" data-act="call" data-p="'+p.id+'">Call</button><button class="btn ghost" data-act="book" data-p="'+p.id+'">Book</button></div>',
+    function(){openPatient(p.id);});
+}
+function clinMsg(p,s){
+  var f=p.f,fn=first(p),txt,card="";
+  if(/allerg/.test(s))txt=f.allergy?'Yes. <b>'+esc(fn)+' is allergic to '+esc(f.allergy.toLowerCase())+'.</b> Use a lidocaine-free product and topical numbing only.':'No known allergies are on file for '+esc(fn)+'. Confirm at check-in, since patients sometimes forget to update us.';
+  else if(/pregnan|nursing|breastfeed/.test(s))txt=p.sex==="M"?'That does not apply to '+esc(fn)+'.':esc(fn)+' said <b>no</b> to pregnancy and nursing at the last visit. Ask again today before treating.';
+  else if(/can (i|we) (give|do|treat|inject)|safe to|contraind|blood thinner/.test(s)){
+    var w=[];if(f.allergy)w.push("Allergic to "+f.allergy.toLowerCase());if(f.bloodThinner)w.push("Takes "+f.bloodThinner.toLowerCase()+", so bruising risk is higher");if(f.consentMissing)w.push("Consent form not signed yet");
+    txt=w.length?'Here is what I see before treating '+esc(fn)+'. The final call is always the provider\'s.':'Nothing in '+esc(fn)+'\'s chart rules it out: no allergies, no blood thinners, consents signed, and '+(p.sex==="M"?"no flags":"not pregnant at last check")+'. The final call is always the provider\'s.';
+    card=w.length?'<div class="warn">'+w.map(esc).join("<br>")+'</div>':'<div class="ok">No contraindications on file</div>';
+  }
+  else if(/units|last (time|visit|treatment)|history/.test(s))txt=f.units?'Last time '+esc(fn)+' had <b>Botox, '+f.units+' units</b> (forehead, frown lines, crow\'s feet), lot '+esc(f.lot)+'. '+pron(p,"S")+' was happy with the result.':p.st==="lead"?esc(fn)+' has not been treated yet. This would be the first visit.':'Last treatment: <b>'+esc(p.tx)+'</b>. Full notes are in the chart.';
+  else if(/medication|meds/.test(s))txt=esc(fn)+'\'s medications: <b>'+esc(f.meds||(f.bloodThinner||"none on file"))+'</b>.';
+  else if(/consent/.test(s))txt=f.consentMissing?'<b>'+esc(fn)+' has not signed the consent form yet.</b>':'All of '+esc(fn)+'\'s consent forms are signed.',card=f.consentMissing?'<div class="btns"><button class="btn" data-act="sendform" data-p="'+p.id+'">Send the form now</button></div>':"";
+  else if(/balance|owe/.test(s))txt=f.balance?esc(fn)+' owes <b>$'+f.balance+'</b> from the last visit.':esc(fn)+' does not owe anything.',card=f.balance?'<div class="btns"><button class="btn" data-act="charge" data-p="'+p.id+'">Charge card on file</button></div>':"";
+  else if(/\blot\b/.test(s))txt=f.lot?esc(fn)+' received lot <b>'+esc(f.lot)+'</b>.':'No lot numbers on file for '+esc(fn)+'.';
+  else txt=f.notes?'Notes on '+esc(fn)+': '+esc(f.notes):'No extra notes on '+esc(fn)+'. Everything else is in the chart.';
+  reply("clin",["Reading "+esc(p.name)+"'s chart"],txt,card,function(){openPatient(p.id);});
+}
+var TPL={
+  reminder:function(p){var a=apptOf(p.name);return "Hi "+first(p)+", this is Lumen Aesthetics. See you today at "+(a?hm(a.m):"your appointment")+". Reply C to confirm or call us at (949) 555-0100 to reschedule.";},
+  noshow:function(p){return "Hi "+first(p)+", we missed you today at Lumen Aesthetics. Want to rebook? Jordan has openings Tuesday at 10:00 or Wednesday at 2:30. Just reply with a time.";},
+  confirm:function(p){return "Hi "+first(p)+", we're holding Saturday at 10:00 with Jordan for your touch-up. Reply YES to confirm.";},
+  bday:function(p){return "Happy birthday, "+first(p)+"! Enjoy $50 off any treatment this month from all of us at Lumen Aesthetics. See you at 1:45.";},
+  lead:function(p){return "Hi "+first(p)+", thanks for reaching out to Lumen Aesthetics about "+p.tx.toLowerCase()+". Would you like to come in for a free consult this week? We have Tuesday at 11:00 or Thursday at 4:00.";},
+  winback:function(p){return "Hi "+first(p)+", it's been a while! We'd love to see you back at Lumen Aesthetics. Enjoy $75 off your next visit this month.";},
+  generic:function(p){return "Hi "+first(p)+", this is Lumen Aesthetics. ";}
+};
+function draftCard(p,tpl,channel){
+  var body=(TPL[tpl]||TPL[p.st==="lead"?"lead":p.st==="lapsed"?"winback":"generic"])(p);
+  var to=channel==="email"?first(p).toLowerCase()+"@email.com":(p.f.phone||"no phone on file");
+  if(channel!=="email"&&!p.f.phone)return '<div class="warn">'+esc(first(p))+' has no mobile number on file. Add one in the chart or send an email instead.</div><div class="btns"><button class="btn ghost" data-act="email" data-p="'+p.id+'">Draft an email</button></div>';
+  return '<div class="cardx"><h4>'+(channel==="email"?"Email":"Text")+' to '+esc(p.name)+' <small>'+esc(to)+'</small></h4><textarea class="draft" aria-label="Message">'+esc(body)+'</textarea><div class="meta">Nothing sends until you press Send.</div><div class="btns"><button class="btn" data-send="'+p.id+'" data-ch="'+(channel||"text")+'">Send</button><button class="btn ghost" data-cancel>Cancel</button></div></div>';
+}
+function actionMsg(verb,p,s){
+  var fn=first(p);
+  if(/text|message|sms|remind/.test(verb))return reply("desk",["Drafting a text to "+esc(fn)],"Here is a draft. Edit anything before you send.",draftCard(p,/remind/.test(s)?"reminder":/rebook|no.?show/.test(s)?"noshow":/birthday/.test(s)?"bday":null),function(){ctx.patient=p;});
+  if(/email/.test(verb))return reply("desk",["Drafting an email to "+esc(fn)],"Here is a draft email.",draftCard(p,null,"email"));
+  if(/call|phone|ring/.test(verb))return reply("desk",[],p.f.phone?'Ready to call <b>'+esc(p.name)+'</b> at '+esc(p.f.phone)+' through QUO.':'No phone number on file for '+esc(fn)+'.',p.f.phone?'<div class="btns"><button class="btn" data-act="dial" data-p="'+p.id+'">Start call</button><button class="btn ghost" data-cancel>Cancel</button></div>':'');
+  if(/cancel/.test(verb)){var a=apptOf(p.name);if(!a)return botSay("desk",esc(fn)+" has no appointment today to cancel.","");return reply("desk",[],'Cancel <b>'+esc(p.name)+'</b>\'s '+hm(a.m)+' appointment ('+esc(a.what)+')? The slot will open for the waitlist.','<div class="btns"><button class="btn danger" data-act="docancel" data-p="'+p.id+'">Yes, cancel it</button><button class="btn ghost" data-cancel>Keep it</button></div>');}
+  if(/charge|bill/.test(verb)){var amt=(s.match(/\$?(\d+(?:\.\d\d)?)/)||[])[1]||p.f.balance;if(!amt)return botSay("desk",esc(fn)+" doesn't owe anything. How much do you want to charge?","");return reply("fin",[],'Charge <b>$'+esc(amt)+'</b> to '+esc(fn)+'\'s card on file?','<div class="btns"><button class="btn" data-act="docharge" data-p="'+p.id+'" data-n="'+esc(amt)+'">Charge $'+esc(amt)+'</button><button class="btn ghost" data-cancel>Cancel</button></div>');}
+  // book / schedule / reschedule / move
+  var slots=["Tue 10:00 · Jordan","Wed 2:30 · Jordan","Thu 4:00 · Ana"];if(p.name==="Maya Torres")slots.unshift("Sat 10:00 · Jordan");
+  return reply("desk",["Checking open times with "+esc(fn)+"'s usual provider"],'Pick a time for <b>'+esc(p.name)+'</b>'+(p.f.allergy?'. Note the '+esc(p.f.allergy.toLowerCase())+' allergy is on the booking':'')+'.','<div class="chips">'+slots.map(function(sl){return '<button class="chip-ask" data-book="'+p.id+'" data-slot="'+esc(sl)+'">'+esc(sl)+'</button>';}).join("")+'</div>');
+}
+var PRICES=[["botox","Botox","$14 a unit · most visits $350 to $600"],["botox","Dysport","$5 a unit"],["filler","Lip filler","$750 a syringe"],["filler","Cheek filler","$850 a syringe"],["laser","Laser hair removal","From $150 a session"],["laser","Morpheus8","$1,100 a session"],["facial","Hydrafacial","$225 · Platinum $285"],["body","Sculptra","$950 a vial"],["body","Semaglutide program","$399 a month"]];
+function priceMsg(tr){
+  var rows=PRICES.filter(function(r){return !tr||r[0]===tr;});
+  reply("fin",[],(tr?'Your current prices for '+TREAT.filter(function(t){return t.k===tr;})[0].label+'.':'Your current price list.')+' Glow Club members get 10% off.','<div class="cardx">'+rows.map(function(r){return '<div class="rowx"><div class="g"><b>'+r[1]+'</b></div><small>'+r[2]+'</small></div>';}).join("")+'</div>'+chips(tr?["Who is searching for "+(tr==="filler"?"lip filler":tr)+"?","Full price list"]:["Who is searching near me?"]));
+}
+function waitlistMsg(){
+  var wl=[["Grace Chen","Botox, any afternoon"],["Sam Ortega","Hydrafacial, Friday"]];
+  reply("desk",["Checking open slots and the waitlist"],'Ana has <b>2 open slots today</b> (1:30 and 3:00) and Jordan has one at 3:00. Two people are on the waitlist.',
+    '<div class="cardx"><h4>Waitlist</h4><div class="rowx"><span class="av0">GC</span><div class="g"><b>Grace Chen</b><small>Botox, any afternoon · not yet a patient</small></div></div>'+prow(P("Sam Ortega"),"Hydrafacial, Friday")+'</div><div class="btns"><button class="btn" data-act="bulktext" data-n="2">Text both about today\'s openings</button></div>');
+}
+function staffMsg(x){reply("staff",["Checking "+esc(x.name)+"'s day"],'<b>'+esc(x.title||x.name)+'</b> ('+esc(x.role)+') is '+x.util+'% booked this month. Today: '+esc(x.today)+'.',chips(["Do I need to hire?"]));}
+function candidateMsg(x){reply("staff",[],'<b>'+esc(x.name)+'</b>, '+esc(x.role)+'.'+(x.name==="Sam Rivera"?' Interviewing with you today at 5:30.':''),'<div class="btns"><button class="btn" data-act="invite" data-n="'+esc(x.name)+'">Invite to interview</button></div>');}
+function newPatientMsg(name){reply("desk",[],"Here's a new patient form. Fill in what you have; the rest can come from their intake.",'<div class="cardx"><h4>New patient</h4><input class="draft" style="min-height:0;height:38px;margin-bottom:6px" placeholder="Full name" value="'+esc(name||"")+'" aria-label="Full name"><input class="draft" style="min-height:0;height:38px;margin-bottom:6px" placeholder="Mobile number" aria-label="Mobile number"><input class="draft" style="min-height:0;height:38px" placeholder="Interested in" aria-label="Interested in"><div class="btns"><button class="btn" data-act="savept">Save and send intake forms</button><button class="btn ghost" data-cancel>Cancel</button></div></div>');}
+
+/* ---------- Demand and business intents ---------- */
+function topQ(tr){var c={};POP.forEach(function(x){if(!x.t||(tr&&x.t!==tr))return;if(F.city&&x.city!==F.city)return;c[x.q]=(c[x.q]||0)+1;});return Object.keys(c).map(function(k){return {q:k,v:c[k]};}).sort(function(a,b){return b.v-a.v;}).slice(0,5);}
+function cityCounts(pred,n){var c={};POP.forEach(function(d){if(pred(d))c[d.city]=(c[d.city]||0)+1;});return Object.keys(c).map(function(k){return {city:k,n:c[k]};}).sort(function(a,b){return b.n-a.n;}).slice(0,n||3);}
+function demandMsg(tr){
+  clearF();F.srch=true;F.treat=tr;state.focusZip=null;setHL(null);syncCtl();
+  var c=fCount(),tl=tr?TREAT.filter(function(t){return t.k===tr;})[0].label:"treatments you offer";
+  var tc=cityCounts(function(d){return passF(d)&&!d.st;},3);
+  reply("demand",["Matching local searches from Google, ChatGPT, Instagram and TikTok to people"],'<b>'+fmt(c.m)+' people</b> near you searched for '+tl+' in the last 30 days. <b>'+fmt(c.not)+'</b> of them are not your patients yet. They are the dark dots on the map.',
+    '<div class="cardx"><h4>What they searched</h4>'+topQ(tr).map(function(x){return '<div class="rowx"><div class="g"><b>“'+esc(x.q)+'”</b></div><small>'+fmt(x.v)+' people</small></div>';}).join("")+'</div>'+
+    '<div class="cardx"><h4>Most new searchers live in</h4>'+tc.map(function(q){return '<div class="rowx click" data-ask="Show people searching in '+q.city+'"><div class="g"><b>'+q.city+'</b></div><small>'+fmt(q.n)+' not yet patients</small></div>';}).join("")+'</div>'+
+    '<div class="btns"><button class="btn" data-act="reach">Reach the '+fmt(c.not)+'</button></div>'+chips(tr?["All treatments","Women 30 to 55 not patients"]:["Only lip filler","Only Botox","Who looks like my best patients?"]),function(){closePatient(true);fly(HOME);});
+}
+function zipMsg(z){
+  clearF();F.city=z.city;state.focusZip=null;setHL(null);syncCtl();
+  var c=fCount(),srch=POP.filter(function(d){return d.city===z.city&&d.t&&!d.st;}).length,look=POP.filter(function(d){return d.city===z.city&&d.look&&!d.st;}).length;
+  var mine=NAMED.filter(function(x){return x.city===z.city;});
+  reply("demand",["Loading everyone in "+esc(z.city)],'<b>'+esc(z.city)+'</b>: '+fmt(c.m)+' people on the map, <b>'+fmt(c.pt)+'</b> are your patients. '+fmt(srch)+' people there searched for treatments this month, and '+fmt(look)+' look like your best patients.',
+    (mine.length?'<div class="cardx"><h4>Your people here</h4>'+mine.slice(0,4).map(function(m){return prow(m,STATUS[m.st].label+' · '+esc(m.tx));}).join("")+'</div>':'')+
+    chips(["Show people searching in "+z.city,"Women 30 to 55 in "+z.city+" not patients","Clear filters"]),
+    function(){closePatient(true);fly({longitude:z.lon,latitude:z.lat,zoom:12});});
+}
+function campaignMsg(raw){
+  var area=(raw.match(/\bin ([A-Za-z ]+)$/i)||[])[1];
+  clearF();F.who="not";F.look=true;if(area){var zz=findZip(area.toLowerCase());if(zz&&!zz.missing)F.city=zz.city;}state.focusZip=null;setHL(null);syncCtl();
+  var c=fCount(),tc=cityCounts(function(d){return passF(d)&&!F.city;},4),inmk=POP.filter(function(d){return passF(d)&&d.t;}).length;
+  reply("grow",["Finding people who look like your best patients but have never been in","Checking who is searching right now"],'<b>'+fmt(c.not)+' people</b>'+(F.city?' in '+esc(F.city):'')+' look like your best patients (women 30 to 55, $100k+ household, nearby) and have never been in. <b>'+fmt(inmk)+'</b> of them searched for treatments this month, so start there.',
+    (tc.length?'<div class="cardx"><h4>Where they live</h4>'+tc.map(function(q){return '<div class="rowx click" data-ask="Women 30 to 55 in '+q.city+' not patients"><div class="g"><b>'+q.city+'</b></div><small>'+fmt(q.n)+' people</small></div>';}).join("")+'</div>':'')+
+    '<div class="btns"><button class="btn" data-act="reach">Reach the '+fmt(c.not)+'</button><button class="btn ghost" data-ask="Only the ones searching now">Only people searching now</button></div>',function(){closePatient(true);fly(F.city?{longitude:byCity(F.city).lon,latitude:byCity(F.city).lat,zoom:11.8}:HOME);});
+}
+function byCity(c){return ZIPS.filter(function(z){return z.city===c;}).sort(function(a,b){return b.searches-a.searches;})[0];}
+function audienceMsg(s){
+  var touched=false;
+  if(!/\b(also|and also|plus|add)\b/.test(s))clearF();
+  if(/\b(not (yet )?(a )?patients?|aren'?t (my )?patients|non.?patients|never been|prospects?|new people)\b/.test(s)){F.who="not";touched=true;}
+  else if(/\b(my )?patients\b/.test(s)&&!/best patients|like my/.test(s)){F.who="patients";touched=true;}
+  if(/\b(women|woman|female|ladies)\b/.test(s)){F.sex="F";touched=true;}else if(/\b(men|man|male|guys)\b/.test(s)){F.sex="M";touched=true;}
+  var lo=null,hi=null,m;
+  if((m=s.match(/\b(\d{2})\s*(?:-|to|–|and)\s*(\d{2})\b/))){lo=+m[1];hi=+m[2];}
+  else if((m=s.match(/\b(?:over|older than|above|\+)\s*(\d{2})\b|\b(\d{2})\s*\+|\b(\d{2}) and (?:up|older)/))){lo=+(m[1]||m[2]||m[3]);hi=120;}
+  else if((m=s.match(/\b(?:under|younger than|below)\s*(\d{2})\b/))){lo=18;hi=+m[1]-1;}
+  else if((m=s.match(/\b(?:in their )?(20|30|40|50|60)s\b/))){lo=+m[1];hi=+m[1]+9;}
+  if(lo!=null){F.ages=AGEB.filter(function(b){return b[1]>=lo&&b[0]<=hi;});touched=true;}
+  if((m=s.match(/\$?\s*(\d{2,3})\s*k\b/))&&/income|make|earn|household|\$|k\b/.test(s)){var v=+m[1];F.inc=v>=250?250:v>=150?150:v>=100?100:0;touched=true;}
+  else if(/\b(wealthy|rich|affluent|high.?income)\b/.test(s)){F.inc=150;touched=true;}
+  if(/homeowner|own (a |their )?home|own homes/.test(s)){F.own=true;touched=true;}
+  if(/search|looking for|in.?market/.test(s)){F.srch=true;F.treat=treatOf(s);touched=true;}
+  if(/like my best|lookalike|look like|similar to my/.test(s)){F.look=true;touched=true;}
+  var zz=findZip(s);if(zz&&!zz.missing){F.city=zz.city;touched=true;}
+  if(!touched)return false;
+  state.focusZip=null;setHL(null);syncCtl();
+  var c=fCount();
+  var empty=!c.m;
+  reply("grow",["Filtering everyone on the map"],empty?'Nobody matches <b>'+esc(fDesc())+'</b>. Try loosening one filter.':'<b>'+fmt(c.m)+' people</b> match: '+esc(fDesc())+'.'+(F.who==="not"?' None of them have been in yet.':F.who==="patients"?' All of them are your patients.':' <b>'+fmt(c.pt)+'</b> are patients and <b>'+fmt(c.not)+'</b> are not yet.'),
+    empty?chips(["Clear filters"]):'<div class="btns">'+(c.not?'<button class="btn" data-act="reach">Reach the '+fmt(c.not)+'</button>':'')+'<button class="btn ghost" data-act="clearf">Clear filters</button></div>',
+    function(){closePatient(true);fly(F.city?{longitude:byCity(F.city).lon,latitude:byCity(F.city).lat,zoom:11.8}:HOME);});
+  return true;
+}
+function heatMsg(on){botSay("demand","The map now shows people directly instead of shaded areas. To see where demand is, ask who is searching near you.",chips(["Who is searching near me?"]));}
+function dueMsg(tr){
+  var due=NAMED.filter(function(p){return p.f.due!=null&&(!tr||tr==="botox");}).sort(function(a,b){return a.f.due-b.f.due;});
+  setHL(function(d){return d.f&&d.f.due!=null;},"due");
+  if(tr&&tr!=="botox")return botSay("desk","No one is due for "+TREAT.filter(function(t){return t.k===tr;})[0].label+" in the next 3 weeks.",chips(["Who's due for Botox?"]));
+  reply("desk",["Checking each patient's usual return time"],'<b>'+due.length+' patients</b> are due or overdue for Botox in the next 3 weeks.','<div class="cardx"><h4>Due soon</h4>'+due.map(function(p){return prow(p,(p.f.due<0?'<span style="color:#C2381E;font-weight:600">'+(-p.f.due)+' days overdue</span>':'Due in '+p.f.due+' days')+' · '+esc(p.city));}).join("")+'</div><div class="btns"><button class="btn" data-act="bulktext" data-n="'+due.length+'">Text all '+due.length+' a booking link</button></div>');
+}
+function countMsg(s){
+  var tot=ANON.length+NAMED.length;var by=function(k){return ANON.filter(function(a){return a.st===k;}).length+NAMED.filter(function(a){return a.st===k;}).length;};
+  if(/lead/.test(s))return botSay("desk",'You have <b>'+by("lead")+' open leads</b>.',chips(["Show my leads"]));
+  if(/member/.test(s))return botSay("desk",'You have <b>'+by("member")+' Glow Club members</b>.',"");
+  if(/appointment|today/.test(s))return botSay("desk",'<b>'+TODAY.filter(function(a){return a.kind==="pt";}).length+' patient appointments</b> today, plus '+TODAY.filter(function(a){return a.kind==="meet";}).length+' meetings.',"");
+  botSay("desk",'You have <b>'+fmt(tot)+' patients</b> on file: '+fmt(by("member"))+' members, '+fmt(by("active"))+' active, '+fmt(by("lapsed"))+' lapsed and '+by("lead")+' open leads.',"");
+}
+function orderMsg(tr){
+  reply("inv",["Forecasting visits from booked appointments and local searches","Checking what's on the shelf","Checking vendor price tiers"],'You will run out of <b>Botox around Dec 9</b> and <b>Restylane Kysse around Dec 3</b>. Your Allergan rep is here today until 12:45 if you want to ask about the 10-vial tier.',
+    '<div class="cardx"><h4>Suggested order</h4>'+[["Botox 100U","Have 6 · need 9 in 30 days","Order 10"],["Restylane Kysse","Have 3 · need 7","Order 8"],["Hydrafacial tips","Have 40 · need 52","Order 60"],["Juvéderm Voluma","Have 14 · need 6","Skip, overstocked"]].map(function(r){return '<div class="rowx"><div class="g"><b>'+r[0]+'</b><small>'+r[1]+'</small></div><span class="tag '+(/Skip/.test(r[2])?'':'blue')+'">'+r[2]+'</span></div>';}).join("")+'</div><div class="btns"><button class="btn" data-act="order">Review and place order</button></div>');
+}
+function staffingMsg(s){
+  if(/who'?s working|who is working/.test(s))return reply("staff",["Checking today's team"],"Four people are working today.",'<div class="cardx">'+STAFF.map(function(x){return '<div class="rowx">'+avatar(x.name)+'<div class="g"><b>'+esc(x.title||x.name)+'</b><small>'+esc(x.today)+'</small></div></div>';}).join("")+'</div>');
+  setHL(null);
+  reply("staff",["Comparing local demand with your booked hours","Searching candidates near the demand"],'Yes. Searches in <b>south county</b> grew 26% while Jordan is 92% booked and Kim is 94%. A part-time injector two days a week would cover it. You interview <b>Sam Rivera</b> today at 5:30.',
+    '<div class="cardx"><h4>Candidates near the demand</h4>'+CANDIDATES.map(function(c){return '<div class="rowx">'+avatar(c.name)+'<div class="g"><b>'+c.name+'</b><small>'+c.role+'</small></div><button class="btn ghost" data-act="invite" data-n="'+c.name+'" style="height:30px">Invite</button></div>';}).join("")+'</div>'+
+    '<div class="cardx"><h4>Who needs training</h4><div class="rowx">'+avatar("Ana Ruiz")+'<div class="g"><b>Ana Ruiz, RN</b><small>Rebook rate 52% vs team 70%</small></div></div><div class="rowx">'+avatar("Kim Park")+'<div class="g"><b>Kim Park</b><small>Certified on 3 of 5 lasers</small></div></div></div>',function(){closePatient(true);fly({longitude:-117.66,latitude:33.6,zoom:11});});
+}
+function winbackMsg(){
+  setHL(function(d){return d.st==="lapsed";},"lapsed");var lp=NAMED.filter(function(d){return d.st==="lapsed";}).sort(function(a,b){return b.ltv-a.ltv;});var n=ANON.filter(function(d){return d.st==="lapsed";}).length+lp.length;
+  reply("grow",["Finding patients with no visit in 6 months","Ranking by past spending"],'<b>'+fmt(n)+' lapsed patients</b> are now highlighted. Start with these:','<div class="cardx"><h4>Win back first</h4>'+lp.map(function(p){return prow(p,'$'+fmt(p.ltv)+' spent · '+esc(p.tx));}).join("")+'</div><div class="btns"><button class="btn" data-act="bulktext" data-n="'+fmt(n)+'">Draft a return offer to all</button></div>',function(){closePatient(true);fly({zoom:10.4});});
+}
+function leadsMsg(){
+  setHL(function(d){return d.st==="lead";},"lead");var ld=NAMED.filter(function(d){return d.st==="lead";});
+  reply("desk",["Collecting leads from calls, forms, Instagram and AI assistants"],'<b>'+(ld.length+ANON.filter(function(d){return d.st==="lead";}).length)+' open leads.</b> Rachel Kim has waited longest, so call her first.','<div class="cardx"><h4>Newest leads</h4>'+ld.map(function(p){return prow(p,(p.q?'“'+esc(p.q)+'” on '+p.eng:p.eng)+' · '+esc(p.when),p.f.waitingHrs?'<span class="tag coral">'+p.f.waitingHrs+' hrs</span>':'');}).join("")+'</div>',function(){closePatient(true);fly(HOME);});
+}
+function vipMsg(){setHL(function(d){return d.st==="member";},"member");var mb=NAMED.filter(function(d){return d.st==="member";}).sort(function(a,b){return b.ltv-a.ltv;});reply("fin",["Ranking by lifetime value"],"Your most valuable patients, highlighted on the map:",'<div class="cardx">'+mb.map(function(p){return prow(p,'$'+fmt(p.ltv)+' · '+esc(p.city));}).join("")+'</div>',function(){closePatient(true);fly(HOME);});}
+function financeMsg(s){
+  if(/today|end of day|eod|how did today/.test(s))return reply("fin",["Adding up today's visits"],'Today so far: <b>$4,210</b> collected from 4 visits. With the rest of the schedule you should finish around <b>$9,860</b>. One no-show cost about $480.','<div class="stats"><div class="stat"><div class="num">$4,210</div><small>Collected</small></div><div class="stat"><div class="num">$9,860</div><small>Expected by close</small></div><div class="stat"><div class="num">$480</div><small>Lost to no-show</small></div></div>');
+  reply("fin",["Adding up visits and payments","Projecting from booked appointments"],'November is on track for <b>$121.5k</b>, up 3% on October. December is already 72% booked.','<div class="stats"><div class="stat"><div class="num">$84.2k</div><small>Nov 1 to 20</small></div><div class="stat"><div class="num">$121.5k</div><small>November forecast</small></div><div class="stat"><div class="num">72%</div><small>December booked</small></div></div>');
+}
+function aiMsg(s){
+  if(/review/.test(s))return reply("grow",["Pulling new Google reviews"],"3 new reviews need a reply. I drafted each one.",'<div class="cardx">'+[["Emily Chen","5 stars · “Natural results and zero pressure.”"],["Marcus Reed","5 stars · “Best Hydrafacial I've had.”"],["Daniel Okafor","4 stars · “Great, but waited 15 minutes.”"]].map(function(r){return '<div class="rowx">'+avatar(r[0])+'<div class="g"><b>'+r[0]+'</b><small>'+esc(r[1])+'</small></div><button class="btn ghost" data-act="reply" style="height:30px">Approve reply</button></div>';}).join("")+'</div><div class="meta">Replies never mention treatments or health details, to protect patient privacy.</div>');
+  reply("grow",["Asking ChatGPT, Gemini, Perplexity and Google AI who they recommend"],'For “best botox in Irvine,” you are named on <b>3 of 4</b> AI assistants. Gemini does not name you yet.','<div class="cardx">'+[["ChatGPT","Named 1st","blue"],["Perplexity","Named 1st","blue"],["Google AI","Named 3rd","blue"],["Gemini","Not named","coral"]].map(function(a){return '<div class="rowx"><div class="g"><b>'+a[0]+'</b></div><span class="tag '+a[2]+'">'+a[1]+'</span></div>';}).join("")+'</div>');
+}
+function resetMsg(){clearMapFocus();clearF();state.patients=true;syncCtl();closePatient(true);botSay("os","Back to the full map.",chips(["Who am I meeting today?","What needs my attention?"]));fly(HOME);}
+
+/* ---------- Proactive nudges ---------- */
+var paused=false,openNudges=0;
+var NUDGES=[
+ {at:18,k:"clin",when:function(){return nowMin()<13*60+5;},html:function(){var p=P("Nina Patel");return 'Heads up: your 1:00, <b>Nina Patel</b>, has not signed her consent form. Want me to text it to her now?';},btns:function(){var p=P("Nina Patel");return '<button class="btn" data-act="sendform" data-p="'+p.id+'">Send form</button><button class="btn ghost" data-open="'+p.id+'">Prep me</button><button class="btn ghost" data-dismiss>Later</button>';}},
+ {at:45,k:"desk",html:function(){return 'New lead: <b>Sofia Bennett</b> asked about lip filler on Instagram 4 minutes ago. Leads go cold fast.';},btns:function(){var p=P("Sofia Bennett");return '<button class="btn" data-act="call" data-p="'+p.id+'">Call</button><button class="btn ghost" data-act="text" data-p="'+p.id+'">Text</button><button class="btn ghost" data-dismiss>Later</button>';}},
+ {at:80,k:"desk",when:function(){return nowMin()<16*60;},html:function(){return '<b>Aisha Rahman</b> just texted: running about 10 minutes late for her 4:00.';},btns:function(){var p=P("Aisha Rahman");return '<button class="btn" data-act="move" data-p="'+p.id+'">Move to 4:15</button><button class="btn ghost" data-act="tellstaff">Tell Ana</button><button class="btn ghost" data-dismiss>OK</button>';}},
+ {at:120,k:"desk",when:function(){return nowMin()<13*60+45;},html:function(){return 'It is <b>Leah Shah</b>\'s birthday. She comes in at 1:45.';},btns:function(){var p=P("Leah Shah");return '<button class="btn" data-act="text" data-p="'+p.id+'" data-tpl="bday">Send birthday perk</button><button class="btn ghost" data-dismiss>Skip</button>';}},
+ {at:170,k:"inv",when:function(){return nowMin()<12*60+44;},html:function(){return 'Dana from Allergan leaves at 12:45. You need about 10 vials of Botox before Dec 9. Ask her about the 10-vial price tier.';},btns:function(){return '<button class="btn ghost" data-ask="What should I order?">See order</button><button class="btn ghost" data-dismiss>Got it</button>';}},
+ {at:230,k:"grow",html:function(){return 'Lip filler searches in <b>Newport Coast</b> jumped this week, and only 9 of your patients live there.';},btns:function(){return '<button class="btn ghost" data-ask="Where should I advertise?">Show me</button><button class="btn ghost" data-dismiss>Later</button>';}}
+];
+var shown={};
+function nudgeTick(){
+  var el=(Date.now()-T0)/1000;
+  // pre-appointment prep, 10 min before each patient
+  var nx=nextAppt();if(nx&&nx.kind==="pt"&&nx.m-nowMin()<=10&&!shown["prep"+nx.m]&&!paused&&!busy){shown["prep"+nx.m]=1;var p=P(nx.who);postNudge("clin",'Your '+hm(nx.m)+', <b>'+esc(nx.who)+'</b>, is in about '+Math.max(1,Math.round(nx.m-nowMin()))+' minutes.','<button class="btn" data-open="'+p.id+'">Prep me</button><button class="btn ghost" data-dismiss>OK</button>');return;}
+  if(paused||busy)return;
+  if(document.activeElement===$("#q")&&$("#q").value)return;
+  if($("#notice").children.length)return;
+  for(var i=0;i<NUDGES.length;i++){var n=NUDGES[i];if(!shown[i]&&el>=n.at){shown[i]=1;if(n.when&&!n.when())continue;postNudge(n.k,n.html(),n.btns());break;}}
+}
+var NQ=[];
+function postNudge(k,html,btns){
+  openNudges++;updateBell();
+  var h=head(k,"Just now")+'<div class="text">'+html+'</div><div class="btns">'+btns+'</div>';
+  if($("#notice").children.length)NQ.push(h);else showNotice(h);
+}
+function showNotice(h){var d=document.createElement("div");d.className="msg nudge";d.innerHTML='<button class="bx" data-dismiss style="position:absolute;right:8px;top:8px" aria-label="Dismiss">✕</button>'+h;d.style.position="relative";$("#notice").innerHTML="";$("#notice").appendChild(d);}
+function resolveNudge(el){
+  var m=el.closest(".msg.nudge");if(!m||m.dataset.done)return;m.dataset.done="1";openNudges=Math.max(0,openNudges-1);updateBell();
+  if(m.parentNode&&m.parentNode.id==="notice"){m.remove();if(NQ.length&&!paused)setTimeout(function(){if(!$("#notice").children.length&&NQ.length)showNotice(NQ.shift());},2500);}
+  else m.classList.add("resolved");
+}
+function updateBell(){$("#bellN").textContent=openNudges?String(openNudges):"";}
+$("#pause").onclick=function(){paused=!paused;this.classList.toggle("on",paused);this.innerHTML=paused?'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 5v14l12-7z"/></svg>':'<svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>';this.setAttribute("aria-pressed",String(paused));this.setAttribute("aria-label",paused?"Resume suggestions":"Pause suggestions");this.title=paused?"Resume suggestions":"Pause suggestions";say(paused?"Paused. I'll keep notes and show them when you turn suggestions back on.":"Suggestions back on.");};
+$("#bell").onclick=function(){if(!$("#notice").children.length&&NQ.length){showNotice(NQ.shift());return;}ask("What needs my attention?");};
+$("#hideThread").onclick=function(){$$(".msg",thread).forEach(function(m){m.remove();});thread.classList.add("empty");renderBrief();};
+
+/* ---------- Up next + rail ---------- */
+function renderNext(){
+  var nx=nextAppt(),el=$("#next");
+  if(!nx){el.innerHTML='<span style="padding:6px 10px;font-weight:600">You\'re done for today</span>';return;}
+  var soon=nx.m-nowMin()<=15;
+  el.innerHTML=avatar(nx.who)+'<div style="display:flex;flex-direction:column;line-height:1.2;min-width:0"><span class="lbl">Up next · '+hm(nx.m)+'</span><span class="who">'+esc(nx.who)+' · '+esc(nx.what)+'</span></div><span class="in'+(soon?" soon":"")+'">'+until(nx.m)+'</span><span id="clock" title="Demo clock">'+hm(nowMin())+'</span>';
+}
+function renderRail(){if(!$("#rail"))return;
+  var nx=nextAppt();
+  $("#rail").innerHTML='<span class="rl2"><b>Today</b><span>'+hm(nowMin())+'</span><small>demo clock</small></span>'+TODAY.map(function(a,i){var st=apptStatus(a),cls=(st==="past"?" past":"")+(st==="now"?" now":"")+(nx===a?" next":"")+(st==="noshow"?" noshow past":"");var fl=apptFlags(a).length&&st!=="past"&&st!=="noshow";
+    return '<button class="ri'+cls+'" role="listitem" data-rail="'+i+'" title="'+esc(a.who+" · "+a.what)+'">'+avatar(a.who)+(fl?'<span class="flag"></span>':'')+'<span class="tt">'+(st==="noshow"?"Missed":hmShort(a.m))+'</span><span class="nm">'+esc(a.who.split(" ")[0])+'</span></button>';}).join("");
+}
+$("#next").onclick=function(){ask("Prep me for my next appointment");};
+$("#next").onkeydown=function(e){if(e.key==="Enter"||e.key===" "){e.preventDefault();this.click();}};
+
+/* ---------- EHR ---------- */
+var ehr=$("#ehr");
+var TI={search:'<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/>',visit:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',text:'<path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>',call:'<path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/>',mail:'<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>',pay:'<rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/>'};
+function tl(k,t,w,b){return '<div class="tl'+(k==="search"?" search":"")+'"><span class="ic"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'+TI[k]+'</svg></span><div style="flex:1"><div style="display:flex;justify-content:space-between;gap:8px"><b style="font-size:13.5px">'+t+'</b><small style="color:#556070;white-space:nowrap">'+w+'</small></div><div style="font-size:13px;color:#556070">'+b+'</div></div></div>';}
+function kv(k,v){return '<div class="kv"><span>'+k+'</span><b>'+v+'</b></div>';}
+function face(p){var d=p.st==="lead"?[]:[[100,62,"12u"],[100,86,"20u"],[58,104,"12u"],[142,104,"12u"]];if(/filler|Lip/.test(p.tx))d.push([100,170,"1 syringe"]);
+  return '<svg viewBox="0 0 200 240" width="100%" style="max-width:200px;display:block;margin:4px auto" role="img" aria-label="Injection map"><ellipse cx="100" cy="118" rx="70" ry="94" fill="#F4F1EA" stroke="#C9BFA6" stroke-width="1.5"/><path d="M62 92 q16-8 30 0 M108 92 q16-8 30 0" stroke="#8E9AAB" stroke-width="2" fill="none" stroke-linecap="round"/><path d="M66 108 q11-7 22 0 M112 108 q11-7 22 0" stroke="#8E9AAB" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M100 112 l-8 30 q8 5 16 0" stroke="#8E9AAB" stroke-width="1.6" fill="none" stroke-linecap="round"/><path d="M80 168 q20 12 40 0 q-20 -8 -40 0" stroke="#8E9AAB" stroke-width="1.6" fill="none"/>'+d.map(function(x){return '<circle cx="'+x[0]+'" cy="'+x[1]+'" r="6" fill="#1F4FE0" stroke="#fff" stroke-width="2"/><text x="'+(x[0]+10)+'" y="'+(x[1]+4)+'" font-family="Bricolage Grotesque, sans-serif" font-size="11" font-weight="700" fill="#0B1A2E">'+x[2]+'</text>';}).join("")+'</svg>';}
+function openPatient(id){
+  var p=NAMED[id];if(!p)return;ctx.patient=p;state.focus=id;state.focusZip=null;render();
+  fly({longitude:p.pos[0]+0.03,latitude:p.pos[1],zoom:12.5},1700);
+  var f=p.f,fn=first(p),isLead=p.st==="lead",a=apptOf(p.name),male=p.sex==="M";
+  var alerts=(f.allergy?'<div class="alert"><b>Allergy: '+esc(f.allergy)+'.</b> Use a lidocaine-free product and topical numbing only.</div>':'')+(f.bloodThinner?'<div class="alert"><b>Takes '+esc(f.bloodThinner.toLowerCase())+'.</b> Higher bruising risk. Confirm with their doctor before treating.</div>':'')+(f.consentMissing?'<div class="alert"><b>Consent form not signed.</b> <a href="#" data-act="sendform" data-p="'+id+'">Send it now</a></div>':'');
+  var todayBox=a?'<div class="ok"><b>Today '+hm(a.m)+'</b> · '+esc(a.what)+(a.prov?' with '+a.prov:'')+(apptStatus(a)==="noshow"?' · <b style="color:#C2381E">No-show</b>':'')+'</div>':'';
+  var nba=isLead?'<div class="nba"><span class="tag coral" style="align-self:flex-start">New lead</span><p class="big">Call '+esc(fn)+' now</p><p style="color:#556070;font-size:13.5px">'+(p.q?'Searched “'+esc(p.q)+'” on '+p.eng+' '+esc(p.when)+'.':'Referred '+esc(p.when)+'.')+' The sooner you call, the better.</p><div class="btns" style="margin:0"><button class="btn" data-act="call" data-p="'+id+'">Call</button><button class="btn ghost" data-act="text" data-p="'+id+'">Text</button></div></div>'
+    :p.st==="lapsed"?'<div class="nba"><span class="tag" style="align-self:flex-start">Lapsed</span><p class="big">Invite '+esc(fn)+' back</p><p style="color:#556070;font-size:13.5px">No visit in over 6 months. '+esc(fn)+' has spent $'+fmt(p.ltv)+' with you.</p><div class="btns" style="margin:0"><button class="btn" data-act="text" data-p="'+id+'" data-tpl="winback">Send a return offer</button></div></div>'
+    :f.due!=null?'<div class="nba"><span class="tag blue" style="align-self:flex-start">Next best action</span><p class="big">'+(f.due<0?'Botox is '+(-f.due)+' days overdue':'Botox touch-up due in '+f.due+' days')+'</p><p style="color:#556070;font-size:13.5px">'+(p.name==="Maya Torres"?'Maya returns every 12 weeks and asked about the Saturday after Thanksgiving. Jordan has 10:00 open.':'Based on '+pron(p,"p")+' usual 12-week cadence.')+'</p><div class="btns" style="margin:0"><button class="btn" data-act="book" data-p="'+id+'">Book</button><button class="btn ghost" data-act="text" data-p="'+id+'">Text</button></div></div>':'';
+  var chart=todayBox+nba+alerts+
+    '<div class="sec"><h4>Clinical summary <span class="tag">Updated Sep 6</span></h4>'+kv("Age · sex",p.age+" · "+(male?"M":"F"))+kv("Skin type","Fitzpatrick "+["II","III","IV","III","II"][id%5])+kv("Allergies",f.allergy?'<span style="color:#C2381E">'+esc(f.allergy)+'</span>':"None known")+kv("Medications",esc(f.meds||f.bloodThinner||"None"))+kv("Medical history",id%4===1?"Migraines, controlled":"No significant history")+(male?"":kv("Pregnant or nursing","No · checked at last visit"))+kv("Last blood pressure",["118/76","122/80","114/72","126/82"][id%4])+'</div>'+
+    (isLead?'<div class="sec"><h4>Treatment history</h4><div class="meta">No treatments yet. This will be '+esc(fn)+'\'s first visit.</div></div>':'<div class="sec"><h4>Last treatment <span class="tag blue">'+(f.units?"Botox · "+f.units+" units":esc(p.tx))+'</span></h4>'+face(p)+'<div class="soap"><p><b>S </b>Wants softer lines, natural result. Happy with last treatment.</p><p><b>O </b>Dynamic forehead and frown lines, mild crow\'s feet. No drooping.</p><p><b>A </b>Good candidate. Normal response at 12 weeks.</p><p><b>P </b>'+(f.lot?'Lot '+esc(f.lot)+'. ':'')+'Follow-up in 2 weeks.</p></div></div>')+
+    '<div class="sec"><h4>Consents</h4>'+kv("Neurotoxin consent",f.consentMissing?'<span style="color:#C2381E">Not signed</span>':"Signed")+kv("Filler consent",isLead?"Not yet":"Signed")+kv("Photo release",isLead?"Not yet":"Signed")+kv("Privacy notice","Signed")+'</div>'+
+    (f.notes?'<div class="sec"><h4>Front desk notes</h4><div style="font-size:13.5px">'+esc(f.notes)+'</div></div>':'');
+  var journey='<div class="sec"><h4>How '+esc(fn)+' found you</h4>'+(p.q?tl("search",'Searched “'+esc(p.q)+'”',esc(p.when),'On '+p.eng+' from '+esc(p.city)+'. '+(/ChatGPT|Perplexity|Gemini/.test(p.eng)?'The AI named Lumen Aesthetics in its answer.':'Lumen Aesthetics showed up near the top.')):tl("search","Referred by a patient",esc(p.when),"Came through Maya Torres's referral link."))+
+    tl("call","Called the practice",isLead?"Today":"Same day","Answered by the virtual receptionist, booked a consult.")+(isLead?'':tl("visit","First visit","2 weeks later",esc(p.tx)+".")+tl("text","Reminder texts","Ongoing","Usually rebooks from the touch-up text.")+tl("mail","Glow Club perks email","Nov 2","Opened twice.")+tl("pay","Last payment","Sep 6","Card on file."))+'</div>';
+  var billing=isLead?'<div class="sec"><h4>Billing</h4>'+kv("Card on file","None yet")+kv("Insurance","Not needed for cosmetic visits")+'</div>':
+    '<div class="stats"><div class="stat"><div class="num">$'+fmt(p.ltv)+'</div><small>Lifetime value</small></div><div class="stat"><div class="num">'+(f.balance?'$'+f.balance:'$0')+'</div><small>Balance</small></div><div class="stat"><div class="num">'+(p.st==="member"?"12 wks":"16 wks")+'</div><small>Returns every</small></div></div>'+
+    '<div class="sec"><h4>Loyalty wallet</h4><div class="wallet">'+[["Allē","2,340 pts","#1F4FE0"],["Aspire","600 pts","#0B1A2E"],["Evolus Rewards","Not linked","#5B7DF0"],["Glow Club",p.st==="member"?"$75 credit":"Not a member","#C2381E"]].map(function(w){return '<div class="wcard" style="background:'+w[2]+'"><b style="font-family:var(--loud)">'+w[0]+'</b><span class="num" style="font-size:19px">'+w[1]+'</span></div>';}).join("")+'</div></div>'+
+    '<div class="sec"><h4>Payments and coverage</h4>'+kv("Card on file","Visa ending 22"+String(id).padStart(2,"0"))+kv("Insurance","Blue Shield PPO · verified Nov 1")+kv("Cosmetic visits","Self-pay")+'</div>'+(f.balance?'<button class="btn" data-act="charge" data-p="'+id+'" style="height:42px">Charge $'+f.balance+' balance</button>':'');
+  ehr.innerHTML='<div class="ehr-head"><div class="ehr-top">'+avatar(p.name)+'<div><p class="ehr-name">'+esc(p.name)+'</p><div class="ehr-sub">'+esc(p.city)+' · '+p.dist.toFixed(1)+' mi · '+esc(f.phone||"No phone on file")+'</div></div><button class="x" id="ehrX" aria-label="Close chart"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap"><span class="tag '+(p.st==="member"?"ink":p.st==="lead"?"coral":p.st==="active"?"blue":"")+'">'+STATUS[p.st].label+'</span><span class="tag">'+esc(p.tx)+'</span>'+(f.bday?'<span class="tag coral">Birthday today</span>':'')+'</div>'+
+    '<div class="btns" style="margin:0"><button class="btn" data-act="text" data-p="'+id+'">Text</button><button class="btn ghost" data-act="call" data-p="'+id+'">Call</button><button class="btn ghost" data-act="book" data-p="'+id+'">Book</button><button class="btn ghost" data-act="charge" data-p="'+id+'">Charge</button></div></div>'+
+    '<div class="tabs" role="tablist"><button class="on" role="tab" data-t="chart">Chart</button><button role="tab" data-t="journey">Journey</button><button role="tab" data-t="billing">Billing and loyalty</button></div>'+
+    '<div class="ehr-body" data-pane="chart">'+chart+'</div><div class="ehr-body" data-pane="journey" style="display:none">'+journey+'</div><div class="ehr-body" data-pane="billing" style="display:none">'+billing+'</div>';
+  ehr.classList.add("on");document.body.classList.add("ehr-open");
+  $("#ehrX").onclick=function(){closePatient();};
+  $$(".tabs button",ehr).forEach(function(b){b.onclick=function(){$$(".tabs button",ehr).forEach(function(x){x.classList.toggle("on",x===b);});$$(".ehr-body",ehr).forEach(function(pn){pn.style.display=pn.dataset.pane===b.dataset.t?"flex":"none";});};});
+}
+function closePatient(keepView){ehr.classList.remove("on");document.body.classList.remove("ehr-open");state.focus=null;render();if(!keepView&&viewState.zoom>11.5)fly({zoom:10.8},900);}
+
+/* ---------- Typeahead ---------- */
+var q=$("#q"),ta=$("#ta"),taSel=-1,hist=[],hIdx=-1;
+function showTA(){
+  var v=q.value.trim().toLowerCase();if(!v){starters();return;}
+  var ps=NAMED.filter(function(p){return p.name.toLowerCase().split(" ").some(function(w){return w.indexOf(v)===0;})||p.name.toLowerCase().indexOf(v)===0;}).slice(0,5);
+  var st=STAFF.filter(function(x){return x.name.toLowerCase().indexOf(v)===0||x.name.toLowerCase().split(" ")[1].indexOf(v)===0;}).slice(0,2);
+  var zs=[];ZIPS.forEach(function(z){if((z.city.toLowerCase().indexOf(v)===0||z.zip.indexOf(v)===0)&&zs.length<3&&!zs.some(function(x){return x.city===z.city;}))zs.push(z);});
+  var h="";
+  if(ps.length)h+='<div class="ta-label">Patients</div>'+ps.map(function(p){var a=apptOf(p.name);return '<button class="ta-row" data-tp="'+p.id+'">'+avatar(p.name)+'<span><b>'+esc(p.name)+'</b><br><small>'+STATUS[p.st].label+' · '+esc(p.city)+(a?' · today '+hm(a.m):'')+'</small></span></button>';}).join("");
+  if(st.length)h+='<div class="ta-label">Team</div>'+st.map(function(x){return '<button class="ta-row" data-tq="How busy is '+x.name+'">'+avatar(x.name)+'<span><b>'+esc(x.title||x.name)+'</b><br><small>'+esc(x.role)+'</small></span></button>';}).join("");
+  if(zs.length)h+='<div class="ta-label">Places</div>'+zs.map(function(z){return '<button class="ta-row" data-tq="Tell me about '+z.city+' '+z.zip+'"><span class="ta-ic">◉</span><span><b>'+z.city+'</b><br><small>'+fmt(z.searches)+' searches a month</small></span></button>';}).join("");
+  if(!ps.length&&!st.length&&!zs.length&&v.length>=2)h+='<div class="ta-label">No names match</div>';
+  h+='<div class="ta-label">Ask LAIR OS</div><button class="ta-row" data-tq="'+esc(q.value)+'"><span class="ta-ic">✦</span><span>“'+esc(q.value)+'”</span></button>';
+  ta.innerHTML=h;ta.classList.add("on");taSel=-1;
+}
+q.addEventListener("input",showTA);
+q.addEventListener("focus",function(){if(q.value)showTA();else starters();});
+function starters(){ta.innerHTML='<div class="ta-label">Try asking</div>'+["Who am I meeting today?","Prep me for my next appointment","Who is searching near me?","Women 30 to 55 who aren't patients","What should I order?"].map(function(t){return '<button class="ta-row" data-tq="'+esc(t)+'"><span class="ta-ic">✦</span><span>'+esc(t)+'</span></button>';}).join("");ta.classList.add("on");taSel=-1;}
+q.addEventListener("keydown",function(e){
+  var rows=$$(".ta-row",ta);
+  if(e.key==="ArrowDown"&&ta.classList.contains("on")&&rows.length){e.preventDefault();taSel=Math.min(rows.length-1,taSel+1);}
+  else if(e.key==="ArrowUp"&&ta.classList.contains("on")&&rows.length){e.preventDefault();taSel=Math.max(0,taSel-1);}
+  else if(e.key==="ArrowUp"&&!q.value&&hist.length){e.preventDefault();hIdx=Math.min(hist.length-1,hIdx+1);q.value=hist[hist.length-1-hIdx];return;}
+  else if(e.key==="Escape"){ta.classList.remove("on");q.blur();return;}
+  else return;
+  rows.forEach(function(r,i){r.classList.toggle("sel",i===taSel);});
+});
+function submitText(v){v=v.trim();if(!v)return;hist.push(v);hIdx=-1;q.value="";ta.classList.remove("on");ask(v);}
+$("#form").addEventListener("submit",function(e){e.preventDefault();var rows=$$(".ta-row",ta);if(ta.classList.contains("on")&&taSel>=0&&rows[taSel]){rows[taSel].click();return;}submitText(q.value);});
+document.addEventListener("keydown",function(e){
+  if(e.key==="/"&&document.activeElement.tagName!=="INPUT"&&document.activeElement.tagName!=="TEXTAREA"){e.preventDefault();q.focus();}
+  if(e.key==="Escape"&&ehr.classList.contains("on")&&document.activeElement!==q){closePatient();}
+});
+
+/* ---------- Clicks ---------- */
+document.addEventListener("click",function(e){
+  var t=e.target;
+  var tr=t.closest(".ta-row");
+  if(tr){ta.classList.remove("on");q.value="";if(tr.dataset.tp!=null){var p0=NAMED[+tr.dataset.tp];userMsg(p0.name);ask("Open "+p0.name,{silent:true});}else ask(tr.dataset.tq);return;}
+  if(!t.closest(".searchbox"))ta.classList.remove("on");
+  var rail=t.closest("[data-rail]");if(rail){var a=TODAY[+rail.dataset.rail],pp=P(a.who);if(pp){openPatient(pp.id);botSay("desk",'Opened <b>'+esc(pp.name)+'</b>, '+hm(a.m)+' · '+esc(a.what)+'.');}else meetingMsg(a);return;}
+  var op=t.closest("[data-open]");if(op){resolveNudge(op);var po=NAMED[+op.dataset.open];ask("Prep me for my "+(apptOf(po.name)?hmShort(apptOf(po.name).m):"next appointment"),{silent:false});return;}
+  var ch=t.closest("[data-chart]");if(ch){var pch=NAMED[+ch.dataset.chart];openPatient(pch.id);return;}
+  var dm=t.closest("[data-dismiss]");if(dm){resolveNudge(dm);return;}
+  var ak=t.closest("[data-ask]");if(ak){resolveNudge(ak);ask(ak.dataset.ask);return;}
+  var bk=t.closest("[data-book]");if(bk){var pb=NAMED[+bk.dataset.book],slot=bk.dataset.slot;var card=bk.closest(".cs")||bk.parentNode;card.innerHTML='<div class="cardx"><h4>Book '+esc(pb.name)+'</h4><div class="rowx">'+avatar(pb.name)+'<div class="g"><b>'+esc(slot)+'</b><small>'+esc(pb.tx)+'</small></div></div><div class="btns"><button class="btn" data-confirmbook="'+pb.id+'" data-slot="'+esc(slot)+'">Confirm and text '+esc(first(pb))+'</button><button class="btn ghost" data-cancel>Cancel</button></div></div>';return;}
+  var cb=t.closest("[data-confirmbook]");if(cb){var pc=NAMED[+cb.dataset.confirmbook];cb.closest(".cardx").innerHTML='<div class="ok"><b>Booked</b> '+esc(pc.name)+', '+esc(cb.dataset.slot)+'. Confirmation text sent (demo).</div>';return;}
+  var sd=t.closest("[data-send]");if(sd){var ps=NAMED[+sd.dataset.send],box=sd.closest(".cardx"),ta2=box.querySelector("textarea"),body=ta2?ta2.value.trim():"";if(!body){ta2.focus();say("The message is empty.");return;}box.innerHTML='<div class="ok"><b>Sent</b> to '+esc(ps.name)+' at '+hm(nowMin())+' (demo). “'+esc(body.slice(0,90))+(body.length>90?'…':'')+'”</div>';resolveNudge(box);return;}
+  var cn=t.closest("[data-cancel]");if(cn){var bx=cn.closest(".cardx")||cn.closest(".cs")||cn.parentNode;bx.innerHTML='<div class="meta">Cancelled. Nothing was sent or changed.</div>';return;}
+  var ac=t.closest("[data-act]");
+  if(ac){e.preventDefault();var k=ac.dataset.act,pa=ac.dataset.p!=null?NAMED[+ac.dataset.p]:null;resolveNudge(ac);
+    if(k==="text"&&pa){reply("desk",["Drafting a text to "+esc(first(pa))],"Here is a draft. Edit anything before you send.",draftCard(pa,ac.dataset.tpl));return;}
+    if(k==="email"&&pa){reply("desk",[],"Here is a draft email.",draftCard(pa,null,"email"));return;}
+    if(k==="call"&&pa){actionMsg("call",pa,"");return;}
+    if(k==="book"&&pa){actionMsg("book",pa,"");return;}
+    if(k==="charge"&&pa){actionMsg("charge",pa,"");return;}
+    if(k==="sendform"&&pa){pa.f.consentMissing=false;reply("clin",[],'Consent form texted to <b>'+esc(pa.name)+'</b> (demo). I\'ll let you know when it\'s signed.',"");setTimeout(function(){postNudge("clin",'<b>'+esc(pa.name)+'</b> signed the consent form.','<button class="btn ghost" data-dismiss>OK</button>');renderRail();},14000);renderRail();return;}
+    if(k==="newpt"){newPatientMsg(ac.dataset.name);return;}
+    if(k==="clearf"){clearF();setHL(null);syncCtl();say("Filters cleared");return;}
+    if(k==="reach"){var cc=fCount();reply("grow",["Building an audience of "+fmt(cc.not)+" people"],'Audience ready: <b>'+fmt(cc.not)+' people</b>, '+esc(fDesc())+'. Pick how to reach them. Nothing goes out until you approve it.',
+      '<div class="cardx"><h4>Channels</h4><label class="tog"><input type="checkbox" checked> Instagram and Facebook ads to this audience</label><label class="tog"><input type="checkbox" checked> Google ads in their neighborhoods</label><label class="tog"><input type="checkbox"> Postcards to their homes</label><div class="btns"><button class="btn" data-act="launch">Draft the campaign</button><button class="btn ghost" data-cancel>Cancel</button></div></div>');return;}
+    if(k==="addaud"){say("Added to your saved audience (demo).");return;}
+    var M={dial:"Calling "+(pa?pa.name:"")+" through QUO (demo).",move:(pa?pa.name:"")+" moved to 4:15. Ana is notified (demo).",tellstaff:"Ana is notified (demo).",launch:"Campaign drafted. Review the ads before anything goes live.",order:"Order drafted for review. Nothing is sent until you approve.",invite:"Interview invite drafted for "+(ac.dataset.n||"")+".",bulktext:"Drafted a text for "+(ac.dataset.n||"")+" patients. Review it before sending.",lotnotice:"Notice drafted for "+(ac.dataset.n||"")+" patients. Review before sending.",docancel:(pa?pa.name:"")+"'s appointment cancelled. Waitlist notified (demo).",docharge:"Charged $"+(ac.dataset.n||"")+" to "+(pa?pa.name:"")+"'s card (demo).",reply:"Reply approved and posted (demo).",savept:"New patient saved and intake forms sent (demo)."};
+    if(/^(docancel|docharge|savept)$/.test(k)){var b2=ac.closest(".cardx")||ac.closest(".cs")||ac.parentNode;b2.innerHTML='<div class="ok">'+esc(M[k])+'</div>';return;}
+    say(M[k]||"Done (demo)");return;}
+  var pr=t.closest(".rowx[data-p]");if(pr){var px=NAMED[+pr.dataset.p];openPatient(px.id);botSay("clin",'Opened <b>'+esc(px.name)+'</b>.');return;}
+});
+$("#mic").onclick=function(){say("Voice input isn't available in this demo. Type your question instead.");};
+
+/* ---------- People filters ---------- */
+function syncCtl(){
+  $$("#fWho button").forEach(function(b){b.classList.toggle("on",b.dataset.who===F.who);});
+  $$("#fSex .fc").forEach(function(b){b.classList.toggle("on",b.dataset.sex===F.sex);});
+  $$("#fInc .fc").forEach(function(b){b.classList.toggle("on",+b.dataset.inc===F.inc);});
+  $$("#fAge .fc").forEach(function(b,i){b.classList.toggle("on",i===0?!F.ages.length:F.ages.some(function(x){return x[2]===AGEB[i-1][2];}));});
+  $("#fOwn").checked=F.own;$("#fSrch").checked=F.srch||!!F.treat;$("#fLook").checked=F.look;
+  var c=fCount();
+  var nAct=(F.who!=="all"?1:0)+(F.sex!=="all"?1:0)+(F.ages.length?1:0)+(F.inc?1:0)+(F.own?1:0)+(F.srch||F.treat?1:0)+(F.look?1:0)+(F.city?1:0);
+  $("#fN").textContent=nAct||"";$("#fN").classList.toggle("show",!!nAct);
+  $("#legend").innerHTML=(anyF()?'<span class="fl" title="'+esc(fDesc())+'">'+esc(fDesc().length>48?fDesc().slice(0,46)+"…":fDesc())+'<button data-act="clearf" aria-label="Clear filters">✕</button></span><span><b>'+fmt(c.m)+'</b> match</span>':'<span><b>'+fmt(POP.length)+'</b> people</span>')+
+    (F.who!=="not"?'<span><i style="background:#1F4FE0"></i>'+fmt(c.pt)+' patients</span>':'')+(F.who!=="patients"?'<span><i style="background:#96A0AF"></i>'+fmt(c.not)+' not yet</span>':'')+(c.not&&anyF()?'<button class="btn" data-act="reach" style="height:30px;font-size:12px">Reach them</button>':'');
+  $("#fRes").innerHTML='<div><span class="num">'+fmt(c.m)+'</span> people'+(anyF()?' match':'')+'</div><div class="row2">'+(F.who==="not"?'<span>None have been in yet</span>':F.who==="patients"?'<span>All are your patients</span>':'<span><b>'+fmt(c.pt)+'</b> patients</span><span><b>'+fmt(c.not)+'</b> not yet</span>')+'</div><div class="meta" style="margin-bottom:6px">'+esc(fDesc())+'</div>'+
+    '<div class="btns">'+(c.not?'<button class="btn" data-act="reach" style="height:32px;font-size:12px">Reach the '+fmt(c.not)+'</button>':'')+(anyF()?'<button class="btn ghost" data-act="clearf" style="height:32px;font-size:12px">Clear</button>':'')+'</div>';
+  render();
+}
+$("#fAge").innerHTML='<button class="fc on" data-age="-1">Any</button>'+AGEB.map(function(b,i){return '<button class="fc" data-age="'+i+'">'+b[2]+'</button>';}).join("");
+$("#fWho").onclick=function(e){var b=e.target.closest("button");if(!b)return;F.who=b.dataset.who;syncCtl();};
+$("#fSex").onclick=function(e){var b=e.target.closest(".fc");if(!b)return;F.sex=b.dataset.sex;syncCtl();};
+$("#fInc").onclick=function(e){var b=e.target.closest(".fc");if(!b)return;F.inc=+b.dataset.inc;syncCtl();};
+$("#fAge").onclick=function(e){var b=e.target.closest(".fc");if(!b)return;var i=+b.dataset.age;if(i<0)F.ages=[];else{var g=AGEB[i],has=F.ages.some(function(x){return x[2]===g[2];});F.ages=has?F.ages.filter(function(x){return x[2]!==g[2];}):F.ages.concat([g]);}syncCtl();};
+$("#fOwn").onchange=function(){F.own=this.checked;syncCtl();};
+$("#fSrch").onchange=function(){F.srch=this.checked;if(!this.checked)F.treat=null;syncCtl();};
+$("#fLook").onchange=function(){F.look=this.checked;syncCtl();};
+$("#zin").onclick=function(){fly({zoom:viewState.zoom+0.8},400);};
+$("#zout").onclick=function(){fly({zoom:viewState.zoom-0.8},400);};
+$("#zhome").onclick=function(){fly(HOME,900);};
+function toggleFilters(open){var el=$("#mapctl"),o=open==null?el.classList.contains("hidden"):open;el.classList.toggle("hidden",!o);$("#filterBtn").classList.toggle("on",o);$("#filterBtn").setAttribute("aria-expanded",String(o));}
+$("#ctlMin").onclick=function(){toggleFilters(false);};
+$("#filterBtn").onclick=function(){toggleFilters();};
+document.addEventListener("keydown",function(e){if(e.key==="Escape")toggleFilters(false);});
+function clearF(){F={who:"all",ages:[],sex:"all",inc:0,own:false,srch:false,look:false,city:null,treat:null};}
+function personClick(o){
+  var desc=(o.sex==="F"?"Woman":"Man")+", "+o.age+", "+o.city;
+  if(o.st)return botSay("desk",'<b>'+esc(desc)+'</b>. '+STATUS[o.st].label+'. In the full system this opens their chart.',"");
+  botSay("grow",'<b>'+esc(desc)+'</b>. Not a patient yet. $'+o.inc+'k household'+(o.own?', owns their home':'')+'.'+(o.t?' Searched “'+esc(o.q)+'” on '+o.eng+' '+o.ago+' days ago.':'')+(o.look?' Looks like your best patients.':''),
+    '<div class="btns"><button class="btn" data-act="addaud">Add to an audience</button></div>');
+}
+
+/* ---------- Boot ---------- */
+function load(u){return fetch(u).then(function(r){if(!r.ok)throw new Error(u+" "+r.status);return r.json();});}
+Promise.all([load("oc.json"),load("ctx.json"),load("avatars.json"),document.fonts?document.fonts.ready:Promise.resolve()]).then(function(res){
+  CTX=res[1];AV=res[2];buildData(res[0]);buildNamed();MAXS=Math.max.apply(null,ZIPS.map(function(z){return z.searches;}));
+  PIN="data:image/svg+xml;base64,"+btoa('<svg xmlns="http://www.w3.org/2000/svg" width="160" height="64" viewBox="0 0 160 64"><rect x="2" y="6" width="156" height="52" rx="14" fill="#0B1A2E"/><g transform="translate(12 14) scale(.36)"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#5B7DF0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></g><text x="52" y="30" font-family="Arial, sans-serif" font-weight="700" font-size="15" fill="#fff">Lumen</text><text x="52" y="47" font-family="Arial, sans-serif" font-size="12" fill="#A8B2C1">Aesthetics</text></svg>');
+  try{
+    deckgl=new deck.Deck({parent:$("#map"),views:new deck.MapView({repeat:false}),initialViewState:HOME,controller:{dragRotate:false,touchRotate:false,doubleClickZoom:true,inertia:true},
+      onViewStateChange:function(e){var v=clampView(Object.assign({},e.viewState,{pitch:0,bearing:0}));viewState=v;return v;},layers:layers(),onHover:onHover,onClick:onClick,getCursor:function(s){return s.isDragging?"grabbing":(s.isHovering?"pointer":"grab");}});
+  }catch(err){$("#bootMsg").textContent="Your browser couldn't start the map (WebGL is off). The assistant still works.";}
+  $("#boot").classList.add("off");
+  requestAnimationFrame(loop);
+  syncCtl();renderBrief();renderNext();renderRail();
+  setInterval(function(){renderNext();renderRail();if(Math.floor(nowMin())%5===0){CACHE.tl=null;render();}},15000);
+  setInterval(nudgeTick,1000);
+}).catch(function(err){$("#bootMsg").textContent="Couldn't load your data. Refresh to try again. ("+esc(err.message)+")";});
+})();
+</script>
+</body>
+</html>
