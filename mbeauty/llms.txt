@@ -1,0 +1,36 @@
+# M Beauty Clinic by Dr. Tess
+
+> Cosmetic, regenerative and medical dermatology with board-certified dermatologist Dr. Tess Mauricio, MD, FAAD, in Beverly Hills, San Diego and Chula Vista, California. Creator of the Time Machine Procedure and one of the developers of the ALMI procedure.
+
+Phone: 1 (833) 462-3288 (toll free, all clinics). Email: info@mbeautyclinic.com. Founded 2004.
+
+## Key pages
+- [Home](https://proposals.localairegistry.com/mbeauty/): treatments, Dr. Tess, results, shop, FAQ and locations.
+- [Dr. Tess Mauricio, MD, FAAD](https://proposals.localairegistry.com/mbeauty/dr-tess-mauricio/): full bio with training, honors, media and sources.
+- [Dr. Tess at Local AI Registry](https://proposals.localairegistry.com/mbeauty/local-ai-registry/): her role as Medical Director.
+- [Book a consultation](https://proposals.localairegistry.com/mbeauty/contact/)
+- [Results](https://proposals.localairegistry.com/mbeauty/results/) and [Shop](https://proposals.localairegistry.com/mbeauty/shop/)
+
+## Locations
+- [M Beauty Clinic by Dr. Tess, Beverly Hills](https://proposals.localairegistry.com/mbeauty/locations/beverly-hills/): 421 North Rodeo Drive, Unit A-1, Beverly Hills, CA 90210, 1 (833) 462-3288.
+- [M Beauty Clinic by Dr. Tess, San Diego (Miramar)](https://proposals.localairegistry.com/mbeauty/locations/san-diego/): 9888 Carroll Centre Road, Suite 101, San Diego, CA 92126, (858) 689-4990.
+- [M Beauty Clinic by Dr. Tess, Eastlake (Chula Vista)](https://proposals.localairegistry.com/mbeauty/locations/chula-vista/): 875 Bowsprit Road, Chula Vista, CA 91914, (619) 434-8950.
+
+## Treatments
+- [The Time Machine Procedure](https://proposals.localairegistry.com/mbeauty/treatments/time-machine-procedure/): Look years younger with no surgery.
+- [Botox and Fillers](https://proposals.localairegistry.com/mbeauty/treatments/botox-and-fillers/): Soften lines and restore lost volume.
+- [ALMI and Regenerative Medicine](https://proposals.localairegistry.com/mbeauty/treatments/almi-regenerative-medicine/): Use your own cells to restore volume.
+- [Skin Brightening](https://proposals.localairegistry.com/mbeauty/treatments/skin-brightening/): Even out dark spots and dull tone.
+- [Laser and Skin Tightening](https://proposals.localairegistry.com/mbeauty/treatments/laser-and-skin-tightening/): Smoother, firmer skin with little downtime.
+- [Acne and Acne Scars](https://proposals.localairegistry.com/mbeauty/treatments/acne-and-acne-scars/): Clear skin and smoother texture.
+- [Hair Restoration](https://proposals.localairegistry.com/mbeauty/treatments/hair-restoration/): Regenerative options for thinning hair.
+- [Body Contouring](https://proposals.localairegistry.com/mbeauty/treatments/body-contouring/): Contour, tighten and treat veins.
+- [Medical Dermatology](https://proposals.localairegistry.com/mbeauty/treatments/medical-dermatology/): Skin checks and everyday skin care.
+
+## Articles (by Dr. Tess Mauricio)
+- [What Is the Time Machine Procedure? A Dermatologist Explains](https://proposals.localairegistry.com/mbeauty/articles/what-is-the-time-machine-procedure/)
+- [Botox vs. Filler: Which One Do You Need?](https://proposals.localairegistry.com/mbeauty/articles/botox-vs-filler/)
+- [ALMI Fat Transfer: Using Your Own Fat as a Natural Filler](https://proposals.localairegistry.com/mbeauty/articles/almi-fat-transfer-natural-filler/)
+
+## Full text
+- [llms-full.txt](https://proposals.localairegistry.com/mbeauty/llms-full.txt): the text of every key page in one file.
