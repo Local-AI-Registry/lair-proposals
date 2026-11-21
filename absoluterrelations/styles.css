@@ -410,3 +410,6 @@ html,body{overflow-x:clip}
 }
 .mini img.mb,.mini.light-on-dark img.mb{height:46px!important;width:46px;object-fit:contain;filter:none!important;opacity:1}
 .mini img.box,.mini.light-on-dark img.box{height:30px!important}
+.mini.light-on-dark{gap:10px}
+.mini.light-on-dark img:not(.mb){filter:none!important;opacity:1;background:#fff;border-radius:8px;padding:8px 12px;height:38px!important;width:auto;box-sizing:border-box}
+.mini.light-on-dark img.box{padding:4px 6px}
