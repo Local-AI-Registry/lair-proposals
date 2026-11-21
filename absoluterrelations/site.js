@@ -70,3 +70,19 @@
   });}
   document.querySelectorAll('.yr-now').forEach(function(n){n.textContent=new Date().getFullYear();});
 })();
+// keep the last two words of every text block together (no orphans at any width)
+(function(){
+  var sel='h1,h2,h3,h4,p,li,dd,summary,cite,.btn,.cap b,.cap span,.chip,.nm,.st,blockquote';
+  document.querySelectorAll(sel).forEach(function(el){
+    var w=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),n,last=null;
+    while((n=w.nextNode())){ if(/\S/.test(n.data)) last=n; }
+    if(!last) return;
+    var t=last.data.replace(/\s+$/,''), i=t.lastIndexOf(' ');
+    if(i>0){ last.data=t.slice(0,i)+' '+t.slice(i+1)+last.data.slice(t.length); }
+    else if(i<0){ // last word sits alone in its node: glue it to the text before it
+      var w2=document.createTreeWalker(el,NodeFilter.SHOW_TEXT),prev=null;
+      while((n=w2.nextNode())&&n!==last){ if(/\S/.test(n.data)) prev=n; }
+      if(prev && /\s$/.test(prev.data) && !/^\s/.test(last.data)){ prev.data=prev.data.replace(/\s+$/,' '); }
+    }
+  });
+})();
