@@ -11,7 +11,7 @@ M Beauty Clinic by Dr. Tess, Eastlake, Chula Vista. When you call, press 3 for t
 
 [Call (619) 434-8950](tel:6194348950)[Get Directions](https://www.google.com/maps/place/?q=place_id:ChIJYQzdABVF2YARF056eAN9WdA)
 
-### M Beauty Clinic, Eastlake (Chula Vista)
+### M Beauty Clinic, Chula Vista
 
 875 Bowsprit Road  
 Chula Vista, CA 91914  

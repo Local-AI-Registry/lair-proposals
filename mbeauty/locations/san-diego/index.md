@@ -11,7 +11,7 @@ M Beauty Clinic by Dr. Tess, Miramar, North San Diego. The M Beauty Life Center 
 
 [Call (858) 689-4990](tel:8586894990)[Get Directions](https://www.google.com/maps/place/?q=place_id:ChIJpddVUhb524AR1CmbRA959rQ)
 
-### M Beauty Clinic, San Diego (Miramar)
+### M Beauty Clinic, San Diego
 
 9888 Carroll Centre Road, Suite 101  
 San Diego, CA 92126  
