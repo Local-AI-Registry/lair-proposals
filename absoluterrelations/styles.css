@@ -378,3 +378,4 @@ html,body{overflow-x:clip}
   .panel section:has(.contact-grid){padding-bottom:60px}
 }
 .panel .answer{max-width:none}
+@media (max-width:640px){.hero .display{font-size:36px}.h2{font-size:34px}}
