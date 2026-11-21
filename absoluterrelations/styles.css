@@ -343,3 +343,38 @@ footer.site .base{border-top:1px solid rgba(255,255,255,.12);margin-top:50px;pad
   .overlay li a{font-size:38px}
 }
 html,body{overflow-x:clip}
+/* fixes after phone review */
+.hero.short{height:auto;min-height:74vh}
+.hero.short .inner{padding:150px 24px 130px}
+.article-card .answer{background:var(--petal);color:var(--ink);border-left-color:var(--magenta)}
+.article-card .answer strong{color:var(--magenta)}
+.client-tag{display:inline-flex;align-items:center;gap:12px;margin-top:28px;background:#fff;border-radius:999px;padding:10px 20px 10px 16px;color:var(--ink);font-size:14px}
+.client-tag small{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--magenta);font-weight:600}
+@media (max-width:640px){
+  .hero.short .inner{padding:120px 20px 100px}
+  .hero .display{font-size:40px}
+  .hero .sub{font-size:16px}
+  .scroller{height:220vh}
+  .scroller li{font-size:19px;padding:9px 0}
+  .scroller li.on{font-size:23px}
+  .scroller .pill{height:52px}
+}
+.story .arrow{background:rgba(43,11,29,.55)}
+.story .badge img[alt="High On Love"],.client img[alt="High On Love"]{filter:saturate(2.2) brightness(.78)}
+.panel > section:last-child{padding-bottom:70px}
+@media (max-width:640px){
+  footer.site .cols{grid-template-columns:1fr 1fr;gap:30px 20px}
+  footer.site .cols > div:first-child,footer.site .cols > div:last-child{grid-column:1/-1}
+  .float-cta{padding:10px 16px;font-size:13px}
+}
+.client,.award{min-width:0}
+@media (max-width:640px){
+  .client .wm{font-size:15px;letter-spacing:3px}
+  .clients .client:last-child,.awards .award:last-child{grid-column:1/-1}
+  .qc .viewport{height:250px}
+  .qc .q{border-radius:28px;padding:24px 20px}
+  .qc .ctrl .btn{white-space:nowrap;padding:13px 20px;font-size:14px}
+  .qc .ctrl{gap:12px}
+  .panel section:has(.contact-grid){padding-bottom:60px}
+}
+.panel .answer{max-width:none}

@@ -30,7 +30,7 @@
     function setActive(i){
       if(i===cur)return;cur=i;
       items.forEach(function(li,k){li.classList.toggle('on',k===i);});
-      var li=items[i];pill.style.top=(li.offsetTop+li.offsetHeight/2-32)+'px';
+      var li=items[i];pill.style.top=(li.offsetTop+li.offsetHeight/2-pill.offsetHeight/2)+'px';
       if(desc){desc.textContent=li.getAttribute('data-desc')||'';}
     }
     function upd(){
