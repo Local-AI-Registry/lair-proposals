@@ -379,3 +379,5 @@ html,body{overflow-x:clip}
 }
 .panel .answer{max-width:none}
 @media (max-width:640px){.hero .display{font-size:36px}.h2{font-size:34px}}
+.show-m{display:none}
+@media (max-width:640px){.hide-m{display:none}.show-m{display:inline}}
