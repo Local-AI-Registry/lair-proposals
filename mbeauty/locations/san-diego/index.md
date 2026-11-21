@@ -31,6 +31,8 @@ Treatment plans are led by [Dr. Tess Mauricio](/mbeauty/dr-tess-mauricio/), a bo
 
 [The Time Machine Procedure in San Diego](/mbeauty/treatments/time-machine-procedure/)[Botox and Fillers in San Diego](/mbeauty/treatments/botox-and-fillers/)[ALMI and Regenerative Medicine in San Diego](/mbeauty/treatments/almi-regenerative-medicine/)[Skin Brightening in San Diego](/mbeauty/treatments/skin-brightening/)[Laser and Skin Tightening in San Diego](/mbeauty/treatments/laser-and-skin-tightening/)[Acne and Acne Scars in San Diego](/mbeauty/treatments/acne-and-acne-scars/)
 
+See this clinic's public record and AI Score on [Local AI Registry](https://localairegistry.com/biz/ca/san-diego/m-beauty-clinic-by-dr-tess-san-diego-ca).
+
 ## Who we serve
 
 Patients visit from Miramar, Mira Mesa, Scripps Ranch, Rancho Bernardo, Poway, Carmel Valley and La Jolla, and from across Southern California.

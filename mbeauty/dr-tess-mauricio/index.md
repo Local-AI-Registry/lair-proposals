@@ -13,7 +13,7 @@ Dr. Tess Mauricio is a board-certified dermatologist, a graduate of Stanford Uni
 
 [Book With Dr. Tess](/mbeauty/contact/)Training and Honors
 
-Stanford MedicineFellow, American Academy of DermatologyMedical Director, Local AI Registry
+Stanford MedicineFellow, American Academy of Dermatology[Medical Director, Local AI Registry](/mbeauty/local-ai-registry/)
 
 **Tess Mauricio, MD, FAAD** Founder, M Beauty Clinic
 
@@ -26,6 +26,8 @@ Dr. Tess immigrated to the United States from the Philippines at age 12.8 She gr
 She first planned to become a psychiatrist, because she wanted to make people happier. "If we don't feel OK on the inside, then nothing is OK," she has said.6 That idea became the philosophy of M Beauty Clinic, the family practice she founded with her husband, Dr. James Lee: be your best at any age, mind, body and soul.
 
 Her practice focuses on non-surgical and regenerative treatments, with a focus on skin of color.6 She has worked as a dermatologist partner for skin care brands including Proactiv, No7, Your Good Skin and Soap & Glory, and is the author of _California Total Beauty_.1, 10
+
+She also serves as Medical Director at [Local AI Registry](https://localairegistry.com/), the public registry of which local businesses AI assistants recommend, where she helps define how AI should judge aesthetic practices. [Read about her role](/mbeauty/local-ai-registry/).
 
 ### Quick facts
 
