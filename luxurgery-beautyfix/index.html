@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="color-scheme" content="light only">
+<title>BeautyFix Teardown for Luxurgery · Local AI Registry</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant:ital,wght@0,500;0,600;0,700;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#1F4FE0; --ink:#0B1A2E; --coral:#FF5A3C; --paper:#F4F1EA;
+    --white:#fff; --muted:#4A5568; --line:#E3DED3; --blue-soft:#E8EEFD;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{color-scheme:light}
+  body{background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  h1,h2,h3{text-wrap:balance}
+  p,li{text-wrap:pretty}
+  img{max-width:100%;display:block}
+  a{color:var(--blue)}
+  .wrap{max-width:880px;margin:0 auto;padding:0 22px}
+
+  header.top{background:var(--white);border-bottom:1px solid var(--line)}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;padding-top:16px;padding-bottom:16px;gap:12px}
+  .lockup{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+  .lockup svg{width:30px;height:30px}
+  .lockup span{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:19px;letter-spacing:-.01em;white-space:nowrap}
+  .tag{font-family:"Bricolage Grotesque",sans-serif;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+
+  .hero{padding:64px 0 40px}
+  .eyebrow{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:14px}
+  .hero h1{font-family:Cormorant,serif;font-weight:600;font-size:clamp(40px,7vw,64px);line-height:1.04;letter-spacing:-.01em;margin-bottom:18px}
+  .hero p.lede{font-size:19px;color:var(--muted);max-width:640px}
+  .meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:26px;font-size:14px;color:var(--muted)}
+  .meta b{color:var(--ink);font-weight:600}
+
+  .bottom-line{background:var(--ink);color:var(--white);border-radius:18px;padding:30px 30px 32px;margin:8px 0 56px}
+  .bottom-line .eyebrow{color:#9DB4FF}
+  .bottom-line p{font-family:Cormorant,serif;font-size:clamp(24px,3.6vw,30px);line-height:1.25;font-weight:500}
+
+  section{padding:8px 0 48px}
+  .section-head{border-top:2px solid var(--ink);padding-top:18px;margin-bottom:28px}
+  .section-head .num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13px;letter-spacing:.14em;color:var(--blue);text-transform:uppercase}
+  .section-head h2{font-family:Cormorant,serif;font-weight:600;font-size:clamp(32px,5vw,44px);line-height:1.08;margin-top:6px}
+  .section-head p{color:var(--muted);margin-top:10px;max-width:660px}
+
+  .play{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;margin-bottom:26px}
+  .play .shot{background:#EDE9E0;border-bottom:1px solid var(--line);padding:18px}
+  .play .shot img{border-radius:10px;box-shadow:0 6px 24px rgba(11,26,46,.12);margin:0 auto}
+  .play .shot.tall img{max-width:340px}
+  .play .shot figcaption{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+  .play .body{padding:24px 26px 26px}
+  .play .label{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .play h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:23px;line-height:1.25;letter-spacing:-.01em;margin:6px 0 12px}
+  .play ul{padding-left:20px;margin:6px 0 14px}
+  .play li{margin:4px 0}
+  .why{background:var(--blue-soft);border-radius:12px;padding:14px 16px;font-size:16px}
+  .why b{color:var(--blue)}
+  .flag{margin-top:12px;border-left:3px solid var(--coral);padding:4px 0 4px 14px;font-size:16px}
+  .flag b{color:var(--coral)}
+
+  .stand{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:30px}
+  .card{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px}
+  .card h4{font-family:"Bricolage Grotesque",sans-serif;font-size:13px;font-weight:800;letter-spacing:.12em;text-transform:uppercase;margin-bottom:10px}
+  .card.has h4{color:var(--blue)}
+  .card.gap h4{color:var(--ink)}
+  .card ul{padding-left:18px}
+  .card li{margin:5px 0;font-size:16px}
+
+  .recs{counter-reset:r;list-style:none;padding:0}
+  .recs li{counter-increment:r;background:var(--white);border:1px solid var(--line);border-radius:16px;padding:22px 24px 22px 74px;position:relative;margin-bottom:14px}
+  .recs li::before{content:counter(r,decimal-leading-zero);position:absolute;left:22px;top:20px;font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:26px;color:var(--blue)}
+  .recs h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;line-height:1.3;margin-bottom:6px}
+  .recs p{font-size:16px;color:#2D3748}
+
+  .skip{background:var(--white);border:1px dashed #C9C2B3;border-radius:16px;padding:22px 24px;margin-top:22px}
+  .skip h3{font-family:"Bricolage Grotesque",sans-serif;font-size:19px;margin-bottom:6px}
+  .skip p{font-size:16px;color:#2D3748}
+
+  .cta{background:var(--blue);color:var(--white);border-radius:22px;padding:44px 32px;text-align:center;margin:20px 0 40px}
+  .cta h2{font-family:Cormorant,serif;font-weight:600;font-size:clamp(34px,5.4vw,48px);line-height:1.08;margin-bottom:14px}
+  .cta p{font-size:18px;max-width:560px;margin:0 auto 26px;opacity:.95}
+  .btn{display:inline-block;background:var(--white);color:var(--blue);font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:18px;text-decoration:none;padding:16px 30px;border-radius:999px}
+  .btn:hover{background:var(--paper)}
+  .cta .small{font-size:14px;margin:18px auto 0;opacity:.85}
+  .cta .small a{color:var(--white)}
+
+  footer{padding:10px 0 50px;font-size:13px;color:var(--muted)}
+  footer p{margin-bottom:10px}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .tag{display:none}
+    .hero{padding:44px 0 30px}
+    .stand{grid-template-columns:1fr}
+    .play .body{padding:20px}
+    .play .shot{padding:12px}
+    .recs li{padding:20px 18px 20px 60px}
+    .recs li::before{left:16px;font-size:22px}
+    .bottom-line{padding:24px 22px}
+    .cta{padding:36px 22px}
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="lockup" href="https://localairegistry.com" aria-label="Local AI Registry">
+      <svg viewBox="0 0 100 100" aria-hidden="true"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg>
+      <span>Local AI Registry</span>
+    </a>
+    <div class="tag">Competitor Teardown</div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <div class="hero">
+    <div class="eyebrow">Prepared for Dr. Sachin Shridharani · Luxurgery</div>
+    <h1>How BeautyFix sells so many injectables</h1>
+    <p class="lede">A look at what BeautyFix MedSpa in NYC is doing, with screenshots, and what it means for Luxurgery.</p>
+    <div class="meta">
+      <span><b>Subject:</b> BeautyFix MedSpa, New York</span>
+      <span><b>Captured:</b> November 22, 2026</span>
+      <span><b>By:</b> Local AI Registry</span>
+    </div>
+  </div>
+
+  <div class="bottom-line">
+    <div class="eyebrow">The short version</div>
+    <p>BeautyFix runs its practice like an online store. Treatments have product names and prices, they can be bought with a click, there is always a deal running, and prepaid memberships bring patients back every few months.</p>
+  </div>
+
+  <section>
+    <div class="section-head">
+      <div class="num">Part 1</div>
+      <h2>The teardown</h2>
+      <p>Six plays we found on their website, Google and Groupon.</p>
+    </div>
+
+    <article class="play">
+      <figure class="shot">
+        <img src="bf-deals.jpg" alt="BeautyFix homepage Black Friday banner: up to 70% off, Botox from $229, Lip Flip $99" loading="lazy">
+        <figcaption>beautyfixmedspa.com homepage, November 22, 2026</figcaption>
+      </figure>
+      <div class="body">
+        <div class="label">Play 1</div>
+        <h3>There is always a deal, with a clock running</h3>
+        <ul>
+          <li>Black Friday banner says "up to 70% off" across toxin, filler, skin, body and memberships.</li>
+          <li>Prices are right on the homepage: Botox from $229, Lip Flip $99, memberships up to 45% off.</li>
+          <li>A countdown timer sits at the top of every page. Savings apply in the cart, no code needed.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> a visitor sees a price and a deadline in the first five seconds. That removes the two biggest reasons people put off booking.</div>
+      </div>
+    </article>
+
+    <article class="play">
+      <figure class="shot">
+        <img src="bf-products.jpg" alt="BeautyFix featured services: WrinkleFix Botox first-time $199, existing customers $495, LipFix filler $699, CheekFix filler $799, each with a Shop Now button" loading="lazy">
+        <figcaption>"Featured Services" section, beautyfixmedspa.com</figcaption>
+      </figure>
+      <div class="body">
+        <div class="label">Play 2</div>
+        <h3>Treatments are sold like products</h3>
+        <ul>
+          <li>Every service has a branded name: WrinkleFix, LipFix, CheekFix, FaceFix.</li>
+          <li>Each one has a price and a "Shop Now" button. The site is built on an e-commerce platform, so patients can pay before they ever walk in.</li>
+          <li>First-time Botox is priced lower ($199) than for existing customers ($495) to pull in new patients.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> a patient who has already paid almost always shows up. Branded names also make the menu easy to remember and easy to share.</div>
+      </div>
+    </article>
+
+    <article class="play">
+      <figure class="shot">
+        <img src="bf-memberships.jpg" alt="BeautyFix membership collection: Annual Ultimate $4,995, Annual Elite $2,495, Unlimited Tox Annual $1,495, prepaid and non-refundable" loading="lazy">
+        <figcaption>"The Membership Collection," beautyfixmedspa.com</figcaption>
+      </figure>
+      <div class="body">
+        <div class="label">Play 3</div>
+        <h3>Prepaid memberships lock in a year of visits</h3>
+        <ul>
+          <li>Three annual plans: Unlimited Tox at $1,495, Elite at $2,495 and Ultimate at $4,995.</li>
+          <li>Tox members come in every three months. Higher plans add filler, Sculptra and microneedling.</li>
+          <li>Plans are prepaid for twelve months and the terms say they are non-refundable.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> the money comes in up front, and the patient is booked four times a year without any new marketing. Each visit is also a chance to add filler or skin treatments.</div>
+        <div class="flag"><b>Weak spot:</b> non-refundable, prepaid terms can cause complaints when a patient's plans change.</div>
+      </div>
+    </article>
+
+    <article class="play">
+      <figure class="shot">
+        <img src="bf-groupon.jpg" alt="Groupon listing: Botox Lip Flip, Unlimited Units for 3 Areas or 1 Syringe Juvederm at BeautyFix Medspa Flatiron, up to 50% off, 4.5 stars, 636+ reviews" loading="lazy">
+        <figcaption>Groupon deal page for BeautyFix Flatiron, November 22, 2026</figcaption>
+      </figure>
+      <div class="body">
+        <div class="label">Play 4</div>
+        <h3>Groupon brings in first-time patients</h3>
+        <ul>
+          <li>Lip flip, Botox and Juvederm deals at up to 50% off.</li>
+          <li>The listing shows 636+ Groupon reviews, which means years of steady use.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> Groupon puts them in front of bargain shoppers they would never reach on their own. Then the in-office team sells the membership.</div>
+        <div class="flag"><b>Weak spot:</b> it trains patients to expect a discount and puts the brand next to budget offers.</div>
+      </div>
+    </article>
+
+    <article class="play">
+      <figure class="shot tall">
+        <img src="google-results.jpg" alt="Google results for BeautyFix in NYC: a sponsored Thérapie Clinic ad on top, then three BeautyFix listings and an AI Overview describing them" loading="lazy">
+        <figcaption>Google search on a phone, November 22, 2026</figcaption>
+      </figure>
+      <div class="body">
+        <div class="label">Play 5</div>
+        <h3>They show up three times on Google</h3>
+        <ul>
+          <li>Three separate Google listings: the Flatiron med spa, the Upper East Side skin clinic and a plastic surgery listing.</li>
+          <li>Google's AI Overview describes all three by name, using what is on those listings.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> more listings means more space on the page and more chances to be the one AI names.</div>
+        <div class="flag"><b>Weak spot:</b> a competitor, Thérapie Clinic, is running a paid ad above BeautyFix on a search for BeautyFix. Even a big brand can lose patients on its own name.</div>
+      </div>
+    </article>
+
+    <article class="play">
+      <div class="body">
+        <div class="label">Play 6</div>
+        <h3>Big social proof and injectors people ask for by name</h3>
+        <ul>
+          <li>Their homepage claims 25,000+ patients treated and 1,000+ five-star reviews.</li>
+          <li>Reviews keep naming individual injectors. The top Google review in the screenshot above recommends one by name.</li>
+          <li>They also offer many ways to pay over time, including CareCredit, PatientFi and Affirm.</li>
+        </ul>
+        <div class="why"><b>Why it works:</b> patients trust a person more than a brand. Payment plans make a $1,500 membership feel like a monthly bill.</div>
+      </div>
+    </article>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="num">Part 2</div>
+      <h2>What this means for Luxurgery</h2>
+      <p>Luxurgery already has the clinical credibility BeautyFix is trying to buy with discounts. The gap is in how easy it is to say yes.</p>
+    </div>
+
+    <div class="stand">
+      <div class="card has">
+        <h4>What Luxurgery has</h4>
+        <ul>
+          <li>A full injectables menu, with every major toxin and filler</li>
+          <li>Signature treatments with their own names, like Surgery in a Syringe℠</li>
+          <li>Dr. S as a known name, with real media and research</li>
+          <li>A booking button on the homepage</li>
+        </ul>
+      </div>
+      <div class="card gap">
+        <h4>What the homepage doesn't show</h4>
+        <ul>
+          <li>No memberships or recurring plans</li>
+          <li>No prices or "starting at" ranges</li>
+          <li>No payment plan options</li>
+          <li>Booking sends patients off-site to Zocdoc</li>
+        </ul>
+      </div>
+    </div>
+
+    <ol class="recs">
+      <li>
+        <h3>Launch a prepaid injectables membership</h3>
+        <p>An annual plan built around Dr. S's practice, at full price instead of a discount. It turns one-time Botox visits into revenue you can count on every quarter, and it keeps patients from shopping around.</p>
+      </li>
+      <li>
+        <h3>Package the signature treatments so patients can book and pay online</h3>
+        <p>Surgery in a Syringe℠ is already a brand. Give it a clear page, a "starting at" price and a way to put down a deposit online, so a patient who is ready can commit right away.</p>
+      </li>
+      <li>
+        <h3>Bring booking onto Luxurgery's own website</h3>
+        <p>Right now the booking button leads to Zocdoc, where other doctors are one tap away. Booking on your own site keeps the patient and the data with you.</p>
+      </li>
+      <li>
+        <h3>Show payment plans</h3>
+        <p>Listing financing options next to treatments and memberships makes the decision feel smaller, especially for higher-ticket treatments.</p>
+      </li>
+      <li>
+        <h3>Turn the press and TV story into AI citations</h3>
+        <p>A story like "a famous NYC doctor uses AI to grow his practice" travels. Each article and segment becomes a source ChatGPT and Google cite when someone asks who the best injector in NYC is.</p>
+      </li>
+      <li>
+        <h3>Get named in AI answers for the searches that matter</h3>
+        <p>BeautyFix shows up in Google's AI Overview mostly because of its listings, not because of deliberate AI work. That leaves an opening for Luxurgery to be the name AI gives for high-value injectable and surgery questions in NYC.</p>
+      </li>
+      <li>
+        <h3>Protect searches for "Luxurgery" and "Dr. S"</h3>
+        <p>If a competitor can buy an ad above BeautyFix on its own name, it can happen to Luxurgery too. We can watch for it and make sure Luxurgery owns the top of those results.</p>
+      </li>
+    </ol>
+
+    <div class="skip">
+      <h3>What we would not copy</h3>
+      <p>Groupon and "up to 70% off" sales. They work for a high-volume med spa, but they would pull the Luxurgery brand down. Memberships and online booking give you the same repeat business without the discounting.</p>
+    </div>
+  </section>
+
+  <div class="cta">
+    <h2>We can do every one of these for you</h2>
+    <p>Memberships, online booking, product pages, press and AI visibility. Let's get on a call and decide what to start with.</p>
+    <a class="btn" href="https://calendly.com/steve-localairegistry" target="_blank" rel="noopener">Book a time with Steve</a>
+    <p class="small">calendly.com/steve-localairegistry</p>
+  </div>
+
+  <footer>
+    <p>Screenshots were captured on November 22, 2026 from beautyfixmedspa.com, groupon.com and Google. Prices, offers and claims shown are BeautyFix's own and may change. Luxurgery details come from luxurgerynyc.com as of the same date.</p>
+    <p>AI is changing every day. Local AI Registry's dedicated local AI research team is always working out the best approach.</p>
+    <p>© 2026 Local AI Registry · Prepared privately for Luxurgery</p>
+  </footer>
+</main>
+</body>
+</html>
