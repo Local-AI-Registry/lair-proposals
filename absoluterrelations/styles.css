@@ -413,3 +413,77 @@ html,body{overflow-x:clip}
 .mini.light-on-dark{gap:10px}
 .mini.light-on-dark img:not(.mb){filter:none!important;opacity:1;background:#fff;border-radius:8px;padding:8px 12px;height:38px!important;width:auto;box-sizing:border-box}
 .mini.light-on-dark img.box{padding:4px 6px}
+/* ===== Desktop layout matched to Chu Vision at full width ===== */
+.dnav,.hdr-right .book{display:none}
+@media (min-width:1100px){
+  header.site{top:24px;left:12px;right:12px;height:74px;border-radius:10px;box-shadow:0 0 15px -4px rgba(20,20,20,.14)}
+  header.site .wrap{height:74px;padding:0 26px}
+  .dnav{display:flex;gap:34px;position:absolute;left:50%;transform:translateX(-50%)}
+  .dnav a{font-size:15px;letter-spacing:.5px;text-decoration:none;color:var(--ink);position:relative;padding:6px 0}
+  .dnav a:after{content:"";position:absolute;left:0;right:100%;bottom:0;height:1px;background:var(--magenta);transition:right .3s}
+  .dnav a:hover:after,.dnav a[aria-current]:after{right:0}
+  .hdr-right .book{display:inline-flex;background:var(--deep);color:#fff;padding:14px 22px;font-size:15px}
+  .hdr-right .call{font-size:14px;letter-spacing:.3px}
+  .menu-btn{display:none}
+  .hero .inner{padding-top:150px}
+  .scroller .stick{top:110px;height:calc(100vh - 110px)}
+}
+@media (min-width:1100px) and (max-width:1320px){.hdr-right .call{display:none}}
+
+/* Meet section: bento grid like "Meet Your Surgeon" */
+.meet2{padding-top:40px}
+.meet-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px;margin-bottom:34px}
+.bento{display:grid;grid-template-columns:repeat(3,1fr);grid-auto-rows:auto;gap:20px}
+.bento .wcard{display:flex;flex-direction:column}
+.bento .wcard .mini{margin-top:auto;padding-top:18px}
+.bento .wcard p{margin-bottom:10px}
+.bphoto{grid-column:1/3;grid-row:2;position:relative;min-height:420px;border-radius:14px;background:center/cover no-repeat;overflow:visible}
+.bphoto:before{content:"";position:absolute;inset:0;border-radius:14px;background:linear-gradient(90deg,rgba(43,11,29,.25),rgba(43,11,29,0) 60%)}
+.bphoto .portrait{position:absolute;left:8%;bottom:0;width:330px;height:470px;border-radius:165px 165px 0 0;background:center 18%/cover no-repeat;box-shadow:0 -10px 50px rgba(0,0,0,.3);z-index:2}
+.bphoto .mark{position:absolute;right:22px;top:22px;width:92px;background:#fff;padding:10px;border-radius:12px;z-index:3}
+.bphoto .ptag{position:absolute;right:22px;bottom:22px;z-index:3;background:rgba(255,255,255,.95);color:var(--ink);border-radius:12px;padding:12px 18px;font-size:13px;letter-spacing:.4px}
+.bphoto .ptag b{display:block;font-family:var(--serif);font-weight:400;font-size:20px;letter-spacing:0}
+.bento .b4{grid-column:3;grid-row:2}
+
+/* Client stories: slim cards in one row on desktop */
+@media (min-width:1100px){
+  .stories{grid-template-columns:repeat(6,1fr);gap:14px}
+  .story{aspect-ratio:3/4.4;border-radius:12px}
+  .story .cap{left:16px;right:16px;bottom:16px}
+  .story .cap b{font-size:22px}
+  .story .cap span{font-size:13px}
+  .story .badge{left:12px;top:12px;padding:8px 10px}
+  .story .badge img{height:16px}
+  .story .badge .wm{font-size:11px;letter-spacing:2px}
+  .story .badge .lair-wm{font-size:12px}
+  .story .arrow{right:12px;top:12px;width:34px;height:34px}
+  .story .seal{width:150px;height:150px}
+}
+@media (max-width:1060px){
+  .bento{grid-template-columns:1fr 1fr}
+  .bphoto{grid-column:1/-1;grid-row:auto;min-height:380px}
+  .bento .b4{grid-column:auto;grid-row:auto}
+}
+@media (max-width:640px){
+  .meet-head{flex-direction:column;align-items:flex-start}
+  .bento{grid-template-columns:1fr}
+  .bphoto{min-height:430px;order:-1}
+  .bphoto .portrait{left:50%;transform:translateX(-50%);width:270px;height:390px;border-radius:135px 135px 0 0}
+  .bphoto .ptag{left:22px;right:auto;bottom:auto;top:22px}
+  .bphoto .mark{width:72px}
+}
+.bphoto .portrait{height:calc(100% - 36px);width:auto;aspect-ratio:33/47}
+@media (min-width:1100px){
+  .stories{grid-template-columns:repeat(3,1fr);gap:20px}
+  .story{aspect-ratio:4/3.6;border-radius:16px}
+  .story .cap{left:24px;right:24px;bottom:22px}
+  .story .cap b{font-size:28px}
+  .story .cap span{font-size:14px}
+  .story .badge{left:20px;top:20px;padding:10px 14px}
+  .story .badge img{height:20px}
+  .story .badge .wm{font-size:13px;letter-spacing:4px}
+  .story .badge .lair-wm{font-size:16px}
+  .story .arrow{right:20px;top:20px;width:44px;height:44px}
+  .story .seal{width:190px;height:190px}
+}
+@media (max-width:640px){.bphoto .portrait{height:390px;width:270px;aspect-ratio:auto}}
