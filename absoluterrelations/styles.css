@@ -487,3 +487,14 @@ html,body{overflow-x:clip}
   .story .seal{width:190px;height:190px}
 }
 @media (max-width:640px){.bphoto .portrait{height:390px;width:270px;aspect-ratio:auto}}
+/* Local AI Registry links */
+a.lairlink{color:inherit;text-decoration:underline;text-decoration-color:var(--magenta,#B8207A);text-decoration-thickness:1.5px;text-underline-offset:3px}
+a.lairlink:hover{color:var(--magenta,#B8207A)}
+.panel a.lairlink,.feature a.lairlink{text-decoration-color:var(--pink,#F6BCD6)}
+.panel .article-card a.lairlink{text-decoration-color:var(--magenta,#B8207A)}
+a.lair-badge{display:inline-flex;text-decoration:none}
+.lair-sub{margin-top:12px;font-size:15px;opacity:.85}
+.lair-more{margin-top:48px;padding:28px;border-radius:14px;background:#F7F1F4}
+.lair-more p+p{margin-top:12px}
+.client-tag a{text-decoration:none;color:inherit}
+footer.site .base a{color:inherit;text-decoration:underline;text-underline-offset:3px}
