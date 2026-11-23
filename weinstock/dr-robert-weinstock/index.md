@@ -628,7 +628,7 @@ Information on this page comes from Dr. Weinstock's curriculum vitae (November 2
   * **Author page: Robert J. Weinstock, MD** Healio / Ocular Surgery News[Open source](https://www.healio.com/authors/rweinstock)
   * **OSN Premier Surgeon 300: Innovators in Refractive Cataract Surgery** Healio, April 15, 2016[Open source](https://www.healio.com/news/ophthalmology/20160415/osn-premier-surgeon-300-innovators-in-refractive-cataract-surgery)
   * **Mucocutaneous junction as the major source of replacement palpebral conjunctival epithelial cells** Invest Ophthalmol Vis Sci. 1999;40(13):3138-46 (PubMed)[Open source](https://pubmed.ncbi.nlm.nih.gov/10586935/)
-  * **NPI Registry record 1376541664** U.S. Centers for Medicare & Medicaid Services[Open source](https://npiregistry.cms.hhs.gov/provider-view/1376541664)
+  * **National Provider Identifier (NPI) Registry record** U.S. Centers for Medicare & Medicaid Services[Open source](https://npiregistry.cms.hhs.gov/provider-view/1376541664)
   * **Florida medical license ME82709 verification** Florida Department of Health[Open source](https://mqa-internet.doh.state.fl.us/MQASearchServices/HealthCareProviders)
   * **AECOS leadership: Robert Weinstock, MD, President-Elect and Board of Directors** American-European Congress of Ophthalmic Surgery[Open source](https://aecosurgery.org/about?jump-to=leadership)
   * **Dr. Robert J. Weinstock, Ophthalmology, Largo, FL** Castle Connolly Top Doctors[Open source](https://www.castleconnolly.com/top-doctors/robert-j-weinstock-ophthalmology-98cc003744)
