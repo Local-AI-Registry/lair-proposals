@@ -113,7 +113,9 @@
   .node circle,.node text{animation:nodeOn 10s linear infinite}
   .n2 circle,.n2 text{animation-delay:2s}.n3 circle,.n3 text{animation-delay:4s}
   .n4 circle,.n4 text{animation-delay:6s}.n5 circle,.n5 text{animation-delay:8s}
-  @keyframes nodeOn{0%,16%{fill:var(--blue);transform:scale(1.12)}22%,100%{transform:scale(1)}}
+  @keyframes nodeOn{0%,16%{fill:var(--blue);transform:scale(1.12)}22%,100%{fill:#fff;transform:scale(1)}}
+  .loop-dot{transform-origin:200px 200px;animation:spin 10s linear infinite}
+  @keyframes spin{to{transform:rotate(360deg)}}
   .node text{animation-name:nodeTxt}
   @keyframes nodeTxt{0%,16%{fill:#fff}22%,100%{fill:var(--blue)}}
   .loop-center{font-family:Cormorant,serif;font-weight:600;font-size:26px;text-anchor:middle;fill:var(--ink)}
@@ -422,9 +424,7 @@
           <g class="node n3"><circle cx="276.4" cy="305.2" r="28"/><text x="276.4" y="314.2">3</text></g>
           <g class="node n4"><circle cx="123.6" cy="305.2" r="28"/><text x="123.6" y="314.2">4</text></g>
           <g class="node n5"><circle cx="76.4" cy="159.8" r="28"/><text x="76.4" y="168.8">5</text></g>
-          <circle r="9" fill="#FF5A3C" class="loop-dot">
-            <animateMotion dur="10s" repeatCount="indefinite" path="M200,70 A130,130 0 1,1 199.99,70"/>
-          </circle>
+          <g class="loop-dot"><circle cx="200" cy="70" r="9" fill="#FF5A3C"/></g>
           <text x="200" y="194" class="loop-center">Your</text>
           <text x="200" y="222" class="loop-center">patient loop</text>
         </svg>
