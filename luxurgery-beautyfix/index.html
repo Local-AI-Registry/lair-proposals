@@ -91,6 +91,150 @@
   footer{padding:10px 0 50px;font-size:13px;color:var(--muted)}
   footer p{margin-bottom:10px}
 
+
+  /* ---------- Part 2 visuals ---------- */
+  .today{background:var(--white);border:1px solid var(--line);border-radius:16px;padding:18px 20px;margin-bottom:22px}
+  .today-label{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{font-size:14px;font-weight:600;padding:6px 12px;border-radius:999px;white-space:nowrap}
+  .chip.yes{background:var(--blue-soft);color:var(--blue)}
+  .chip.no{background:#F1EEE7;color:#5A6474;border:1px dashed #C9C2B3}
+
+  .loop-card{background:var(--white);border:1px solid var(--line);border-radius:20px;padding:26px 26px 22px;margin-bottom:22px}
+  .loop-head .label{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+  .loop-head h3{font-family:Cormorant,serif;font-weight:600;font-size:clamp(28px,4.4vw,36px);line-height:1.1;margin:4px 0 8px}
+  .loop-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:18px;align-items:center}
+  svg.loop{width:100%;max-width:380px;margin:0 auto;display:block}
+  .loop-trace{stroke-dasharray:100;stroke-dashoffset:100;transform:rotate(-90deg);transform-origin:200px 200px;animation:trace 10s linear infinite}
+  @keyframes trace{to{stroke-dashoffset:0}}
+  .node circle{fill:var(--white);stroke:var(--blue);stroke-width:4;transform-box:fill-box;transform-origin:center}
+  .node text{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:24px;text-anchor:middle;fill:var(--blue)}
+  .node{animation:none}
+  .node circle,.node text{animation:nodeOn 10s linear infinite}
+  .n2 circle,.n2 text{animation-delay:2s}.n3 circle,.n3 text{animation-delay:4s}
+  .n4 circle,.n4 text{animation-delay:6s}.n5 circle,.n5 text{animation-delay:8s}
+  @keyframes nodeOn{0%,16%{fill:var(--blue);transform:scale(1.12)}22%,100%{transform:scale(1)}}
+  .node text{animation-name:nodeTxt}
+  @keyframes nodeTxt{0%,16%{fill:#fff}22%,100%{fill:var(--blue)}}
+  .loop-center{font-family:Cormorant,serif;font-weight:600;font-size:26px;text-anchor:middle;fill:var(--ink)}
+  .loop-steps{list-style:none;padding:0;counter-reset:s}
+  .loop-steps li{counter-increment:s;position:relative;padding:10px 12px 10px 48px;border-radius:12px;font-size:17px;margin-bottom:4px;animation:stepOn 10s linear infinite}
+  .loop-steps li::before{content:counter(s);position:absolute;left:12px;top:9px;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);color:var(--blue);font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:14px;display:grid;place-items:center}
+  .loop-steps b{font-family:"Bricolage Grotesque",sans-serif}
+  .loop-steps .s2{animation-delay:2s}.loop-steps .s3{animation-delay:4s}.loop-steps .s4{animation-delay:6s}.loop-steps .s5{animation-delay:8s}
+  @keyframes stepOn{0%,16%{background:var(--blue-soft)}22%,100%{background:transparent}}
+
+  .tiles{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+  .tile{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:18px 20px 22px}
+  .tile svg{width:100%;height:auto;display:block;background:#F7F5F0;border-radius:12px;margin-bottom:14px}
+  .tile-num{font-family:"Bricolage Grotesque",sans-serif;font-weight:800;font-size:13px;letter-spacing:.12em;color:var(--blue)}
+  .tile h3{font-family:"Bricolage Grotesque",sans-serif;font-weight:700;font-size:20px;line-height:1.25;margin:4px 0 6px}
+  .tile p{font-size:15.5px;color:#2D3748}
+  .skip-tile{border-style:dashed;border-color:#C9C2B3}
+  .skip-num{color:var(--coral)}
+  .tile text{font-family:"Hanken Grotesk",sans-serif}
+  .bar{fill:#D9DEE8}
+
+  /* 01 membership */
+  .cal rect{fill:#fff;stroke:#D9DEE8;stroke-width:2}
+  .cal-on rect{fill:var(--blue)}
+  .ticks path{fill:none;stroke:#fff;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+  .q{opacity:0;animation:qOn 5s ease infinite}
+  .q2{animation-delay:.8s}.q3{animation-delay:1.6s}.q4{animation-delay:2.4s}
+  @keyframes qOn{0%{opacity:0}8%,80%{opacity:1}92%,100%{opacity:0}}
+  .cal-lbl text{font-size:13px;font-weight:600;fill:#5A6474;text-anchor:middle}
+
+  /* 02 reserve */
+  .card-bg{fill:#fff;stroke:#D9DEE8;stroke-width:2}
+  .card-title{font-size:12.5px;font-weight:700;fill:var(--ink)}
+  .btn-svg{fill:var(--blue);animation:btnPress 4s ease infinite;transform-box:fill-box;transform-origin:center}
+  .btn-txt{font-size:11.5px;font-weight:700;fill:#fff;text-anchor:middle}
+  @keyframes btnPress{0%,44%{transform:scale(1)}48%{transform:scale(.92)}54%,100%{transform:scale(1)}}
+  .done circle{fill:#1F9D57}.done path{fill:none;stroke:#fff;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+  .done{opacity:0;animation:doneOn 4s ease infinite}
+  @keyframes doneOn{0%,50%{opacity:0}58%,90%{opacity:1}100%{opacity:0}}
+  .cursor{fill:var(--ink);stroke:#fff;stroke-width:1.2;animation:cur 4s ease-in-out infinite}
+  @keyframes cur{0%{transform:translate(200px,128px)}40%,60%{transform:translate(110px,96px)}100%{transform:translate(200px,128px)}}
+
+  /* 03 booking */
+  .path-off{fill:none;stroke:#C9CFDA;stroke-width:3;stroke-dasharray:5 6}
+  .path-on{fill:none;stroke:var(--blue);stroke-width:4;stroke-linecap:round}
+  .person{fill:var(--ink)}
+  .box-off{fill:#EEF0F4;stroke:#C9CFDA;stroke-width:2}
+  .box-off-t{font-size:13px;font-weight:700;fill:#7A8494;text-anchor:middle}
+  .others circle{fill:#B7BFCC}
+  .box-on{fill:var(--blue)}
+  .box-on-t{font-size:13px;font-weight:700;fill:#fff;text-anchor:middle}
+  .mover{fill:var(--coral)}
+
+  /* 04 payments */
+  .big{fill:var(--ink);animation:bigOut 5s ease infinite}
+  .big-t{font-size:22px;font-weight:800;fill:#fff;text-anchor:middle;animation:bigOut 5s ease infinite}
+  @keyframes bigOut{0%,25%{opacity:1}35%,85%{opacity:0}95%,100%{opacity:1}}
+  .split rect{fill:var(--blue)}
+  .split text{font-size:18px;font-weight:800;fill:#fff;text-anchor:middle}
+  .p{opacity:0;animation:pOn 5s ease infinite}
+  .p2{animation-delay:.15s}.p3{animation-delay:.3s}.p4{animation-delay:.45s}
+  @keyframes pOn{0%,30%{opacity:0}40%,82%{opacity:1}92%,100%{opacity:0}}
+  .sub-t{font-size:13px;font-weight:600;fill:#5A6474;text-anchor:middle}
+
+  /* 05 press */
+  .tv{fill:var(--ink)}
+  .tv-stand{stroke:var(--ink);stroke-width:4;stroke-linecap:round}
+  .tv-t{font-size:12px;font-weight:800;fill:#fff;text-anchor:middle;letter-spacing:.08em}
+  .flow{stroke:var(--blue);stroke-width:4;stroke-linecap:round;stroke-dasharray:8 10;animation:flow 1s linear infinite}
+  @keyframes flow{to{stroke-dashoffset:-18}}
+  .bubble{fill:#fff;stroke:#D9DEE8;stroke-width:2}
+  .pill rect{fill:var(--blue)}
+  .pill text{font-size:11.5px;font-weight:700;fill:#fff;text-anchor:middle}
+  .tile .pill{animation:pillPop 4s ease infinite;transform-box:fill-box;transform-origin:center}
+  @keyframes pillPop{0%,30%{opacity:0;transform:scale(.7)}40%,85%{opacity:1;transform:scale(1)}95%,100%{opacity:0}}
+
+  /* 06 AI answer */
+  .q-bub{fill:var(--ink)}
+  .q-t{font-size:12.5px;font-weight:600;fill:#fff;text-anchor:middle}
+  .typing circle{fill:#9AA3B2;animation:typ 6s ease infinite}
+  .typing circle:nth-child(2){animation-delay:.15s}.typing circle:nth-child(3){animation-delay:.3s}
+  @keyframes typ{0%,5%{opacity:.3}10%{opacity:1}15%{opacity:.3}20%{opacity:1}25%{opacity:.3}30%,100%{opacity:0}}
+  .answer{opacity:0;animation:ans 6s ease infinite}
+  @keyframes ans{0%,30%{opacity:0}38%,90%{opacity:1}100%{opacity:0}}
+  .a-bub{fill:#fff;stroke:#D9DEE8;stroke-width:2}
+  .answer .pill{animation:none}
+
+  /* 07 protect name */
+  .search{fill:#fff;stroke:#D9DEE8;stroke-width:2}
+  .mag{fill:none;stroke:#7A8494;stroke-width:2.5;stroke-linecap:round}
+  .search-t{font-size:13px;font-weight:600;fill:var(--ink)}
+  .ad-row rect{fill:#FFF1EE;stroke:var(--coral);stroke-width:1.5}
+  .ad-row text{font-size:12.5px;font-weight:600;fill:#B23A22}
+  .ad-row{animation:adOut 5s ease infinite}
+  @keyframes adOut{0%,30%{opacity:1;transform:translateX(0)}45%,85%{opacity:0;transform:translateX(60px)}100%{opacity:1;transform:translateX(0)}}
+  .you-row rect{fill:var(--blue)}
+  .you-row text{font-size:13px;font-weight:700;fill:#fff}
+  .shield{fill:#fff}
+  .you-row{animation:youUp 5s ease infinite}
+  @keyframes youUp{0%,35%{transform:translateY(0)}50%,85%{transform:translateY(-40px)}100%{transform:translateY(0)}}
+
+  /* skip */
+  .coupon{fill:#fff;stroke:#C9C2B3;stroke-width:2;stroke-dasharray:6 5}
+  .coupon-t{font-family:"Bricolage Grotesque",sans-serif;font-size:26px;font-weight:800;fill:#9AA3B2;text-anchor:middle}
+  .strike{stroke:var(--coral);stroke-width:5;stroke-linecap:round;stroke-dasharray:100;stroke-dashoffset:100;animation:strike 4s ease infinite}
+  @keyframes strike{0%,15%{stroke-dashoffset:100}40%,90%{stroke-dashoffset:0}100%{stroke-dashoffset:100}}
+
+  @media (max-width:640px){
+    .loop-grid{grid-template-columns:1fr}
+    svg.loop{max-width:300px}
+    .tiles{grid-template-columns:1fr}
+    .loop-card{padding:22px 18px 16px}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation:none!important}
+    .q,.p,.done,.answer,.tile .pill{opacity:1}
+    .big,.big-t,.typing{opacity:0}
+    .loop-trace{stroke-dashoffset:0}
+    .loop-dot{display:none}
+  }
+
   @media (max-width:640px){
     body{font-size:16px}
     .tag{display:none}
@@ -246,64 +390,184 @@
     <div class="section-head">
       <div class="num">Part 2</div>
       <h2>What this means for Luxurgery</h2>
-      <p>Luxurgery already has the clinical credibility BeautyFix is trying to buy with discounts. The gap is in how easy it is to say yes.</p>
+      <p>Luxurgery already has the credibility BeautyFix buys with discounts. What's missing is how easy it is for a patient to say yes.</p>
     </div>
 
-    <div class="stand">
-      <div class="card has">
-        <h4>What Luxurgery has</h4>
-        <ul>
-          <li>A full injectables menu, with every major toxin and filler</li>
-          <li>Signature treatments with their own names, like Surgery in a Syringe℠</li>
-          <li>Dr. S as a known name, with real media and research</li>
-          <li>A booking button on the homepage</li>
-        </ul>
-      </div>
-      <div class="card gap">
-        <h4>What the homepage doesn't show</h4>
-        <ul>
-          <li>No memberships or recurring plans</li>
-          <li>No prices or "starting at" ranges</li>
-          <li>No payment plan options</li>
-          <li>Booking sends patients off-site to Zocdoc</li>
-        </ul>
+    <!-- Today snapshot -->
+    <div class="today">
+      <div class="today-label">Luxurgery's homepage today</div>
+      <div class="chips">
+        <span class="chip yes">✓ Full injectables menu</span>
+        <span class="chip yes">✓ Signature treatments</span>
+        <span class="chip yes">✓ Dr. S's name and press</span>
+        <span class="chip no">○ No memberships</span>
+        <span class="chip no">○ No prices shown</span>
+        <span class="chip no">○ No payment plans</span>
+        <span class="chip no">○ Booking goes to Zocdoc</span>
       </div>
     </div>
 
-    <ol class="recs">
-      <li>
-        <h3>Launch a prepaid injectables membership</h3>
-        <p>An annual plan built around Dr. S's practice, at full price instead of a discount. It turns one-time Botox visits into revenue you can count on every quarter, and it keeps patients from shopping around.</p>
-      </li>
-      <li>
-        <h3>Package the signature treatments so patients can book and pay online</h3>
-        <p>Surgery in a Syringe℠ is already a brand. Give it a clear page, a "starting at" price and a way to put down a deposit online, so a patient who is ready can commit right away.</p>
-      </li>
-      <li>
-        <h3>Bring booking onto Luxurgery's own website</h3>
-        <p>Right now the booking button leads to Zocdoc, where other doctors are one tap away. Booking on your own site keeps the patient and the data with you.</p>
-      </li>
-      <li>
-        <h3>Show payment plans</h3>
-        <p>Listing financing options next to treatments and memberships makes the decision feel smaller, especially for the bigger treatments.</p>
-      </li>
-      <li>
-        <h3>Turn the press and TV story into AI citations</h3>
-        <p>A story like "a famous NYC doctor uses AI to grow his practice" travels. Each article and segment becomes a source ChatGPT and Google cite when someone asks who the best injector in NYC is.</p>
-      </li>
-      <li>
-        <h3>Get named in AI answers for the searches that matter</h3>
-        <p>BeautyFix shows up in Google's AI Overview mostly because of its listings, not because of deliberate AI work. That leaves an opening for Luxurgery to be the name AI gives for high-value injectable and surgery questions in NYC.</p>
-      </li>
-      <li>
-        <h3>Protect searches for "Luxurgery" and "Dr. S"</h3>
-        <p>If a competitor can buy an ad above BeautyFix on its own name, it can happen to Luxurgery too. We can watch for it and make sure Luxurgery owns the top of those results.</p>
-      </li>
-    </ol>
+    <!-- The loop -->
+    <div class="loop-card">
+      <div class="loop-head">
+        <div class="label">The big picture</div>
+        <h3>One loop that keeps patients coming back</h3>
+      </div>
+      <div class="loop-grid">
+        <svg class="loop" viewBox="0 0 400 400" role="img" aria-label="A loop: found in AI, books on your site, pays online, joins a membership, comes back every three months">
+          <circle cx="200" cy="200" r="130" fill="none" stroke="#D7DEF5" stroke-width="10"/>
+          <circle cx="200" cy="200" r="130" fill="none" stroke="#1F4FE0" stroke-width="10" stroke-linecap="round" class="loop-trace" pathLength="100"/>
+          <g class="node n1"><circle cx="200" cy="70" r="28"/><text x="200" y="79">1</text></g>
+          <g class="node n2"><circle cx="323.6" cy="159.8" r="28"/><text x="323.6" y="168.8">2</text></g>
+          <g class="node n3"><circle cx="276.4" cy="305.2" r="28"/><text x="276.4" y="314.2">3</text></g>
+          <g class="node n4"><circle cx="123.6" cy="305.2" r="28"/><text x="123.6" y="314.2">4</text></g>
+          <g class="node n5"><circle cx="76.4" cy="159.8" r="28"/><text x="76.4" y="168.8">5</text></g>
+          <circle r="9" fill="#FF5A3C" class="loop-dot">
+            <animateMotion dur="10s" repeatCount="indefinite" path="M200,70 A130,130 0 1,1 199.99,70"/>
+          </circle>
+          <text x="200" y="194" class="loop-center">Your</text>
+          <text x="200" y="222" class="loop-center">patient loop</text>
+        </svg>
+        <ol class="loop-steps">
+          <li class="s1"><b>Found</b> when someone asks AI or Google</li>
+          <li class="s2"><b>Books</b> on luxurgerynyc.com, not Zocdoc</li>
+          <li class="s3"><b>Pays</b> or puts down a deposit online</li>
+          <li class="s4"><b>Joins</b> a prepaid membership</li>
+          <li class="s5"><b>Comes back</b> every three months</li>
+        </ol>
+      </div>
+    </div>
 
-    <div class="skip">
-      <h3>What we would not copy</h3>
-      <p>Groupon and "up to 70% off" sales. They work for a high-volume med spa, but they would pull the Luxurgery brand down. Memberships and online booking give you the same repeat business without the discounting.</p>
+    <!-- Tiles -->
+    <div class="tiles">
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <g class="cal">
+            <rect x="18" y="34" width="44" height="54" rx="8"/><rect x="74" y="34" width="44" height="54" rx="8"/>
+            <rect x="130" y="34" width="44" height="54" rx="8"/><rect x="186" y="34" width="44" height="54" rx="8"/>
+          </g>
+          <g class="cal-on">
+            <rect class="q q1" x="18" y="34" width="44" height="54" rx="8"/><rect class="q q2" x="74" y="34" width="44" height="54" rx="8"/>
+            <rect class="q q3" x="130" y="34" width="44" height="54" rx="8"/><rect class="q q4" x="186" y="34" width="44" height="54" rx="8"/>
+          </g>
+          <g class="ticks">
+            <path class="q q1" d="M30 61 l7 7 l13 -14"/><path class="q q2" d="M86 61 l7 7 l13 -14"/>
+            <path class="q q3" d="M142 61 l7 7 l13 -14"/><path class="q q4" d="M198 61 l7 7 l13 -14"/>
+          </g>
+          <g class="cal-lbl"><text x="40" y="110">Jan</text><text x="96" y="110">Apr</text><text x="152" y="110">Jul</text><text x="208" y="110">Oct</text></g>
+        </svg>
+        <div class="tile-num">01</div>
+        <h3>Prepaid membership</h3>
+        <p>One sign-up, four visits a year. Paid up front, at full price.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <rect x="40" y="18" width="160" height="104" rx="12" class="card-bg"/>
+          <text x="60" y="44" class="card-title">Surgery in a Syringe℠</text>
+          <rect x="60" y="54" width="70" height="8" rx="4" class="bar"/>
+          <rect x="60" y="68" width="100" height="8" rx="4" class="bar"/>
+          <rect x="60" y="88" width="84" height="22" rx="11" class="btn-svg"/>
+          <text x="102" y="103" class="btn-txt">Reserve</text>
+          <g class="done"><circle cx="168" cy="99" r="11"/><path d="M162 99 l4 4 l8 -8"/></g>
+          <path class="cursor" d="M0 0 l0 16 l4 -4 l3 7 l3 -1 l-3 -7 l6 0 z"/>
+        </svg>
+        <div class="tile-num">02</div>
+        <h3>Signature treatments you can reserve online</h3>
+        <p>A clear page, a starting price and a deposit button.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <path d="M40 70 C80 70 90 32 140 32" class="path-off"/>
+          <path d="M40 70 C80 70 90 108 140 108" class="path-on"/>
+          <circle cx="32" cy="70" r="12" class="person"/>
+          <rect x="142" y="16" width="82" height="32" rx="8" class="box-off"/>
+          <text x="183" y="36" class="box-off-t">Zocdoc</text>
+          <g class="others"><circle cx="160" cy="58" r="4"/><circle cx="173" cy="58" r="4"/><circle cx="186" cy="58" r="4"/><circle cx="199" cy="58" r="4"/><circle cx="212" cy="58" r="4"/></g>
+          <rect x="142" y="92" width="82" height="32" rx="8" class="box-on"/>
+          <text x="183" y="112" class="box-on-t">Your site</text>
+          <circle r="5" class="mover"><animateMotion dur="3s" repeatCount="indefinite" path="M40 70 C80 70 90 108 140 108"/></circle>
+        </svg>
+        <div class="tile-num">03</div>
+        <h3>Booking on your own site</h3>
+        <p>On Zocdoc, other doctors are one tap away. On your site, you keep the patient.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <rect x="70" y="36" width="100" height="56" rx="10" class="big"/>
+          <text x="120" y="72" class="big-t">$$$$</text>
+          <g class="split">
+            <rect class="p p1" x="24" y="44" width="40" height="40" rx="8"/><rect class="p p2" x="76" y="44" width="40" height="40" rx="8"/>
+            <rect class="p p3" x="128" y="44" width="40" height="40" rx="8"/><rect class="p p4" x="180" y="44" width="40" height="40" rx="8"/>
+            <text class="p p1" x="44" y="69">$</text><text class="p p2" x="96" y="69">$</text><text class="p p3" x="148" y="69">$</text><text class="p p4" x="200" y="69">$</text>
+          </g>
+          <text x="120" y="118" class="sub-t">pay over time</text>
+        </svg>
+        <div class="tile-num">04</div>
+        <h3>Payment plans, shown up front</h3>
+        <p>A big number turns into a small monthly one, and the decision feels smaller.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <rect x="18" y="38" width="62" height="44" rx="6" class="tv"/>
+          <path d="M38 92 h22 M49 82 v10" class="tv-stand"/>
+          <text x="49" y="65" class="tv-t">PRESS</text>
+          <path d="M88 60 H150" class="flow"/>
+          <path d="M162 34 h56 a8 8 0 0 1 8 8 v36 a8 8 0 0 1 -8 8 h-38 l-12 12 v-12 h-6 a8 8 0 0 1 -8 -8 v-36 a8 8 0 0 1 8 -8 z" class="bubble"/>
+          <rect x="172" y="46" width="44" height="6" rx="3" class="bar"/>
+          <g class="pill"><rect x="170" y="58" width="48" height="18" rx="9"/><text x="194" y="71">Dr. S</text></g>
+        </svg>
+        <div class="tile-num">05</div>
+        <h3>Press that AI repeats</h3>
+        <p>Every article and TV spot becomes a source ChatGPT and Google cite.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <rect x="20" y="14" width="150" height="28" rx="14" class="q-bub"/>
+          <text x="95" y="33" class="q-t">Best injector in NYC?</text>
+          <g class="typing"><circle cx="48" cy="72" r="5"/><circle cx="64" cy="72" r="5"/><circle cx="80" cy="72" r="5"/></g>
+          <g class="answer">
+            <rect x="20" y="56" width="200" height="66" rx="14" class="a-bub"/>
+            <rect x="36" y="70" width="110" height="7" rx="3.5" class="bar"/>
+            <rect x="36" y="100" width="150" height="7" rx="3.5" class="bar"/>
+            <g class="pill"><rect x="34" y="82" width="86" height="14" rx="7"/><text x="77" y="93">Luxurgery</text></g>
+          </g>
+        </svg>
+        <div class="tile-num">06</div>
+        <h3>The name AI gives</h3>
+        <p>When someone asks ChatGPT or Google who to see in NYC, Luxurgery is the answer.</p>
+      </div>
+
+      <div class="tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <rect x="20" y="12" width="200" height="26" rx="13" class="search"/>
+          <circle cx="38" cy="25" r="5" class="mag"/><path d="M42 29 l5 5" class="mag"/>
+          <text x="56" y="30" class="search-t">Luxurgery</text>
+          <g class="ad-row"><rect x="20" y="48" width="200" height="34" rx="8"/><text x="34" y="69">Ad · Another clinic</text></g>
+          <g class="you-row"><rect x="20" y="88" width="200" height="34" rx="8"/><text x="34" y="109">Luxurgery</text>
+            <path d="M196 97 l8 3 v6 c0 5 -4 8 -8 9 c-4 -1 -8 -4 -8 -9 v-6 z" class="shield"/></g>
+        </svg>
+        <div class="tile-num">07</div>
+        <h3>Own the search for your name</h3>
+        <p>We watch for competitors buying ads on "Luxurgery" and "Dr. S" and keep you on top.</p>
+      </div>
+
+      <div class="tile skip-tile">
+        <svg viewBox="0 0 240 140" aria-hidden="true">
+          <path d="M52 36 h136 a8 8 0 0 1 8 8 v12 a14 14 0 0 0 0 28 v12 a8 8 0 0 1 -8 8 h-136 a8 8 0 0 1 -8 -8 v-12 a14 14 0 0 0 0 -28 v-12 a8 8 0 0 1 8 -8 z" class="coupon"/>
+          <text x="120" y="77" class="coupon-t">70% OFF</text>
+          <path d="M40 112 L200 28" class="strike" pathLength="100"/>
+        </svg>
+        <div class="tile-num skip-num">Skip</div>
+        <h3>What we would not copy</h3>
+        <p>Groupon and big sales. They pull a luxury brand down. Memberships bring patients back without the discounts.</p>
+      </div>
+
     </div>
   </section>
 
