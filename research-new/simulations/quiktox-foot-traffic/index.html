@@ -378,11 +378,11 @@ html.modern .credit a{color:#5A647A}
         whenDay=document.getElementById('whenDay'), whenTime=document.getElementById('whenTime'), qkTodayEl=document.getElementById('qkToday'),
         night=document.getElementById('night'), playBtn=document.getElementById('play'), playIcon=document.getElementById('playIcon');
     (function(){var s='';for(var i=0;i<168;i++){var m=i*60+30,b=streetBusy(m),q=quiktoxBusy(m);
-      s+='<rect x="'+(i+.1)+'" y="'+(28-b*26)+'" width=".8" height="'+(b*26)+'" fill="#4A2F1B" opacity=".28"/>';
+      s+='<rect x="'+(i+.1)+'" y="'+(28-b*26)+'" width=".8" height="'+(b*26)+'" fill="'+(MODERN?'#1F4FE0':'#4A2F1B')+'" opacity="'+(MODERN?'.22':'.28')+'"/>';
 }
       var pl='';for(var j=0;j<=168*2;j++){var mm=j*30;pl+=(j?' ':'')+(j/2).toFixed(1)+','+(28-aiBusy(mm)*25).toFixed(1);}
       s+='<polyline points="'+pl+'" fill="none" stroke="#1F4FE0" stroke-width="1.1" vector-effect="non-scaling-stroke"/>';
-      for(var d=1;d<7;d++)s+='<line x1="'+(d*24)+'" x2="'+(d*24)+'" y1="0" y2="28" stroke="#4A2F1B" stroke-width=".4" opacity=".5"/>';
+      for(var d=1;d<7;d++)s+='<line x1="'+(d*24)+'" x2="'+(d*24)+'" y1="0" y2="28" stroke="'+(MODERN?'#C9C3B6':'#4A2F1B')+'" stroke-width=".4" opacity=".5"/>';
       hist.innerHTML=s;})();
     function fmt(m){var h=Math.floor((m%1440)/60),mm=Math.floor(m%60),ap=h<12?'AM':'PM',hh=h%12||12;return hh+':'+(mm<10?'0':'')+mm+' '+ap;}
     function label(b){return b>.75?'very busy':b>.45?'busy':b>.2?'a little busy':b>.06?'quiet':'closed for the night';}
