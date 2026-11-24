@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en-US"><head><meta name="robots" content="noindex, nofollow"><meta charset="utf-8"><meta name="color-scheme" content="light"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Local AI Registry Research: Local AEO Studies and Data</title>
+<meta name="description" content="Original AEO research from Local AI Registry on how ChatGPT, Claude, Gemini, Google AI Overviews and Perplexity find and recommend local businesses.">
+<link rel="canonical" href="https://localairegistry.com/research/">
+<meta name="theme-color" content="#F4F1EA">
+<meta property="og:type" content="website"><meta property="og:locale" content="en_US"><meta property="og:site_name" content="Local AI Registry Research"><meta property="og:title" content="Local AI Registry Research"><meta property="og:description" content="Original AEO research from Local AI Registry on how ChatGPT, Claude, Gemini, Google AI Overviews and Perplexity find and recommend local businesses."><meta property="og:url" content="https://localairegistry.com/research/">
+<meta property="og:image" content="https://localairegistry.com/research/og/local-ai-registry-research.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:type" content="image/png"><meta property="og:image:alt" content="Local AI Registry Research: How AI sends customers through the door, with a map of a business marked as a verified record"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@LocalAIRegistry"><meta name="twitter:title" content="Local AI Registry Research"><meta name="twitter:description" content="Original AEO research from Local AI Registry on how ChatGPT, Claude, Gemini, Google AI Overviews and Perplexity find and recommend local businesses."><meta name="twitter:image" content="https://localairegistry.com/research/og/local-ai-registry-research.png"><meta name="twitter:image:alt" content="Local AI Registry Research: How AI sends customers through the door">
+<link rel="alternate" type="text/plain" href="https://localairegistry.com/research/llms.txt" title="llms.txt">
+<link rel="preload" href="assets/fonts/hanken-grotesk.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="assets/fonts/cormorant.woff2" as="font" type="font/woff2" crossorigin>
+<style>
+@font-face{font-family:'Hanken Grotesk';src:url(assets/fonts/hanken-grotesk.woff2) format('woff2');font-weight:400 700;font-display:swap}
+@font-face{font-family:'Bricolage Grotesque';src:url(assets/fonts/bricolage-grotesque.woff2) format('woff2');font-weight:600 800;font-display:swap}
+@font-face{font-family:'Cormorant';src:url(assets/fonts/cormorant.woff2) format('woff2');font-weight:500 600;font-display:swap}
+:root{--paper:#F4F1EA;--card:#FBF9F4;--deep:#ECE6D6;--ink:#0B1A2E;--muted:#4A5A72;--blue:#1F4FE0;--line:#D8D2C3;--tint:#E6EBFA;--f-head:"Bricolage Grotesque",system-ui,sans-serif;--f-display:"Cormorant",Georgia,serif}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 "Hanken Grotesk",system-ui,sans-serif}
+a{color:var(--blue)}p,li{text-wrap:pretty}h1,h2,h3{margin:0;text-wrap:balance}
+.wrap{max-width:1040px;margin:0 auto;padding:0 16px}
+header.top{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:20px 0;border-bottom:1px solid var(--line)}
+header.top img{display:block;width:190px;height:auto}
+header.top nav{display:flex;gap:18px;font-size:14px;font-weight:600} header.top nav a{color:var(--ink);text-decoration:none}
+@media (max-width:600px){header.top{flex-wrap:wrap} header.top img{width:160px} header.top nav{gap:14px;font-size:13px} header.top nav a:last-child{display:none}}
+.k{font:800 12px var(--f-head);letter-spacing:.1em;text-transform:uppercase;color:var(--blue)}
+.hero-map{position:relative;width:100vw;margin-left:calc(50% - 50vw);height:max(560px,calc(100svh - 65px));background:#EEDDB8 radial-gradient(ellipse at center,#F3E6C6 0,#E6D2A6 100%);overflow:hidden;border-bottom:1px solid var(--line)}
+.mapbox{position:absolute;inset:0} .mapbox iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.hero-head{display:grid;gap:10px}
+.finder{position:absolute;z-index:6;top:16px;right:16px;width:min(380px,calc(100% - 32px))}
+.btn.big{font-size:17px;padding:13px 20px;border-radius:10px;box-shadow:0 6px 16px rgba(31,79,224,.28)}
+@media (min-width:641px) and (max-width:1020px){.hero-card{top:84px}} .finder svg{position:absolute;left:12px;top:13px;color:var(--muted);pointer-events:none}
+.finder input{width:100%;font:inherit;font-size:16px;color:#3B2A1A;background:rgba(246,235,208,.88);-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);border:1px solid rgba(74,47,27,.32);border-radius:10px;padding:10px 12px 10px 38px;min-height:44px;box-shadow:none} .finder input::placeholder{color:#7A6650} .finder input:focus{background:#FBF5E6} .finder svg{color:#7A6650!important;z-index:2}
+.finder input:focus{outline:2px solid var(--blue);outline-offset:1px}
+.finder ul{position:absolute;z-index:20;left:0;right:0;top:calc(100% + 4px);margin:0;padding:4px;list-style:none;background:#fff;border:1px solid var(--line);border-radius:10px;box-shadow:0 12px 28px rgba(11,26,46,.18);max-height:320px;overflow:auto}
+.finder li{padding:9px 10px;border-radius:6px;cursor:pointer;display:grid;gap:1px} .finder li[aria-selected=true],.finder li:hover{background:var(--tint)}
+.finder li b{font-weight:700;font-size:15px} .finder li span{font-size:13px;color:var(--muted)} .finder li.attr{cursor:default;font-size:11px;color:var(--muted);text-align:right;padding:4px 10px} .finder li.none{cursor:default;color:var(--muted);font-size:14px} .finder li.cta{border-top:1px solid var(--line,#e3e6ee);margin-top:4px;padding-top:10px} .finder li.cta a{color:var(--blue,#1f4fd8);font-weight:700;font-size:14px;text-decoration:none;white-space:nowrap} .finder li.cta a:hover,.finder li.cta.on a{text-decoration:underline}
+.hero-card{position:absolute;z-index:2;left:max(16px,calc(50vw - 520px));top:20px;max-width:540px;background:rgba(251,249,244,.96);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:grid;gap:10px;box-shadow:0 10px 30px rgba(11,26,46,.14)}
+.hero-card h1{font:600 clamp(30px,3.6vw,44px)/1.05 var(--f-display);text-wrap:balance}
+.hero-card p{margin:0;font-size:15.5px;color:var(--muted)} .hero-card .fine{font-size:12px}
+.nojs{position:absolute;bottom:20px;left:20px}
+@media (max-width:640px){
+ .hero-map{height:auto;min-height:calc(100svh - 92px);display:flex;flex-direction:column;background:none;overflow:visible;border-bottom:0}
+ .hero-card{display:contents}
+ .hero-head{order:1;padding:16px 16px 12px;gap:8px;position:relative;z-index:5} .hero-head h1{font-size:30px} .hero-head p{display:none}
+ .mapbox{order:2;position:relative;inset:auto;flex:1 1 auto;min-height:460px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:#EEDDB8}
+ .hero-head .fine{display:none} .finder{top:12px;left:12px;right:12px;width:auto} .btn.big{font-size:15px;padding:10px 16px}}
+.intro{padding:28px 0 16px;display:grid;gap:8px}
+.intro h1{font:600 clamp(32px,4.6vw,52px)/1.08 var(--f-display)}
+.mapfig{margin:0;display:grid;gap:8px}
+.mapframe{position:relative;height:clamp(420px,calc(100svh - 250px),760px);border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#EEDDB8 radial-gradient(ellipse at center,#F3E6C6 0,#E6D2A6 100%)}
+.mapframe::before{content:"Loading map";position:absolute;inset:0;display:grid;place-items:center;font:italic 18px var(--f-display);color:#4A2F1B}
+.mapframe iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.mapfig figcaption{font-size:14px;color:var(--muted)}
+.lede{font-size:19px;color:var(--ink);max-width:780px;margin:24px 0 0}
+.ph{display:inline-block;font:700 11px/1 var(--f-head);letter-spacing:.06em;text-transform:uppercase;border:1.5px dashed var(--muted);color:var(--muted);border-radius:4px;padding:4px 6px;margin-right:6px;vertical-align:1px}
+.ph.sim{border-style:solid;border-color:var(--blue);color:var(--blue)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.nums{padding:28px 0 0;display:grid;gap:8px}
+.nums ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media (max-width:760px){.nums ul{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.nums li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:14px 16px;font-size:14px;color:var(--muted)}
+.nums h2{font:800 clamp(22px,2.6vw,26px)/1.2 var(--f-head)}
+.nums li{display:flex;flex-direction:column;gap:2px} .nums .src{margin-top:auto;padding-top:6px;font-size:12px;color:var(--muted)}
+.nums b{display:block;font:800 clamp(26px,3.4vw,36px)/1.1 var(--f-head);color:var(--blue);font-variant-numeric:tabular-nums}
+.qa{border-top:1px solid var(--line);padding-top:12px;display:grid;gap:4px;max-width:780px} .qa h3{font:800 17px/1.35 var(--f-head)} .qa p{margin:0;color:var(--muted)}
+.lib{padding:40px 0 0;display:grid;gap:16px}
+.lib-head{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap} .lib-head h2{font:800 clamp(24px,3vw,30px)/1.2 var(--f-head)}
+.lib-count{margin:0;font-size:14px;color:var(--muted)}
+.lib-tools{display:grid;grid-template-columns:minmax(0,2.2fr) repeat(4,minmax(0,1fr));gap:8px}
+@media (max-width:900px){.lib-tools{grid-template-columns:repeat(2,minmax(0,1fr))} .lib-tools .srch{grid-column:1/-1}}
+.lib-tools select,.lib-tools input{width:100%;font:inherit;font-size:15px;color:var(--ink);background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 12px;min-height:44px}
+.srch{position:relative;display:block} .srch svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--muted)} .srch input{padding-left:38px}
+.studies{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.st{padding:16px 0;border-bottom:1px solid var(--line);display:grid;gap:6px}
+.st-meta{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px;color:var(--muted);align-items:center}
+.st-type{font:800 11px var(--f-head);letter-spacing:.08em;text-transform:uppercase;color:var(--blue)} .st-id{font-variant-numeric:tabular-nums}
+.st h3{font:800 19px/1.3 var(--f-head)} .st h3 a{color:var(--ink);text-decoration:none} .st h3 a:hover{text-decoration:underline}
+.st p{margin:0;font-size:15.5px;color:var(--muted);max-width:820px}
+.st-foot{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:center;font-size:13px}
+.st-eng{color:var(--ink);font-weight:600}
+.tags{display:flex;flex-wrap:wrap;gap:6px;margin:0;padding:0;list-style:none} .tags li{background:var(--deep);border-radius:999px;padding:2px 9px;font-size:12px}
+.st-links{display:flex;gap:12px;margin-left:auto;font-weight:600}
+.is-ph h3,.is-ph p,.is-ph .st-eng{color:#8A93A3} .is-ph .st-links span{color:#A9AFBA} .is-ph{background:repeating-linear-gradient(135deg,transparent 0 10px,rgba(216,210,195,.25) 10px 20px)}
+.empty{color:var(--muted)} .more{text-align:center} .more button{font:inherit;font-weight:700;padding:10px 18px;border-radius:6px;border:1px solid var(--line);background:var(--card);cursor:pointer}
+.hero{padding:56px 0 40px;display:grid;gap:16px;max-width:820px}
+.hero h1{font:600 clamp(40px,7vw,68px)/1.05 var(--f-display)}
+.hero p{font-size:19px;color:var(--muted);max-width:700px;margin:0}
+.feature{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:28px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:24px;align-items:center}
+@media (max-width:820px){.feature{grid-template-columns:minmax(0,1fr)}}
+.feature img{width:100%;height:auto;border-radius:6px;border:1px solid var(--line);display:block}
+.feature h2{font:800 clamp(23px,3vw,30px)/1.2 var(--f-head);letter-spacing:-.01em} .feature h2 a{color:var(--ink);text-decoration:none}
+.feature .body{display:grid;gap:14px} .feature p{margin:0;color:var(--muted)}
+.stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin:0;padding:0;list-style:none}
+.stats li{background:var(--paper);border:1px solid var(--line);border-radius:6px;padding:10px 12px;font-size:13.5px;line-height:1.35;color:var(--muted)}
+.stats b{display:block;font:800 26px/1.1 var(--f-head);color:var(--blue);margin-bottom:2px}
+.cta{display:flex;flex-wrap:wrap;gap:10px} .btn{display:inline-block;padding:10px 16px;border-radius:6px;font-weight:700;font-size:15px;text-decoration:none}
+.btn.p{background:var(--blue);color:#fff} .btn.s{border:1px solid var(--line);color:var(--ink);background:var(--card)}
+section.blk{padding:48px 0 0;display:grid;gap:14px} section.blk h2{font:800 clamp(24px,3vw,30px)/1.2 var(--f-head)}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px;margin:0;padding:0;list-style:none}
+.grid4 li{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:16px} .grid4 h3{font:800 17px/1.3 var(--f-head);margin-bottom:6px} .grid4 p{margin:0;font-size:15px;color:var(--muted)}
+.team p{max-width:780px;margin:0} .fine{font-size:13px;color:var(--muted)}
+.note{margin-top:48px;background:var(--tint);border-left:3px solid var(--blue);border-radius:4px;padding:18px 20px;display:grid;gap:8px;max-width:820px}
+.note p{margin:0} .note .t{font:600 23px/1.25 var(--f-display)}
+
+.nx-top,.nx-foot{--nx-ink:#0B1A2E;--nx-ink2:#5A647A;--nx-soft:#8C94A3;--nx-line:#E6E3DC;--nx-blue:#1F4FE0;--nx-paper:#F4F1EA;font:400 16px/1.6 "Hanken Grotesk",system-ui,sans-serif;color:var(--nx-ink);-webkit-font-smoothing:antialiased;text-align:left}
+.nx-top *,.nx-foot *{box-sizing:border-box}
+.nx-top{position:sticky;top:-40px;z-index:40}
+.nx-in{max-width:1200px;margin:0 auto;padding:0 24px}
+.nx-xa{background:var(--nx-ink);color:#fff;text-align:center;font-size:14px;line-height:20px;padding:10px 16px}
+.nx-xa a{color:#fff;text-decoration:none}
+.nx-xa b{display:inline-block;background:var(--nx-blue);font:600 10.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.12em;padding:5px 8px;border-radius:5px;margin-right:10px;vertical-align:1px}
+.nx-xh{background:rgba(255,255,255,.88);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom:1px solid var(--nx-line)}
+.nx-xh>.nx-in{display:flex;align-items:center;height:64px;gap:32px}
+.nx-brand{display:flex;align-items:center;gap:9px;text-decoration:none;font:700 18px/1 "Bricolage Grotesque",sans-serif;color:var(--nx-ink)!important;letter-spacing:-.01em;white-space:nowrap}
+.nx-brand svg{width:24px;height:24px;flex:0 0 auto}
+.nx-nav{display:flex;align-items:center;gap:26px;margin:0 auto}
+.nx-nav a{font-size:14.5px;text-decoration:none;color:var(--nx-ink2)!important}
+.nx-nav a[aria-current]{color:var(--nx-ink)!important;font-weight:500}.nx-nav a:hover{color:var(--nx-ink)!important}
+.nx-r{display:flex;align-items:center;gap:18px}
+.nx-li{font-size:14.5px;text-decoration:none;color:var(--nx-ink)!important;white-space:nowrap}
+.nx-agi{font:600 12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--nx-soft)!important;text-decoration:none;border:1px solid var(--nx-line);border-radius:6px;padding:5px 6px;letter-spacing:-.02em}
+.nx-agi:hover{color:var(--nx-ink)!important;border-color:var(--nx-ink)}
+.nx-xb{display:inline-flex;align-items:center;gap:10px;height:44px;padding:0 6px 0 20px;border-radius:999px;font:500 15px/1 "Hanken Grotesk",sans-serif;text-decoration:none!important;white-space:nowrap;transition:background .2s,transform .2s;border:0;cursor:pointer}
+.nx-xb i{width:32px;height:32px;border-radius:50%;display:grid;place-items:center;font-style:normal;font-size:15px}
+.nx-xb:active{transform:scale(.985)}
+.nx-b{background:var(--nx-blue,#1F4FE0);color:#fff!important}.nx-b i{background:rgba(255,255,255,.18)}.nx-b:hover{background:#1A43C2}
+.nx-k{background:var(--nx-ink,#0B1A2E);color:#fff!important;padding:0 20px}.nx-k:hover{background:#22324A}
+.nx-w{background:#fff;color:var(--nx-ink)!important}.nx-w i{background:var(--nx-paper)}
+.nx-o{background:transparent;color:#fff!important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.35);padding:0 20px}
+.nx-xh .nx-xb{height:38px;font-size:14px}.nx-xh .nx-xb i{width:28px;height:28px}
+.nx-menu{display:none;background:none;border:0;width:40px;height:40px;margin-left:auto;cursor:pointer}
+.nx-menu span{display:block;width:18px;height:1.5px;background:var(--nx-ink);margin:4px auto}
+.nx-sub{border-top:1px solid var(--nx-line)}
+.nx-sub .nx-in{display:flex;align-items:center;gap:22px;height:42px;overflow-x:auto;scrollbar-width:none}
+.nx-sub a{font-size:13.5px;color:var(--nx-ink2)!important;text-decoration:none;white-space:nowrap}.nx-sub a:hover{color:var(--nx-ink)!important}
+.nx-sub .nx-subh{font:600 11px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--nx-blue)!important}
+.nx-xm{display:none;position:fixed;inset:0;z-index:60;background:#fff;padding:16px 24px 24px;flex-direction:column;overflow-y:auto}
+.nx-xm.on{display:flex}.nx-lock body{overflow:hidden}
+.nx-x1{display:flex;justify-content:space-between;align-items:center;margin-bottom:24px}
+.nx-x1 button{background:none;border:0;font-size:30px;line-height:1;color:var(--nx-ink);cursor:pointer;padding:6px 2px}
+.nx-xmn{display:flex;flex-direction:column;gap:2px}
+.nx-g0{font:400 clamp(30px,8.5vw,40px)/1.15 "Hanken Grotesk",sans-serif;letter-spacing:-.025em;color:#5B6170!important;text-decoration:none;padding:8px 0}
+.nx-g0:first-child{color:var(--nx-ink)!important}
+.nx-xmf{margin-top:auto;padding-top:28px}.nx-xmf .nx-xb{display:flex;justify-content:center;min-height:54px}
+.nx-xmb{display:flex;justify-content:space-between;align-items:center;margin-top:22px;padding-top:20px;border-top:1px solid var(--nx-line);gap:12px;flex-wrap:wrap}
+.nx-xmb span{display:flex;gap:18px;align-items:center}.nx-xmb span a{color:var(--nx-ink)!important;text-decoration:none}
+.nx-soc{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.nx-soc a{display:grid;place-items:center;width:22px;height:22px;color:var(--nx-ink)}
+.nx-soc svg{width:20px;height:20px;fill:currentColor}
+@media (max-width:1180px){.nx-xh>.nx-in{gap:20px}.nx-nav{gap:16px}.nx-r{gap:12px}.nx-nav a{font-size:14px}}
+@media (max-width:980px){.nx-nav,.nx-r{display:none}.nx-menu{display:block}}
+@media (max-width:560px){.nx-xa{font-size:13px}}
+.nx-foot{margin-top:clamp(64px,8vw,110px)}
+.nx-close{background:var(--nx-ink);color:#fff;text-align:center;position:relative;overflow:hidden;padding:clamp(110px,12vw,170px) 0}
+.nx-close::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 70% at 50% 0%,rgba(31,79,224,.55),transparent 70%);opacity:.9}
+.nx-close::after{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.12) 1px,transparent 1px);background-size:5px 5px;-webkit-mask:linear-gradient(#000,transparent 75%);mask:linear-gradient(#000,transparent 75%)}
+.nx-close .nx-in{position:relative;z-index:1;text-align:center}
+.nx-h2{font:400 clamp(32px,3.5vw,48px)/1.18 "Hanken Grotesk",sans-serif;letter-spacing:-.025em;color:#fff;margin:0;text-wrap:balance}
+.nx-subp{margin:18px auto 0;max-width:30em;font-size:clamp(17px,1.4vw,20px);line-height:1.5;color:rgba(255,255,255,.7)}
+.nx-xbs{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:center;margin-top:30px}
+.nx-eb{font:600 11.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:#8C94A3;margin:0 0 18px;display:block}
+.nx-close .nx-eb{color:rgba(255,255,255,.6);margin-left:auto;margin-right:auto;width:fit-content}
+.nx-ft2{background:var(--nx-ink);color:rgba(255,255,255,.7);font-size:14px;padding:30px 0 40px;border-top:1px solid rgba(255,255,255,.08)}
+.nx-fcols{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:24px;padding:40px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.nx-fcols b{display:block;color:#fff;font-weight:500;margin-bottom:14px;font-size:14px}
+.nx-fcols a{display:block;text-decoration:none;color:rgba(255,255,255,.62)!important;padding:4px 0;font-size:13.5px}
+.nx-fcols a:hover{color:#fff!important}
+.nx-fsoc{display:flex;justify-content:space-between;align-items:center;gap:16px;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.08);flex-wrap:wrap}
+.nx-ft2 .nx-soc a{color:rgba(255,255,255,.7)}.nx-ft2 .nx-soc a:hover{color:#fff}
+.nx-agt{font:12px/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:rgba(255,255,255,.55)!important;text-decoration:none;letter-spacing:.02em}
+.nx-fb{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:22px;font-size:12.5px;color:rgba(255,255,255,.5)}
+.nx-fb a{color:inherit!important}
+@media (max-width:980px){.nx-fcols{grid-template-columns:1fr 1fr}}
+.nxfx .nx-eb{position:relative;width:fit-content;color:transparent}
+.nxfx .nx-eb::after{content:"";position:absolute;inset:-4px -6px;background:#1F4FE0;border-radius:3px;clip-path:inset(0 100% 0 0)}
+.nxfx .nx-eb.on{animation:nxebt .9s steps(1) forwards}.nxfx .nx-close .nx-eb.on{animation-name:nxebt2}
+.nxfx .nx-eb.on::after{animation:nxebw .9s cubic-bezier(.7,0,.3,1) forwards}
+@keyframes nxebw{0%{clip-path:inset(0 100% 0 0)}45%{clip-path:inset(0)}100%{clip-path:inset(0 0 0 100%)}}
+@keyframes nxebt{0%,44%{color:transparent}45%,100%{color:#8C94A3}}
+@keyframes nxebt2{0%,44%{color:transparent}45%,100%{color:rgba(255,255,255,.6)}}
+.nxfx .nx-rv{opacity:0;filter:blur(12px);transform:translateY(28px);transition:opacity 1s cubic-bezier(.2,.7,.2,1),filter 1s cubic-bezier(.2,.7,.2,1),transform 1s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
+.nxfx .nx-rv.on{opacity:1;filter:none;transform:none}
+@media (prefers-reduced-motion:reduce){.nx-rv{opacity:1!important;filter:none!important;transform:none!important}}
+
+/* New UI (matches localairegistry.com) */
+:root{--paper:#F4F1EA;--card:#FFFFFF;--deep:#F4F1EA;--ink:#0B1A2E;--muted:#5A647A;--soft:#8C94A3;--blue:#1F4FE0;--line:#E6E3DC;--tint:#EEF3FF}
+body{background:#fff;color:var(--ink);font:400 17px/1.6 "Hanken Grotesk",system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+h1,h2,h3{font-family:"Hanken Grotesk",system-ui,sans-serif!important;font-weight:400!important;letter-spacing:-.025em;color:var(--ink)}
+.wrap{max-width:1200px;padding:0 24px}
+.k{font:600 11.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--soft)}
+.hero-map{height:max(560px,calc(100svh - 146px));background:#EEDDB8;border-bottom:0;border-radius:0 0 clamp(28px,4vw,56px) clamp(28px,4vw,56px)}
+.hero-card{background:#fff;border:0;border-radius:24px;padding:clamp(22px,2.6vw,36px);gap:0;max-width:560px;top:24px;box-shadow:0 30px 70px -40px rgba(11,26,46,.45),0 2px 10px rgba(11,26,46,.06)}
+.hero-card .nx-eb{margin-bottom:16px}
+.hero-card h1{font-size:clamp(34px,3.6vw,52px)!important;line-height:1.08!important}
+.hero-card h1 .g{color:var(--soft)}
+.hero-card p{font-size:clamp(16px,1.3vw,18px);line-height:1.5;color:var(--muted);margin-top:16px}
+.hero-card .cta{margin-top:24px}
+.hero-card .fine{font-size:12.5px;margin-top:14px;color:var(--soft)}
+.finder input{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:999px;color:var(--ink);padding-left:40px;box-shadow:0 12px 30px -18px rgba(11,26,46,.45)}
+.finder input::placeholder{color:var(--soft)} .finder input:focus{background:#fff} .finder svg{color:var(--soft)!important;left:14px}
+.finder ul{border-color:var(--line);border-radius:16px}
+.nums{margin:clamp(56px,7vw,96px) 0 0;background:var(--paper);border-radius:28px;padding:clamp(48px,6vw,88px) clamp(20px,4vw,56px);text-align:center;display:block}
+.nums .nx-eb{margin-left:auto;margin-right:auto;width:fit-content}
+.nums h2{font:400 clamp(32px,3.5vw,48px)/1.18 "Hanken Grotesk",sans-serif!important;margin:0 auto;max-width:18em}
+.nums h2 .g{color:var(--soft)}
+.nums ul{margin-top:48px;padding-top:28px;border-top:1px solid #DCD6C8;gap:24px;text-align:left}
+.nums li{background:none;border:0;border-radius:0;padding:0;font-size:14px;color:var(--muted)}
+.nums b{font:400 clamp(30px,3vw,42px)/1.1 "Hanken Grotesk",sans-serif;letter-spacing:-.02em;color:var(--ink);margin-bottom:8px}
+.nums .src{font-size:12px;color:var(--soft);text-decoration:none;padding-top:6px} .nums .src:hover{color:var(--ink)}
+@media (max-width:760px){.nums{border-radius:20px;text-align:left}.nums .nx-eb{margin-left:0}.nums ul{grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 14px}}
+.lib{padding:clamp(72px,9vw,130px) 0 0;gap:0}
+.lib-head{align-items:flex-end;gap:32px;margin-bottom:clamp(32px,4vw,52px)}
+.lib-head h2{font:400 clamp(32px,3.5vw,48px)/1.18 "Hanken Grotesk",sans-serif!important}
+.lib-head h2 .g{color:var(--soft)}
+.lib-count{font-size:15px;color:var(--muted)}
+.lib-tools{margin-bottom:24px}.lib-tools[hidden]{display:none!important}
+.lib-tools select,.lib-tools input{background:#fff;border-color:var(--line);border-radius:999px;padding:10px 16px}
+.srch input{padding-left:40px}
+.studies{border-top:1px solid var(--line)}
+.st{display:grid;grid-template-columns:160px minmax(0,1fr);column-gap:32px;row-gap:8px;padding:28px 0;border-bottom:1px solid var(--line);transition:background .25s}
+.st-meta{grid-row:1/span 3;flex-direction:column;align-items:flex-start;gap:4px;font-size:12.5px;color:#646C7E}
+.st-type{font:600 10.5px/1 "Bricolage Grotesque",sans-serif;letter-spacing:.14em;color:var(--blue)}
+.st h3{font:500 22px/1.3 "Hanken Grotesk",sans-serif!important;letter-spacing:-.02em}
+.st h3 a{color:var(--ink)} .st h3 a:hover{color:var(--blue);text-decoration:none}
+.st p{font-size:15px;color:var(--muted);max-width:760px}
+.st-foot{font-size:13px;gap:8px 16px;margin-top:6px}
+.st-eng{color:var(--muted);font-weight:500}
+.tags li{background:var(--paper);color:var(--ink);padding:3px 10px}
+.st-links{gap:16px}.st-links a{color:var(--ink);text-decoration:none;font-weight:500;border-bottom:1px solid var(--line)} .st-links a:hover{border-color:var(--ink)}
+@media (max-width:760px){.st{grid-template-columns:minmax(0,1fr)}.st-meta{grid-row:auto;flex-direction:row;flex-wrap:wrap;gap:4px 12px}.st-links{margin-left:0}}
+section.blk{padding:clamp(72px,9vw,130px) 0 0;gap:18px}
+section.blk h2{font:400 clamp(32px,3.5vw,48px)/1.18 "Hanken Grotesk",sans-serif!important;margin-bottom:12px}
+section.blk h2 .g{color:var(--soft)}
+section.blk p{color:var(--muted)}
+.grid4{gap:16px}
+.grid4 li{background:var(--paper);border:0;border-radius:20px;padding:28px}
+.grid4 h3{font:500 19px/1.3 "Hanken Grotesk",sans-serif!important;letter-spacing:-.01em;margin-bottom:8px}
+.grid4 p{font-size:15px;color:var(--muted)}
+.team p{color:var(--muted)} .team p a{color:var(--ink)}
+#faq{gap:0}
+.qa{border-top:0;border-bottom:1px solid var(--line);padding:22px 0;max-width:none;gap:8px}
+#faq .qa:first-of-type{border-top:1px solid var(--line)}
+.qa h3{font:500 17px/1.4 "Hanken Grotesk",sans-serif!important;letter-spacing:-.01em}
+.qa p{font-size:15.5px;max-width:780px}
+.note{margin-top:clamp(56px,7vw,96px);background:none;border-left:2px solid var(--blue);border-radius:0;padding:4px 0 4px 18px;max-width:44em;gap:6px}
+.note .k{color:var(--blue)} .note .t{font:500 19px/1.35 "Hanken Grotesk",sans-serif;letter-spacing:-.01em}
+.note p{font-size:15px;color:var(--muted)} .note p.t{color:var(--ink)}
+.btn{border-radius:999px}
+.btn.p{background:var(--blue)}
+.sw{display:inline-block;white-space:nowrap}
+.hubfx .fx .sc{display:inline-block;opacity:0;filter:blur(10px);transform:translateY(14%)}
+.hubfx .fx.on .sc{animation:xrb .9s cubic-bezier(.2,.7,.2,1) forwards;animation-delay:calc(var(--i,0) * 16ms)}
+@keyframes xrb{100%{opacity:1;filter:none;transform:none}}
+@media (prefers-reduced-motion:reduce){.hubfx .fx .sc{opacity:1;filter:none;transform:none;animation:none}}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://localairegistry.com/#organization", "name": "Local AI Registry", "alternateName": ["LAIR", "localairegistry.com"], "url": "https://localairegistry.com", "logo": "https://localairegistry.com/research/local-answer-gap/images/local-ai-registry-logo.png", "sameAs": ["https://www.linkedin.com/company/local-ai-registry", "https://x.com/LocalAIRegistry", "https://www.instagram.com/localairegistry/", "https://www.facebook.com/profile.php?id=61591432116527", "https://www.tiktok.com/@localairegistry", "https://pinterest.com/localairegistry", "https://www.trustpilot.com/review/localairegistry.com", "https://www.youtube.com/@localairegistry", "https://www.crunchbase.com/organization/local-ai-registry", "https://www.saasworthy.com/product/local-ai-registry"], "address": {"@type": "PostalAddress", "streetAddress": "9891 Irvine Center Dr", "addressLocality": "Irvine", "addressRegion": "CA", "postalCode": "92618", "addressCountry": "US"}, "telephone": "+1-213-931-5633", "subOrganization": {"@id": "https://localairegistry.com/research/#research-team"}}, {"@type": "ResearchOrganization", "@id": "https://localairegistry.com/research/#research-team", "name": "Local AI Registry Research Team", "url": "https://localairegistry.com/research/#research-team", "parentOrganization": {"@id": "https://localairegistry.com/#organization"}, "knowsAbout": ["Answer engine optimization", "Generative engine optimization", "Google AI Overviews", "AI search citations", "Local search"]}, {"@type": "WebSite", "@id": "https://localairegistry.com/research/#website", "url": "https://localairegistry.com/research/", "name": "Local AI Registry Research", "publisher": {"@id": "https://localairegistry.com/#organization"}, "inLanguage": "en-US"}, {"@type": "CollectionPage", "@id": "https://localairegistry.com/research/#page", "url": "https://localairegistry.com/research/", "name": "Local AI Registry Research", "description": "Original AEO research from Local AI Registry on how ChatGPT, Claude, Gemini, Google AI Overviews and Perplexity find and recommend local businesses.", "isPartOf": {"@id": "https://localairegistry.com/research/#website"}, "about": [{"@type": "Thing", "name": "Answer engine optimization"}, {"@type": "Thing", "name": "Local search"}], "breadcrumb": {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Local AI Registry", "item": "https://localairegistry.com/"}, {"@type": "ListItem", "position": 2, "name": "Research", "item": "https://localairegistry.com/research/"}]}, "mainEntity": {"@type": "ItemList", "numberOfItems": 4, "itemListElement": [{"@type": "ListItem", "position": 1, "url": "https://localairegistry.com/research/local-ai-trends/", "name": "LocalAITrends: what America searches before it books"}, {"@type": "ListItem", "position": 2, "url": "https://localairegistry.com/research/med-spa-search-signals/", "name": "Med Spa Search Signals: what Google searches reveal about aesthetic clients and sales"}, {"@type": "ListItem", "position": 3, "url": "https://localairegistry.com/research/how-often-ai-recommends-your-business/", "name": "How Often AI Recommends Your Business: A Better Measure of Local Visibility"}, {"@type": "ListItem", "position": 4, "url": "https://localairegistry.com/research/local-answer-gap/", "name": "The Local Answer Gap: what 7,583 Google AI answers reveal about AEO for local businesses"}]}, "speakable": {"@type": "SpeakableSpecification", "cssSelector": [".hero-card h1", ".nums", "#faq"]}}, {"@type": "FAQPage", "@id": "https://localairegistry.com/research/#faq", "mainEntity": [{"@type": "Question", "name": "How many people use AI to find local businesses?", "acceptedAnswer": {"@type": "Answer", "text": "Nearly half of consumers now ask AI tools such as ChatGPT, Gemini and Perplexity for local business recommendations, according to BrightLocal’s 2026 research. ChatGPT has more than 900 million weekly users, Google’s AI Mode passed one billion monthly users in May 2026 with queries more than doubling every quarter, and Local AI Registry found that 76.4% of local business searches show a Google AI answer before any link."}}, {"@type": "Question", "name": "What is Local AI Registry Research?", "acceptedAnswer": {"@type": "Answer", "text": "Local AI Registry Research is the research program of Local AI Registry, an answer engine optimization (AEO) company for local businesses. Its dedicated local AI research team studies how ChatGPT, Claude, Gemini, Google AI Overviews, Perplexity and Microsoft Copilot find, read and recommend local businesses, and publishes the findings free at localairegistry.com/research."}}, {"@type": "Question", "name": "What has Local AI Registry’s research found?", "acceptedAnswer": {"@type": "Answer", "text": "In The Local Answer Gap, Local AI Registry analyzed 7,583 Google AI Overviews and 98,020 fact-checked claims. News outlets supplied 67.5% of the citations in AI answers about local businesses, businesses’ own websites supplied 6.5%, and 83.6% of answers told people to check with their local store."}}, {"@type": "Question", "name": "Can I use Local AI Registry’s research and charts?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. All findings and charts are free to use under a CC BY 4.0 license with credit to Local AI Registry and a link to the study. Every chart has a ready-made embed code, and each study’s data can be downloaded."}}, {"@type": "Question", "name": "How does Local AI Registry use this research?", "acceptedAnswer": {"@type": "Answer", "text": "Every finding feeds the AEO playbook Local AI Registry uses for local businesses: verified owner-confirmed business records, Google Business Profile management, press, AEO content, technical AEO and listing consistency."}}]}]}</script></head>
+<body><div class="nx-top" role="banner"><div class="nx-xa"><a href="https://localairegistry.com/guarantee"><b>90 DAYS</b>Named in AI in 90 days, or we keep working for free. See how&nbsp;›</a></div><div class="nx-xh"><div class="nx-in"><a class="nx-brand" href="https://localairegistry.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 21h-6.2L12 13.6 8.2 21H2z" fill="#1F4FE0"/><path d="M12 2l2.7 5.1H9.3z" fill="#FF5A3C"/></svg>Local AI Registry</a><nav class="nx-nav" aria-label="Main"><a href="https://localairegistry.com/blueprint">Platform</a><a href="https://localairegistry.com/solutions">Solutions</a><a href="https://localairegistry.com/results">Customers</a><a href="https://localairegistry.com/research" aria-current="page">Research</a><a href="https://localairegistry.com/plan">Pricing</a></nav><div class="nx-r"><a class="nx-agi" href="https://localairegistry.com/agents" title="For AI agents" aria-label="For AI agents">&gt;_</a><a class="nx-li" href="https://localairegistry.com/login">Log in</a><a class="nx-xb nx-b" href="https://localairegistry.com/start">Free AI audit<i>›</i></a></div><button class="nx-menu" type="button" data-nxmenu aria-label="Open menu"><span></span><span></span></button></div><nav class="nx-sub" aria-label="Research"><div class="nx-in"><a class="nx-subh" href="./">Research</a><a href="./#library">Library</a><a href="local-ai-trends/">Latest study</a><a href="./#research-team">Team</a><a href="local-ai-trends/#cite">How to cite</a></div></nav></div><div class="nx-xm" role="dialog" aria-label="Menu"><div class="nx-x1"><a class="nx-brand" href="https://localairegistry.com/"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 22 21h-6.2L12 13.6 8.2 21H2z" fill="#1F4FE0"/><path d="M12 2l2.7 5.1H9.3z" fill="#FF5A3C"/></svg>Local AI Registry</a><button type="button" data-nxmenu aria-label="Close menu">×</button></div><nav class="nx-xmn" aria-label="Menu"><a class="nx-g0" href="https://localairegistry.com/">Home</a><a class="nx-g0" href="https://localairegistry.com/blueprint">Platform</a><a class="nx-g0" href="https://localairegistry.com/solutions">Solutions</a><a class="nx-g0" href="https://localairegistry.com/results">Customers</a><a class="nx-g0" href="https://localairegistry.com/research">Research</a><a class="nx-g0" href="https://localairegistry.com/plan">Pricing</a></nav><div class="nx-xmf"><a class="nx-xb nx-b" href="https://localairegistry.com/start">Get my free AI audit<i>›</i></a><div class="nx-xmb"><div class="nx-soc"><a href="https://www.linkedin.com/company/local-ai-registry" target="_blank" rel="me noopener" aria-label="Local AI Registry on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg></a><a href="https://www.youtube.com/@localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://x.com/LocalAIRegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a href="https://www.instagram.com/localairegistry/" target="_blank" rel="me noopener" aria-label="Local AI Registry on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.6a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4zm0 8.6a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8zm5.4-9.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61591432116527" target="_blank" rel="me noopener" aria-label="Local AI Registry on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a href="https://www.tiktok.com/@localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.920-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.150-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://pinterest.com/localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.920-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026z"/></svg></a><a href="https://www.crunchbase.com/organization/local-ai-registry" target="_blank" rel="me noopener" aria-label="Local AI Registry on Crunchbase"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 0H2.4A2.41 2.41 0 0 0 0 2.4v19.2A2.41 2.41 0 0 0 2.4 24h19.2a2.41 2.41 0 0 0 2.4-2.4V2.4A2.41 2.41 0 0 0 21.6 0zM7.045 14.465A2.11 2.11 0 0 0 9.84 13.42h1.66a3.69 3.69 0 1 1 0-1.75H9.84a2.11 2.11 0 1 0-2.795 2.795zm11.345.845a3.55 3.55 0 0 1-1.06.63 3.68 3.68 0 0 1-3.39-.38v.38h-1.51V5.37h1.5v4.11a3.74 3.74 0 0 1 1.8-.63H16a3.67 3.67 0 0 1 2.39 6.46zm-.223-2.766a2.104 2.104 0 1 1-4.207 0 2.104 2.104 0 0 1 4.207 0z"/></svg></a></div><span><a href="https://localairegistry.com/signup">Sign up</a><a href="https://localairegistry.com/login">Log in&nbsp;→</a></span></div></div></div></div><div class="wrap">
+<main>
+<section class="hero-map" aria-labelledby="h1">
+<div class="mapbox"><iframe id="sim" title="Interactive map: people asking AI assistants and walking to Quiktox, a med spa on Newport Boulevard in Costa Mesa" data-src="simulations/quiktox-foot-traffic/index.html?embed=1" allow="fullscreen"></iframe>
+<noscript><p class="nojs"><a href="simulations/quiktox-foot-traffic/index.html?embed=1">Open the interactive map</a></p></noscript>
+<div class="finder" id="finder" data-gkey="" data-contact="https://localairegistry.com/signup/business/new"><label class="sr" for="gq">Find any business on the map</label>
+<svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+<input id="gq" type="search" placeholder="Search a business or address" autocomplete="off" role="combobox" aria-autocomplete="list" aria-expanded="false" aria-controls="gopts" maxlength="120">
+<ul id="gopts" role="listbox" hidden></ul></div></div>
+<div class="hero-card"><div class="hero-head">
+<span class="nx-eb">Research</span>
+<h1 id="h1">How AI sends customers through the&nbsp;door</h1>
+<p>Every day people ask ChatGPT, Claude, Gemini and Google where to go. We study how those answers are made, and which local businesses they&nbsp;name.</p>
+<div class="cta"><a class="nx-xb nx-b" href="#library">Explore the research<i aria-hidden="true">↓</i></a></div>
+<p class="fine" id="gstatus" aria-live="polite">Click the pin to see the business on Local AI Registry. Real streets; foot traffic is&nbsp;illustrative.</p></div>
+</div>
+</section>
+
+<section class="nums" aria-labelledby="numh"><span class="nx-eb">Local discovery has moved to AI</span><h2 id="numh">People ask AI where&nbsp;to&nbsp;go.<br><span class="g">Here’s how&nbsp;often.</span></h2><ul>
+<li class="nx-rv"><b>45%</b>of consumers ask AI for local business recommendations<a class="src" href="https://www.brightlocal.com/research/lcrs-ai-trust/">BrightLocal, 2026</a></li>
+<li class="nx-rv" style="--d:.12s"><b>900M+</b>people use ChatGPT every&nbsp;week<a class="src" href="https://searchengineland.com/chatgpt-900-million-weekly-active-users-470492">OpenAI, 2026</a></li>
+<li class="nx-rv" style="--d:.24s"><b>1B+</b>monthly users of Google AI Mode, with queries doubling every&nbsp;quarter<a class="src" href="https://blog.google/products-and-platforms/products/search/search-io-2026/">Google, May 2026</a></li>
+<li class="nx-rv" style="--d:.36s"><b>76.4%</b>of local business searches show an AI answer before any&nbsp;link<a class="src" href="local-answer-gap/">Local AI Registry, 2026</a></li></ul></section>
+
+<section class="lib" id="library" aria-labelledby="libh">
+<div class="lib-head"><div><span class="nx-eb">Research library</span><h2 id="libh">Studies, indexes <span class="g">and&nbsp;datasets.</span></h2></div>
+<p class="lib-count" id="count" aria-live="polite">4 studies</p></div>
+<form class="lib-tools" hidden onsubmit="return false">
+<label class="srch"><span class="sr">Search the research</span><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16.5 16.5L21 21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><input id="q" type="search" placeholder="Search studies, topics or AI assistants" autocomplete="off"></label>
+<label><span class="sr">Topic</span><select id="f-topic"><option value="">All topics</option><option value="AI visibility">AI visibility</option><option value="Accuracy">Accuracy</option><option value="Citations">Citations</option><option value="Consumer spending">Consumer spending</option><option value="Dispensaries">Dispensaries</option><option value="Healthcare">Healthcare</option><option value="Local search">Local search</option><option value="Med spas">Med spas</option><option value="Retail chains">Retail chains</option><option value="Search trends">Search trends</option><option value="Seasonality">Seasonality</option></select></label>
+<label><span class="sr">AI assistant</span><select id="f-eng"><option value="">All AI assistants</option><option value="ChatGPT">ChatGPT</option><option value="Claude">Claude</option><option value="Gemini">Gemini</option><option value="Google AI Overviews">Google AI Overviews</option><option value="Perplexity">Perplexity</option></select></label>
+<label><span class="sr">Type</span><select id="f-type"><option value="">All types</option><option value="Brief">Brief</option><option value="Study">Study</option></select></label>
+<label><span class="sr">Sort</span><select id="f-sort"><option value="new">Newest first</option><option value="old">Oldest first</option><option value="az">A to Z</option></select></label>
+</form>
+<ol class="studies" id="studies"><li class="st" data-type="Brief" data-engines="Google AI Overviews" data-topics="Local search|Med spas|Dispensaries|Seasonality" data-date="2026-11-19" data-text="localaitrends: what america searches before it books botox search interest beat thanksgiving week by 28% to 50% in the week before the holiday every year from 2021 to 2025, and 13 of 14 viral search twins fell apart when tested on states and age mix. google ai overviews local search med spas dispensaries seasonality"><div class="st-meta"><span class="st-type">Brief</span><span>Nov 19, 2026</span><span class="st-id">LAIR-R-2026-004</span></div><h3><a href="local-ai-trends/">LocalAITrends: what America searches before it books</a></h3><p>Botox search interest beat Thanksgiving week by 28% to 50% in the week before the holiday every year from 2021 to 2025, and 13 of 14 viral search twins fell apart when tested on states and age mix.</p><div class="st-foot"><span class="st-eng">Google AI Overviews</span><ul class="tags"><li>Local search</li><li>Med spas</li><li>Dispensaries</li><li>Seasonality</li></ul><span class="st-links"><a href="local-ai-trends/">Read</a><a href="local-ai-trends/#cite">Cite</a><a href="local-ai-trends/data/local-ai-trends-data.csv">Data (CSV)</a></span></div></li><li class="st" data-type="Study" data-engines="Google AI Overviews|ChatGPT" data-topics="Med spas|Search trends|Consumer spending" data-date="2026-11-15" data-text="med spa search signals: what google searches reveal about aesthetic clients and sales sephora search growth tracked sales growth at jeuveau maker evolus at 0.71 over 15 quarters while jeuveau’s own searches scored −0.08, and med spa searches follow the pilates state map at 0.81. google ai overviews, chatgpt med spas search trends consumer spending"><div class="st-meta"><span class="st-type">Study</span><span>Nov 15, 2026</span><span class="st-id">LAIR-R-2026-003</span></div><h3><a href="med-spa-search-signals/">Med Spa Search Signals: what Google searches reveal about aesthetic clients and sales</a></h3><p>Sephora search growth tracked sales growth at Jeuveau maker Evolus at 0.71 over 15 quarters while Jeuveau’s own searches scored −0.08, and med spa searches follow the Pilates state map at 0.81.</p><div class="st-foot"><span class="st-eng">Google AI Overviews, ChatGPT</span><ul class="tags"><li>Med spas</li><li>Search trends</li><li>Consumer spending</li></ul><span class="st-links"><a href="med-spa-search-signals/">Read</a><a href="med-spa-search-signals/#cite">Cite</a><a href="med-spa-search-signals/data/med-spa-search-signals-data.csv">Data (CSV)</a><a href="med-spa-search-signals/#video">Video (1:17)</a></span></div></li><li class="st" data-type="Brief" data-engines="ChatGPT|Gemini|Claude|Perplexity|Google AI Overviews" data-topics="AI visibility|Accuracy|Local search|Healthcare" data-date="2026-11-10" data-text="how often ai recommends your business: a better measure of local visibility asked the same query twice, gemini’s sources overlapped by only 0.46 and a median of 29% of the businesses chatgpt named appeared in both answers, so ai visibility is best measured as how often a business is named across many answers. chatgpt, gemini, claude, perplexity, google ai overviews ai visibility accuracy local search healthcare"><div class="st-meta"><span class="st-type">Brief</span><span>Nov 10, 2026</span><span class="st-id">LAIR-R-2026-002</span></div><h3><a href="how-often-ai-recommends-your-business/">How Often AI Recommends Your Business: A Better Measure of Local Visibility</a></h3><p>Asked the same query twice, Gemini’s sources overlapped by only 0.46 and a median of 29% of the businesses ChatGPT named appeared in both answers, so AI visibility is best measured as how often a business is named across many answers.</p><div class="st-foot"><span class="st-eng">ChatGPT, Gemini, Claude, Perplexity, Google AI Overviews</span><ul class="tags"><li>AI visibility</li><li>Accuracy</li><li>Local search</li><li>Healthcare</li></ul><span class="st-links"><a href="how-often-ai-recommends-your-business/">Read</a><a href="how-often-ai-recommends-your-business/#cite">Cite</a><a href="how-often-ai-recommends-your-business/data/how-often-ai-recommends-your-business-data.csv">Data (CSV)</a><a href="how-often-ai-recommends-your-business/#video">Video (1:04)</a></span></div></li><li class="st" data-type="Study" data-engines="Google AI Overviews" data-topics="Local search|Citations|Retail chains" data-date="2026-11-07" data-text="the local answer gap: what 7,583 google ai answers reveal about aeo for local businesses news outlets supplied 67.5% of the citations in google’s ai answers about local businesses; businesses’ own websites supplied 6.5%, and 83.6% of answers told people to check with their local store. google ai overviews local search citations retail chains"><div class="st-meta"><span class="st-type">Study</span><span>Nov 7, 2026</span><span class="st-id">LAIR-R-2026-001</span></div><h3><a href="local-answer-gap/">The Local Answer Gap: what 7,583 Google AI answers reveal about AEO for local businesses</a></h3><p>News outlets supplied 67.5% of the citations in Google’s AI answers about local businesses; businesses’ own websites supplied 6.5%, and 83.6% of answers told people to check with their local store.</p><div class="st-foot"><span class="st-eng">Google AI Overviews</span><ul class="tags"><li>Local search</li><li>Citations</li><li>Retail chains</li></ul><span class="st-links"><a href="local-answer-gap/">Read</a><a href="local-answer-gap/#cite">Cite</a><a href="local-answer-gap/data/local-answer-gap-data.csv">Data (CSV)</a><a href="local-answer-gap/#video">Video (1:56)</a></span></div></li></ol>
+<p class="empty" id="empty" hidden>No studies match. Try a different search or clear the filters.</p>
+<div class="more"><button type="button" id="more" hidden>Show more</button></div>
+</section>
+
+<section class="blk" aria-labelledby="study"><span class="nx-eb">Focus</span><h2 id="study">What we&nbsp;study</h2>
+<ul class="grid4">
+<li class="nx-rv"><h3>Where AI gets local facts</h3><p>Which sources AI assistants cite when they answer questions about local&nbsp;businesses.</p></li>
+<li class="nx-rv" style="--d:.12s"><h3>What AI can read</h3><p>Which pages, listings and formats AI can actually read and verify.</p></li>
+<li class="nx-rv" style="--d:.24s"><h3>How answers change</h3><p>How wording, timing and the assistant used change who gets&nbsp;recommended.</p></li>
+<li class="nx-rv" style="--d:.36s"><h3>What owners can do</h3><p>Turning every finding into steps a local business can take, tested on real&nbsp;businesses.</p></li></ul></section>
+
+<section class="blk team" id="research-team" aria-labelledby="t"><span class="nx-eb">The team</span><h2 id="t">About the Local AI Registry <span class="g">Research&nbsp;Team</span></h2>
+<p><b>The Local AI Registry Research Team</b> is Local AI Registry’s dedicated local AI research group, and its people come from some of the biggest names in search, tech and brick-and-mortar business: Google, Microsoft, Spotify, Chase, Mozilla Firefox, Allergan, Galderma, Evolus, Revance, Johnson&nbsp;&amp;&nbsp;Johnson, Bayer, Estée Lauder, Nordstrom, Sephora, Saks Fifth Avenue, Spectrum, BitGo, Republic, NextSeed, Toptal and RxSight. It is led by a former Google Search executive, advised by a Stanford-trained dermatologist and a Northwestern professor who is a past president of the American Society for Laser Medicine and Surgery, and spread across California, Washington, Texas, New York, Florida, Brazil, Nigeria, Poland, India and Singapore. The team works from raw public data, owns and runs a local med spa, and studies how ChatGPT, Claude, Gemini, Google AI Overviews, Perplexity and Microsoft&nbsp;Copilot find and describe local&nbsp;businesses.</p>
+<p>The team is a dedicated follower of the researchers who built modern AI and those who study AI search, including Geoffrey&nbsp;Hinton, Yoshua&nbsp;Bengio, Yann&nbsp;LeCun, Ashish&nbsp;Vaswani, Noam&nbsp;Shazeer, Demis&nbsp;Hassabis, Jeff&nbsp;Dean, Ilya&nbsp;Sutskever, Andrej&nbsp;Karpathy, Dario&nbsp;Amodei, Jared&nbsp;Kaplan, Chris&nbsp;Olah, Fei-Fei&nbsp;Li, Andrew&nbsp;Ng, Percy&nbsp;Liang, Karthik&nbsp;Narasimhan, Ameet&nbsp;Deshpande, Himabindu&nbsp;Lakkaraju, Aounon&nbsp;Kumar, Nelson&nbsp;F.&nbsp;Liu, Umar&nbsp;Iqbal and Jacob&nbsp;M.&nbsp;Montgomery. Their work underpins ChatGPT, Claude and Gemini, and the team studies their papers and tests their ideas against what AI says about local&nbsp;businesses. <span class="fine">No&nbsp;affiliation or endorsement implied. See the <a href="local-answer-gap/#references">references</a>.</span></p>
+<p>The team also turns its findings into plain-language explainers on the <a href="https://www.youtube.com/@localairegistry">Local AI Registry YouTube channel</a>.</p></section>
+
+<section class="blk" aria-labelledby="use"><span class="nx-eb">Free to use</span><h2 id="use">Use our&nbsp;research</h2>
+<p style="margin:0;max-width:780px">All charts and findings are free to use with credit under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Every chart has a ready-made embed code, and the data behind each study is downloadable. Please credit “Local AI Registry” and link to the study.</p></section>
+
+<section class="blk" id="faq" aria-labelledby="faqh"><span class="nx-eb">FAQ</span><h2 id="faqh">Questions about our&nbsp;research</h2>
+<div class="qa"><h3>How many people use AI to find local businesses?</h3><p>Nearly half of consumers now ask AI tools such as ChatGPT, Gemini and Perplexity for local business recommendations, according to BrightLocal’s 2026 research. ChatGPT has more than 900 million weekly users, Google’s AI Mode passed one billion monthly users in May 2026 with queries more than doubling every quarter, and Local AI Registry found that 76.4% of local business searches show a Google AI answer before any link.</p></div><div class="qa"><h3>What is Local AI Registry Research?</h3><p>Local AI Registry Research is the research program of Local AI Registry, an answer engine optimization (AEO) company for local businesses. Its dedicated local AI research team studies how ChatGPT, Claude, Gemini, Google AI Overviews, Perplexity and Microsoft Copilot find, read and recommend local businesses, and publishes the findings free at localairegistry.com/research.</p></div><div class="qa"><h3>What has Local AI Registry’s research found?</h3><p>In The Local Answer Gap, Local AI Registry analyzed 7,583 Google AI Overviews and 98,020 fact-checked claims. News outlets supplied 67.5% of the citations in AI answers about local businesses, businesses’ own websites supplied 6.5%, and 83.6% of answers told people to check with their local store.</p></div><div class="qa"><h3>Can I use Local AI Registry’s research and charts?</h3><p>Yes. All findings and charts are free to use under a CC BY 4.0 license with credit to Local AI Registry and a link to the study. Every chart has a ready-made embed code, and each study’s data can be downloaded.</p></div><div class="qa"><h3>How does Local AI Registry use this research?</h3><p>Every finding feeds the AEO playbook Local AI Registry uses for local businesses: verified owner-confirmed business records, Google Business Profile management, press, AEO content, technical AEO and listing consistency.</p></div></section>
+
+<aside class="note"><div class="k">One last thing</div><p class="t">AI is evolving every day. So is our&nbsp;research.</p>
+<p>The engines change how they find, read and cite local businesses constantly. Local AI Registry’s dedicated local AI research team keeps testing what works, so the businesses we serve always get the current best&nbsp;approach.</p></aside>
+</main>
+</div><div class="nx-foot" role="contentinfo"><section class="nx-close"><div class="nx-in"><span class="nx-eb">The 90-day guarantee</span><h2 class="nx-h2">Put the research to work<br>for your&nbsp;business.</h2><p class="nx-subp">Named in AI in 90 days. If not, we keep working for free until&nbsp;it&nbsp;happens.</p><div class="nx-xbs"><a class="nx-xb nx-w" href="https://localairegistry.com/start">Get my free AI audit<i>›</i></a><a class="nx-xb nx-o" href="https://localairegistry.com/guarantee">How the guarantee works</a></div></div></section><footer class="nx-ft2"><div class="nx-in"><div class="nx-fcols"><div><b>Research</b><a href="./#library">Library</a><a href="local-ai-trends/">LocalAITrends</a><a href="med-spa-search-signals/">Med Spa Search Signals</a><a href="how-often-ai-recommends-your-business/">How Often AI Recommends Your Business</a><a href="local-answer-gap/">The Local Answer Gap</a><a href="./#research-team">Research team</a><a href="local-ai-trends/#cite">How to cite</a><a href="llms.txt">llms.txt</a></div><div><b>Platform</b><a href="https://localairegistry.com/blueprint">The Blueprint</a><a href="https://localairegistry.com/blueprint/ai-monitoring">AI monitoring</a><a href="https://localairegistry.com/blueprint/google-profile">Google profile</a><a href="https://localairegistry.com/blueprint/reputation">Reviews</a><a href="https://localairegistry.com/blueprint/directory-listings">Directory listings</a><a href="https://localairegistry.com/blueprint/pr">Press releases</a><a href="https://localairegistry.com/blueprint/seo">SEO</a><a href="https://localairegistry.com/blueprint/web-management">Website</a></div><div><b>Solutions</b><a href="https://localairegistry.com/solutions/owners">Local business owners</a><a href="https://localairegistry.com/solutions/multi-location">Multi-location groups</a><a href="https://localairegistry.com/solutions/teams">Teams and agencies</a><a href="https://localairegistry.com/industries">By industry</a><a href="https://localairegistry.com/start">Free AI audit</a><a href="https://localairegistry.com/plan">Pricing</a><a href="https://localairegistry.com/guarantee">The 90-day guarantee</a></div><div><b>Resources</b><a href="https://localairegistry.com/results">Customers</a><a href="https://localairegistry.com/tools">Free tools</a><a href="https://localairegistry.com/compare">Compare</a><a href="https://localairegistry.com/news">News</a><a href="https://localairegistry.com/changelog">Changelog</a></div><div><b>Company</b><a href="https://localairegistry.com/about">About</a><a href="https://localairegistry.com/about#team">Team</a><a href="https://localairegistry.com/about#careers">Careers</a><a href="https://localairegistry.com/contact">Contact</a><a href="https://localairegistry.com/login">Log in</a><a href="https://localairegistry.com/signup">Sign up</a></div></div><div class="nx-fsoc"><div class="nx-soc"><a href="https://www.linkedin.com/company/local-ai-registry" target="_blank" rel="me noopener" aria-label="Local AI Registry on LinkedIn"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.064 2.064 0 1 1 0-4.128 2.064 2.064 0 0 1 0 4.128zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0z"/></svg></a><a href="https://www.youtube.com/@localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on YouTube"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a><a href="https://x.com/LocalAIRegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on X"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg></a><a href="https://www.instagram.com/localairegistry/" target="_blank" rel="me noopener" aria-label="Local AI Registry on Instagram"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2.2c3.2 0 3.6 0 4.8.1 3.3.1 4.8 1.7 4.9 4.9.1 1.3.1 1.6.1 4.8s0 3.6-.1 4.8c-.1 3.2-1.7 4.8-4.9 4.9-1.3.1-1.6.1-4.8.1s-3.6 0-4.8-.1c-3.3-.1-4.8-1.7-4.9-4.9C2.2 15.6 2.2 15.2 2.2 12s0-3.6.1-4.8C2.4 3.9 3.9 2.4 7.2 2.3 8.4 2.2 8.8 2.2 12 2.2zm0 4.6a5.2 5.2 0 1 0 0 10.4 5.2 5.2 0 0 0 0-10.4zm0 8.6a3.4 3.4 0 1 1 0-6.8 3.4 3.4 0 0 1 0 6.8zm5.4-9.9a1.2 1.2 0 1 0 0 2.4 1.2 1.2 0 0 0 0-2.4z"/></svg></a><a href="https://www.facebook.com/profile.php?id=61591432116527" target="_blank" rel="me noopener" aria-label="Local AI Registry on Facebook"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9.101 23.691v-7.98H6.627v-3.667h2.474v-1.58c0-4.085 1.848-5.978 5.858-5.978.401 0 .955.042 1.468.103a8.68 8.68 0 0 1 1.141.195v3.325a8.623 8.623 0 0 0-.653-.036 26.805 26.805 0 0 0-.733-.009c-.707 0-1.259.096-1.675.309a1.686 1.686 0 0 0-.679.622c-.258.42-.374.995-.374 1.752v1.297h3.919l-.386 2.103-.287 1.564h-3.246v8.245C19.396 23.238 24 18.179 24 12.044c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.628 3.874 10.35 9.101 11.647Z"/></svg></a><a href="https://www.tiktok.com/@localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on TikTok"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.525.02c1.31-.02 2.61-.01 3.91-.02.08 1.53.63 3.09 1.75 4.17 1.12 1.11 2.7 1.62 4.24 1.79v4.03c-1.44-.05-2.89-.35-4.2-.97-.57-.26-1.1-.59-1.62-.93-.01 2.92.01 5.84-.02 8.75-.08 1.4-.54 2.79-1.35 3.94-1.31 1.920-3.58 3.17-5.91 3.21-1.43.08-2.86-.31-4.08-1.03-2.02-1.19-3.44-3.37-3.65-5.71-.02-.5-.03-1-.01-1.49.18-1.9 1.12-3.72 2.58-4.96 1.66-1.44 3.98-2.13 6.150-1.72.02 1.48-.04 2.96-.04 4.44-.99-.32-2.15-.23-3.02.37-.63.41-1.11 1.04-1.36 1.75-.21.51-.15 1.07-.14 1.61.24 1.64 1.82 3.02 3.5 2.87 1.12-.01 2.19-.66 2.77-1.61.19-.33.4-.67.41-1.06.1-1.79.06-3.57.07-5.36.01-4.03-.01-8.05.02-12.07z"/></svg></a><a href="https://pinterest.com/localairegistry" target="_blank" rel="me noopener" aria-label="Local AI Registry on Pinterest"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.920-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026z"/></svg></a><a href="https://www.crunchbase.com/organization/local-ai-registry" target="_blank" rel="me noopener" aria-label="Local AI Registry on Crunchbase"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21.6 0H2.4A2.41 2.41 0 0 0 0 2.4v19.2A2.41 2.41 0 0 0 2.4 24h19.2a2.41 2.41 0 0 0 2.4-2.4V2.4A2.41 2.41 0 0 0 21.6 0zM7.045 14.465A2.11 2.11 0 0 0 9.84 13.42h1.66a3.69 3.69 0 1 1 0-1.75H9.84a2.11 2.11 0 1 0-2.795 2.795zm11.345.845a3.55 3.55 0 0 1-1.06.63 3.68 3.68 0 0 1-3.39-.38v.38h-1.51V5.37h1.5v4.11a3.74 3.74 0 0 1 1.8-.63H16a3.67 3.67 0 0 1 2.39 6.46zm-.223-2.766a2.104 2.104 0 1 1-4.207 0 2.104 2.104 0 0 1 4.207 0z"/></svg></a></div><a class="nx-agt" href="https://localairegistry.com/agents">/agents · for AI agents</a></div><div class="nx-fb"><span>© 2026 Local AI Registry. 9891 Irvine Center Dr, Irvine, CA 92618. <a href="tel:+12139315633">(213)&nbsp;931-5633</a>. Research licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC&nbsp;BY&nbsp;4.0</a>.</span><span><a href="https://localairegistry.com/legal/privacy">Privacy</a> &nbsp; <a href="https://localairegistry.com/legal/terms">Terms</a></span></div></div></footer></div><script>(function(){var m=document.querySelector('.nx-xm');[].forEach.call(document.querySelectorAll('[data-nxmenu]'),function(b){b.addEventListener('click',function(){m.classList.toggle('on');document.documentElement.classList.toggle('nx-lock')})});
+if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;document.documentElement.classList.add('nxfx');
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+[].forEach.call(document.querySelectorAll('.nx-eb,.nx-rv'),function(e){io.observe(e)})})()</script><div>
+</div>
+<script>
+(function(){
+  var f=document.getElementById('sim');
+  function load(){ if(f && !f.src) f.src=f.getAttribute('data-src'); }
+  if(document.readyState==='complete') setTimeout(load,50); else addEventListener('load',function(){setTimeout(load,50);});
+  var GKEY=document.getElementById('finder').getAttribute('data-gkey'), CONTACT=document.getElementById('finder').getAttribute('data-contact'), tok=null;
+  var gq=document.getElementById('gq'), go=document.getElementById('gopts'), gs=document.getElementById('gstatus'), items=[], act=-1, timer=null, seq=0;
+  function kindOf(p){ var k=(p.osm_key||'')+'='+(p.osm_value||''), n=(p.name||'').toLowerCase();
+    if(/med ?spa|medspa|aesthetic|botox|injector|laser|skin clinic/.test(n)) return 'medspa';
+    if(/plastic surg|cosmetic surg/.test(n)) return 'plastic';
+    if(/dentist|dental|orthodont/.test(k+n)) return 'dental';
+    if(/cannabis|dispensar/.test(k+n)) return 'dispensary';
+    if(/optician|optometr|ophthalm|eye|lasik|vision/.test(k+n)) return 'eyecare';
+    if(/restaurant|cafe|fast_food|bar=|pub|bakery|ice_cream/.test(k)) return 'restaurant';
+    if(/hairdresser|beauty|nail|salon|barber/.test(k+n)) return /beauty/.test(k)&&/spa/.test(n)?'medspa':'salon';
+    return 'other'; }
+  function close(){ go.hidden=true; gq.setAttribute('aria-expanded','false'); act=-1; }
+  var state='done';
+  function show(){ go.innerHTML='';
+    if(state==='busy'){ go.innerHTML='<li class="none">Searching\u2026</li>'; }
+    else if(state==='down'){ go.innerHTML='<li class="none">Business search is busy right now. Try again in a moment.</li>'; }
+    else if(!items.length){ go.innerHTML='<li class="none">No match for that name.</li>'; }
+    items.forEach(function(it,i){ var li=document.createElement('li'); li.id='go'+i; li.setAttribute('role','option'); li.setAttribute('aria-selected',i===act?'true':'false');
+      var b=document.createElement('b'); b.textContent=it.name; var sp=document.createElement('span'); sp.textContent=it.area; li.appendChild(b); li.appendChild(sp);
+      li.addEventListener('mousedown',function(e){e.preventDefault(); pickIt(i);}); go.appendChild(li); });
+    if(state!=='busy'){ var cta=document.createElement('li'); cta.className='cta'+(act===items.length?' on':''); cta.setAttribute('role','option'); cta.id='go'+items.length; cta.setAttribute('aria-selected',act===items.length?'true':'false');
+      var a=document.createElement('a'); a.href=CONTACT; a.textContent='Don\u2019t see your business? Add it free \u2192'; cta.appendChild(a);
+      cta.addEventListener('mousedown',function(e){e.preventDefault(); location.href=CONTACT;}); go.appendChild(cta); }
+    if((GKEY||(REG&&google))&&items.length){ var at=document.createElement('li'); at.className='attr'; at.setAttribute('aria-hidden','true'); at.textContent='Results from Google'; go.appendChild(at); }
+    go.hidden=false; gq.setAttribute('aria-expanded','true'); }
+  function pickIt(i){ var it=items[i]; if(!it) return; gq.value=it.name; close();
+    if(it.src&&it.lat==null){ gs.textContent='Finding '+it.name+'\u2026'; locate(it).then(function(){pickIt2(it);}).catch(function(){gs.textContent='Couldn\u2019t place that business on the map. Try another.';}); return; }
+    if(it.gid&&it.lat==null){ gs.textContent='Finding '+it.name+'\u2026'; resolveGoogle(it).then(function(){pickIt2(it);}).catch(function(){gs.textContent='Couldn\u2019t load that business. Try another.';}); return; }
+    pickIt2(it); }
+  function pickIt2(it){ if(!f.src) load();
+    var msg={type:'lair-goto-place',name:it.name,lon:it.lon,lat:it.lat,kind:it.kind,area:it.area,city:it.city,url:it.url||''};
+    var sendIt=function(){ f.contentWindow&&f.contentWindow.postMessage(msg,location.origin); };
+    if(f.contentWindow&&f.src) sendIt(); else f.addEventListener('load',function(){setTimeout(sendIt,1500);},{once:true});
+    gs.textContent='Showing '+it.name+(it.area?', '+it.area:'')+'. Click the pin to see its Local AI Registry record.'; }
+  function newTok(){ tok=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random()); }
+  function gKind(types,name){ var t=(types||[]).join(' '), n=(name||'').toLowerCase();
+    if(/med ?spa|medspa|medical spa|aesthetic|botox|injector|laser|skin/.test(n)||/skin_care_clinic/.test(t)) return 'medspa';
+    if(/plastic surg|cosmetic surg/.test(n)) return 'plastic';
+    if(/dentist|dental/.test(t+' '+n)) return 'dental';
+    if(/cannabis|dispensar|weed/.test(n)) return 'dispensary';
+    if(/optometr|optician|eye|lasik|vision/.test(t+' '+n)) return 'eyecare';
+    if(/restaurant|cafe|bakery|bar\b|meal_|food/.test(t)) return 'restaurant';
+    if(/hair|nail|beauty_salon|barber/.test(t)) return 'salon';
+    if(/spa/.test(t)) return 'medspa';
+    return 'other'; }
+  function searchGoogle(q,my){
+    if(!tok) newTok();
+    return fetch('https://places.googleapis.com/v1/places:autocomplete',{method:'POST',headers:{'Content-Type':'application/json','X-Goog-Api-Key':GKEY},
+      body:JSON.stringify({input:q,sessionToken:tok,includedRegionCodes:['us'],locationBias:{circle:{center:{latitude:33.68,longitude:-117.83},radius:50000}}})})
+      .then(function(r){return r.json();}).then(function(j){ if(my!==seq) return;
+        items=(j.suggestions||[]).filter(function(x){return x.placePrediction;}).slice(0,6).map(function(x){var p=x.placePrediction, sf=p.structuredFormat||{};
+          return {gid:p.placeId,name:(sf.mainText||{}).text||p.text.text,area:(sf.secondaryText||{}).text||'',types:p.types||[]}; });
+        state='done'; act=items.length?0:-1; show(); });
+  }
+  function resolveGoogle(it){
+    return fetch('https://places.googleapis.com/v1/places/'+encodeURIComponent(it.gid)+'?sessionToken='+encodeURIComponent(tok||''),
+      {headers:{'X-Goog-Api-Key':GKEY,'X-Goog-FieldMask':'id,displayName,location,formattedAddress,primaryType,types,addressComponents'}})
+      .then(function(r){return r.json();}).then(function(p){ tok=null;
+        var city=''; (p.addressComponents||[]).forEach(function(c){ if((c.types||[]).indexOf('locality')>-1) city=c.longText; });
+        it.lon=p.location.longitude; it.lat=p.location.latitude; it.city=city; it.area=p.formattedAddress||it.area;
+        it.kind=gKind([p.primaryType].concat(p.types||[]),it.name); return it; });
+  }
+  /* On localairegistry.com the hub searches the registry itself (every business we hold, then Google Places for the rest).
+     Same origin only: on any other address the browser blocks it, so the free OpenStreetMap search below takes over. */
+  var REG=/(^|\.)localairegistry\.com$/.test(location.hostname);
+  function searchRegistry(q,my){
+    return tfetch('/api/business/search/suggest?q='+encodeURIComponent(q),5000).then(function(j){ if(my!==seq) return;
+      var rows=(j&&j.suggestions)||[];
+      items=rows.slice(0,6).map(function(r){ return {name:r.name,area:r.subtitle||'',city:r.city||'',src:r.source,
+        lat:(typeof r.lat==='number'?r.lat:null),lon:(typeof r.lng==='number'?r.lng:null),
+        url:location.origin+r.href,kind:gKind([],r.name+' '+(r.category||''))}; });
+      google=items.some(function(it){return it.src==='places';});
+      state='done'; act=items.length?0:-1; show(); });
+  }
+  /* A pick without coordinates (a Google suggestion, or a registry row never located): find it with the free address search. */
+  function locate(it){
+    var tries=[it.name+(it.area?', '+it.area:''), it.area].filter(Boolean);
+    function next(){ var q=tries.shift(); if(!q) return Promise.reject(new Error('not found'));
+      return tfetch('https://photon.komoot.io/api/?limit=1&lang=en&q='+encodeURIComponent(q),4000).then(function(j){
+        var x=(j.features||[])[0]; if(!x) return next(); var p=x.properties||{};
+        it.lon=x.geometry.coordinates[0]; it.lat=x.geometry.coordinates[1]; it.city=it.city||p.city||p.town||p.village||p.county||''; return it; }, next); }
+    return next();
+  }
+  var google=false;
+  function tfetch(url,ms){ var c=('AbortController' in window)?new AbortController():null, t=setTimeout(function(){c&&c.abort();},ms||4000);
+    return fetch(url,c?{signal:c.signal}:{}).then(function(r){clearTimeout(t); if(!r.ok) throw new Error('HTTP '+r.status); return r.json();},function(e){clearTimeout(t);throw e;}); }
+  function nomKind(x){ return kindOf({osm_key:x.class,osm_value:x.type,name:x.name||((x.namedetails||{}).name)||''}); }
+  var lastNom=0;
+  function searchNominatim(q,my){
+    var wait=Math.max(0,1100-(Date.now()-lastNom));   /* Nominatim allows at most one request per second */
+    return new Promise(function(res){setTimeout(res,wait);}).then(function(){ if(my!==seq) return null; lastNom=Date.now();
+      return tfetch('https://nominatim.openstreetmap.org/search?format=jsonv2&addressdetails=1&namedetails=1&limit=6&countrycodes=us&q='+encodeURIComponent(q),5000); })
+      .then(function(j){ if(!j||my!==seq) return null;
+        return j.map(function(x){var a=x.address||{}, city=a.city||a.town||a.village||a.suburb||a.county||'';
+          var nm=x.name||[a.house_number,a.road].filter(Boolean).join(' ')||(x.display_name||'').split(',')[0];
+          return {name:nm,lon:+x.lon,lat:+x.lat,kind:nomKind(x),city:city,area:[[a.house_number,a.road].filter(Boolean).join(' '),city,a.state].filter(Boolean).join(', ')}; }); });
+  }
+  function searchOSM(q,my){
+    return tfetch('https://photon.komoot.io/api/?limit=8&lang=en&q='+encodeURIComponent(q),4000).then(function(j){
+      return (j.features||[]).filter(function(x){var p=x.properties||{};return p.countrycode==='US'&&(p.name||p.street);}).slice(0,6).map(function(x){var p=x.properties; if(!p.name) p.name=[p.housenumber,p.street].filter(Boolean).join(' ');
+        var city=p.city||p.town||p.village||p.district||p.county||'';
+        return {name:p.name,lon:x.geometry.coordinates[0],lat:x.geometry.coordinates[1],kind:kindOf(p),city:city,
+          area:[[p.housenumber,p.street].filter(Boolean).join(' '),city,p.state].filter(Boolean).join(', ')}; }); })
+      .catch(function(){ return null; })
+      .then(function(list){ if(my!==seq) return; if(list&&list.length) return list;
+        return searchNominatim(q,my).catch(function(){ return list===null?'down':[]; }); })
+      .then(function(list){ if(my!==seq||list===undefined) return;
+        if(list==='down'){ items=[]; state='down'; } else { items=list||[]; state='done'; }
+        act=items.length?0:-1; show(); });
+  }
+  gq.addEventListener('input',function(){ clearTimeout(timer); var q=gq.value.trim(); if(q.length<3){close();return;}
+    state='busy'; items=[]; show();
+    timer=setTimeout(function(){ var my=++seq; google=false; (REG?searchRegistry(q,my).catch(function(){ return searchOSM(q,my); }):GKEY?searchGoogle(q,my):searchOSM(q,my)).catch(function(){ if(my===seq){items=[];state='down';show();} }); },250); });
+  gq.addEventListener('keydown',function(e){ if(go.hidden) return;
+    if(e.key==='ArrowDown'){act=Math.min(act+1,items.length);show();e.preventDefault();}
+    else if(e.key==='ArrowUp'){act=Math.max(act-1,0);show();e.preventDefault();}
+    else if(e.key==='Enter'){ if(act===items.length){location.href=CONTACT;} else if(act>-1){pickIt(act);} e.preventDefault(); }
+    else if(e.key==='Escape'){close();} });
+  gq.addEventListener('blur',function(){setTimeout(close,150);});
+  var list=document.getElementById('studies'), rows=[].slice.call(list.children), q=document.getElementById('q'),
+      ft=document.getElementById('f-topic'), fe=document.getElementById('f-eng'), fy=document.getElementById('f-type'), fs=document.getElementById('f-sort'),
+      count=document.getElementById('count'), empty=document.getElementById('empty'), more=document.getElementById('more'), PAGE=20, shown=PAGE;
+  function apply(reset){
+    if(reset) shown=PAGE;
+    var words=q.value.toLowerCase().trim().split(/\s+/).filter(Boolean), t=ft.value, en=fe.value, ty=fy.value;
+    var hit=rows.filter(function(r){
+      if(t && r.dataset.topics.split('|').indexOf(t)<0) return false;
+      if(en && r.dataset.engines.split('|').indexOf(en)<0) return false;
+      if(ty && r.dataset.type!==ty) return false;
+      return words.every(function(w){return r.dataset.text.indexOf(w)>-1;});
+    });
+    var s=fs.value; hit.sort(function(a,b){ if(s==='az') return a.querySelector('h3').textContent.localeCompare(b.querySelector('h3').textContent);
+      return s==='old' ? a.dataset.date.localeCompare(b.dataset.date) : b.dataset.date.localeCompare(a.dataset.date); });
+    rows.forEach(function(r){r.hidden=true;});
+    hit.forEach(function(r,i){ list.appendChild(r); r.hidden = i>=shown; });
+    count.textContent=hit.length+(hit.length===1?' study':' studies');
+    empty.hidden=hit.length>0; more.hidden=hit.length<=shown;
+  }
+  [q,ft,fe,fy,fs].forEach(function(el){el.addEventListener(el===q?'input':'change',function(){apply(true);});});
+  more.addEventListener('click',function(){shown+=PAGE;apply(false);});
+  apply(true);
+})();
+</script>
+<script>(function(){
+if(matchMedia('(prefers-reduced-motion: reduce)').matches||!('IntersectionObserver' in window))return;
+document.documentElement.classList.add('hubfx');
+function split(el){var i=0;(function walk(n){[].slice.call(n.childNodes).forEach(function(c){
+ if(c.nodeType===3){var f=document.createDocumentFragment();c.nodeValue.split(/([  ])/).forEach(function(w){if(w===''||w===' '){if(w)f.appendChild(document.createTextNode(' '));return}
+  if(w===' '){var nb=document.createElement('span');nb.className='sc';nb.textContent=' ';nb.style.setProperty('--i',i++);f.appendChild(nb);return}
+  var sw=document.createElement('span');sw.className='sw';w.split('').forEach(function(ch){var sc=document.createElement('span');sc.className='sc';sc.textContent=ch;sc.style.setProperty('--i',i++);sw.appendChild(sc)});f.appendChild(sw)});c.parentNode.replaceChild(f,c)}
+ else if(c.nodeType===1&&c.tagName!=='BR')walk(c)})})(el);el.classList.add('fx');el.setAttribute('aria-label',el.textContent.replace(/\s+/g,' ').trim())}
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('on');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+[].forEach.call(document.querySelectorAll('main h1, main h2'),function(h){split(h);io.observe(h)});
+})()</script>
+</body></html>

@@ -1,0 +1,79 @@
+# Local AI Registry Research
+
+> Original research from Local AI Registry (localairegistry.com), an answer engine optimization (AEO) company for local businesses, on how AI systems answer questions about local businesses.
+
+Local AI Registry builds verified, owner-confirmed public records of local businesses and pushes those facts to the sources AI reads, through Google Business Profile management, press releases, AEO content, technical AEO (schema, llms.txt) and listing consistency. Headquarters: 9891 Irvine Center Dr, Irvine, CA 92618. Research is published by the Local AI Registry Research Team, led by a former Google Search executive, which builds on research by Aggarwal et al. (Princeton, GEO), Xu, Iqbal and Montgomery (WashU), Kumar and Lakkaraju (Harvard) and Liu, Zhang and Liang (Stanford).
+
+## Research
+
+- [Research hub](https://localairegistry.com/research): Library of Local AI Registry studies, indexes and datasets on AI search and local businesses.
+- [LocalAITrends](https://localairegistry.com/research/local-ai-trends): LocalAITrends: what America searches before it books. Botox search interest beat Thanksgiving week by 28% to 50% in the week before the holiday every year from 2021 to 2025, and 13 of 14 viral search twins fell apart when tested on states and age mix.
+- [LocalAITrends, full text (Markdown)](https://localairegistry.com/research/local-ai-trends/index.md): Complete report as plain Markdown.
+- [LocalAITrends, data (CSV)](https://localairegistry.com/research/local-ai-trends/data/local-ai-trends-data.csv): Aggregated tables behind all charts, CC BY 4.0.
+- [Med Spa Search Signals](https://localairegistry.com/research/med-spa-search-signals): Med Spa Search Signals: what Google searches reveal about aesthetic clients and sales. Sephora search growth tracked sales growth at Jeuveau maker Evolus at 0.71 over 15 quarters while Jeuveau’s own searches scored −0.08, and med spa searches follow the Pilates state map at 0.81.
+- [Med Spa Search Signals, full text (Markdown)](https://localairegistry.com/research/med-spa-search-signals/index.md): Complete report as plain Markdown.
+- [Med Spa Search Signals, data (CSV)](https://localairegistry.com/research/med-spa-search-signals/data/med-spa-search-signals-data.csv): Aggregated tables behind all charts, CC BY 4.0.
+- [Med Spa Search Signals, video explainer](https://youtu.be/Ng71RHlSVTA): A short plain-language walkthrough of the findings.
+- [How Often AI Recommends Your Business](https://localairegistry.com/research/how-often-ai-recommends-your-business): How Often AI Recommends Your Business: A Better Measure of Local Visibility. Asked the same query twice, Gemini’s sources overlapped by only 0.46 and a median of 29% of the businesses ChatGPT named appeared in both answers, so AI visibility is best measured as how often a business is named across many answers.
+- [How Often AI Recommends Your Business, full text (Markdown)](https://localairegistry.com/research/how-often-ai-recommends-your-business/index.md): Complete report as plain Markdown.
+- [How Often AI Recommends Your Business, data (CSV)](https://localairegistry.com/research/how-often-ai-recommends-your-business/data/how-often-ai-recommends-your-business-data.csv): Aggregated tables behind all charts, CC BY 4.0.
+- [How Often AI Recommends Your Business, video explainer](https://youtu.be/g0Q8h4WKVw8): A short plain-language walkthrough of the findings.
+- [The Local Answer Gap](https://localairegistry.com/research/local-answer-gap): The Local Answer Gap: what 7,583 Google AI answers reveal about AEO for local businesses. News outlets supplied 67.5% of the citations in Google’s AI answers about local businesses; businesses’ own websites supplied 6.5%, and 83.6% of answers told people to check with their local store.
+- [The Local Answer Gap, full text (Markdown)](https://localairegistry.com/research/local-answer-gap/index.md): Complete report as plain Markdown.
+- [The Local Answer Gap, data (CSV)](https://localairegistry.com/research/local-answer-gap/data/local-answer-gap-data.csv): Aggregated tables behind all charts, CC BY 4.0.
+- [The Local Answer Gap, video explainer](https://youtu.be/-tpyYAFMMiQ): A short plain-language walkthrough of the findings.
+- [Full site text](https://localairegistry.com/research/llms-full.txt): All research in one file.
+
+## Key findings: LocalAITrends
+
+- Local AI Registry found that U.S. Botox search interest in the week before Thanksgiving beat Thanksgiving week by 28% to 50% in every year from 2021 to 2025.
+- The day before Thanksgiving, “nail salon near me” searches run 1.7 to 1.9 times a normal Wednesday, and on Thanksgiving Day “stretchy pants” searches jump 6 to 10 times a normal day, according to Local AI Registry.
+- Thanksgiving Day was the top day for “liquor store near me” searches from mid-November to April two years running, at 2.4 times New Year’s Eve, Local AI Registry found.
+- Across 49 states, green bean casserole search interest runs opposite to “botox near me” (rank correlation −0.46), while Tofurky runs with it (0.53), according to Local AI Registry.
+- Spa gift card searches peak on Christmas Eve or Christmas Day, two years running, at about 4 times early-December levels, Local AI Registry found.
+- Lip filler and Pilates searches moved together at 0.94 over five years, the closest of 14 viral “search twins” Local AI Registry published.
+- When Local AI Registry also tested those 14 search twins on states and the age mix of searchers, 13 fell apart and only nose job and tarot held up.
+- States that search Tesla the most also search facelifts the most (0.83), followed by Rolex (0.82) and “sushi near me” (0.80), which points to income and city life as the shared factor, according to Local AI Registry.
+- States that search Real Housewives more also search “botox near me” more (rank correlation 0.56), the strongest TV pairing Local AI Registry found.
+
+## Key findings: Med Spa Search Signals
+
+- Local AI Registry found that growth in U.S. Google searches for Sephora tracked growth in Evolus revenue (the maker of Jeuveau) at 0.71 across 15 quarters, while searches for Jeuveau itself scored −0.08.
+- Sephora averages about 6.1 million U.S. Google searches a month and Jeuveau about 18,100, so Sephora’s search trend is 338 times larger to read, Local AI Registry found.
+- Using last quarter’s growth plus Sephora searches, Local AI Registry’s estimate landed within 7% of Evolus revenue in 11 of 14 quarters and puts Q4 2026 revenue at about $107M, above the $95M to $102M implied by company guidance.
+- Equinox searches moved opposite to Jeuveau sales over five years (−0.78) but showed no link quarter to quarter (0.02), so a long-trend match alone can mislead, according to Local AI Registry.
+- In 2025, searches for “botox” rose 10% to 16% year over year while Botox Cosmetic sales fell 5% to 12%, which shows “botox” works as a category word, Local AI Registry found.
+- Club Pilates brand searches fell 17% year over year in Q3 2026 while Pilates searches were still up 17% in Q2 2026, and Xponential reported same-store sales down 7.5%, according to Local AI Registry.
+- Across 49 states, Local AI Registry found that searches for med spa treatments follow the same state ranking as Pilates (0.81), Tesla and Rolex (0.75), and run opposite to crockpots and fishing licenses (−0.66).
+- Men make up about 46% of searches for liposuction, facelifts and nose jobs but 22% to 33% of searches for Botox, nails, lashes and spray tans, Local AI Registry found.
+- Local AI Registry found that Botox searches hold near their yearly average in January to March (102) while Botox sales to clinics run 8% below it (92).
+- Of 680 pairs of beauty and everyday searches, only 2 matched on timing, states and age mix, and only 1 of 14 viral “search twin” pairs held up, according to Local AI Registry.
+
+## Key findings: How Often AI Recommends Your Business
+
+- In research reviewed by Local AI Registry, the same query run twice shared 0.78 of its sources on Google Search, 0.66 on Google AI Overviews and 0.46 on Gemini (Grossman et al., SIGIR 2026).
+- In a preprint census of cafés, restaurants and bars in Bali reviewed by Local AI Registry, the overlap between repeated runs of the same query ranged from 0.45 for Gemini to 0.22 for Claude.
+- When ChatGPT was asked the same local question twice, a median of 39 minutes apart, a median of 29% of the businesses named in either answer were named in both, according to 8ight.AI data reviewed by Local AI Registry.
+- Only 10.8% of doctors named by an AI model without web search matched a real clinician in the queried city, versus 63.9% with web search on, in a preprint audit of the 100 largest US metro areas reviewed by Local AI Registry.
+- Wording changes who AI recommends: 74.7% of the people recommended for “an oculoplastic surgeon” were oculoplastic specialists, versus 46.6% for “a doctor who does eyelid lifts,” in a peer-reviewed study reviewed by Local AI Registry.
+- ChatGPT declined to recommend an orthopedic surgeon in 52.8% of 40,500 persona-based requests, and stated income, insurance status and location were the strongest predictors of a recommendation, according to research reviewed by Local AI Registry.
+- Only 3.5% of the businesses ChatGPT named in localized searches appeared at every point tested across a town, according to BrightLocal’s 2026 analysis reviewed by Local AI Registry.
+- In the Bali census reviewed by Local AI Registry, 85.6% of venues were never recommended by any of the four AI systems, and being named was associated with documentation such as a website, more reviews, listed prices and mentions elsewhere on the web.
+- Local AI Registry calculated that a business named in 40% of AI answers has a 95% confidence interval of roughly 17% to 69% after 10 answers and 31% to 50% after 100, so one answer cannot measure AI visibility.
+
+## Key findings: The Local Answer Gap
+
+- Local AI Registry found that local business searches triggered a Google AI Overview 76.4% of the time, the highest of any topic and over five times the 13.7% average (US searches, March to April 2026).
+- In Local AI Registry’s analysis, news outlets supplied 67.5% of citations in Google’s AI answers about local businesses, and Gannett newspapers alone appeared in 90.3% of those answers.
+- Businesses’ own websites supplied only 6.5% of citations in local AI answers, and directories such as Yelp, MapQuest and OpenTable supplied 0.5%, according to Local AI Registry.
+- Local AI Registry found that brand websites ranked on Google’s first page in 147 of 157 brand questions but were cited by Google’s AI in only 70.
+- 83.6% of local AI answers told people to check with their local store, and only 1 of 207 gave a street address or phone number, Local AI Registry found.
+- When Google’s AI attributed a local fact to a store locator, app or official site, 51.6% of those claims were not supported by any page it cited, according to Local AI Registry.
+- Cited social media posts had a median of 8 readable words, and 78% were too thin for AI to verify anything, in Local AI Registry’s review of 1,496 cited pages.
+- Asking the same local question in different words changed about two-thirds of the sources Google’s AI cited, Local AI Registry found.
+- Only 2 of 39,676 queries in public AI search research datasets ask an AI to find a local service provider, according to Local AI Registry’s census.
+
+## About
+
+- [Local AI Registry](https://localairegistry.com): AEO and GEO services for local businesses; free business records and AI visibility audits.
+- [Add your business free](https://localairegistry.com/signup/business/new): Create a free Local AI Registry record for a local business.
