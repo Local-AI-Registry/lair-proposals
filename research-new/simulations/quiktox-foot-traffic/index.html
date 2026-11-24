@@ -199,8 +199,9 @@ html.modern .credit a{color:#5A647A}
   /* ---------- restyle OpenFreeMap "liberty" as a parchment map ---------- */
   function has(id,words){return words.some(function(w){return id.indexOf(w)>-1;});}
   function modern(style){
+    style.light={anchor:'viewport',color:'#FFFFFF',intensity:.18,position:[1.15,210,30]};
     style.layers.forEach(function(l){ if(l.type==='fill-extrusion'){ l.minzoom=15; l.paint={
-        'fill-extrusion-color':['interpolate',['linear'],['coalesce',['get','render_height'],7],0,'#FFFFFF',30,'#EEF1F6'],
+        'fill-extrusion-color':['interpolate',['linear'],['coalesce',['get','render_height'],7],0,'#FBFAF7',30,'#EEF1F6'],
         'fill-extrusion-height':['*',['coalesce',['get','render_height'],7],1.1],
         'fill-extrusion-base':['coalesce',['get','render_min_height'],0],
         'fill-extrusion-opacity':.97,'fill-extrusion-vertical-gradient':true}; } });
