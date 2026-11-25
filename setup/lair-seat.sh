@@ -55,6 +55,7 @@ FROM_LINE1=9891 Irvine Center Dr
 FROM_CITY=Irvine
 FROM_STATE=CA
 FROM_ZIP=92618
+CALENDLY_URL=https://calendly.com/bridgette-localairegistry/30min
 EOF
 fi
 chmod 600 /opt/lair-seat/.env
