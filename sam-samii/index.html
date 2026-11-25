@@ -97,7 +97,7 @@ let SKEW = V.serverNow - Date.now(), NOMLINK = '', NOMCODE = '';
 const G = V.geo;
 const v = { name: V.name, practice: V.practice, comp: V.comp ? V.comp.name : '', pos: [0, 0], compPos: V.comp ? V.comp.pos : null, nominatedBy: V.nominatedBy };
 const seatLeft = () => V.expiresAt ? Math.max(0, V.expiresAt - (Date.now() + SKEW)) : D;
-const CAL = 'https://calendly.com/steve-localairegistry/board-of-advisors-30-min';
+const CAL = 'https://calendly.com/bridgette-localairegistry/30min';
 V.serverNow = Date.now(); SKEW = 0;
 const KEY = 'lair-amb-sam-open';
 const api = (p) => {
@@ -151,7 +151,8 @@ function play(v, fast) {
    <div class="endc"><h4></h4><p></p></div>
    <button class="skipi">Skip intro</button>
    <div class="sheet" data-s="more"><h3>Local AI Ambassador</h3><p>Invite only, with a limited number of seats.</p><p>Know business owners who want to show up on Google and AI? Make an intro, and we take it from there.</p><p>When they sign, you earn a 5% lifetime revenue share. Passive income on every referral.</p><p>A flexible side gig on your own time. Independent, 1099, no quotas.</p><p>Learn more at <b>localairegistry.com</b> or email our founder and CEO, Steve Lee: <a href="mailto:steve@localairegistry.com" target="_top">steve@localairegistry.com</a></p><button class="cta gh" style="width:100%;margin-top:10px" data-a="close">Back</button></div>
-   <div class="sheet" data-s="accept"><h3>Claim your spot</h3><p>Three quick questions, then pick a time with Steve Lee, our founder and CEO.</p>
+   <div class="sheet" data-s="cal" style="padding:14px 10px 10px"><h3 style="padding:0 12px">Pick a time</h3><div id="calw" style="height:min(640px,72vh);margin-top:8px;border-radius:14px;overflow:hidden;background:#fff"></div><button class="cta" data-a="close" style="width:100%;margin-top:10px;background:none;border:0;color:rgba(239,230,210,.7)">Back</button></div>
+   <div class="sheet" data-s="accept"><h3>Claim your spot</h3><p>Three quick questions, then pick a time with Bridgette DeBrino, our VP of Sales.</p>
    <div class="qz"><label>Do you sell to plastic surgeons today?</label><div class="yn"><button type="button" data-yn="yes">Yes</button><button type="button" data-yn="no">No</button></div>
    <label>How many of your doctors need marketing?</label><input data-q="need" type="number" inputmode="numeric" min="0" placeholder="0">
    <label>How many would switch for better service?</label><input data-q="sw" type="number" inputmode="numeric" min="0" placeholder="0"><div class="qerr"></div></div>
@@ -223,13 +224,26 @@ function play(v, fast) {
   q('.skipi').onclick = () => play(v, true);
   if (fast) { ['.hair', '.mono', '.ln1', '.ln2', '.b1', '.b1b', '.b2', '.b3', '.b4', '.b5', '.b5b', '.b6', '.skipi'].forEach(s => q(s).style.display = 'none'); S.Rt = 2e4; S.compT = 1; S.tiltT = S.tilt = 52; requestAnimationFrame(() => { const g = q('.gap').getBoundingClientRect(), r = iv.getBoundingClientRect(); S.cy = S.cyt = (g.top + g.height / 2 - r.top) / r.height; }); }
   const sheet = n => { iv.querySelectorAll('.sheet').forEach(s => s.classList.toggle('open', s.dataset.s === n)); };
+  // Calendly inline: the page hears when they book, so no Calendly API key is needed
+  let calDone = false;
+  function openCal(url) {
+    sheet('cal');
+    const go = () => { try { q('#calw').innerHTML = ''; Calendly.initInlineWidget({ url: url + (url.includes('?') ? '&' : '?') + 'hide_gdpr_banner=1', parentElement: q('#calw') }); } catch (e) { location.href = url; } };
+    if (window.Calendly) return go();
+    const sc = document.createElement('script'); sc.src = 'https://assets.calendly.com/assets/external/widget.js'; sc.onload = go; sc.onerror = () => { location.href = url; }; document.head.appendChild(sc);
+  }
+  window.addEventListener('message', e => {
+    if (calDone || !/calendly\.com$/.test(new URL(e.origin || 'http://x').hostname) || !e.data || e.data.event !== 'calendly.event_scheduled') return;
+    calDone = true; const pl = e.data.payload || {};
+    api('booked', { event: pl.event && pl.event.uri, invitee: pl.invitee && pl.invitee.uri }).finally(() => end("You're booked.", 'Bridgette will see you on Google Meet. The invite is in your email.'));
+  });
   const end = (h, p) => { sheet(null); q('.fin').style.transition = 'opacity .9s'; q('.fin').style.opacity = 0; S.cyt = .4; S.tiltT = 0; setTimeout(() => { q('.endc h4').textContent = h; q('.endc p').textContent = p; q('.endc').style.opacity = 1; }, 900); };
   iv.addEventListener('click', e => { const y = e.target.closest('[data-yn]'); if (y) { iv.querySelectorAll('[data-yn]').forEach(b => b.classList.toggle('on', b === y)); return; } const a = e.target.closest('[data-a]')?.dataset.a; if (!a) return;
     if (['accept', 'nom', 'skip', 'more'].includes(a)) sheet(a);
     if (a === 'close') sheet(null);
     if (a === 'book') { const yn = q('.yn button.on')?.dataset.yn; if (!yn) { q('.qerr').textContent = 'Pick yes or no for the first question.'; return; } q('.qerr').textContent = '';
       const ans = { ps: yn, need: +(q('[data-q=need]').value || 0), sw: +(q('[data-q=sw]').value || 0) };
-      api('book', ans).then(r => { if (r && r.url) { const w = window.open(r.url, '_blank'); if (!w) location.href = r.url; } else end('Welcome aboard.', 'We will reach out to schedule your call.'); }); }
+      api('book', ans).then(r => { if (r && r.url) openCal(r.url); else end('Welcome aboard.', 'We will reach out to schedule your call.'); }); }
     if (a === 'nom') { if (!NOMLINK) api('nominee').then(r => { if (r && r.link) { NOMCODE = r.code; NOMLINK = r.link; q('.bub').textContent = msg(q('[data-f=n]').value.trim()); } else if (r && r.error) q('.err').textContent = r.error; }); }
     if (a === 'copy') { const n = q('[data-f=n]').value.trim(), city = q('[data-f=c]').value.trim(), pr = city;
       if (!n || !city) { q('.err').textContent = !n ? 'Add their name.' : 'Add their city.'; return; }
