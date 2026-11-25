@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Re2O US Launch Playbook · Local AI Registry</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/d3-sankey@0.12.3/dist/d3-sankey.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3.1.0/dist/topojson-client.min.js"></script>
+<script src="https://unpkg.com/deck.gl@9.1.14/dist.min.js"></script>
+<style>
+:root{--blue:#1F4FE0;--ink:#0B1A2E;--coral:#FF5A3C;--paper:#F4F1EA;--white:#fff;--line:#E2DDD2;--muted:#5B6878;--tint:#EEF2FD;--soft:#FBFAF6;--good:#1E8F5A;--gold:#B8901C}
+*{box-sizing:border-box}
+html{color-scheme:light;scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:"Hanken Grotesk",system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-font-smoothing:antialiased}
+h1,h2,h3,h4,p,li,.lbl,.note{text-wrap:pretty}
+h1,h2,.big-rec{text-wrap:balance}
+a{color:var(--blue)}
+.wrap{max-width:1180px;margin:0 auto;padding:0 24px}
+.top{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.top .wrap{display:flex;align-items:center;gap:14px;height:62px}
+.brand{display:flex;align-items:center;gap:10px;font:700 17px "Bricolage Grotesque";text-decoration:none;color:var(--ink)}
+.top nav{margin-left:auto;display:flex;gap:6px}
+.top nav a{font:600 13px "Bricolage Grotesque";text-decoration:none;color:var(--ink);padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--soft)}
+.top nav a:hover{border-color:var(--blue);color:var(--blue)}
+@media(max-width:960px){.top nav{display:none}}
+.eyebrow{font:700 12px "Bricolage Grotesque";letter-spacing:.14em;text-transform:uppercase;color:var(--blue)}
+h1{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(38px,5vw,60px);line-height:1.03;letter-spacing:-.01em;margin:12px 0 16px}
+h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:600;font-size:clamp(30px,3.5vw,44px);line-height:1.06;margin:4px 0 0}
+h3{font:700 19px "Bricolage Grotesque";letter-spacing:-.01em;margin:0 0 4px}
+h4{font:700 15px "Bricolage Grotesque";margin:0 0 6px}
+.lead{font-size:19px;color:#2B3A4E;margin:0;max-width:620px}
+.sub{color:var(--muted);font-size:14.5px;margin:0 0 14px}
+.note{font-size:13px;color:var(--muted);margin-top:10px}
+section{padding:30px 0}
+.tophero{padding:46px 0 22px;display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center}
+@media(max-width:900px){.tophero{grid-template-columns:1fr}}
+.meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px}
+.chip{font-size:13px;font-weight:600;background:var(--white);border:1px solid var(--line);border-radius:999px;padding:6px 12px}
+.product-in{display:inline-flex;align-items:center;gap:8px;background:var(--white);border:1.5px solid var(--blue);border-radius:999px;padding:5px 6px 5px 14px;font-size:13px;font-weight:600}
+.product-in input{border:0;background:var(--tint);color:var(--blue);font:700 14px "Bricolage Grotesque";border-radius:999px;padding:5px 12px;width:110px}
+.case-head{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;flex-wrap:wrap;border-top:2px solid var(--ink);padding-top:18px;margin-bottom:22px}
+.case-num{font:800 13px "Bricolage Grotesque";letter-spacing:.12em;text-transform:uppercase;color:var(--coral)}
+.card{background:var(--white);border:1px solid var(--line);border-radius:18px;padding:22px}
+.grid{display:grid;gap:16px}.g2{grid-template-columns:1fr 1fr}.g3{grid-template-columns:repeat(3,1fr)}
+@media(max-width:900px){.g2,.g3{grid-template-columns:1fr}}
+.tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:999px;vertical-align:1px;white-space:nowrap}
+.tag.as{background:#FFF4D6;color:#7A5A00}.tag.da{background:var(--tint);color:var(--blue)}
+.ln{stroke:#0B1A2E;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.la{stroke:#1F4FE0;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.lc{stroke:#FF5A3C;stroke-width:1.5;fill:none;stroke-linecap:round;stroke-linejoin:round}
+.why{display:flex;gap:12px;align-items:flex-start;border-left:3px solid var(--blue);background:var(--tint);border-radius:0 12px 12px 0;padding:11px 14px;margin-top:14px;font-size:14.5px;color:#1B2B45}
+.why b{font-family:"Bricolage Grotesque"}
+.gl{border-bottom:1.5px dotted var(--blue);cursor:help;position:relative}
+.gl:hover::after,.gl:focus::after{content:attr(data-def);position:absolute;left:0;top:130%;width:250px;background:var(--ink);color:#fff;font:500 13px/1.45 "Hanken Grotesk";padding:10px 12px;border-radius:10px;z-index:30}
+/* recommendation */
+.rec{background:var(--white);border:1px solid var(--line);border-radius:22px;overflow:hidden}
+.rec-head{padding:26px 28px 18px;border-bottom:1px solid var(--line);display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:center}
+@media(max-width:900px){.rec-head{grid-template-columns:1fr}}
+.big-rec{font-family:"Cormorant Garamond",Georgia,serif;font-size:clamp(28px,3vw,38px);line-height:1.1;margin:6px 0 8px}
+.alloc{display:flex;flex-direction:column;gap:6px}
+.alloc .row{display:grid;grid-template-columns:120px 1fr 62px;gap:8px;align-items:center;font-size:13px}
+.alloc .tr{height:10px;background:#EFEBE2;border-radius:5px;overflow:hidden}.alloc .tr i{display:block;height:100%;border-radius:5px}
+.alloc b{font:800 13px "Bricolage Grotesque";text-align:right}
+.moves{counter-reset:mv}
+.move{display:grid;grid-template-columns:64px 1fr 170px;gap:18px;padding:20px 28px;border-bottom:1px solid #F0ECE3;align-items:start}
+.move:last-child{border-bottom:0}
+@media(max-width:800px){.move{grid-template-columns:48px 1fr}.move .amt{grid-column:2}}
+.move .ic{width:56px;height:56px;border:1.5px solid var(--line);border-radius:16px;display:flex;align-items:center;justify-content:center;background:var(--soft)}
+.move h4{font-size:18px;margin:0 0 4px}
+.move h4 .n{color:var(--coral);margin-right:6px}
+.move p{margin:0;font-size:14.5px;color:#2B3A4E}
+.move .ev{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.evd{font-size:12px;font-weight:600;background:var(--soft);border:1px solid var(--line);border-radius:8px;padding:3px 8px}
+.evd b{font-family:"Bricolage Grotesque";color:var(--blue)}
+.move .amt{text-align:right}
+.move .amt .v{font:800 24px "Bricolage Grotesque";letter-spacing:-.02em}
+.move .amt .l{font-size:12px;color:var(--muted)}
+/* market playbooks */
+.pb-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+@media(max-width:980px){.pb-grid{grid-template-columns:1fr}}
+.pb{background:var(--white);border:1px solid var(--line);border-radius:18px;overflow:hidden;display:flex;flex-direction:column}
+.pb-top{padding:18px 20px 14px;display:flex;justify-content:space-between;gap:12px;align-items:flex-start;border-bottom:1px solid #F0ECE3}
+.pb-top .city{font:800 21px "Bricolage Grotesque";letter-spacing:-.01em;line-height:1.15}
+.pb-top .rk{font:700 12px "Bricolage Grotesque";color:var(--muted);letter-spacing:.06em;text-transform:uppercase}
+.play{font:800 11px "Bricolage Grotesque";letter-spacing:.08em;text-transform:uppercase;padding:5px 10px;border-radius:999px;white-space:nowrap}
+.play.gap{background:#FFEDE8;color:#B5341A}.play.warm{background:var(--tint);color:var(--blue)}.play.par{background:#F0ECE3;color:#56606C}
+.pb-stats{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid #F0ECE3}
+.pb-stats div{padding:10px 12px;border-right:1px solid #F0ECE3}.pb-stats div:last-child{border-right:0}
+.pb-stats b{display:block;font:800 17px "Bricolage Grotesque"}.pb-stats span{font-size:11.5px;color:var(--muted)}
+.pb-body{padding:14px 20px 18px;display:grid;gap:12px}
+.pb-body h5{font:700 11.5px "Bricolage Grotesque";letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:0 0 5px}
+.pb-body ul{margin:0;padding-left:18px;font-size:14px}.pb-body li{margin:3px 0}
+.meter{position:relative;height:8px;background:#EFEBE2;border-radius:4px;margin:6px 0 2px}
+.meter i{position:absolute;left:0;top:0;bottom:0;border-radius:4px}
+.meter u{position:absolute;top:-4px;width:2px;height:16px;background:var(--ink)}
+.who{display:flex;flex-direction:column;gap:6px}
+.who .p{display:grid;grid-template-columns:30px 1fr;gap:8px;align-items:start;font-size:13.5px}
+.who .p .d{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font:800 11px "Bricolage Grotesque"}
+.seatline{font-size:13.5px;color:#B5341A;border:1.5px dashed #F1A18F;border-radius:10px;padding:8px 10px;background:#FFF8F6}
+.pb-money{display:flex;height:22px;border-radius:6px;overflow:hidden}
+.pb-money div{font:700 10.5px "Bricolage Grotesque";color:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden;white-space:nowrap}
+/* KOL list */
+.kl{display:grid;grid-template-columns:44px 1.1fr 1.4fr 1.2fr;gap:14px;padding:14px 0;border-bottom:1px solid #F0ECE3;align-items:start}
+.kl:last-child{border-bottom:0}
+@media(max-width:860px){.kl{grid-template-columns:44px 1fr}.kl .c3,.kl .c4{grid-column:2}}
+.kl .pr{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font:800 15px "Bricolage Grotesque"}
+.kl.p1 .pr{background:var(--ink);color:#fff}
+.kl .nm{font-weight:700}.kl .rl{font-size:13px;color:var(--muted)}
+.kl .lab{font:700 10.5px "Bricolage Grotesque";letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:2px}
+.kl .tx{font-size:13.5px}
+.badge{display:inline-block;font:700 10.5px "Hanken Grotesk";letter-spacing:.05em;text-transform:uppercase;padding:2px 8px;border-radius:999px;margin-top:4px}
+.b1{background:#FBF2D3;color:#7A5A00}.b2{background:var(--tint);color:var(--blue)}.b3{background:#E9F6EF;color:var(--good)}.b4{background:#FFEDE8;color:#B5341A}
+.filters{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:6px}
+.fchip{font:600 12.5px "Hanken Grotesk";border:1px solid var(--line);background:var(--soft);border-radius:999px;padding:5px 10px;cursor:pointer}
+.fchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+/* people */
+.lmap{display:grid;grid-template-columns:1.25fr .75fr;gap:16px;align-items:start}
+@media(max-width:980px){.lmap{grid-template-columns:1fr}}
+#map2d svg,#heroMap{width:100%;height:auto;display:block}
+.hire{counter-reset:h;list-style:none;margin:0;padding:0}
+.hire li{counter-increment:h;display:grid;grid-template-columns:28px 1fr auto;gap:10px;padding:9px 0;border-bottom:1px solid #F0ECE3;font-size:14px;align-items:start}
+.hire li::before{content:counter(h);width:24px;height:24px;border-radius:50%;border:1.5px solid var(--ink);display:flex;align-items:center;justify-content:center;font:800 11px "Bricolage Grotesque"}
+.hire li b{font-family:"Bricolage Grotesque"}
+.hire .rr{font:800 14px "Bricolage Grotesque";color:var(--blue);white-space:nowrap}
+.hire .ws{display:block;font-size:12.5px;color:var(--muted)}
+/* map 3d */
+.map3d-wrap{position:relative;height:500px;border-radius:18px;overflow:hidden;background:linear-gradient(180deg,#FBFAF6 0%,#EFEBE2 100%);border:1px solid var(--line)}
+#map3d{position:absolute;inset:0}
+.map-ui{position:absolute;top:14px;left:14px;display:flex;gap:6px;z-index:5;flex-wrap:wrap}
+.btn{font:700 13px "Bricolage Grotesque";border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:999px;padding:8px 14px;cursor:pointer}
+.btn.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.map-legend{position:absolute;right:14px;bottom:14px;background:rgba(255,255,255,.95);border:1px solid var(--line);border-radius:12px;padding:10px 12px;font-size:12.5px;z-index:5;max-width:250px}
+.map-legend div{display:flex;align-items:center;gap:8px;margin:3px 0}
+.map-legend i{width:12px;height:12px;border-radius:3px;display:inline-block;flex:none}
+@media(max-width:700px){.map3d-wrap{height:380px}.map-legend{display:none}}
+/* planner */
+.planner{display:grid;grid-template-columns:330px 1fr;gap:18px;align-items:start}
+@media(max-width:980px){.planner{grid-template-columns:1fr}.controls{position:static!important}}
+.controls{position:sticky;top:78px}
+.ctl{padding:11px 0;border-bottom:1px solid #EFEBE2}.ctl:last-child{border-bottom:0}
+.ctl .row{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.ctl label{font-weight:600;font-size:14px}
+.ctl output{font:800 18px "Bricolage Grotesque";color:var(--blue);white-space:nowrap}
+.ctl small{display:block;color:var(--muted);font-size:12.5px;margin-top:1px}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:30px;background:transparent;margin:4px 0 0;cursor:grab}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:3px;background:linear-gradient(90deg,var(--blue) var(--p,50%),#E4DFD4 var(--p,50%))}
+input[type=range]::-moz-range-track{height:6px;border-radius:3px;background:#E4DFD4}
+input[type=range]::-moz-range-progress{height:6px;border-radius:3px;background:var(--blue)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:24px;height:24px;border-radius:50%;background:#fff;border:3px solid var(--blue);margin-top:-9px;box-shadow:0 2px 8px rgba(11,26,46,.18)}
+input[type=range]::-moz-range-thumb{width:18px;height:18px;border-radius:50%;background:#fff;border:3px solid var(--blue)}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.kpis{grid-template-columns:1fr 1fr}}
+.kpi{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:14px 16px}
+.kpi .num{font:800 30px "Bricolage Grotesque";line-height:1.05;letter-spacing:-.02em}
+.kpi .lbl{font-size:13px;color:var(--muted);margin-top:4px}
+.kpi.dark{background:var(--ink);color:#fff;border-color:var(--ink)}.kpi.dark .lbl{color:#B9C3D1}
+.kpi.bad .num{color:var(--coral)}
+.alert{margin-top:12px;border-radius:12px;padding:12px 14px;font-size:14.5px}
+.alert.bad{background:#FFEDE8;border:1px solid #FFC6B8;color:#8A2612}
+.alert.ok{background:#E9F6EF;border:1px solid #BFE3CF;color:#155C3B}
+.quota{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+@media(max-width:700px){.quota{grid-template-columns:1fr}}
+.qbox{background:var(--soft);border:1px solid var(--line);border-radius:12px;padding:14px}
+.qbox .when{font:700 12px "Bricolage Grotesque";letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.qbox .big{font:800 23px "Bricolage Grotesque";margin-top:4px}.qbox .s{font-size:13px;color:var(--muted)}
+.qbar{display:flex;gap:2px;margin-top:8px;flex-wrap:wrap}.qbar i{width:6px;height:10px;border-radius:2px;border:1.2px solid var(--blue)}
+/* table */
+details.data{margin-top:16px}
+details.data summary{cursor:pointer;font:700 15px "Bricolage Grotesque";padding:12px 16px;background:var(--white);border:1px solid var(--line);border-radius:12px;list-style:none}
+details.data summary::-webkit-details-marker{display:none}
+details.data summary::after{content:" +";color:var(--blue)}
+details[open].data summary::after{content:" −"}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--white);margin-top:10px}
+table{border-collapse:collapse;width:100%;font-size:13.5px;min-width:900px}
+th{font:700 10.5px "Bricolage Grotesque";letter-spacing:.05em;text-transform:uppercase;color:var(--muted);text-align:left;padding:12px 8px;border-bottom:1px solid var(--line);background:var(--soft)}
+td{padding:10px 8px;border-bottom:1px solid #F0ECE3;vertical-align:middle}
+tr:last-child td{border-bottom:0}
+td.n,th.n{text-align:right}td.n{font:700 13.5px "Bricolage Grotesque";white-space:nowrap}
+tr.off td{color:#A3ABB6}
+.toggle{appearance:none;width:18px;height:18px;border:2px solid #B8C0CC;border-radius:5px;cursor:pointer;vertical-align:middle}
+.toggle:checked{background:var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3 8.5l3 3 7-7' stroke='white' stroke-width='2.4' fill='none'/%3E%3C/svg%3E") center/12px no-repeat;border-color:var(--blue)}
+/* money table */
+.money .mr{display:grid;grid-template-columns:44px 1.5fr 90px 1fr 120px 1.6fr;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid #F0ECE3;font-size:14px}
+.money .mr.h{font:700 10.5px "Bricolage Grotesque";letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-top:0}
+.money .mr:last-child{border-bottom:0}
+@media(max-width:900px){.money .mr{grid-template-columns:40px 1fr 80px}.money .mr .c4,.money .mr .c6{grid-column:2/4}.money .mr.h{display:none}}
+.act{font:800 11px "Bricolage Grotesque";letter-spacing:.06em;text-transform:uppercase;padding:4px 9px;border-radius:999px;white-space:nowrap;justify-self:start}
+.act.up{background:#E9F6EF;color:var(--good)}.act.keep{background:#F0ECE3;color:#56606C}.act.down{background:#FFEDE8;color:#B5341A}.act.gate{background:var(--tint);color:var(--blue)}
+.infbar{height:7px;background:#EFEBE2;border-radius:4px;overflow:hidden}.infbar i{display:block;height:100%;background:var(--ink);border-radius:4px}
+/* journey */
+.steps{display:grid;grid-template-columns:repeat(7,1fr);gap:10px}
+#laneBack{grid-template-columns:repeat(3,1fr)}
+@media(max-width:1000px){.steps,#laneBack{grid-template-columns:repeat(2,1fr)}}
+.lane-title{font:700 12px "Bricolage Grotesque";letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.step{background:var(--white);border:1px solid var(--line);border-radius:14px;padding:12px;cursor:pointer;transition:border-color .15s,opacity .15s;position:relative}
+.step:hover{border-color:var(--blue)}
+.step.off{opacity:.4;border-style:dashed}
+.step.win{border:2px solid var(--ink)}
+.step.win::after{content:"Most impactful";position:absolute;top:-10px;right:10px;background:var(--ink);color:#fff;font:800 10px "Bricolage Grotesque";letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:999px}
+.step .day{font:700 11px "Bricolage Grotesque";letter-spacing:.08em;text-transform:uppercase;color:var(--blue);margin-top:4px}
+.step .t{font-weight:700;font-size:13.5px;line-height:1.3;margin:3px 0 6px}
+.step .d{font:800 19px "Bricolage Grotesque"}
+.step .b{font-size:11.5px;color:var(--muted)}
+.step .inf{height:4px;background:#EFEBE2;border-radius:2px;margin-top:8px;overflow:hidden}.step .inf i{display:block;height:100%;background:var(--ink)}
+.step.behind{background:var(--soft)}
+#sankey svg,#impact svg{width:100%;height:auto;display:block}
+#sankey text,#impact text{font-family:"Hanken Grotesk";paint-order:stroke;stroke:#fff;stroke-width:3px;stroke-linejoin:round}
+.lv{font-family:"Bricolage Grotesque"!important;font-weight:700}
+.econ{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:800px){.econ{grid-template-columns:1fr 1fr}}
+.ledger td.f{color:var(--muted);font-size:13px}
+.ledger tr.total td{font-weight:800;border-top:2px solid var(--ink);font-family:"Bricolage Grotesque";font-size:16px}
+.verdict{display:grid;grid-template-columns:170px 1fr;gap:26px;align-items:center;background:var(--white);border:1.5px solid var(--ink);border-radius:20px;padding:26px}
+@media(max-width:800px){.verdict{grid-template-columns:1fr}}
+.quote{border-left:2px solid var(--ink);padding:2px 0 2px 14px;font-family:"Cormorant Garamond",Georgia,serif;font-size:21px;line-height:1.25;margin:10px 0}
+.quote small{display:block;font:500 12.5px "Hanken Grotesk";color:var(--muted);margin-top:4px}
+.src{font-size:13.5px;color:#3A4757}.src li{margin:5px 0}
+.how{display:grid;grid-template-columns:repeat(4,1fr);gap:0}
+@media(max-width:900px){.how{grid-template-columns:1fr 1fr;row-gap:16px}}
+.how .s{padding:0 16px;border-right:1px solid #F0ECE3}.how .s:last-child{border-right:0}
+.how .n{font:800 12px "Bricolage Grotesque";color:var(--coral);letter-spacing:.1em;margin-top:8px}
+.how h4{margin:2px 0 4px}.how p{font-size:13.5px;color:var(--muted);margin:0}
+.tip{position:fixed;pointer-events:none;background:var(--ink);color:#fff;font-size:13px;line-height:1.45;padding:10px 12px;border-radius:10px;z-index:80;max-width:280px;opacity:0;transition:opacity .12s}
+.tip b{font-family:"Bricolage Grotesque"}
+footer{background:var(--white);border-top:1px solid var(--line);color:var(--muted);margin-top:40px;padding:30px 0;font-size:14px}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+ <symbol id="i-vial" viewBox="0 0 48 48"><rect class="ln" x="17" y="4" width="14" height="6" rx="1.5"/><path class="ln" d="M19 10v4h10v-4"/><rect class="ln" x="14" y="14" width="20" height="30" rx="4"/><path class="la" d="M14 28h20"/><path class="la" d="M18 34h7M18 38h4"/></symbol>
+ <symbol id="i-syringe" viewBox="0 0 48 48"><path class="ln" d="M33 6l9 9M37.5 10.5l-6 6M12 36l-6 6M28 11l9 9-17 17-9-9z"/><path class="la" d="M18 21l3 3M22 17l3 3M14 25l3 3"/></symbol>
+ <symbol id="i-map" viewBox="0 0 48 48"><path class="ln" d="M4 12l12-5 16 5 12-5v29l-12 5-16-5-12 5z"/><path class="ln" d="M16 7v29M32 12v29"/><circle class="la" cx="24" cy="22" r="3.5"/><path class="la" d="M24 30c-4-4-7-7-7-9a7 7 0 0114 0c0 2-3 5-7 9z"/></symbol>
+ <symbol id="i-kol" viewBox="0 0 48 48"><circle class="ln" cx="20" cy="14" r="7"/><path class="ln" d="M6 42c1-9 7-14 14-14s13 5 14 14"/><path class="ln" d="M15 29l5 7 5-7"/><circle class="la" cx="36" cy="18" r="6"/><path class="la" d="M33 23l-2 9 5-3 5 3-2-9"/></symbol>
+ <symbol id="i-rep" viewBox="0 0 48 48"><circle class="ln" cx="17" cy="13" r="6"/><path class="ln" d="M5 40c1-8 6-12 12-12s9 3 11 8"/><rect class="la" x="27" y="27" width="16" height="13" rx="2"/><path class="la" d="M32 27v-3h6v3M27 32h16"/></symbol>
+ <symbol id="i-coins" viewBox="0 0 48 48"><ellipse class="ln" cx="18" cy="14" rx="11" ry="4"/><path class="ln" d="M7 14v8c0 2 5 4 11 4s11-2 11-4v-8M7 22v8c0 2 5 4 11 4"/><ellipse class="la" cx="31" cy="30" rx="11" ry="4"/><path class="la" d="M20 30v7c0 2 5 4 11 4s11-2 11-4v-7"/></symbol>
+ <symbol id="i-chat" viewBox="0 0 48 48"><path class="ln" d="M6 9h26a3 3 0 013 3v14a3 3 0 01-3 3H16l-7 6v-6H6a3 3 0 01-3-3V12a3 3 0 013-3z"/><path class="la" d="M11 17h18M11 22h12"/><path class="la" d="M38 18h4a3 3 0 013 3v12a3 3 0 01-3 3h-2v5l-6-5h-9a3 3 0 01-3-3v-2"/></symbol>
+ <symbol id="i-search" viewBox="0 0 48 48"><circle class="ln" cx="20" cy="20" r="11"/><path class="ln" d="M28 28l13 13"/><path class="la" d="M14 20h12M20 14v12"/></symbol>
+ <symbol id="i-target" viewBox="0 0 48 48"><circle class="ln" cx="24" cy="24" r="18"/><circle class="ln" cx="24" cy="24" r="11"/><circle class="la" cx="24" cy="24" r="4"/><path class="lc" d="M24 24l16-16M34 8h6v6"/></symbol>
+ <symbol id="i-people" viewBox="0 0 48 48"><circle class="ln" cx="16" cy="15" r="6"/><circle class="ln" cx="33" cy="17" r="5"/><path class="ln" d="M4 40c1-8 6-12 12-12s11 4 12 12M27 28c2-1 4-2 6-2 5 0 9 4 10 11"/><path class="la" d="M38 6v6M35 9h6"/></symbol>
+ <symbol id="i-tv" viewBox="0 0 48 48"><rect class="ln" x="4" y="8" width="40" height="26" rx="3"/><path class="ln" d="M16 42h16M24 34v8"/><path class="la" d="M21 16l9 5-9 5z"/></symbol>
+ <symbol id="i-phone" viewBox="0 0 48 48"><rect class="ln" x="14" y="4" width="20" height="40" rx="4"/><path class="ln" d="M21 39h6"/><circle class="la" cx="24" cy="18" r="4"/><path class="la" d="M17 30c1-4 4-6 7-6s6 2 7 6"/></symbol>
+ <symbol id="i-pin" viewBox="0 0 48 48"><path class="ln" d="M24 44s-13-13-13-23a13 13 0 0126 0c0 10-13 23-13 23z"/><circle class="la" cx="24" cy="21" r="5"/></symbol>
+ <symbol id="i-tag" viewBox="0 0 48 48"><path class="ln" d="M6 24V8h16l20 20-16 16z"/><circle class="la" cx="14" cy="16" r="3"/><path class="la" d="M22 30l8-8"/></symbol>
+ <symbol id="i-cal" viewBox="0 0 48 48"><rect class="ln" x="6" y="9" width="36" height="33" rx="3"/><path class="ln" d="M6 18h36M15 5v8M33 5v8"/><path class="la" d="M17 29l5 5 9-10"/></symbol>
+ <symbol id="i-clip" viewBox="0 0 48 48"><rect class="ln" x="9" y="7" width="30" height="37" rx="3"/><rect class="ln" x="17" y="4" width="14" height="7" rx="2"/><path class="la" d="M15 20h18M15 26h18M15 32h11"/></symbol>
+</defs></svg>
+
+<header class="top"><div class="wrap">
+  <a class="brand" href="https://localairegistry.com"><svg viewBox="0 0 100 100" width="26" height="26" aria-hidden="true"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg>Local AI Registry</a>
+  <nav><a href="#before">Before you spend</a><a href="#rec">The recommendation</a><a href="#plays">City plays</a><a href="#kols">Who to call</a><a href="#people">Where to put people</a><a href="#money">Where to put money</a></nav>
+</div></header>
+
+<main class="wrap">
+
+<div class="tophero">
+  <div>
+    <div class="eyebrow">Manufacturer launch playbook&nbsp;·&nbsp;US&nbsp;entry</div>
+    <h1><span class="pname">Re2O</span> in the US: where to go first, who to call, and why.</h1>
+    <p class="lead">Re2O is about to enter a market that has never sold it. We read 18 cities of skin-quality search demand, 21,940 practices and every US doctor who has spoken publicly about it. This is what we would do with the launch budget, and the evidence behind each move.</p>
+    <div class="meta">
+      <span class="product-in">Product <input id="pname" value="Re2O" aria-label="Product name"></span>
+      <span class="chip">Data pulled <b>Nov 25, 2026</b></span>
+      <span class="chip">Budget in this plan <b id="hBud"></b></span>
+    </div>
+  </div>
+  <svg id="heroMap" viewBox="0 0 560 380" role="img" aria-label="Line map of launch cities"></svg>
+</div>
+
+<!-- BEFORE YOU SPEND -->
+<section id="before" style="padding-top:6px">
+  <div class="case-head">
+    <div><div class="case-num">Before you spend</div><h2>Three things no other launch had to solve</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">Letybo and Skinvive launched with FDA approval and a clean story. <span class="pname">Re2O</span> has neither yet. These three sit in front of every dollar below.</p>
+  </div>
+  <div class="grid g3">
+    <div class="card"><svg width="44" height="44"><use href="#i-clip"/></svg><h3 style="margin-top:8px">The FDA question is open</h3><p style="margin:6px 0 0;font-size:14.5px">L&amp;C Bio says <span class="pname">Re2O</span> fits the human-tissue rules that let skin grafts sell without FDA approval. The FDA told Business Insider that powdered donor skin injected as a cosmetic booster may raise significant questions and may need a fuller approval process.</p><div class="why"><div><b>So what:</b> settle this in writing before any consumer spend. A warning letter after launch costs more than the whole demand budget.</div></div></div>
+    <div class="card"><svg width="44" height="44"><use href="#i-tv"/></svg><h3 style="margin-top:8px">The story got out first</h3><p style="margin:6px 0 0;font-size:14.5px">Business Insider (Oct 21) and NPR's Here &amp; Now (Oct 30) told US readers it is made from dead Americans' skin. US searches for <span class="pname">Re2O</span> hit their high the same month: 1,300.</p><div class="why"><div><b>So what:</b> many first searchers are curious or alarmed, not booking. The first answer they read, on Google or in ChatGPT, decides which.</div></div></div>
+    <div class="card"><svg width="44" height="44"><use href="#i-pin"/></svg><h3 style="margin-top:8px">It is already listed here</h3><p style="margin:6px 0 0;font-size:14.5px">We found US clinics in Manhattan, LA Koreatown and Brea, CA with <span class="pname">Re2O</span> treatment pages, before the exclusive US partner has shipped. Where their product comes from is not public.</p><div class="why"><div><b>So what:</b> verify every early listing. Turn the good ones into trained launch accounts. Ask the rest to take the page down.</div></div></div>
+  </div>
+</section>
+
+<!-- RECOMMENDATION -->
+<section id="rec" style="padding-top:8px">
+  <div class="rec">
+    <div class="rec-head">
+      <div>
+        <div class="eyebrow">Our recommendation</div>
+        <div class="big-rec" id="recTitle"></div>
+        <p class="sub" style="margin:0" id="recSub"></p>
+      </div>
+      <div><h4 style="margin-bottom:8px">How the <span id="recBud"></span> splits</h4><div class="alloc" id="alloc"></div></div>
+    </div>
+    <div class="moves" id="moves"></div>
+  </div>
+</section>
+
+<!-- MARKET PLAYS -->
+<section id="plays">
+  <div class="case-head">
+    <div><div class="case-num">Where to go</div><h2>The play for each launch city</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">Each city gets one play from two numbers: how many people search for skin-quality injectables there, and how many of them already ask for a Korean booster (Rejuran) by name.</p>
+  </div>
+  <div class="grid g3" style="margin-bottom:16px">
+    <div class="card"><span class="play gap">Educate first</span><p style="margin:10px 0 0;font-size:14px"><b>Big crowd, few Korean-booster fans.</b> People search for Sculptra and Skinvive, but rarely for Korean boosters. Explain the category before placing reps.</p></div>
+    <div class="card"><span class="play warm">Seed now</span><p style="margin:10px 0 0;font-size:14px"><b>Patients already ask for Korean boosters.</b> Rejuran searches run above the US rate. Open your first trained accounts here and let them prove it.</p></div>
+    <div class="card"><span class="play par">Build both</span><p style="margin:10px 0 0;font-size:14px"><b>Average interest.</b> One anchor trainer, a few top clinics, steady local search and AI answers.</p></div>
+  </div>
+  <div class="pb-grid" id="playbooks"></div>
+</section>
+
+<!-- KOLS -->
+<section id="kols">
+  <div class="case-head">
+    <div><div class="case-num">Who to call</div><h2>The KOL call list, in order</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">No US doctor is <span class="pname">Re2O</span> faculty yet. These are the people already talking about it or about Korean boosters, ranked by readiness and city. For each: what we know, and the exact ask.</p>
+  </div>
+  <div class="card">
+    <div class="filters" id="kfilters"></div>
+    <div id="klist"></div>
+    <p class="note">Every listing links to the public source. A listing means a public tie to the brand or category, not an endorsement of this plan or the product. "Lists Re2O" means a public treatment page; we have not verified where that clinic's product comes from. <span class="badge b4">LAIR network</span> doctors work with Local AI Registry today; that relationship is disclosed.</p>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people">
+  <div class="case-head">
+    <div><div class="case-num">Where to put people</div><h2>Reps, trainers and the gaps</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">Circles are reps per city. Line stars are named doctors. Dashed rings are launch cities with nobody to train injectors yet.</p>
+  </div>
+  <div class="lmap">
+    <div class="card" style="padding:12px"><div id="map2d"></div>
+      <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:13px;padding:0 10px 6px">
+        <span><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#1F4FE0" fill-opacity=".85"/></svg> Reps placed</span>
+        <span><svg width="14" height="14"><circle cx="7" cy="7" r="5.5" fill="none" stroke="#FF5A3C" stroke-width="1.5" stroke-dasharray="2 2"/></svg> No KOL yet</span>
+        <span><svg width="14" height="14"><path d="M7 1l1.8 3.7 4 .6-2.9 2.8.7 4-3.6-1.9-3.6 1.9.7-4L1.2 5.3l4-.6z" fill="#fff" stroke="#0B1A2E"/></svg> Named KOL</span>
+        <span><svg width="14" height="14"><circle cx="7" cy="7" r="5" fill="#fff" stroke="#9AA5B4" stroke-width="1.5"/></svg> Phase 2 city</span>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Hire in this order</h3>
+      <p class="sub">Seed-now cities first, because Korean-booster patients are already there.</p>
+      <ol class="hire" id="hire"></ol>
+      <h4 style="margin-top:16px;color:#B5341A">Recruit a trainer here first</h4>
+      <p class="sub" style="margin-bottom:6px">Launch cities with no named KOL. Pick from the busiest, best-reviewed clinics.</p>
+      <div id="gaps" style="display:flex;flex-wrap:wrap;gap:6px"></div>
+    </div>
+  </div>
+</section>
+
+<!-- EVIDENCE: 3D -->
+<section id="skyline">
+  <div class="case-head" style="margin-bottom:14px">
+    <div><div class="case-num">The evidence</div><h2>The demand skyline</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">Why the plays above. Tower height is monthly skin-quality searches. Color is how often people there also ask for a Korean booster. Drag to tilt and turn.</p>
+  </div>
+  <div class="map3d-wrap">
+    <div id="map3d"></div>
+    <div class="map-ui"><button class="btn on" data-v="3d">3D</button><button class="btn" data-v="flat">Flat</button><button class="btn" data-v="east">East</button><button class="btn" data-v="west">West</button><button class="btn" data-v="spin">Spin</button></div>
+    <div class="map-legend">
+      <div><i style="background:#FF5A3C"></i><span><b>Educate first:</b> big crowd, few K-booster fans</span></div>
+      <div><i style="background:#1F4FE0"></i><span><b>Seed now:</b> already ask for K-boosters</span></div>
+      <div><i style="background:#7A8696"></i><span><b>Build both:</b> average interest</span></div>
+      <div><i style="background:#B8901C;border-radius:50%"></i><span>Named KOL</span></div>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card">
+      <h3>How often people search each skin-quality brand</h3>
+      <p class="sub">US Google searches per month, 12 month average.</p>
+      <div id="brandBars"></div>
+      <div class="why"><div><b>So what:</b> for every 1,000 brand searches in this category, about <b id="shareTxt">4</b> are for <span class="pname">Re2O</span>. Rejuran proves Americans will search for a Korean booster by name. <span class="pname">Re2O</span> starts close to zero.</div></div>
+    </div>
+    <div class="card">
+      <h3><span class="pname">Re2O</span> searches, last 12 months</h3>
+      <p class="sub">US monthly searches for "re2o", Nov 2025 to Oct 2026.</p>
+      <svg id="trend" viewBox="0 0 520 190" style="width:100%;height:auto"></svg>
+      <div class="why"><div><b>So what:</b> searches grew about 8x in a year with no US product. Part of October's 1,300 came from the news coverage. Six in ten US searches come from New York, LA and the Bay Area.</div></div>
+    </div>
+  </div>
+  <div class="card" style="margin-top:16px">
+    <h3 style="margin-bottom:14px">How a skin booster sale actually happens</h3>
+    <div class="how">
+      <div class="s"><svg width="46" height="46"><use href="#i-search"/></svg><div class="n">01</div><h4>Patients search</h4><p>About 176,000 a month search Sculptra, Rejuran, Skinvive and peers. That is the crowd.</p></div>
+      <div class="s"><svg width="46" height="46"><use href="#i-chat"/></svg><div class="n">02</div><h4>They ask: what is it?</h4><p>For a human-tissue product, the first answer they read decides the rest.</p></div>
+      <div class="s"><svg width="46" height="46"><use href="#i-kol"/></svg><div class="n">03</div><h4>The injector recommends it</h4><p>Results depend on depth and technique. Trained injectors say your name.</p></div>
+      <div class="s"><svg width="46" height="46"><use href="#i-rep"/></svg><div class="n">04</div><h4>Reps keep it stocked</h4><p>A series is three or more visits. Reorders are the business.</p></div>
+    </div>
+  </div>
+  <details class="data">
+    <summary>See the full market data table</summary>
+    <div class="tbl-wrap"><table><thead><tr><th></th><th>Market</th><th>Play</th><th class="n">Skin-quality<br>searches/mo</th><th class="n">Rejuran<br>searches/mo</th><th class="n">K-booster pull<br>per 1,000</th><th class="n">Re2O<br>searches/mo</th><th class="n">Med spa<br>listings</th><th class="n">Near me<br>CPC</th><th class="n">Reps</th><th class="n">Demand<br>budget</th></tr></thead><tbody id="mkt"></tbody></table></div>
+    <p class="note">Skin-quality searches add "sculptra", "skinvive", "profhilo", "polynucleotides" and "skin booster" by Google DMA. K-booster pull is Rejuran searches per 1,000 skin-quality searches; the US average is <b id="natIdx"></b>. Listings are claimed Google Business Profiles in the medical spa category within 50 km of each city center (pulled Nov 20, 2026). <span class="gl" tabindex="0" data-def="Cost per click: what an advertiser pays Google each time someone clicks an ad for that search.">CPC</span> is for "sculptra near me" in that DMA. Cities under 20 Re2O searches show Google's floor of 10.</p>
+  </details>
+</section>
+
+<!-- PLANNER -->
+<section id="plan">
+  <div class="case-head">
+    <div><div class="case-num">Adjust the plan</div><h2>Change the budget, the goal or the deadline</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">Every number above, from the recommendation to the city plays and the hiring order, rebuilds when you drag these.</p>
+  </div>
+  <div class="planner">
+    <aside class="card controls" aria-label="Plan inputs">
+      <h3>Drag to plan</h3>
+      <p class="sub" style="margin-bottom:4px"><span class="tag as">Assumption</span> marks inputs to replace with internal numbers.</p>
+      <div class="ctl"><div class="row"><label for="budget">Launch budget</label><output id="o-budget"></output></div><input type="range" id="budget" min="2" max="30" step="0.5" value="8"></div>
+      <div class="ctl"><div class="row"><label for="mult">Return needed</label><output id="o-mult"></output></div><input type="range" id="mult" min="1" max="6" step="0.1" value="2.5"><small>Net sales as a multiple of budget.</small></div>
+      <div class="ctl"><div class="row"><label for="months">By when</label><output id="o-months"></output></div><input type="range" id="months" min="6" max="36" step="1" value="24"></div>
+      <div class="ctl"><div class="row"><label for="markets">Launch cities</label><output id="o-markets"></output></div><input type="range" id="markets" min="3" max="18" step="1" value="6"></div>
+      <div class="ctl"><div class="row"><label for="price">Price to practice <span class="tag as">Assumption</span></label><output id="o-price"></output></div><input type="range" id="price" min="150" max="700" step="10" value="350"><small>Per 150 mg vial, after discounts. US price is not public yet.</small></div>
+      <div class="ctl"><div class="row"><label for="units">Vials per clinic <span class="tag as">Assumption</span></label><output id="o-units"></output></div><input type="range" id="units" min="4" max="40" step="1" value="12"><small>Monthly reorder. One vial is about one patient visit.</small></div>
+      <div class="ctl"><div class="row"><label for="pace">New clinics per rep <span class="tag as">Assumption</span></label><output id="o-pace"></output></div><input type="range" id="pace" min="1" max="8" step="0.5" value="3"></div>
+      <div class="ctl"><div class="row"><label for="repcost">Rep cost per year <span class="tag as">Assumption</span></label><output id="o-repcost"></output></div><input type="range" id="repcost" min="150" max="320" step="5" value="220"><small>Salary, bonus, travel, samples, benefits.</small></div>
+    </aside>
+    <div>
+      <div class="kpis">
+        <div class="kpi dark"><div class="num" id="k-target"></div><div class="lbl">Sales needed</div></div>
+        <div class="kpi"><div class="num" id="k-reps"></div><div class="lbl">Sales reps</div></div>
+        <div class="kpi"><div class="num" id="k-accts"></div><div class="lbl">Clinics ordering by the deadline</div></div>
+        <div class="kpi" id="kpi-field"><div class="num" id="k-field"></div><div class="lbl">Of budget on the sales team</div></div>
+      </div>
+      <div class="alert" id="alert"></div>
+      <div class="card" style="margin-top:14px">
+        <h3>Sales race to the deadline</h3>
+        <p class="sub">Slow start, then it snowballs as clinics keep reordering.</p>
+        <svg id="track" viewBox="0 0 760 230" style="width:100%;height:auto"></svg>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>Quota for each rep</h3>
+        <p class="sub">Each box is one clinic that orders every month.</p>
+        <div class="quota" id="quota"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MONEY: CASE 2 -->
+<section id="money">
+  <div class="case-head">
+    <div><div class="case-num">Where to put money</div><h2>One patient, every dollar, and what to fund more</h2></div>
+    <p class="sub" style="max-width:440px;margin:0">We traced every manufacturer dollar behind one new patient, then asked which dollars actually changed her mind.</p>
+  </div>
+
+  <div class="verdict">
+    <svg viewBox="0 0 170 170" style="width:100%;max-width:170px"><circle class="ln" cx="85" cy="85" r="80"/><circle class="la" cx="85" cy="85" r="62"/><g transform="translate(37 30) scale(2)"><use href="#i-kol" width="48" height="48"/></g><text x="85" y="150" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="18" fill="#0B1A2E" id="vAmt">$13 / patient</text></svg>
+    <div>
+      <div class="eyebrow">The most impactful manufacturer spend</div>
+      <div class="big-rec" id="vHead">Training the injector. About $13 per patient, and it carries more of the decision than every ad combined.</div>
+      <p style="margin:0 0 6px;font-size:15px;color:#2B3A4E">With a new human-tissue product, the patient asks the injector two things: is it safe, and will it work on me. A trained injector can answer both. Technique matters too: clinics that use it say depth and even spread decide the result, and bumps and nodules have been reported when they are off. The trial evidence is still one small study, so the injector's confidence carries the sale.</p>
+      <div class="quote">"More large, randomized controlled clinical trials are needed."<small>Y. Claire Chang, MD, New York dermatologist, in ELLE on human-tissue boosters</small></div>
+    </div>
+  </div>
+
+  <div class="card money" style="margin-top:16px">
+    <h3>Fund more, keep, or cut back</h3>
+    <p class="sub">Every manufacturer budget line behind Maya, ranked by how much each dollar moved her decision. Click a step further down to remove it and watch these update.</p>
+    <div class="mr h"><div></div><div>Budget line</div><div>$ / patient</div><div>Influence</div><div>Do this</div><div>Why</div></div>
+    <div id="moneyRows"></div>
+  </div>
+
+  <div class="card" style="margin-top:16px">
+    <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
+      <svg width="58" height="58" viewBox="0 0 48 48"><circle class="ln" cx="24" cy="16" r="8"/><path class="ln" d="M8 44c1-10 7-16 16-16s15 6 16 16"/><path class="la" d="M18 34l6 5 6-5"/></svg>
+      <div><h3 style="margin:0">Maya, 41, Los Angeles</h3><p class="sub" style="margin:2px 0 0">A composite patient built from funnel math. <span class="tag da">Data</span> figures are real; the rest are editable assumptions. Click a step to switch it off.</p></div>
+    </div>
+    <div class="lane-title">What Maya saw</div><div class="steps" id="laneFront"></div>
+    <div class="lane-title">What happened behind the counter</div><div class="steps" id="laneBack"></div>
+  </div>
+
+  <div class="grid g2" style="margin-top:16px">
+    <div class="card"><h3>Cost vs. influence</h3><p class="sub">Top-left is where to put more money: cheap and decisive.</p><div id="impact"></div>
+      <div class="why"><div><b>Influence</b> is how much less likely Maya is to buy if that one step is removed, the way marketers measure a <span class="gl" tabindex="0" data-def="Removal effect: take one touchpoint out of the journey and measure how many conversions are lost.">removal effect</span>.</div></div></div>
+    <div class="card"><h3>The flow of every dollar</h3><p class="sub">Budget lines on the left, touchpoints in the middle, Maya on the right.</p><div id="sankey"></div></div>
+  </div>
+
+  <div class="econ" style="margin-top:16px">
+    <div class="kpi dark"><div class="num" id="e-cac"></div><div class="lbl">Total cost to win Maya</div></div>
+    <div class="kpi"><div class="num" id="e-first"></div><div class="lbl">Sales from her first visit</div></div>
+    <div class="kpi"><div class="num" id="e-ltv"></div><div class="lbl">Sales over two years</div></div>
+    <div class="kpi"><div class="num" id="e-pay"></div><div class="lbl">Visit where she pays back</div></div>
+  </div>
+  <div class="card" style="margin-top:12px"><div class="ctl" style="border:0;padding:0"><div class="row"><label for="visits">Visits in her first two years <span class="tag as">Assumption</span></label><output id="o-visits"></output></div><input type="range" id="visits" min="1" max="8" step="1" value="4"><small>One vial a visit at the plan's price to practice. A typical series is three visits, then upkeep.</small></div></div>
+  <details class="data">
+    <summary>See the ledger: how every dollar figure is built</summary>
+    <div class="tbl-wrap"><table class="ledger" style="min-width:640px"><thead><tr><th>Touchpoint</th><th>Math</th><th class="n">Influence</th><th class="n">$ / patient</th></tr></thead><tbody id="ledger"></tbody></table></div>
+  </details>
+</section>
+
+<section>
+  <div class="grid g2">
+    <div class="card"><h3>Method and sources</h3><ul class="src" style="padding-left:18px">
+      <li><span class="tag da">Data</span> Search volumes and clicks: Google Ads data via DataForSEO, 12 month average (Nov 2025 to Oct 2026), US and DMA level, pulled Nov 25, 2026. "re20" was left out: it is also a well-known microphone model.</li>
+      <li><span class="tag da">Data</span> Practice counts: claimed Google Business Profiles, medical spa category, within 50 km of each city center, via DataForSEO, Nov 20, 2026.</li>
+      <li>US entry: <a href="https://en.fnnews.com/news/202610121636331964">Financial News</a> and <a href="https://en.sedaily.com/finance/2026/10/12/lc-bio-targets-first-us-sales-of-rituo-this-year">Seoul Economic Daily</a> on the exclusive US supply deal (at least $60M through 2031). FDA position and supply chain: <a href="https://dnyuz.com/?p=307341">Business Insider, Oct 21, 2026 (syndicated copy)</a>; <a href="https://www.wbur.org/hereandnow/2026/10/30/korean-beauty-dead-skin-cells">NPR Here &amp; Now</a>, Oct 30, 2026.</li>
+      <li>Evidence: <a href="https://clinicaltrials.gov/study/NCT07155278">Yonsei split-face trial, 20 adults, 20 weeks</a>. Technique and nodules: <a href="https://www.fillerrevision.com/en/articles/re2o-phadm-skin-booster-complications">phADM complications guide</a>. KOL evidence is linked on each listing.</li>
+      <li><span class="tag as">Assumption</span> Price to practice, vials, rep pace, conversion and influence rates are planning inputs. Replace with internal numbers for a final plan.</li>
+    </ul></div>
+    <div class="card"><h3>How the math works</h3>
+      <p style="margin:0 0 10px;font-size:15px">Plays: Korean-booster pull below 80% of the US average is "Educate first", above 115% is "Seed now", otherwise "Build both". Reps go to cities by a demand score (45% skin-quality searches, 25% Rejuran searches, 15% Re2O searches, 15% practice count). Each play splits its city's demand budget differently.</p>
+      <p style="margin:0 0 10px;font-size:15px">Reps needed equals the sales target divided by what one rep's book sells by the deadline. Influence is the drop in conversion if one step is removed; impact per dollar is influence divided by cost.</p>
+      <p style="margin:0;color:var(--muted);font-size:15px">AI is evolving every day. Local AI Registry's dedicated local AI research team is always figuring out the best approach.</p>
+    </div>
+  </div>
+</section>
+</main>
+
+<div class="tip" id="tip"></div>
+<footer><div class="wrap" style="display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center">
+  <a class="brand" href="https://localairegistry.com"><svg viewBox="0 0 100 100" width="24" height="24" aria-hidden="true"><path d="M50 10 L92 86 L64 86 L50 58 L36 86 L8 86 Z" fill="#1F4FE0"/><path d="M50 10 L61 30 L39 30 Z" fill="#FF5A3C"/></svg>Local AI Registry</a>
+  <span>Manufacturer Intelligence · Prepared Nov 25, 2026 · localairegistry.com</span></div></footer>
+
+<script>
+const M=[
+ {n:"New York",sc:9900,sv:2400,pf:720,pnu:590,sb:590,rj:4400,l:110,cpc:7.86,s:3165,lat:40.71,lng:-74.01},
+ {n:"Los Angeles",sc:8100,sv:1900,pf:720,pnu:390,sb:480,rj:4400,l:170,cpc:5.01,s:2369,lat:34.05,lng:-118.24},
+ {n:"Dallas-Fort Worth",sc:3600,sv:590,pf:140,pnu:140,sb:140,rj:880,l:20,cpc:5.64,s:1686,lat:32.78,lng:-96.80},
+ {n:"Chicago",sc:3600,sv:720,pf:210,pnu:170,sb:140,rj:1000,l:10,cpc:5.51,s:1112,lat:41.88,lng:-87.63},
+ {n:"SF Bay Area",sc:3600,sv:590,pf:260,pnu:170,sb:210,rj:2400,l:70,cpc:7.25,s:683,lat:37.77,lng:-122.42},
+ {n:"Houston",sc:2900,sv:480,pf:140,pnu:140,sb:110,rj:720,l:10,cpc:7.32,s:1555,lat:29.76,lng:-95.37},
+ {n:"Washington DC",sc:2400,sv:480,pf:140,pnu:140,sb:140,rj:880,l:20,cpc:5.74,s:1088,lat:38.91,lng:-77.04},
+ {n:"Philadelphia",sc:2400,sv:480,pf:90,pnu:170,sb:90,rj:590,l:10,cpc:4.67,s:732,lat:39.95,lng:-75.17},
+ {n:"Boston",sc:2900,sv:480,pf:110,pnu:140,sb:140,rj:590,l:10,cpc:3.98,s:962,lat:42.36,lng:-71.06},
+ {n:"Atlanta",sc:2400,sv:480,pf:110,pnu:140,sb:90,rj:590,l:20,cpc:8.00,s:1170,lat:33.75,lng:-84.39},
+ {n:"Miami-Ft. Lauderdale",sc:2900,sv:590,pf:210,pnu:140,sb:140,rj:590,l:10,cpc:6.40,s:2136,lat:25.95,lng:-80.20},
+ {n:"Seattle",sc:1900,sv:390,pf:110,pnu:140,sb:90,rj:880,l:20,cpc:8.80,s:611,lat:47.61,lng:-122.33},
+ {n:"Phoenix",sc:1900,sv:590,pf:90,pnu:70,sb:70,rj:390,l:10,cpc:10.72,s:1666,lat:33.45,lng:-112.07},
+ {n:"Tampa",sc:1900,sv:390,pf:70,pnu:90,sb:70,rj:320,l:10,cpc:6.76,s:896,lat:27.95,lng:-82.46},
+ {n:"Denver",sc:1900,sv:480,pf:70,pnu:70,sb:50,rj:320,l:10,cpc:7.05,s:1039,lat:39.74,lng:-104.99},
+ {n:"Orlando",sc:1600,sv:320,pf:90,pnu:70,sb:90,rj:390,l:10,cpc:4.11,s:776,lat:28.54,lng:-81.38},
+ {n:"San Diego",sc:1900,sv:390,pf:110,pnu:90,sb:70,rj:590,l:10,cpc:6.55,s:900,lat:32.72,lng:-117.16},
+ {n:"Las Vegas",sc:880,sv:170,pf:50,pnu:30,sb:40,rj:390,l:10,cpc:5.66,s:565,lat:36.17,lng:-115.14}
+];
+const NAT={sc:110000,sv:18100,pf:5400,pnu:5400,sb:4400,rj:33100,l:590};
+const TREND=[["Nov",170],["Dec",260],["Jan",320],["Feb",320],["Mar",480],["Apr",480],["May",590],["Jun",590],["Jul",720],["Aug",720],["Sep",1000],["Oct",1300]];
+const K=[
+ {nm:"Bell Yoo, NP",rl:"Nurse practitioner, Mimo Aesthetics, West Hollywood",mk:"Los Angeles",t:1,lat:34.09,lng:-118.36,know:"Explained Re2O to Marie Claire readers: an immediate glow, then gradual texture and elasticity gains. Also said plainly it is not available in the US yet and offered Sculptra and Radiesse instead.",ask:"LA injector faculty once supply is cleared. She already gives patients the honest regulatory answer, which is the trust the launch needs.",u:"https://www.inkl.com/news/straight-from-seoul-these-are-the-7-best-korean-skincare-treatments-for-firmer-glowing-skin"},
+ {nm:"Dr. Y. Claire Chang",sk:1,rl:"Dermatologist, New York",mk:"New York",t:1,lat:40.74,lng:-73.99,know:"Quoted in ELLE's August 2026 feature on human-tissue boosters, calling for larger randomized trials before the category can be trusted.",ask:"Invite her to an independent evidence board and give her the full Yonsei data. A skeptic who signs off is worth ten fans with a new human-tissue product.",u:"https://relieveclinicseoul.com/re2o-ecm-booster-korea/"},
+ {nm:"Dr. Marie Jhin",rl:"Dermatologist, Premier Dermatology, San Carlos and SF",mk:"SF Bay Area",t:2,lat:37.51,lng:-122.26,know:"Author of K-Beauty Secrets; Korean-born. Has done public K-aesthetics conversations with a Korean aesthetics CEO.",ask:"Lead the Bay Area, the strongest Korean-booster city in the data. Patient education on what ECM boosters are and are not.",u:"https://creators.yahoo.com/lifestyle/story/the-goal-isnt-to-have-no-wrinkles--its-to-have-the-right-ones-a-dermatologist-and-a-ceo-on-the-k-aesthetics-shift-175419457.html"},
+ {nm:"Dr. Eunice Park",rl:"Facial plastic surgeon, founder of Airem, New York",mk:"New York",t:2,lat:40.72,lng:-74.00,know:"Runs a K-beauty medical aesthetic spa in New York. Quoted by The Zoe Report on Rejuran and by ELLE on Korean injectables.",ask:"New York flagship account and press voice. Her patients already come in asking for Korean treatments.",u:"https://www.thezoereport.com/beauty/rejuran-injection"},
+ {nm:"Dr. Jane Yoo",rl:"Dermatologist, Midtown Manhattan",mk:"New York",t:2,lat:40.755,lng:-73.98,know:"Korean American dermatologist who publishes Rejuran and K-beauty treatment guides on her own site.",ask:"New York patient-education partner: a plain guide to what Re2O is made of, written by a US dermatologist.",u:"https://www.janeyoomd.com/k-beauty/rejuran-pdrn/"},
+ {nm:"Dr. Elaine Kung",rl:"Dermatologist, New York",mk:"New York",t:2,lat:40.70,lng:-73.95,know:"Walked NewBeauty readers through the history of PDRN and Rejuran in Summer 2026, and noted where data is still emerging.",ask:"Evidence educator: explain the step from polynucleotides to ECM boosters to injectors at New York training days.",u:"https://www.newbeauty.com/view/history-of-pdrn"},
+ {nm:"Dr. David Kim",rl:"Dermatologist, Soho Derm, New York",mk:"New York",t:2,lat:40.725,lng:-74.00,know:"Quoted by ELLE in April 2026 on Korean in-office treatments arriving in US dermatology offices.",ask:"New York regional trainer for dermatology practices adding Korean treatments.",u:"https://www.aol.com/articles/korean-skin-treatments-over-u-120000620.html"},
+ {nm:"Dr. Anna Avaliani",rl:"Park Avenue Laser Center, New York",mk:"New York",t:2,lat:40.76,lng:-73.97,know:"One of the first New York practices to offer the full Rejuran line, per Haute Living.",ask:"Anchor account: a patient base already paying for Korean boosters.",u:"https://hauteliving.com/hautebeauty/668192/a-skin-transformation-like-no-other-the-science-of-rejuran-polynucleotides/"},
+ {nm:"Reset Cosmetic",rl:"Med spa, Manhattan",mk:"New York",t:3,lat:40.75,lng:-73.99,know:"Publishes an Elravie Re2O treatment page for Manhattan.",ask:"Confirm where their product comes from. If it fits, make them a trained launch account. If not, ask them to take the page down.",u:"https://www.resetmedclinic.com/elravie-re2o-nyc/"},
+ {nm:"WooYoo Medical Aesthetics",rl:"Med spa, Koreatown, Los Angeles",mk:"Los Angeles",t:3,lat:34.06,lng:-118.30,know:"Publishes a Re2O treatment page for Los Angeles Koreatown.",ask:"Same check. Koreatown is where LA's Korean-booster demand lives, so a clean account here matters.",u:"https://www.wooyoomedspa.com/re2o"},
+ {nm:"Alcler Medspa",rl:"Med spa, Brea, CA",mk:"Los Angeles",t:3,lat:33.92,lng:-117.90,know:"Publishes a Re2O skin booster page for Brea, Orange County.",ask:"Same check before launch stock ships.",u:"https://alcler-medspa.com/re2o-skin-booster-in-brea-ca/"},
+ {nm:"Dr. Tess Mauricio",rl:"Dermatologist, San Diego",mk:"San Diego",t:4,lat:32.75,lng:-117.12,know:"Medical Director for Local AI Registry. High-profile cosmetic dermatologist.",ask:"Warm intro through Local AI Registry for consumer media and training.",u:"https://localairegistry.com"},
+ {nm:"Dr. Ashish Bhatia",rl:"Dermatologist, Chicago area",mk:"Chicago",t:4,lat:41.80,lng:-88.10,know:"Medical Advisor for Local AI Registry.",ask:"Chicago has no other named voice. Warm intro for a regional trainer.",u:"https://localairegistry.com"},
+ {nm:"Dr. Sachin Shridharani",rl:"Plastic surgeon, Luxurgery, New York",mk:"New York",t:4,lat:40.765,lng:-73.965,know:"Long-time Local AI Registry client.",ask:"Warm intro for a New York anchor account.",u:"https://localairegistry.com"},
+ {nm:"Dr. Deepak Dugar",rl:"Facial plastic surgeon, Beverly Hills",mk:"Los Angeles",t:4,lat:34.06,lng:-118.38,know:"Local AI Registry client.",ask:"Warm intro for a Los Angeles anchor account.",u:"https://localairegistry.com"}
+];
+const TIERN={1:"Speaks on Re2O",2:"Korean-booster voice",3:"Lists Re2O",4:"LAIR network"};
+const PLAY={gap:"Educate first",warm:"Seed now",par:"Build both"};
+const SPLIT={gap:[.35,.35,.15,.15],warm:[.15,.20,.40,.25],par:[.25,.25,.30,.20]}; // KOL, consumer, coop, search&AI
+const DEMN=["KOL training","Consumer education","Clinic co-op","Search & AI"];
+const DEMC=["#B8901C","#0B1A2E","#FF5A3C","#7A8696"];
+
+const natIdx=NAT.rj/(NAT.sc+NAT.sv+NAT.pf+NAT.pnu+NAT.sb)*1000;
+M.forEach(m=>{m.cat=m.sc+m.sv+m.pf+m.pnu+m.sb;m.idx=m.rj/m.cat*1000;m.st=m.idx<natIdx*.8?'gap':m.idx>natIdx*1.15?'warm':'par';});
+const sum=(a,f)=>a.reduce((s,x)=>s+f(x),0);
+const tc=sum(M,m=>m.cat),tl=sum(M,m=>m.l),ts=sum(M,m=>m.s),tr=sum(M,m=>m.rj);
+M.forEach(m=>{m.score=.45*m.cat/tc+.25*m.rj/tr+.15*m.l/tl+.15*m.s/ts;});
+M.sort((a,b)=>b.score-a.score);M.forEach((m,i)=>m.rank=i+1);
+[...M].sort((a,b)=>b.cat-a.cat).forEach((m,i)=>m.catRank=i+1);
+[...M].sort((a,b)=>b.s-a.s).forEach((m,i)=>m.sRank=i+1);
+const fmt=n=>n.toLocaleString('en-US');
+const money=n=>{const a=Math.abs(n);if(a>=1e6)return '$'+(n/1e6).toFixed(a>=1e7?1:2).replace(/\.?0+$/,'')+'M';if(a>=1e3)return '$'+Math.round(n/1e3)+'K';return '$'+Math.round(n);};
+const $=id=>document.getElementById(id);
+const pn=()=>($('pname').value.trim()||'the product');
+const tip=$('tip');
+function showTip(h,e){tip.innerHTML=h;tip.style.opacity=1;tip.style.left=Math.min(e.clientX+14,innerWidth-300)+'px';tip.style.top=(e.clientY+14)+'px';}
+function hideTip(){tip.style.opacity=0;}
+function setName(){document.querySelectorAll('.pname').forEach(e=>e.textContent=pn());}
+$('pname').addEventListener('input',()=>render());
+const list=a=>a.length<2?a.join(''):a.slice(0,-1).join(', ')+' and '+a[a.length-1];
+const kolsIn=n=>K.filter(k=>k.mk===n);
+
+(function(){const rows=[["Sculptra",NAT.sc],["Rejuran",NAT.rj],["Skinvive",NAT.sv],["Profhilo",NAT.pf],["Re2O",NAT.l]];const mx=Math.max(...rows.map(r=>r[1]));
+ $('brandBars').innerHTML=rows.map(r=>`<div style="display:grid;grid-template-columns:86px 1fr 64px;gap:10px;align-items:center;font-size:14px;margin:8px 0;${r[0]==='Re2O'?'color:#1F4FE0;font-weight:700':''}"><span>${r[0]==='Re2O'?'<span class="pname">Re2O</span>':r[0]}</span><div style="height:10px;border:1.2px solid ${r[0]==='Re2O'?'#1F4FE0':'#9AA5B4'};border-radius:5px;overflow:hidden"><div style="height:100%;width:${Math.max(.6,r[1]/mx*100)}%;background:${r[0]==='Re2O'?'#1F4FE0':'#C8CFDA'}"></div></div><span style="font:700 14px Bricolage Grotesque;text-align:right">${fmt(r[1])}</span></div>`).join('');
+ $('shareTxt').textContent=Math.round(NAT.l/sum(rows,r=>r[1])*1000);$('natIdx').textContent=natIdx.toFixed(0);
+ const W=520,H=190,pl=40,pb=24,pt=18,mxv=1500,bw=(W-pl-6)/12;let g='';
+ [0,500,1000,1500].forEach(v=>{const y=pt+(H-pt-pb)*(1-v/mxv);g+=`<line x1="${pl}" x2="${W}" y1="${y}" y2="${y}" stroke="#EFEBE2"/><text x="${pl-6}" y="${y+4}" text-anchor="end" font-size="11" fill="#5B6878" font-family="Hanken Grotesk">${fmt(v)}</text>`;});
+ const pts=TREND.map((t,i)=>[pl+i*bw+bw/2,pt+(H-pt-pb)*(1-t[1]/mxv)]);
+ g+=`<path d="M${pts.map(p=>p.join(',')).join('L')}" fill="none" stroke="#0B1A2E" stroke-width="1.5"/>`;
+ pts.forEach((p,i)=>{const last=i===11;g+=`<circle cx="${p[0]}" cy="${p[1]}" r="${last?5:3}" fill="${last?'#1F4FE0':'#fff'}" stroke="${last?'#1F4FE0':'#0B1A2E'}" stroke-width="1.5"/><text x="${p[0]}" y="${H-6}" text-anchor="middle" font-size="11" fill="#5B6878" font-family="Hanken Grotesk">${TREND[i][0]}</text>`;if(last)g+=`<text x="${p[0]-8}" y="${p[1]-10}" text-anchor="end" font-size="12" font-weight="800" fill="#1F4FE0" font-family="Bricolage Grotesque">1,300</text>`;});
+ $('trend').innerHTML=g;})();
+
+const ids=['budget','mult','months','markets','price','units','pace','repcost','visits'];
+const disp={budget:v=>'$'+(+v)+'M',mult:v=>(+v).toFixed(1)+'x',months:v=>v+' months',markets:v=>v,price:v=>'$'+fmt(+v),units:v=>fmt(+v)+' / mo',pace:v=>(+v)+' / mo',repcost:v=>'$'+v+'K',visits:v=>v};
+function paint(el){el.style.setProperty('--p',((el.value-el.min)/(el.max-el.min)*100)+'%');$('o-'+el.id).textContent=disp[el.id](el.value);}
+let manual={};
+ids.forEach(id=>{const el=$(id);el.addEventListener('input',()=>{paint(el);if(id==='markets')manual={};render();});paint(el);});
+const V=id=>+$(id).value;
+let plan={};
+
+function render(){
+  setName();
+  const budget=V('budget')*1e6,mult=V('mult'),H=V('months'),N=V('markets'),P=V('price'),U=V('units'),r=V('pace'),rc=V('repcost')*1e3;
+  const target=budget*mult,perRep=r*U*P*H*(H-1)/2,reps=Math.max(1,Math.ceil(target/perRep)),accts=reps*r*H,field=reps*rc*H/12,fs=field/budget,demand=Math.max(0,budget-field);
+  plan={budget,target,reps,accts,field,demand,H,r,U,P,N};
+  M.forEach(m=>{m.on=(m.n in manual)?manual[m.n]:m.rank<=N;});
+  const on=M.filter(m=>m.on),sOn=sum(on,m=>m.score)||1;
+  on.forEach(m=>{m.raw=reps*m.score/sOn;m.reps=0;});
+  if(reps>=on.length)on.forEach(m=>m.reps=Math.max(1,Math.floor(m.raw)));else on.slice(0,reps).forEach(m=>m.reps=1);
+  let left=reps-sum(on,m=>m.reps);const byF=[...on].sort((a,b)=>(b.raw-b.reps)-(a.raw-a.reps));let i=0;
+  while(left>0&&byF.length){byF[i%byF.length].reps++;left--;i++;}
+  while(left<0){const big=[...on].sort((a,b)=>b.reps-a.reps)[0];big.reps--;left++;}
+  M.filter(m=>!m.on).forEach(m=>m.reps=0);
+  M.forEach(m=>{m.dem=m.on?demand*m.score/sOn:0;m.split=SPLIT[m.st].map(x=>x*m.dem);});
+  const tot=[0,1,2,3].map(j=>sum(on,m=>m.split[j]));plan.tot=tot;
+
+  $('hBud').textContent=money(budget);
+  $('k-target').textContent=money(target);$('k-reps').textContent=reps;$('k-accts').textContent=fmt(Math.round(accts));$('k-field').textContent=Math.round(fs*100)+'%';
+  $('kpi-field').classList.toggle('bad',fs>.75);
+  const al=$('alert');
+  if(fs>1){al.className='alert bad';al.innerHTML=`<b>The budget can't fund this.</b> Reaching ${money(target)} by month ${H} needs ${reps} reps costing ${money(field)}, which is ${money(field-budget)} over budget. Add time, lower the return, or raise units per clinic.`;}
+  else if(fs>.75){al.className='alert bad';al.innerHTML=`<b>Thin on demand money.</b> Reps take ${Math.round(fs*100)}% of the budget, leaving ${money(demand)} to make patients ask for it.`;}
+  else{al.className='alert ok';al.innerHTML=`<b>The plan holds.</b> ${reps} reps cost ${money(field)} over ${H} months, leaving ${money(demand)} to create demand across ${on.length} cities.`;}
+
+  renderRec(on);renderPlaybooks(on);renderKOLs(on);renderPeople(on);
+  $('mkt').innerHTML=M.map(m=>`<tr class="${m.on?'':'off'}" data-n="${m.n}" style="cursor:pointer"><td><input type="checkbox" class="toggle" ${m.on?'checked':''} aria-label="Include ${m.n}"></td><td><b>${m.rank}. ${m.n}</b></td><td><span class="play ${m.st}">${PLAY[m.st]}</span></td><td class="n">${fmt(m.cat)}</td><td class="n">${fmt(m.rj)}</td><td class="n">${m.idx.toFixed(0)}</td><td class="n">${fmt(m.l)}</td><td class="n">${fmt(m.s)}</td><td class="n">$${m.cpc.toFixed(2)}</td><td class="n">${m.reps||'<span style="color:#A3ABB6">Phase 2</span>'}</td><td class="n">${m.on?money(m.dem):''}</td></tr>`).join('');
+  document.querySelectorAll('#mkt tr').forEach(tr=>tr.onclick=()=>toggleMarket(tr.dataset.n));
+  const cp=[Math.max(2,Math.round(H/4)),Math.round(H/2),H];
+  $('quota').innerHTML=cp.map((mo,ix)=>{const a=Math.round(r*mo),units=Math.round(r*(mo-1)*U),cum=r*U*P*mo*(mo-1)/2;return `<div class="qbox"><div class="when">${ix===2?'Deadline · ':''}Month ${mo}</div><div class="big">${a} clinics</div><div class="s">${fmt(units)} vials a month · ${money(cum)} sold to date</div><div class="qbar">${'<i></i>'.repeat(Math.min(a,96))}</div></div>`;}).join('');
+  drawTrack();drawHero();draw2D();update3D();renderCase2();
+}
+function toggleMarket(n){const m=M.find(x=>x.n===n);manual[n]=!m.on;render();}
+
+/* ===== RECOMMENDATION ===== */
+function renderRec(on){
+  const {budget,reps,field,demand,H,r,tot}=plan;
+  const gaps=on.filter(m=>m.st==='gap').sort((a,b)=>b.cat-a.cat),warm=on.filter(m=>m.st==='warm').sort((a,b)=>b.cat-a.cat);
+  const warmReps=sum(warm,m=>m.reps),gapReps=sum(gaps,m=>m.reps);
+  const covered=new Set(K.map(k=>k.mk));const holes=on.filter(m=>!covered.has(m.n));
+  const top=M.filter(m=>m.on)[0];
+  $('recTitle').textContent=`Clear the FDA question first, then seed ${pn()} through trained injectors where Americans already ask for Korean boosters.`;
+  $('recSub').textContent=`${on.length} launch cities, ${reps} reps, ${money(budget)} over ${H} months, starting after supply and the regulatory position are confirmed. Every move below is sized from this plan and changes when you adjust it.`;
+  $('recBud').textContent=money(budget);
+  const parts=[["Sales team",Math.min(field,budget),"#1F4FE0"]].concat(DEMN.map((n,j)=>[n,tot[j],DEMC[j]]));
+  $('alloc').innerHTML=parts.map(p=>`<div class="row"><span>${p[0]}</span><div class="tr"><i style="width:${p[1]/budget*100}%;background:${p[2]}"></i></div><b>${money(p[1])}</b></div>`).join('');
+  const ev=(a)=>`<div class="ev">${a.map(x=>`<span class="evd">${x}</span>`).join('')}</div>`;
+  const mv=[];
+  mv.push({ic:'i-clip',h:`Get the FDA position in writing before any consumer spend.`,p:`L&C Bio says ${pn()} sells under the human-tissue rules that cover skin grafts. The FDA has said publicly that powdered donor skin injected as a cosmetic booster may need a fuller review. Until that is settled, spend only on training, evidence and accurate answers, never on ads that make claims.`,e:[`FDA comment to Business Insider, <b>Oct 2026</b>`,`US partner minimum: <b>$7.2M</b> of product in 2027`],v:'Gate',l:'before demand spend'});
+  mv.push({ic:'i-chat',h:`Own the first answer people read about what it is made of.`,p:`US searches for ${pn()} peaked at 1,300 in October, the month Business Insider and NPR ran the donor-skin story. Put the facts in Google and ChatGPT answers first: consented donors, how cells are removed, the trial, who is trained. It is one of the cheapest dollars per patient and keeps working after ads stop.`,e:[`<b>$25</b> per patient`,`<b>18%</b> of her decision`,`Searches up <b>8x</b> in a year`],v:money(tot[3]),l:'Search and AI'});
+  mv.push({ic:'i-kol',h:`Build ${Math.max(1,Math.ceil(reps/3))} regional trainers under ${Math.min(3,on.length)} national faculty, and include a skeptic.`,p:`Results depend on depth and even spread, and nodules have been reported when technique is off. The injector also has to answer the "is it safe" question in the chair. In our patient trace, training was the most impactful dollar. Put one public skeptic on the evidence board so the faculty is believed.`,e:[`Training: <b>$13</b> per patient`,`<b>45%</b> of the decision`,`<b>${K.filter(k=>k.t<=2).length}</b> US voices on record today`],v:money(tot[0]),l:'KOL training'});
+  if(warm.length)mv.push({ic:'i-rep',h:`Seed ${list(warm.slice(0,4).map(m=>m.n))} first.`,p:`People there already search for Rejuran at ${Math.round((sum(warm,m=>m.rj)/sum(warm,m=>m.cat)*1000)/natIdx*100-100)}% above the US rate, and ${Math.round(sum(warm,m=>m.l)/NAT.l*100)}% of all US ${pn()} searches come from these cities. Open trained accounts with Korean-booster patients before spreading reps thin.`,e:warm.slice(0,3).map(m=>`${m.n}: <b>${m.idx.toFixed(0)}</b> per 1,000 vs US ${natIdx.toFixed(0)}`),v:money(warmReps*V('repcost')*1e3*H/12),l:`${warmReps} reps`});
+  if(gaps.length)mv.push({ic:'i-target',h:`Educate first in ${list(gaps.slice(0,3).map(m=>m.n))}.`,p:`Big skin-quality crowds, mostly Sculptra and Skinvive, but few people ask for Korean boosters. Lead with injector training and plain patient education on what an ECM booster is before reps arrive.`,e:gaps.slice(0,3).map(m=>`${m.n}: <b>${fmt(m.cat)}</b> searches/mo, Rejuran pull <b>${m.idx.toFixed(0)}</b> per 1,000`),v:money(sum(gaps,m=>m.split[0]+m.split[1])),l:'KOL plus education'});
+  mv.push({ic:'i-pin',h:`Check every clinic already listing ${pn()}.`,p:`We found treatment pages in Manhattan, LA Koreatown and Brea before the authorized US partner has shipped. Confirm each clinic's supply. Train the good ones as launch accounts and ask the rest to take the page down, so the first US results are ones you can stand behind.`,e:[`<b>3</b> US clinics found listing it`,`Supply source: <b>not public</b>`],v:'3',l:'clinics to check'});
+  if(holes.length)mv.push({ic:'i-people',h:`Recruit a trainer in ${list(holes.map(m=>m.n))}.`,p:`These launch cities have no doctor publicly tied to ${pn()} or Korean boosters yet. Recruit one from the busiest, best-reviewed clinics before reps arrive, or new accounts open without anyone to train their injectors.`,e:holes.slice(0,3).map(m=>`${m.n}: <b>${fmt(m.s)}</b> med spas, <b>0</b> named voices`),v:holes.length+' seats',l:'to fill'});
+  $('moves').innerHTML=mv.map((m,ix)=>`<div class="move"><div class="ic"><svg width="38" height="38"><use href="#${m.ic}"/></svg></div><div><h4><span class="n">${String(ix+1).padStart(2,'0')}</span>${m.h}</h4><p>${m.p}</p>${ev(m.e)}</div><div class="amt"><div class="v">${m.v}</div><div class="l">${m.l}</div></div></div>`).join('');
+}
+
+/* ===== PLAYBOOKS ===== */
+function why(m){
+  const pct=Math.round((m.idx/natIdx-1)*100);const o=[];
+  o.push(`<b>${fmt(m.cat)}</b> skin-quality searches a month, #${m.catRank} of 18 cities.`);
+  if(m.st==='gap')o.push(`Only <b>${m.idx.toFixed(0)}</b> Rejuran searches per 1,000, ${Math.abs(pct)}% below the US rate. Korean boosters are not on the radar yet.`);
+  else if(m.st==='warm')o.push(`<b>${m.idx.toFixed(0)}</b> Rejuran searches per 1,000, ${pct}% above the US rate. Patients already ask for Korean boosters.`);
+  else o.push(`<b>${m.idx.toFixed(0)}</b> Rejuran searches per 1,000, close to the US rate.`);
+  if(m.l>=50)o.push(`<b>${fmt(m.l)}</b> people a month already search for ${pn()} here.`);
+  o.push(`<b>${fmt(m.s)}</b> med spas nearby${m.sRank<=4?', one of the densest markets':''}.`);
+  if(m.cpc>=8)o.push(`"Sculptra near me" clicks cost <b>$${m.cpc.toFixed(2)}</b>, among the priciest, so lean on trained clinics and AI answers over paid search.`);
+  else if(m.cpc<=5)o.push(`"Sculptra near me" clicks cost <b>$${m.cpc.toFixed(2)}</b>, cheap, so clinic co-op stretches far.`);
+  else o.push(`"Sculptra near me" clicks cost <b>$${m.cpc.toFixed(2)}</b>.`);
+  return o;
+}
+function todo(m){
+  const ks=kolsIn(m.n),k0=ks.find(k=>k.t===2)||ks.find(k=>k.t===1&&!k.sk)||null,k3=ks.find(k=>k.t===3)||null,k1=k0?k0.nm:null;
+  if(m.st==='gap')return [k1?`Bring in ${k1} to train local injectors before reps scale.`:`Recruit a local trainer from the busiest, best-reviewed clinics first.`,`Spend demand money on plain patient education: what an ECM booster is and is not.`,`Make sure AI answers here name only trained clinics.`,`Keep reps on a few anchor accounts until Korean-booster searches climb.`];
+  if(m.st==='warm')return [`Open the ${Math.max(8,Math.round(m.reps*V('pace')*3))} best Korean-booster clinics in the first 3 months, trained before first stock.`,k3?`Check supply at ${k3.nm} first, then convert or close that listing.`:`Co-fund opened clinics' local search so curious searchers land in trained hands.`,k1?`Use ${k1} for training days and peer dinners.`:`Recruit a peer champion from the first clinics you open.`,`Track reorders and complaints weekly; this city sets the US story.`];
+  return [k1?`Sign ${k1} as the local trainer.`:k3?`Check supply at ${k3.nm}, then train their injectors.`:`Recruit one anchor trainer from the top clinics.`,`Reps open the best clinics while training runs.`,`Steady co-op on local search for opened clinics.`,`Revisit the play after 6 months of search data.`];
+}
+function renderPlaybooks(on){
+  $('playbooks').innerHTML=on.map(m=>{const ks=kolsIn(m.n);const mx=Math.max(...M.map(x=>x.idx));
+    return `<div class="pb"><div class="pb-top"><div><div class="rk">#${m.rank} by demand score</div><div class="city">${m.n}</div></div><span class="play ${m.st}">${PLAY[m.st]}</span></div>
+    <div class="pb-stats"><div><b>${m.reps}</b><span>reps</span></div><div><b>${money(m.dem)}</b><span>demand budget</span></div><div><b>${fmt(Math.round(m.reps*V('pace')*V('months')))}</b><span>clinics to open</span></div><div><b>${ks.length}</b><span>named KOLs</span></div></div>
+    <div class="pb-body">
+      <div><h5>Korean-booster pull vs US average</h5><div class="meter"><i style="width:${m.idx/mx*100}%;background:${m.st==='gap'?'#FF5A3C':m.st==='warm'?'#1F4FE0':'#7A8696'}"></i><u style="left:${natIdx/mx*100}%"></u></div><div style="display:flex;justify-content:space-between;font-size:11.5px;color:#5B6878"><span>${m.idx.toFixed(0)} per 1,000</span><span>US ${natIdx.toFixed(0)}</span></div></div>
+      <div><h5>Why</h5><ul>${why(m).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div><h5>Do this</h5><ul>${todo(m).map(x=>`<li>${x}</li>`).join('')}</ul></div>
+      <div><h5>Call</h5>${ks.length?`<div class="who">${ks.map(k=>`<div class="p"><span class="d">${k.nm.replace(/^Dr\. /,'').split(/[ –]/).filter(Boolean).slice(0,2).map(w=>w[0]).join('')}</span><div><b>${k.nm}</b> <span class="badge b${k.t}" style="margin:0">${TIERN[k.t]}</span><br><span style="color:#5B6878">${k.ask}</span></div></div>`).join('')}</div>`:`<div class="seatline"><b>Open seat.</b> No doctor here is publicly tied to ${pn()} or Korean boosters yet. Recruit a trainer from the ${Math.min(20,Math.round(m.s*.01))} busiest, best-reviewed clinics before reps arrive.</div>`}</div>
+      <div><h5>Demand money split</h5><div class="pb-money">${m.split.map((v,j)=>`<div style="flex:0 0 ${v/(m.dem||1)*100}%;background:${DEMC[j]}" title="${DEMN[j]}: ${money(v)}">${v/(m.dem||1)>.18?money(v):''}</div>`).join('')}</div><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:11.5px;color:#5B6878;margin-top:5px">${DEMN.map((n,j)=>`<span><i style="display:inline-block;width:8px;height:8px;border-radius:2px;background:${DEMC[j]};margin-right:4px"></i>${n}</span>`).join('')}</div></div>
+    </div></div>`;}).join('');
+}
+
+/* ===== KOL LIST ===== */
+let kf=0;
+function renderKOLs(on){
+  const f=$('kfilters');f.innerHTML=[0,1,2,3,4].map(t=>`<button class="fchip ${kf===t?'on':''}" data-t="${t}">${t?TIERN[t]:'All'}</button>`).join('');
+  f.querySelectorAll('button').forEach(b=>b.onclick=()=>{kf=+b.dataset.t;renderKOLs(M.filter(m=>m.on));});
+  const pri=k=>{const m=M.find(x=>x.n===k.mk);const city=k.mk==='National'?1.2:(m&&m.on?(19-m.rank)/18:0.1);const gapBoost=m&&m.st==='gap'?.15:0;return ({1:1,2:.7,3:.5,4:.45})[k.t]*(.6+city+gapBoost);};
+  const ks=[...K].filter(k=>!kf||k.t===kf).sort((a,b)=>pri(b)-pri(a));
+  $('klist').innerHTML=ks.map((k,ix)=>`<div class="kl ${ix<5?'p1':''}"><div class="pr">${ix+1}</div>
+    <div><div class="nm">${k.nm}</div><div class="rl">${k.rl}</div><span class="badge b${k.t}">${TIERN[k.t]}</span>${k.t<4?` <a href="${k.u}" style="font-size:12px">Source</a>`:''}</div>
+    <div class="c3"><div class="lab">What we know</div><div class="tx">${k.know}</div></div>
+    <div class="c4"><div class="lab">The ask</div><div class="tx"><b>${k.ask}</b></div></div></div>`).join('');
+}
+
+/* ===== PEOPLE ===== */
+let US=null,statesFC=null;
+function renderPeople(on){
+  const order=[...on].sort((a,b)=>({warm:0,par:1,gap:2}[a.st]-{warm:0,par:1,gap:2}[b.st])||b.score-a.score);
+  let n=0;$('hire').innerHTML=order.filter(m=>m.reps).map(m=>{n+=m.reps;return `<li><div><b>${m.n}</b><span class="ws">${m.st==='warm'?'Korean-booster patients are already here.':m.st==='gap'?'Hire after training and education are running.':'Hire alongside a local trainer.'}</span></div><span class="rr">${m.reps} rep${m.reps>1?'s':''}</span></li>`;}).join('');
+  const covered=new Set(K.map(k=>k.mk));const holes=on.filter(m=>!covered.has(m.n));
+  $('gaps').innerHTML=holes.length?holes.map(m=>`<span style="font-size:12.5px;font-weight:700;border:1.5px dashed #F1A18F;color:#B5341A;border-radius:999px;padding:4px 10px">${m.n} · ${fmt(m.s)} clinics</span>`).join(''):'<span class="note">Every launch city has a named voice.</span>';
+}
+function draw2D(){
+  const el=$('map2d');if(!statesFC||!window.d3){return;}
+  const W=760,H=470,proj=d3.geoAlbersUsa().fitExtent([[10,10],[W-10,H-10]],statesFC),path=d3.geoPath(proj);
+  const covered=new Set(K.map(k=>k.mk));const maxR=Math.max(...M.map(m=>m.reps||0),1);
+  let s=`<svg viewBox="0 0 ${W} ${H}">`+statesFC.features.map(f=>`<path d="${path(f)}" fill="#FBFAF6" stroke="#CFC8B8" stroke-width=".7"/>`).join('');
+  const pts=M.map(m=>({m,p:proj([m.lng,m.lat])})).filter(o=>o.p).sort((a,b)=>(b.m.reps||0)-(a.m.reps||0));
+  pts.forEach(({m,p})=>{const rad=m.on?9+Math.sqrt(m.reps/maxR)*20:6;
+    if(m.on&&!covered.has(m.n))s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${rad+7}" fill="none" stroke="#FF5A3C" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+    s+=`<g class="mk2" data-n="${m.n}" style="cursor:pointer"><circle cx="${p[0]}" cy="${p[1]}" r="${rad}" fill="${m.on?'#1F4FE0':'#fff'}" fill-opacity="${m.on?.85:1}" stroke="${m.on?'#fff':'#9AA5B4'}" stroke-width="1.5"/>${m.on&&m.reps?`<text x="${p[0]}" y="${p[1]+4}" text-anchor="middle" font-family="Bricolage Grotesque" font-weight="800" font-size="12" fill="#fff">${m.reps}</text>`:''}</g>`;});
+  pts.filter(o=>o.m.on).forEach(({m,p})=>{const rad=9+Math.sqrt(m.reps/maxR)*20;s+=`<text x="${p[0]+rad+5}" y="${p[1]+4}" font-family="Hanken Grotesk" font-weight="700" font-size="12" fill="#0B1A2E" style="paint-order:stroke;stroke:#FBFAF6;stroke-width:3px">${m.n}</text>`;});
+  K.forEach((k,ix)=>{const p=proj([k.lng,k.lat]);if(!p)return;s+=`<path class="kst" data-i="${ix}" transform="translate(${p[0]-10+(ix%3)*4} ${p[1]-18})" d="M0-7l2 4.5 5 .7-3.6 3.4.9 5-4.3-2.3-4.3 2.3.9-5L-7-1.8l5-.7z" fill="#fff" stroke="#0B1A2E" stroke-width="1.2"/>`;});
+  el.innerHTML=s+'</svg>';
+  el.querySelectorAll('.mk2').forEach(g=>{const m=M.find(x=>x.n===g.dataset.n);
+    g.onmousemove=e=>showTip(`<b>${m.n}</b> · ${PLAY[m.st]}<br>${fmt(m.cat)} skin-quality searches/mo · Rejuran pull ${m.idx.toFixed(0)} per 1,000<br>${fmt(m.s)} med spas · ${m.on?m.reps+' reps':'Phase 2'}<br><i>Click to swap in or out of the plan</i>`,e);g.onmouseleave=hideTip;g.onclick=()=>toggleMarket(m.n);});
+  el.querySelectorAll('.kst').forEach(g=>{const k=K[+g.dataset.i];g.onmousemove=e=>showTip(`<b>${k.nm}</b><br>${k.rl}<br>${TIERN[k.t]}`,e);g.onmouseleave=hideTip;});
+}
+function drawHero(){
+  const el=$('heroMap');if(!statesFC||!window.d3)return;
+  const W=560,H=380,proj=d3.geoAlbersUsa().fitExtent([[20,30],[W-20,H-40]],statesFC),path=d3.geoPath(proj);
+  let s=statesFC.features.map(f=>`<path d="${path(f)}" fill="none" stroke="#C9C2B2" stroke-width=".7"/>`).join('');
+  const on=M.filter(m=>m.on).map(m=>({m,p:proj([m.lng,m.lat])})).filter(o=>o.p);
+  const hub=proj([-118.24,34.05]);
+  on.forEach(({m,p})=>{const mx=(p[0]+hub[0])/2,my=Math.min(p[1],hub[1])-50;s+=`<path d="M${hub[0]},${hub[1]} Q${mx},${my} ${p[0]},${p[1]}" fill="none" stroke="#1F4FE0" stroke-width="1" stroke-opacity=".45"/>`;});
+  on.forEach(({m,p})=>{const r=4+Math.sqrt(m.cat/14200)*10;s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="#fff" stroke="${m.st==='gap'?'#FF5A3C':m.st==='warm'?'#1F4FE0':'#7A8696'}" stroke-width="1.5"/><circle cx="${p[0]}" cy="${p[1]}" r="2" fill="#0B1A2E"/>`;});
+  s+=`<circle cx="${hub[0]}" cy="${hub[1]}" r="5" fill="#0B1A2E"/>`;
+  s+=`<g transform="translate(${W-92} ${H-150})"><g transform="scale(1.7)"><use href="#i-vial" width="48" height="48"/></g></g>`;
+  s+=`<g font-family="Hanken Grotesk" font-size="11" fill="#5B6878"><circle cx="30" cy="${H-22}" r="5" fill="#fff" stroke="#FF5A3C" stroke-width="1.5"/><text x="40" y="${H-18}">Educate first</text><circle cx="130" cy="${H-22}" r="5" fill="#fff" stroke="#1F4FE0" stroke-width="1.5"/><text x="140" y="${H-18}">Seed now</text><circle cx="210" cy="${H-22}" r="5" fill="#fff" stroke="#7A8696" stroke-width="1.5"/><text x="220" y="${H-18}">Build both</text></g>`;
+  el.innerHTML=s;
+}
+function drawTrack(){
+  const {H,reps,r,U,P,target}=plan;const W=760,Ht=230,pl=56,pr=16,pt=16,pb=30;
+  const pts=[];for(let m=0;m<=H;m++)pts.push(Math.max(0,reps*r*U*P*m*(m-1)/2));
+  const ymax=Math.max(target,pts[H])*1.12,x=m=>pl+(W-pl-pr)*m/H,y=v=>pt+(Ht-pt-pb)*(1-v/ymax);
+  let g='';for(let k=0;k<=4;k++){const v=ymax*k/4;g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(v)}" y2="${y(v)}" stroke="#EFEBE2"/><text x="${pl-8}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5B6878" font-family="Hanken Grotesk">${money(v)}</text>`;}
+  const step=H>24?6:H>12?3:2;for(let m=0;m<=H;m+=step)g+=`<text x="${x(m)}" y="${Ht-8}" text-anchor="${m===H?'end':m===0?'start':'middle'}" font-size="11" fill="#5B6878" font-family="Hanken Grotesk">Month ${m}</text>`;
+  const path=pts.map((v,m)=>(m?'L':'M')+x(m).toFixed(1)+','+y(v).toFixed(1)).join('');
+  g+=`<path d="${path}L${x(H)},${y(0)}L${x(0)},${y(0)}Z" fill="#1F4FE0" opacity=".06"/><path d="${path}" fill="none" stroke="#1F4FE0" stroke-width="2"/>`;
+  g+=`<line x1="${pl}" x2="${W-pr}" y1="${y(target)}" y2="${y(target)}" stroke="#0B1A2E" stroke-dasharray="4 4" stroke-width="1.2"/><text x="${pl+6}" y="${y(target)-7}" font-size="12" font-weight="700" fill="#0B1A2E" font-family="Bricolage Grotesque">Goal ${money(target)}</text>`;
+  g+=`<circle cx="${x(H)}" cy="${y(pts[H])}" r="5" fill="#fff" stroke="#1F4FE0" stroke-width="2"/><text x="${x(H)-10}" y="${y(pts[H])-10}" text-anchor="end" font-size="12" font-weight="700" fill="#0B1A2E" font-family="Bricolage Grotesque">${money(pts[H])} by month ${H}</text>`;
+  $('track').innerHTML=g;
+}
+
+/* ===== 3D ===== */
+let deckgl=null,spinT=null,vs={longitude:-96.5,latitude:35.6,zoom:3.35,pitch:52,bearing:-14};
+const COL={gap:[255,90,60],warm:[31,79,224],par:[122,134,150]};
+function layers3D(){const {GeoJsonLayer,ColumnLayer,TextLayer,ScatterplotLayer}=deck;return [
+  new GeoJsonLayer({id:'st',data:statesFC,filled:true,stroked:true,getFillColor:[255,255,255],getLineColor:[205,198,184],lineWidthMinPixels:1}),
+  new ColumnLayer({id:'cols',data:M,diskResolution:28,radius:34000,extruded:true,pickable:true,getPosition:d=>[d.lng,d.lat],getElevation:d=>d.cat*60,getFillColor:d=>[...COL[d.st],d.on?255:110],material:{ambient:.55,diffuse:.65,shininess:24},updateTriggers:{getFillColor:M.map(m=>m.on).join()}}),
+  new ScatterplotLayer({id:'kols',data:K,pickable:true,getPosition:d=>[d.lng,d.lat,0],getRadius:44000,getFillColor:[184,144,28],getLineColor:[255,255,255],stroked:true,lineWidthMinPixels:1.5,radiusUnits:'meters'}),
+  new TextLayer({id:'lbl',data:M.filter(m=>m.rank<=10),getPosition:d=>[d.lng,d.lat,d.cat*60+60000],getText:d=>d.n,getSize:12,getColor:[11,26,46],fontFamily:'Hanken Grotesk, sans-serif',fontWeight:700,background:true,getBackgroundColor:[255,255,255,235],backgroundPadding:[5,3]})];}
+function init3D(){const el=$('map3d');
+  if(!window.deck||!statesFC){el.innerHTML='<p class="note" style="padding:60px 20px">3D view needs WebGL. The map under "Where to put people" shows the same cities.</p>';return;}
+  try{deckgl=new deck.Deck({parent:el,initialViewState:vs,controller:true,layers:layers3D(),style:{position:'absolute',inset:0},onViewStateChange:({viewState})=>{vs=viewState;},
+    getTooltip:({object,layer})=>{if(!object)return null;const st='background:#0B1A2E;color:#fff;font:13px Hanken Grotesk;padding:10px 12px;border-radius:10px;max-width:260px';
+      if(layer.id==='kols')return {html:`<b>${object.nm}</b><br>${object.rl}<br>${TIERN[object.t]}`,style:{cssText:st}};
+      return {html:`<b>${object.n}</b> · ${PLAY[object.st]}<br>${fmt(object.cat)} skin-quality searches/mo<br>Rejuran pull ${object.idx.toFixed(0)} per 1,000<br>${object.on?object.reps+' reps planned':'Phase 2'}`,style:{cssText:st}};}});}
+  catch(e){el.innerHTML='<p class="note" style="padding:60px 20px">3D view needs WebGL.</p>';deckgl=null;}
+  if(innerWidth<700)fly({zoom:2.5});}
+function update3D(){if(deckgl)deckgl.setProps({layers:layers3D()});}
+function fly(p){if(!deckgl)return;vs={...vs,...p,transitionDuration:1200,transitionInterpolator:new deck.FlyToInterpolator()};deckgl.setProps({initialViewState:vs});}
+document.querySelectorAll('.map-ui .btn').forEach(b=>b.onclick=()=>{document.querySelectorAll('.map-ui .btn').forEach(x=>x.classList.toggle('on',x===b));clearInterval(spinT);const v=b.dataset.v,mob=innerWidth<700?-.8:0;
+  if(v==='3d')fly({longitude:-96.5,latitude:35.6,zoom:3.35+mob,pitch:52,bearing:-14});
+  if(v==='flat')fly({longitude:-96.5,latitude:38,zoom:3.3+mob,pitch:0,bearing:0});
+  if(v==='east')fly({longitude:-79,latitude:36,zoom:4.4+mob,pitch:58,bearing:-20});
+  if(v==='west')fly({longitude:-117.5,latitude:36,zoom:4.6+mob,pitch:58,bearing:15});
+  if(v==='spin'){let br=vs.bearing||0;spinT=setInterval(()=>{br+=.6;vs={...vs,pitch:55,bearing:br,transitionDuration:0};deckgl&&deckgl.setProps({initialViewState:vs});},30);}});
+
+/* ===== CASE 2 ===== */
+const T=[
+ {id:'ctv',lane:'f',ic:'i-tv',day:'Day 0',b:'Consumer media',t:'Saw a brand spot on streaming TV',f:'8 impressions at $35 per 1,000 ÷ 1 in 250 reached become patients',c:8*.035*250,inf:.03,act:'down',why:'Expensive and risky before the FDA position is settled. Hold broad media until trained clinics and accurate answers are in place.'},
+ {id:'ig',lane:'f',ic:'i-phone',day:'Day 6',b:'Consumer media',t:"Watched a local injector's video on Korean boosters",f:'4 views at $12 per 1,000 ÷ 1 in 300 viewers become patients',c:4*.012*300,inf:.05,act:'keep',why:'Cheap and believable when the injector is trained. Keep it local and claim-free.'},
+ {id:'gs',lane:'f',ic:'i-search',day:'Day 12',b:'Search & AI',t:'Googled the brand vs Rejuran',f:'$1.92 brand click (real US cost) ÷ 1 in 10 clicks become patients',c:19.2,inf:.06,real:1,act:'keep',why:'Brand clicks are cheap today because few advertisers bid. Defend the name before others do.'},
+ {id:'ai',lane:'f',ic:'i-chat',day:'Day 13',b:'Search & AI',t:'Asked ChatGPT what it is made of and if it is safe',f:'$25K a month AI visibility program ÷ about 1,000 new patients a month',c:25,inf:.18,act:'up',why:'The question every patient asks first, given the news. Accurate answers here decide whether curiosity turns into a booking.'},
+ {id:'coop',lane:'f',ic:'i-pin',day:'Day 15',b:'Practice co-op',t:'Clicked a clinic ad for "rejuran near me"',f:'$5.14 click (real US cost) × 50% co-op ÷ 1 in 8 clicks book',c:5.14*.5*8,inf:.15,real:1,act:'up',why:'Cheap, and it catches people already shopping Korean boosters. Point it only at trained clinics.'},
+ {id:'promo',lane:'f',ic:'i-tag',day:'Day 20',b:'Practice co-op',t:'Booked with "$50 off your first session"',f:'$50 price support on the first vial',c:50,inf:.04,act:'down',why:'Discounts on a new tissue product can read as a warning sign. Use the series rebate instead.'},
+ {id:'loyal',lane:'f',ic:'i-cal',day:'Day 75',b:'Patient loyalty',t:'Finished her 3-session series and got a rebate',f:'$40 rebate, paid only when the series is complete',c:40,inf:.05,act:'keep',why:'Paid only when she completes the series, which is where results and reorders come from.'},
+ {id:'rep',lane:'b',ic:'i-rep',day:'Month 1',b:'Sales team',t:'A rep opened the clinic and keeps it stocked',f:'$220K rep a year ÷ about 1,500 new patients a year in the territory',c:220000/1500,inf:1,gate:1,act:'gate',why:'The gate: without authorized stock on the shelf, no other dollar works. Size it to the plan, pay on reorders.'},
+ {id:'kol',lane:'b',ic:'i-kol',day:'Month 2',b:'KOL program',t:'Her injector was trained by a regional KOL, then recommended it',f:'$6,000 training day ÷ 12 injectors × 40 new patients each',c:12.5,inf:.45,act:'up',why:'The most impactful dollar: the injector answers the safety question and controls technique. Fund this first and most.'},
+ {id:'kit',lane:'b',ic:'i-clip',day:'Day 20',b:'Practice co-op',t:'Consult used a donor and safety fact sheet',f:'$400 kit per clinic ÷ about 60 new patients a year',c:400/60,inf:.06,act:'up',why:'Pennies per patient. Gives every injector the same accurate answer on where the tissue comes from.'}
+];
+const BC={"Consumer media":"#0B1A2E","Search & AI":"#7A8696","Practice co-op":"#FF5A3C","Sales team":"#1F4FE0","KOL program":"#B8901C","Patient loyalty":"#9DB4FF"};
+const ACT={up:'Fund more',keep:'Keep',down:'Cut back',gate:'Must have'};
+const offT=new Set();
+function renderCase2(){
+  const P=V('price'),visits=V('visits'),act=T.filter(s=>!offT.has(s.id)),pers=act.filter(s=>!s.gate);
+  pers.forEach(s=>s.ipd=s.inf/s.c);const best=[...pers].sort((a,b)=>b.ipd-a.ipd)[0];
+  const card=s=>`<div class="step ${s.lane==='b'?'behind':''} ${offT.has(s.id)?'off':''} ${best&&s.id===best.id?'win':''}" data-id="${s.id}"><svg width="34" height="34"><use href="#${s.ic}"/></svg><div class="day">${s.day}</div><div class="t">${s.t}</div><div class="d">$${s.c.toFixed(s.c<10?2:0)}</div><div class="b">${s.b}${s.real?' · <span class="tag da">Data</span>':''}</div><div class="inf"><i style="width:${s.gate?100:s.inf/.45*100}%;${s.gate?'background:#1F4FE0':''}"></i></div><div class="b">${s.gate?'Gate: no stock, no sale':Math.round(s.inf*100)+'% of the decision'}</div></div>`;
+  $('laneFront').innerHTML=T.filter(s=>s.lane==='f').map(card).join('');$('laneBack').innerHTML=T.filter(s=>s.lane==='b').map(card).join('');
+  document.querySelectorAll('.step').forEach(el=>el.onclick=()=>{const id=el.dataset.id;offT.has(id)?offT.delete(id):offT.add(id);renderCase2();});
+  const cac=sum(act,s=>s.c),first=P,per=P,ltv=first+(visits-1)*per,gateOff=offT.has('rep');
+  let pv=0,acc=0;for(let v=1;v<=60;v++){acc+=v===1?first:per;if(acc>=cac){pv=v;break;}}
+  $('e-cac').textContent='$'+Math.round(cac);$('e-first').textContent=gateOff?'$0':'$'+Math.round(first);$('e-ltv').textContent=gateOff?'$0':'$'+fmt(Math.round(ltv));
+  $('e-pay').textContent=gateOff?'Never':(pv>visits?'Visit '+pv+' (not reached)':'Visit '+pv);$('e-pay').parentElement.classList.toggle('bad',gateOff||pv>visits);
+  if(best){$('vAmt').textContent='$'+best.c.toFixed(0)+' / patient';
+    const adsInf=sum(pers.filter(s=>['ctv','ig','gs','coop'].includes(s.id)),s=>s.inf);
+    $('vHead').textContent=best.id==='kol'?`Training the injector. About $${best.c.toFixed(0)} per patient, and it carries ${best.inf>adsInf?'more of the decision than every ad combined':'the most influence per dollar'}.`:`"${best.t}" at $${best.c.toFixed(0)} per patient, the most influence per dollar with injector training switched off.`;}
+  const all=[...T].map(s=>({...s,ipd:s.gate?Infinity:s.inf/s.c})).sort((a,b)=>b.ipd-a.ipd);
+  $('moneyRows').innerHTML=all.map(s=>`<div class="mr" style="${offT.has(s.id)?'opacity:.4':''}"><svg width="34" height="34"><use href="#${s.ic}"/></svg><div><b>${s.t}</b><div style="font-size:12px;color:#5B6878">${s.b}</div></div><div style="font:800 16px Bricolage Grotesque">$${s.c.toFixed(s.c<10?2:0)}</div><div class="c4">${s.gate?'<span style="font-size:12.5px;color:#1F4FE0;font-weight:700">Gate</span>':`<div class="infbar"><i style="width:${s.inf/.45*100}%"></i></div><span style="font-size:12px;color:#5B6878">${Math.round(s.inf*100)}% of the decision</span>`}</div><span class="act ${s.act}">${ACT[s.act]}</span><div class="c6" style="font-size:13px;color:#2B3A4E">${s.why}</div></div>`).join('');
+  $('ledger').innerHTML=T.map(s=>`<tr style="${offT.has(s.id)?'opacity:.4;text-decoration:line-through':''}"><td><b>${s.t}</b><br><span style="font-size:12px;color:#5B6878">${s.b}</span></td><td class="f">${s.f}</td><td class="n">${s.gate?'Gate':Math.round(s.inf*100)+'%'}</td><td class="n">$${s.c.toFixed(2)}</td></tr>`).join('')+`<tr class="total"><td colspan="3">Every invested dollar behind one patient</td><td class="n">$${cac.toFixed(2)}</td></tr>`;
+  drawImpact(pers,best);drawSankey(act,cac);
+}
+function drawImpact(pers,best){const el=$('impact');if(!window.d3)return;const W=560,H=340,ml=48,mr=20,mt=20,mb=44;
+  const x=d3.scaleLog().domain([3,150]).range([ml,W-mr]),y=d3.scaleLinear().domain([0,.52]).range([H-mb,mt]),r=d3.scaleSqrt().domain([0,d3.max(pers,d=>d.ipd)||1]).range([5,26]);
+  let s=`<svg viewBox="0 0 ${W} ${H}"><rect x="${ml}" y="${mt}" width="${x(30)-ml}" height="${y(.12)-mt}" fill="none" stroke="#1E8F5A" stroke-dasharray="4 4" rx="8"/><text x="${ml+8}" y="${mt+16}" font-size="11" font-weight="700" fill="#1E8F5A">Fund more here</text><text x="${W-mr-6}" y="${H-mb-8}" text-anchor="end" font-size="11" font-weight="700" fill="#B5341A">Cut back here</text>`;
+  [3,5,10,25,50,100].forEach(v=>s+=`<line x1="${x(v)}" x2="${x(v)}" y1="${mt}" y2="${H-mb}" stroke="#F0ECE3"/><text x="${x(v)}" y="${H-mb+16}" text-anchor="middle" font-size="11" fill="#5B6878">$${v}</text>`);
+  [0,.1,.2,.3,.4,.5].forEach(v=>s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}" stroke="#F0ECE3"/><text x="${ml-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5B6878">${v*100}%</text>`);
+  s+=`<text x="${(ml+W-mr)/2}" y="${H-6}" text-anchor="middle" font-size="12" font-weight="700" fill="#0B1A2E">Cost per new patient</text><text transform="translate(12 ${(mt+H-mb)/2}) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#0B1A2E">Influence on her decision</text>`;
+  const short={ctv:'Streaming TV',ig:'Injector video',gs:'Brand search ad',ai:'AI answer on safety',coop:'Clinic "near me" ad',promo:'$50 intro offer',loyal:'Series rebate',kol:'Injector training',kit:'Donor fact sheet'};
+  [...pers].sort((a,b)=>a.ipd-b.ipd).forEach(d=>{const cx=x(Math.max(3,Math.min(150,d.c))),cy=y(d.inf),w=best&&d.id===best.id,lf=cx>W*.62,rr=r(d.ipd),LP={ig:[0,-rr-6,'middle'],gs:[0,rr+14,'middle'],loyal:[0,-rr-6,'middle'],promo:[0,rr+14,'middle'],ctv:[0,-rr-6,'middle'],kit:[-rr-5,4,'end'],ai:[rr+5,-4,'start'],coop:[rr+5,8,'start']}[d.id]||[lf?-rr-5:rr+5,4,lf?'end':'start'];
+    s+=`<circle cx="${cx}" cy="${cy}" r="${rr}" fill="#fff" stroke="${BC[d.b]}" stroke-width="${w?2.5:1.5}"/><circle cx="${cx}" cy="${cy}" r="2.5" fill="${BC[d.b]}"/><text x="${cx+LP[0]}" y="${cy+LP[1]}" text-anchor="${LP[2]}" font-size="${w?13:11.5}" font-weight="${w?800:600}" fill="#0B1A2E">${short[d.id]}</text>`;});
+  el.innerHTML=s+'</svg>';}
+function drawSankey(act,cac){const el=$('sankey');el.innerHTML='';if(!window.d3||!d3.sankey||!act.length)return;
+  const W=Math.max(el.clientWidth,520),H=Math.max(380,act.length*40);const buckets=[...new Set(act.map(s=>s.b))];
+  const nodes=buckets.map(b=>({name:b,kind:'b'})).concat(act.map(s=>({name:s.t,kind:'t',id:s.id})),[{name:'Maya',kind:'p'}]);const idx=n=>nodes.findIndex(x=>x.name===n);const links=[];
+  act.forEach(s=>{links.push({source:idx(s.b),target:idx(s.t),value:s.c,b:s.b});links.push({source:idx(s.t),target:nodes.length-1,value:s.c,b:s.b});});
+  const g=d3.sankey().nodeWidth(8).nodePadding(10).nodeAlign(d3.sankeyJustify).extent([[118,8],[W-70,H-8]])({nodes:nodes.map(d=>({...d})),links:links.map(d=>({...d}))});
+  const svg=d3.select(el).append('svg').attr('viewBox',`0 0 ${W} ${H}`);
+  svg.append('g').selectAll('path').data(g.links).join('path').attr('d',d3.sankeyLinkHorizontal()).attr('fill','none').attr('stroke',d=>BC[d.b]).attr('stroke-opacity',.22).attr('stroke-width',d=>Math.max(1.2,d.width));
+  const nd=svg.append('g').selectAll('g').data(g.nodes).join('g');
+  nd.append('rect').attr('x',d=>d.x0).attr('y',d=>d.y0).attr('width',d=>d.x1-d.x0).attr('height',d=>Math.max(2,d.y1-d.y0)).attr('fill',d=>d.kind==='b'?BC[d.name]:d.kind==='p'?'#1F4FE0':'#0B1A2E');
+  nd.each(function(d){const s=d3.select(this),ym=(d.y0+d.y1)/2;
+    if(d.kind==='p'){s.append('text').attr('x',d.x1+6).attr('y',ym-4).attr('class','lv').attr('font-size',14).text('Maya');s.append('text').attr('x',d.x1+6).attr('y',ym+12).attr('font-size',11).text('$'+Math.round(cac));return;}
+    if(d.kind==='t')return;
+    s.append('text').attr('x',d.x0-6).attr('y',ym-1).attr('text-anchor','end').attr('class','lv').attr('font-size',11.5).text(d.name);s.append('text').attr('x',d.x0-6).attr('y',ym+13).attr('text-anchor','end').attr('fill','#5B6878').attr('font-size',11).text('$'+d.value.toFixed(0));});
+  nd.filter(d=>d.kind==='t').append('title').text(d=>d.name+': $'+d.value.toFixed(0));}
+addEventListener('resize',()=>{clearTimeout(window._rt);window._rt=setTimeout(renderCase2,150);});
+
+render();
+fetch('states.json').then(r=>r.json()).then(us=>{statesFC=topojson.feature(us,us.objects.states);statesFC.features=statesFC.features.filter(f=>!['02','15','72','60','66','69','78'].includes(f.id));init3D();drawHero();draw2D();}).catch(()=>init3D());
+</script>
+</body>
+</html>
