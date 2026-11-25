@@ -446,8 +446,9 @@ html.paused .marquee ul{animation-play-state:paused}
 <!-- HERO -->
 <section class="hero on-dark" id="top" aria-labelledby="h-hero">
   <div class="hero-media" aria-hidden="true">
-    <video id="v0" muted playsinline preload="auto" src="https://videos.pexels.com/video-files/5468913/5468913-hd_1920_1080_25fps.mp4"></video>
+    <video id="v0" muted playsinline preload="auto" src="https://videos.pexels.com/video-files/7011318/7011318-hd_1920_1080_25fps.mp4"></video>
     <video id="v1" muted playsinline preload="none" data-src="https://videos.pexels.com/video-files/7581711/7581711-hd_2048_1080_25fps.mp4"></video>
+    <video id="v2" muted playsinline preload="none" data-src="https://videos.pexels.com/video-files/9335936/9335936-hd_1920_1080_25fps.mp4"></video>
   </div>
   <div class="hero-c">
     <span class="eyebrow">Medical Aesthetics in Merrick, NY</span>
@@ -844,10 +845,10 @@ html.paused .marquee ul{animation-play-state:paused}
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))closeNav()});
 
   // motion control (hero videos alternate, ticker, marquee, reviews)
-  const vids=[document.getElementById('v0'),document.getElementById('v1')],mbtn=document.getElementById('motionBtn');let vi=0;
-  const playV=i=>{const v=vids[i];if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.currentTime=0;const p=v.play();if(p&&p.catch)p.catch(()=>{});vids.forEach((o,k)=>o.classList.toggle('show',k===i))};
+  const vids=['v0','v1','v2'].map(id=>document.getElementById(id)),mbtn=document.getElementById('motionBtn');let vi=0;
+  const playV=i=>{const v=vids[i];if(!v.getAttribute('src')&&v.dataset.src)v.src=v.dataset.src;v.currentTime=0;const p=v.play();if(p&&p.catch)p.catch(()=>{});vids.forEach((o,k)=>o.classList.toggle('show',k===i))};
   vids.forEach((v,i)=>v.addEventListener('ended',()=>{vi=(i+1)%vids.length;if(!paused)playV(vi)}));
-  vids[0].addEventListener('canplay',()=>{if(!vids[1].src){vids[1].src=vids[1].dataset.src;vids[1].load()}},{once:true});
+  vids.forEach((v,i)=>v.addEventListener('playing',()=>{const n=vids[(i+1)%vids.length];if(!n.getAttribute('src')&&n.dataset.src){n.src=n.dataset.src;n.load()}},{once:true}));
   const setPaused=p=>{paused=p;root.classList.toggle('paused',p);mbtn.setAttribute('aria-pressed',String(p));mbtn.querySelector('span').textContent=p?'Play motion':'Pause motion';const v=vids[vi];if(p){v.pause()}else{const q=v.play();if(q&&q.catch)q.catch(()=>{});v.classList.add('show')}};
   mbtn.addEventListener('click',()=>setPaused(!paused));
   if(reduce){setPaused(true);vids[0].classList.add('show')}else{playV(0)}
