@@ -319,7 +319,7 @@
   }
  ]
 }</script>
-<link rel="stylesheet" href="assets/site.css?v=4">
+<link rel="stylesheet" href="assets/site.css?v=5">
 </head>
 <body class="no-js">
 <a class="skip" href="#main">Skip to main content</a>
@@ -436,7 +436,7 @@
   <div class="c reveal">
     <h2 id="h-state">Effortless Beauty, <em>In Every Light</em></h2>
     <div class="ctas" style="justify-content:center"><a class="btn btn-white" href="#treatments">Explore Treatments</a>
-    <button class="playlink" type="button" data-video="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" data-title="Meet Victoria Yunaev"><span class="pl" aria-hidden="true"></span>Watch: Meet Victoria</button></div>
+    <button class="playlink" type="button" data-video="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" data-start="12.3" data-end="18.2" data-title="Meet Victoria Yunaev"><span class="pl" aria-hidden="true"></span>Watch: Meet Victoria</button></div>
   </div>
 </section>
 
@@ -465,8 +465,8 @@
   <div class="wrap">
     <div class="watch-head"><span class="eyebrow">See for yourself</span><h2 id="h-watch">Get to Know <em>Vixsthetics</em></h2></div>
     <div class="wgrid">
-      <button class="wcard" type="button" data-video="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" data-title="Meet Victoria Yunaev">
-        <video class="bgv" muted loop playsinline preload="none" aria-hidden="true" poster="img/cta-2.jpg" style="object-position:50% 25%"><source src="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" type="video/mp4"></video>
+      <button class="wcard" type="button" data-video="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" data-start="12.3" data-end="18.2" data-title="Meet Victoria Yunaev">
+        <video class="bgv" muted loop playsinline preload="none" aria-hidden="true" poster="img/cta-2.jpg" style="object-position:62% 30%" data-start="12.3" data-end="18.2"><source src="https://wordpress-1436277-6723132.cloudwaysapps.com/wp-content/uploads/vixsthetics-hero-loop.mp4" type="video/mp4"></video>
         <span class="play" aria-hidden="true"></span><span class="lbl"><small>Watch:</small><b>Meet Your Injector, Victoria</b></span>
       </button>
       <button class="wcard" type="button" data-video="https://videos.pexels.com/video-files/4772537/4772537-hd_1080_1920_24fps.mp4" data-title="What a visit feels like">
@@ -857,14 +857,15 @@
 <script>
 (function(){
   const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches,root=document.documentElement;
-  const bg=[...document.querySelectorAll('.bgv')];const vis=new Set();
+  const seg=v=>{if(v.dataset.start&&!v.dataset.seg){v.dataset.seg=1;const st=+v.dataset.start,en=+v.dataset.end;const go=()=>{try{v.currentTime=st}catch(e){}};v.addEventListener('loadedmetadata',go);v.addEventListener('timeupdate',()=>{if(v.currentTime>=en||v.currentTime<st-.5)go()});if(v.readyState>0)go()}};
+  const bg=[...document.querySelectorAll('.bgv')];bg.forEach(seg);const vis=new Set();
   const sync=()=>bg.forEach(v=>{const on=vis.has(v)&&!reduce&&!root.classList.contains('paused')&&!document.hidden;if(on){if(v.preload==='none'){v.preload='auto';v.load()}const p=v.play();if(p&&p.catch)p.catch(()=>{})}else if(!v.paused)v.pause()});
   if('IntersectionObserver' in window){const io=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));sync()},{rootMargin:'200px'});bg.forEach(v=>io.observe(v))}
   new MutationObserver(sync).observe(root,{attributes:true,attributeFilter:['class']});
   document.addEventListener('visibilitychange',sync);
   const dlg=document.getElementById('vdlg'),pv=document.getElementById('vplayer');let opener=null;
   const close=()=>{pv.pause();pv.removeAttribute('src');pv.load();if(dlg.open)dlg.close()};
-  document.querySelectorAll('[data-video]').forEach(b=>b.addEventListener('click',()=>{opener=b;pv.src=b.dataset.video;dlg.setAttribute('aria-label',b.dataset.title||'Video');dlg.showModal();const p=pv.play();if(p&&p.catch)p.catch(()=>{});dlg.querySelector('.vclose').focus()}));
+  document.querySelectorAll('[data-video]').forEach(b=>b.addEventListener('click',()=>{opener=b;delete pv.dataset.seg;pv.dataset.start=b.dataset.start||'';pv.dataset.end=b.dataset.end||'';pv.loop=!!b.dataset.start;pv.src=b.dataset.video;if(b.dataset.start){const st=+b.dataset.start,en=+b.dataset.end;pv.onloadedmetadata=()=>{pv.currentTime=st};pv.ontimeupdate=()=>{if(pv.currentTime>=en)pv.currentTime=st}}else{pv.onloadedmetadata=null;pv.ontimeupdate=null}dlg.setAttribute('aria-label',b.dataset.title||'Video');dlg.showModal();const p=pv.play();if(p&&p.catch)p.catch(()=>{});dlg.querySelector('.vclose').focus()}));
   dlg.querySelector('.vclose').addEventListener('click',close);
   dlg.addEventListener('click',e=>{if(e.target===dlg)close()});
   dlg.addEventListener('close',()=>{pv.pause();pv.removeAttribute('src');if(opener)opener.focus()});
