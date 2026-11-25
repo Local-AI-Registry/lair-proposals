@@ -364,6 +364,48 @@ textarea{min-height:120px;resize:vertical}
 html.paused .marquee ul{animation-play-state:paused}
 @media (min-width:1400px){.hdr-r .phone{display:inline-block!important}}
 
+/* ---------- video sections (chuvision pattern) ---------- */
+.bgv{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:var(--inknavy)}
+.statement{align-items:center;padding:12vh var(--pad)}
+.statement::after{background:linear-gradient(180deg,rgba(14,27,58,.55),rgba(14,27,58,.4) 50%,rgba(14,27,58,.6))}
+.playlink{display:inline-flex;align-items:center;gap:12px;min-height:48px;padding:6px 18px 6px 6px;border:0;background:none;color:#fff;font:700 15px/1.2 var(--sans);letter-spacing:.5px;cursor:pointer}
+.pl{width:44px;height:44px;border-radius:50%;border:1.5px solid #fff;display:grid;place-items:center;flex:none}
+.pl::before,.play::before{content:"";width:0;height:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent #fff;margin-left:3px}
+.playlink:hover .pl{background:rgba(255,255,255,.18)}
+.watch{padding:84px 0;background:#fff}
+.watch-head{margin-bottom:30px}
+.wgrid{display:grid;gap:18px}
+@media (min-width:800px){.wgrid{grid-template-columns:1fr 1fr}}
+.wcard{position:relative;display:block;width:100%;aspect-ratio:16/11;border:0;padding:0;border-radius:var(--r);overflow:hidden;cursor:pointer;color:#fff;text-align:left;background:var(--inknavy)}
+.wcard::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,.05) 30%,rgba(14,27,58,.8) 100%)}
+.wcard .play{position:absolute;z-index:2;left:50%;top:45%;transform:translate(-50%,-50%);width:76px;height:76px;border-radius:50%;border:2px solid #fff;display:grid;place-items:center;background:rgba(14,27,58,.25);transition:background .2s,transform .2s}
+.wcard .play::before{border-width:11px 0 11px 18px;margin-left:5px}
+.wcard:hover .play{background:rgba(255,255,255,.25);transform:translate(-50%,-50%) scale(1.06)}
+.wcard .lbl{position:absolute;z-index:2;left:26px;right:26px;bottom:22px}
+.wcard small{display:block;font:700 14px var(--sans);letter-spacing:.5px;margin-bottom:4px}
+.wcard b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.1}
+.wcard:focus-visible{outline:3px solid var(--navy);outline-offset:4px}
+.vband{position:relative;min-height:clamp(460px,78vh,760px);display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;padding:90px var(--pad);background:var(--inknavy)}
+.vband::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(14,27,58,.62),rgba(14,27,58,.45) 70%)}
+.vband .c{position:relative;z-index:2;max-width:760px}
+.vband h2{font-size:clamp(40px,5.6vw,76px);margin-bottom:18px}
+.vband p{max-width:560px;margin:0 auto 28px;color:#F2F4F8}
+.vcardband{position:relative;background:var(--bone);padding:0 0 56px;overflow:hidden}
+.vcardband .bgv{position:relative;display:block;height:340px}
+.vcard{position:relative;z-index:2;background:#fff;color:var(--inknavy);border-radius:24px;padding:34px 26px;margin:-80px var(--pad) 0;box-shadow:0 30px 60px rgba(14,27,58,.15)}
+.vcard h2{margin-bottom:18px}
+.vcard p{color:var(--muted);margin-bottom:14px}
+@media (min-width:900px){
+  .vcardband{min-height:clamp(620px,90vh,860px);display:flex;align-items:center;padding:80px 0}
+  .vcardband .bgv{position:absolute;height:100%}
+  .vcard{max-width:540px;margin:0 0 0 max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)));padding:48px 44px}
+}
+#vdlg{border:0;padding:0;background:transparent;width:min(92vw,1100px);max-width:none;overflow:visible;margin:auto}
+#vdlg::backdrop{background:rgba(8,14,30,.88)}
+#vdlg video{display:block;width:100%;max-height:82vh;border-radius:16px;background:#000}
+.vclose{position:absolute;right:0;top:-58px;width:48px;height:48px;border-radius:50%;border:0;background:#fff;color:var(--inknavy);font-size:30px;line-height:1;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.wcard .play,.wcard:hover .play{transition:none}}
+
 /* ---------- shared subpage ---------- */
 .tone{filter:saturate(.85) sepia(.08)}
 .phero{background:var(--bone);padding:104px 0 56px}
