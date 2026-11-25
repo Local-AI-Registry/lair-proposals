@@ -72,7 +72,8 @@ button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
 .cta.pri{background:linear-gradient(180deg,#E3C88E,#B8924F);color:#15100A;border:0;box-shadow:0 8px 28px rgba(201,168,106,.25)}
 .cta.gh{background:transparent;border:0;font-size:12.5px;font-weight:600;color:rgba(239,230,210,.5);padding:6px 4px}
 .cta.gh b{color:rgba(239,230,210,.85);font-weight:700;white-space:nowrap}
-.sheet{position:absolute;left:0;right:0;bottom:0;background:#0D1712;border-top:1px solid var(--gl);border-radius:22px 22px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.9,.3,1);z-index:5;box-shadow:0 -14px 40px rgba(0,0,0,.5);text-align:left}
+.qz{margin-top:10px}.qz label{display:block;font-size:13.5px;color:rgba(239,230,210,.85);margin-top:12px}.yn{display:flex;gap:8px;margin-top:8px}.yn button{flex:1;padding:11px;border-radius:10px;border:1px solid var(--gl);background:#060C09;color:#F5EEDF;font:inherit;font-weight:600}.yn button.on{background:#F5EEDF;color:#0D1712}.qerr{color:#E8A08C;font-size:13px;margin-top:8px;min-height:1px}
+.sheet{position:absolute;max-height:92%;overflow-y:auto;left:0;right:0;bottom:0;background:#0D1712;border-top:1px solid var(--gl);border-radius:22px 22px 0 0;padding:22px 22px calc(22px + env(safe-area-inset-bottom));transform:translateY(105%);transition:transform .45s cubic-bezier(.2,.9,.3,1);z-index:5;box-shadow:0 -14px 40px rgba(0,0,0,.5);text-align:left}
 .sheet.open{transform:none}
 .sheet h3{font-family:"Cormorant";font-weight:500;font-size:28px;line-height:1.05;text-wrap:balance;color:#F5EEDF}
 .sheet p{font-size:14px;line-height:1.5;color:rgba(239,230,210,.68);margin-top:8px;text-wrap:pretty}
@@ -150,11 +151,15 @@ function play(v, fast) {
    <div class="endc"><h4></h4><p></p></div>
    <button class="skipi">Skip intro</button>
    <div class="sheet" data-s="more"><h3>Local AI Ambassador</h3><p>Invite only, with a limited number of seats.</p><p>Know business owners who want to show up on Google and AI? Make an intro, and we take it from there.</p><p>When they sign, you earn a 5% lifetime revenue share. Passive income on every referral.</p><p>A flexible side gig on your own time. Independent, 1099, no quotas.</p><p>Learn more at <b>localairegistry.com</b> or email our founder and CEO, Steve Lee: <a href="mailto:steve@localairegistry.com" target="_top">steve@localairegistry.com</a></p><button class="cta gh" style="width:100%;margin-top:10px" data-a="close">Back</button></div>
-   <div class="sheet" data-s="accept"><h3>Claim your spot</h3><p>Book a short call with Steve Lee, our founder and CEO. That's the only next step.</p><button class="cta pri" style="width:100%;margin-top:14px" data-a="book">Choose a time</button><button class="cta gh" style="width:100%;margin-top:6px" data-a="close">Back</button></div>
+   <div class="sheet" data-s="accept"><h3>Claim your spot</h3><p>Three quick questions, then pick a time with Steve Lee, our founder and CEO.</p>
+   <div class="qz"><label>Do you sell to plastic surgeons today?</label><div class="yn"><button type="button" data-yn="yes">Yes</button><button type="button" data-yn="no">No</button></div>
+   <label>How many of your doctors need marketing?</label><input data-q="need" type="number" inputmode="numeric" min="0" placeholder="0">
+   <label>How many would switch for better service?</label><input data-q="sw" type="number" inputmode="numeric" min="0" placeholder="0"><div class="qerr"></div></div>
+   <button class="cta pri" style="width:100%;margin-top:14px" data-a="book">Choose a time</button><button class="cta gh" style="width:100%;margin-top:6px" data-a="close">Back</button></div>
    <div class="sheet" data-s="nom"><h3>Who should get this invitation?</h3><p>Tell us who, then paste the message into a text to them. Their 24 hours start when they open it.</p><input placeholder="Their name" data-f="n" autocomplete="off"><input placeholder="Their city" data-f="c" autocomplete="off"><div class="err"></div><div class="bub">${msg('')}</div><button class="cta pri" style="width:100%;margin-top:14px" data-a="copy">Copy message</button><button class="cta gh" style="width:100%;margin-top:6px" data-a="close">Back</button></div>
   </div>`;
   const iv = $('phone').firstChild, q = s => iv.querySelector(s), later = (ms, fn) => setTimeout(() => my === run && fn(), fast ? 0 : ms);
-  // map of their area, centered on their practice
+  // map of their area, centered on their neighborhood
   const mc = q('.mapc'), mx = mc.getContext('2d'), pc = q('.pinc'), ox = pc.getContext('2d'); const S = { tilt: 0, tiltT: 0, R: fast ? 2e4 : 0, seat: 0, Rt: 0, cy: .58, cyt: .58, comp: 0, compT: 0, t0: performance.now() };
   let layer = null, W = 0, Hh = 0, sc = 1;
   function build() { const r = iv.getBoundingClientRect(); W = r.width; Hh = r.height; const dpr = Math.min(2, devicePixelRatio || 1); pc.width = W * dpr; pc.height = Hh * dpr; ox.setTransform(dpr, 0, 0, dpr, 0, 0); mc.width = W * dpr; mc.height = Hh * dpr; mx.setTransform(dpr, 0, 0, dpr, 0, 0); sc = Math.min(W, Hh) / 2 / 1250;
@@ -180,7 +185,7 @@ function play(v, fast) {
       mx.drawImage(tmp, 0, 0, W, Hh);
       // reveal edge glow
       if (S.R < Math.max(W, Hh) * 1.2) { mx.beginPath(); mx.arc(cx, cy, S.R, 0, 7); mx.strokeStyle = `rgba(201,168,106,${.18 * (1 - S.R / (Math.max(W, Hh) * 1.2))})`; mx.lineWidth = 1; mx.stroke(); } }
-    // the seat's route: from their practice toward their competitor, moving with the clock
+    // the seat's route: from them toward the next rep, moving with the clock
     if (S.R > 20) { const tf = Math.min(1, S.tilt / 50);
       const box = (x, y, b, hgt, fill, edge, side) => { const c = [[x - b, y - b], [x + b, y - b], [x + b, y + b], [x - b, y + b]].map(([a, d]) => P(a, d)); const top = c.map(([a, d, k]) => [a, d - hgt * k]);
         const face = (pts, f) => { ox.beginPath(); pts.forEach(([a, d], n) => n ? ox.lineTo(a, d) : ox.moveTo(a, d)); ox.closePath(); ox.fillStyle = f; ox.fill(); ox.strokeStyle = edge; ox.lineWidth = .8; ox.stroke(); };
@@ -219,10 +224,12 @@ function play(v, fast) {
   if (fast) { ['.hair', '.mono', '.ln1', '.ln2', '.b1', '.b1b', '.b2', '.b3', '.b4', '.b5', '.b5b', '.b6', '.skipi'].forEach(s => q(s).style.display = 'none'); S.Rt = 2e4; S.compT = 1; S.tiltT = S.tilt = 52; requestAnimationFrame(() => { const g = q('.gap').getBoundingClientRect(), r = iv.getBoundingClientRect(); S.cy = S.cyt = (g.top + g.height / 2 - r.top) / r.height; }); }
   const sheet = n => { iv.querySelectorAll('.sheet').forEach(s => s.classList.toggle('open', s.dataset.s === n)); };
   const end = (h, p) => { sheet(null); q('.fin').style.transition = 'opacity .9s'; q('.fin').style.opacity = 0; S.cyt = .4; S.tiltT = 0; setTimeout(() => { q('.endc h4').textContent = h; q('.endc p').textContent = p; q('.endc').style.opacity = 1; }, 900); };
-  iv.addEventListener('click', e => { const a = e.target.closest('[data-a]')?.dataset.a; if (!a) return;
+  iv.addEventListener('click', e => { const y = e.target.closest('[data-yn]'); if (y) { iv.querySelectorAll('[data-yn]').forEach(b => b.classList.toggle('on', b === y)); return; } const a = e.target.closest('[data-a]')?.dataset.a; if (!a) return;
     if (['accept', 'nom', 'skip', 'more'].includes(a)) sheet(a);
     if (a === 'close') sheet(null);
-    if (a === 'book') { api('book').then(r => { if (r && r.url) { const w = window.open(r.url, '_blank'); if (!w) location.href = r.url; } else end('Welcome aboard.', 'We will reach out to schedule your call.'); }); }
+    if (a === 'book') { const yn = q('.yn button.on')?.dataset.yn; if (!yn) { q('.qerr').textContent = 'Pick yes or no for the first question.'; return; } q('.qerr').textContent = '';
+      const ans = { ps: yn, need: +(q('[data-q=need]').value || 0), sw: +(q('[data-q=sw]').value || 0) };
+      api('book', ans).then(r => { if (r && r.url) { const w = window.open(r.url, '_blank'); if (!w) location.href = r.url; } else end('Welcome aboard.', 'We will reach out to schedule your call.'); }); }
     if (a === 'nom') { if (!NOMLINK) api('nominee').then(r => { if (r && r.link) { NOMCODE = r.code; NOMLINK = r.link; q('.bub').textContent = msg(q('[data-f=n]').value.trim()); } else if (r && r.error) q('.err').textContent = r.error; }); }
     if (a === 'copy') { const n = q('[data-f=n]').value.trim(), city = q('[data-f=c]').value.trim(), pr = city;
       if (!n || !city) { q('.err').textContent = !n ? 'Add their name.' : 'Add their city.'; return; }
