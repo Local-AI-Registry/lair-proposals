@@ -1,7 +1,7 @@
 # ALMI Fat Transfer: Using Your Own Fat as a Natural Filler | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/articles/almi-fat-transfer-natural-filler/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Articles](/mbeauty/articles/)  ›  Regenerative Regenerative
 
@@ -11,7 +11,7 @@ How a small amount of your own fat can restore volume, and who it suits.
 
 **By[Tess Mauricio, MD, FAAD](/mbeauty/dr-tess-mauricio/)**Board-certified dermatologist * Founder, M Beauty Clinic
 
-**Published** November 20, 20264 min read
+**Published** November 25, 20264 min read
 
 Draft for Dr. Tess's review before launch
 
@@ -86,4 +86,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 20, 2026.
+Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 25, 2026.

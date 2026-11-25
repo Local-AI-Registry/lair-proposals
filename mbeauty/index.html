@@ -217,7 +217,7 @@
      "name": "Can I buy Dr. Tess's skincare online?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Yes. Visit our Shop section for Dr. Tess's partner stores, including Platform Health, Xtresse, Hydrinity and AlumierMD."
+      "text": "Yes. Visit our Shop section for Dr. Tess's partner stores, including Platform Health, Xtresse, Hydrinity, AlumierMD and Ourself."
      }
     }
    ]
@@ -288,7 +288,7 @@
    "url": "https://proposals.localairegistry.com/mbeauty/locations/beverly-hills/",
    "telephone": "+1-833-462-3288",
    "medicalSpecialty": "Dermatology",
-   "image": "https://www.mbeautyclinic.com/index_htm_files/94575.jpg",
+   "image": "https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg",
    "address": {
     "@type": "PostalAddress",
     "streetAddress": "421 North Rodeo Drive, Unit A-1",
@@ -387,7 +387,7 @@
    "url": "https://proposals.localairegistry.com/mbeauty/locations/san-diego/",
    "telephone": "+1-858-689-4990",
    "medicalSpecialty": "Dermatology",
-   "image": "https://www.mbeautyclinic.com/index_htm_files/94575.jpg",
+   "image": "https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg",
    "address": {
     "@type": "PostalAddress",
     "streetAddress": "9888 Carroll Centre Road, Suite 101",
@@ -510,7 +510,7 @@
    "url": "https://proposals.localairegistry.com/mbeauty/locations/chula-vista/",
    "telephone": "+1-619-434-8950",
    "medicalSpecialty": "Dermatology",
-   "image": "https://www.mbeautyclinic.com/index_htm_files/94575.jpg",
+   "image": "https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg",
    "address": {
     "@type": "PostalAddress",
     "streetAddress": "875 Bowsprit Road",
@@ -1203,7 +1203,10 @@ h2[id],section[id]{scroll-margin-top:110px}
 .bhero .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:60% 15%;border-radius:220px 220px 28px 28px;display:block}
 .bhero .portrait{position:relative}.bhero .cap{position:absolute;left:24px;bottom:22px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .bhero .cap strong{display:block;font:500 22px var(--serif)}
-@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}}
+@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}.bhero .portrait{order:-1;max-width:420px;width:100%;margin:0 auto!important}}
+.bhero .cap{color:var(--ink)!important;text-shadow:none!important;background:rgba(255,255,255,.9);padding:12px 16px;border-radius:14px;font-size:14px}
+.bhero .cap strong{font-size:19px}
+.stage{margin:26px 0 8px}.stage img{width:100%;max-height:520px;object-fit:cover;border-radius:18px;display:block}.stage figcaption{font-size:14px;color:#6a6062;margin-top:10px}
 @media(max-width:1240px){.nav .links{gap:16px}.nav .links a{font-size:14px}}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .scard .brandlogo{margin:auto 0 18px!important;height:46px;max-width:220px}
@@ -1220,7 +1223,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .onair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block}
 @media(max-width:760px){.onair{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .draftnote{font-size:13px;color:#8f2a34;background:#fbeff0;border-radius:10px;padding:8px 12px;display:inline-block;margin-top:10px}
-.resgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.resgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
 .resgrid figure{margin:0;background:#141112;border-radius:22px;overflow:hidden}
 .resgrid img{width:100%;height:auto;display:block}
 .resgrid figcaption{padding:14px 18px 18px;color:#fff;font-size:15px}.resgrid figcaption b{display:block;font:500 22px var(--serif);margin-top:4px}
@@ -1229,6 +1232,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .ba{position:relative;margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#ddd;user-select:none;max-width:520px}
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
 .ba .b-after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.ba .bhalf{position:absolute;inset:0;background-repeat:no-repeat;background-size:212% auto}.ba .b-before{background-position:0% 32%}.ba .b-after{background-position:100% 32%}
 .ba .lbl{position:absolute;top:16px;z-index:3;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(16,12,13,.55);padding:7px 11px;border-radius:999px}
 .ba .lbl.l{left:16px}.ba .lbl.r{right:16px}
 .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:3;pointer-events:none}
@@ -1242,6 +1246,53 @@ if(src)sessionStorage.setItem('ai_source',src);
 var v=sessionStorage.getItem('ai_source');
 var fill=function(){if(v)document.querySelectorAll('input[name=ai_source]').forEach(function(i){i.value=v})};
 document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fill):fill();}catch(e){}})();</script>
+<style id="v8">
+/* v8: Nov 25 client feedback */
+.bento .photo.drcard{background:#d5d5cb!important;min-height:480px}
+.bento .photo.drcard::after{display:none!important}
+.bento .photo img.dr{width:56%!important;object-position:50% 12%!important;opacity:1!important;-webkit-mask-image:linear-gradient(90deg,transparent 0%,#000 30%)!important;mask-image:linear-gradient(90deg,transparent 0%,#000 30%)!important}
+.bento .photo.drcard .ph{color:#4a4143!important;max-width:44%}
+.bento .photo.drcard .ph strong{color:var(--ink)!important}
+.bento .photo.drcard .ph .meet{display:block;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:10px}
+@media(max-width:760px){
+ .bento .photo.drcard{min-height:0!important;display:flex;flex-direction:column}
+ .bento .photo img.dr{position:static!important;width:100%!important;height:auto!important;aspect-ratio:1/1;object-fit:cover!important;object-position:50% 8%!important;-webkit-mask-image:linear-gradient(180deg,#000 80%,transparent 100%)!important;mask-image:linear-gradient(180deg,#000 80%,transparent 100%)!important;transform:none!important}
+ .bento .photo.drcard .ph{position:static!important;max-width:none;padding:6px 24px 26px!important}
+}
+.ba .bhalf{position:absolute;inset:0;background-repeat:no-repeat;background-size:212% auto}
+.ba .b-before{background-position:0% 32%}
+.ba .b-after{background-position:100% 32%}
+.press{background:#fff;padding:100px 0 40px}
+.press h2{font-size:clamp(34px,3.6vw,48px);margin-bottom:34px}
+.press h2 em{color:var(--blue)}
+.pgrid{display:grid;grid-template-columns:1.6fr 1fr;grid-template-rows:1fr 1fr;gap:20px}
+.ptile{position:relative;display:flex;flex-direction:column;justify-content:flex-end;border:0;border-radius:22px;overflow:hidden;padding:28px;text-align:left;cursor:pointer;color:#fff;text-decoration:none;font:inherit;min-height:230px}
+.ptile.big{grid-row:span 2;min-height:460px;background:#151313}
+.ptile.big img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.ptile.big::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(12,8,9,0) 45%,rgba(12,8,9,.85) 100%)}
+.ptile .pcap{position:relative;z-index:2;display:flex;align-items:center;gap:16px;font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif)}
+.ptile .pcap small{display:block;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;opacity:.8;margin-bottom:6px}
+.ptile .c{flex:0 0 auto;width:56px;height:56px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;transition:transform .2s}
+.ptile:hover .c{transform:scale(1.07)}
+.ptile.celeb{background:radial-gradient(90% 120% at 80% 0%,#5a1a22 0%,#2a1215 55%,#151313 100%);justify-content:space-between;flex-direction:column-reverse}
+.ptile.celeb .names{position:relative;z-index:2;font-size:14px;letter-spacing:.04em;color:#f0d7da}
+.ptile.thr{background:var(--fog);color:var(--ink);justify-content:space-between;border:1px solid var(--line)}
+.ptile.thr .pub{font:700 13px var(--sans);letter-spacing:.16em;text-transform:uppercase}
+.ptile.thr .ttl{font:400 clamp(22px,2.2vw,30px)/1.2 var(--serif)}
+.ptile.thr .more{font-weight:700;font-size:14px;letter-spacing:.06em;text-transform:uppercase;border-bottom:2px solid var(--blue);align-self:flex-start;padding-bottom:3px}
+@media(max-width:860px){.pgrid{grid-template-columns:1fr;grid-template-rows:none}.ptile.big{grid-row:auto;min-height:380px}.press{padding:72px 0 24px}}
+.inside{background:#fff;padding:90px 0 20px}
+.inside h2{font-size:clamp(34px,3.6vw,48px);margin-bottom:30px}
+.inside h2 em{color:var(--blue)}
+.igrid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.igrid figure{margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/3;background:#eee}
+.igrid img{width:100%;height:100%;object-fit:cover;display:block}
+@media(max-width:760px){.igrid{grid-template-columns:1fr}.inside{padding:64px 0 10px}}
+.sgrid{grid-template-columns:repeat(5,minmax(0,1fr))!important}
+@media(max-width:1180px){.sgrid{grid-template-columns:repeat(3,minmax(0,1fr))!important}}
+@media(max-width:760px){.sgrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}.sgrid .scard:last-child{grid-column:1/-1}}
+@media(max-width:560px){.sgrid{grid-template-columns:1fr!important}}
+</style>
 </head>
 <body>
 <a class="skip" href="#top">Skip to content</a>
@@ -1303,13 +1354,13 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       <a class="pill pill-white" href="/mbeauty/dr-tess-mauricio/">Meet Dr.&nbsp;Tess</a>
     </div>
     <div class="bento">
+      <a class="photo drcard rv" href="/mbeauty/dr-tess-mauricio/" aria-label="Read Dr. Tess Mauricio's full bio">
+        <img class="dr" src="/mbeauty/img/dr-tess-headshot.jpg" width="1000" height="1125" alt="Dr. Tess Mauricio, board-certified dermatologist">
+        <div class="ph"><span class="meet">Meet Dr.&nbsp;Tess</span><strong>Tess Mauricio, MD,&nbsp;FAAD</strong>Founder, M Beauty&nbsp;Clinic</div>
+      </a>
       <div class="card rv"><span class="tag">Stanford Medicine</span><h3 class="serif">Board-certified<br><em>dermatologist.</em></h3><p>A graduate of Stanford University School of Medicine and Summa Cum Laude from UCSD, and a Fellow of the American Academy of&nbsp;Dermatology.</p></div>
       <div class="card rv"><span class="tag">Created by Dr. Tess</span><h3 class="serif">The Time Machine<br><em>Procedure&trade;.</em></h3><p>Her signature plan that treats every sign of aging in one approach, with no surgery. <a href="#time-machine" style="font-weight:700;color:var(--blue)" class="nw">See how it&nbsp;works</a></p></div>
       <div class="card rv"><span class="tag">Regenerative medicine</span><h3 class="serif">An ALMI<br><em>pioneer.</em></h3><p>One of the developers and pioneers of the ALMI procedure, and a past President of the San Diego Society of Dermatological&nbsp;Surgery.</p></div>
-      <a class="photo drcard rv" href="/mbeauty/dr-tess-mauricio/" aria-label="Read Dr. Tess Mauricio's full bio">
-        <img class="dr" src="https://www.mbeautyclinic.com/index_htm_files/94575.jpg" alt="Dr. Tess Mauricio, board-certified dermatologist">
-        <div class="ph"><strong>Tess Mauricio, MD</strong>Founder, M Beauty Clinic</div>
-      </a>
       <div class="card rv"><span class="tag">Trusted worldwide</span><h3 class="serif">Thousands of<br><em>patients.</em></h3><p>Patients come from all over the world to see Dr. Tess and her team, including Cardi B, Kim Kardashian, Paula Abdul and Julian&nbsp;Lennon.</p></div>
     </div>
     <div class="affil rv" aria-label="Locations">
@@ -1317,6 +1368,31 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       <a href="/mbeauty/locations/beverly-hills/" style="color:inherit">Beverly Hills</a>
       <a href="/mbeauty/locations/san-diego/" style="color:inherit">San Diego</a>
       <a href="/mbeauty/locations/chula-vista/" style="color:inherit">Chula Vista</a>
+    </div>
+  </div>
+</section>
+
+<!-- press and stage -->
+<section class="press" id="press" aria-label="Dr. Tess in the media">
+  <div class="container">
+    <div class="rv">
+      <p class="k">On stage and on&nbsp;screen</p>
+      <h2 class="serif" id="as-seen-on-stage-and-screen">As seen on stage <em>and&nbsp;screen</em></h2>
+    </div>
+    <div class="pgrid">
+      <button class="ptile big rv" data-video="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AF0oZrHJWOG0CW30ZfYbNcU/DT%20America%27s%20Favorite%20Dermatologist%20Sizzle%20_%20without%20celebs%202026%20LR.mov?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" aria-label="Play the video: America's favorite dermatologist">
+        <img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/ADuYX1pv58HhLJm54DU6jZA/Evolus%20Jeuveau%20Presentation%20.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Dr. Tess Mauricio speaking on stage in front of a large audience" loading="lazy">
+        <span class="pcap"><span class="c"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span><small>Watch</small>America's favorite <span class="nw">dermatologist</span></span></span>
+      </button>
+      <button class="ptile celeb rv" data-video="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AD7X7ql9bUF6HbiXKuVTb0c/CELEBRITY%20SIZZLE%20TESTIMONIALS%20only.mov?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" aria-label="Play the video: celebrities on Dr. Tess">
+        <span class="pcap"><span class="c"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span><small>Watch</small>Celebrities on Dr.&nbsp;Tess</span></span>
+        <span class="names">Cardi B &middot; Kim Kardashian &middot; Paula Abdul &middot; Julian&nbsp;Lennon</span>
+      </button>
+      <a class="ptile thr rv" href="https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/" target="_blank" rel="noopener">
+        <span class="pub">The Hollywood Reporter</span>
+        <span class="ttl">Top Cosmetic Doctors in L.A. and&nbsp;N.Y.C.</span>
+        <span class="more">Read the&nbsp;list</span>
+      </a>
     </div>
   </div>
 </section>
@@ -1340,12 +1416,12 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       </div>
     </div>
     <figure class="ba rv" id="ba" aria-label="Before and after the Time Machine Procedure, drag to compare">
-      <img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AMF4Crl7qAJTYifZuoOv5tM/Time%20Machine%20B%26A/Jorge%20before%202026.02.24.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Patient before the Time Machine Procedure" class="b-before">
-      <div class="b-after-wrap" id="baAfter"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AJG1y6qSVkcvsNSWI5ShdP4/Time%20Machine%20B%26A/Jorge%20after%202026.03.03.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Patient after the Time Machine Procedure"></div>
+      <div class="bhalf b-before" role="img" aria-label="Nathalie before the Time Machine Procedure" style="background-image:url('https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AB1F6Cj4xHC9U9lBAxPtW7o/Time%20Machine%20B%26A/1.%20Nathalie%20Time%20Machine%20B%26A.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1')"></div>
+      <div class="b-after-wrap" id="baAfter"><div class="bhalf b-after" role="img" aria-label="Nathalie after the Time Machine Procedure" style="background-image:url('https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AB1F6Cj4xHC9U9lBAxPtW7o/Time%20Machine%20B%26A/1.%20Nathalie%20Time%20Machine%20B%26A.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1')"></div></div>
       <span class="lbl l">Before</span><span class="lbl r">After</span>
       <div class="handle" id="baHandle" aria-hidden="true"><span></span></div>
       <input type="range" min="0" max="100" value="50" id="baRange" aria-label="Drag to compare before and after">
-      <figcaption>Actual patient of M Beauty Clinic. Individual results&nbsp;vary.</figcaption>
+      <figcaption>Nathalie, an actual patient of M Beauty Clinic. Individual results&nbsp;vary.</figcaption>
     </figure>
   </div>
 </section>
@@ -1363,10 +1439,9 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       </div>
     </div>
     <div class="track" id="track">
-      <a class="svc res" href="#contact"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AB1F6Cj4xHC9U9lBAxPtW7o/Time%20Machine%20B%26A/1.%20Nathalie%20Time%20Machine%20B%26A.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Nathalie before and after the Time Machine Procedure" style="object-position:50% 30%"><div class="t"><span class="rt">Time Machine&nbsp;Procedure&trade;</span><h3>Nathalie</h3></div></a>
       <a class="svc res" href="#contact"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AIbD7zMaYQ8K3wXwmWhqO0s/Time%20Machine%20B%26A/Denise%20Yamada%20B%26A.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Denise before and after the Time Machine Procedure"><div class="t"><span class="rt">Time Machine&nbsp;Procedure&trade;</span><h3>Denise</h3></div></a>
-      <a class="svc res" href="#contact"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AIkrcxN6TUFvbgrt52IjBEY/Time%20Machine%20B%26A/2.%20David%20Toborowsky%2090%20Day%20Fiance%20_%20Time%20Machine%20Cat%20Scratch.jpeg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="David before and after the Time Machine Procedure"><div class="t"><span class="rt">Time Machine&nbsp;Procedure&trade;</span><h3>David</h3></div></a>
       <a class="svc res" href="#dr-tess"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/ALdJ8F9lT6I3qciF35YWqFM/Time%20Machine%20B%26A/Tess%20DL%203%20photos.JPG?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="Dr. Tess Mauricio in three driver's license photos taken years apart"><div class="t"><span class="rt">Her own&nbsp;results</span><h3>Dr. Tess, through the&nbsp;years</h3></div></a>
+      <a class="svc res" href="#contact"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AIkrcxN6TUFvbgrt52IjBEY/Time%20Machine%20B%26A/2.%20David%20Toborowsky%2090%20Day%20Fiance%20_%20Time%20Machine%20Cat%20Scratch.jpeg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="David before and after the Time Machine Procedure"><div class="t"><span class="rt">Time Machine&nbsp;Procedure&trade;</span><h3>David</h3></div></a>
     </div>
   </div>
 </section>
@@ -1440,7 +1515,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       </div>
       <p class="shopnote">Dr. Tess's recommended skincare and wellness programs, from the brands she trusts. Each link opens the partner's&nbsp;store.</p>
     </div>
-    <div class="sgrid"><a class="scard rv" href="https://joinplatformhealth.com/" target="_blank" rel="noopener"><span class="tag">New</span><img class="brandlogo" src="https://joinplatformhealth.com/brand/platform-health-logo.png" alt="Platform Health"><h3 class="vh">Platform Health</h3><p>Education and wellness programs between visits, recommended by Dr.&nbsp;Tess.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://xtresse.com/pages/provider/m-beauty-clinic?programId=2" target="_blank" rel="noopener"><span class="tag">Partner store</span><img class="brandlogo" src="/mbeauty/img/brands/xtresse.svg" alt="Xtress&eacute;"><h3 class="vh">Xtress&eacute;</h3><p>Shop M Beauty Clinic's provider&nbsp;page.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr" target="_blank" rel="noopener"><span class="tag">Skin care</span><img class="brandlogo" src="https://www.hydrinity.com/cdn/shop/files/Hydrinity_Menu_Logo.png?width=600" alt="Hydrinity"><h3 class="vh">Hydrinity</h3><p>Hydration science skin care, through Dr. Tess's&nbsp;link.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://us.alumiermd.com/products?code=2SUHYVVW" target="_blank" rel="noopener"><span class="tag">Skin care</span><img class="brandlogo" src="https://us.alumiermd.com/cdn/shop/files/logo-9eca377a420c905b16e4772feea6f592c4014129b760a0efb648540c7e87f540_1.svg?v=1703077115" alt="AlumierMD"><h3 class="vh">AlumierMD</h3><p>Medical-grade skin care with M Beauty's&nbsp;code.</p><span class="more">Shop Now</span></a></div>
+    <div class="sgrid"><a class="scard rv" href="https://joinplatformhealth.com/" target="_blank" rel="noopener"><span class="tag">New</span><img class="brandlogo" src="https://joinplatformhealth.com/brand/platform-health-logo.png" alt="Platform Health"><h3 class="vh">Platform Health</h3><p>Education and wellness programs between visits, recommended by Dr.&nbsp;Tess.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://xtresse.com/pages/provider/m-beauty-clinic?programId=2" target="_blank" rel="noopener"><span class="tag">Partner store</span><img class="brandlogo" src="/mbeauty/img/brands/xtresse.svg" alt="Xtress&eacute;"><h3 class="vh">Xtress&eacute;</h3><p>Shop M Beauty Clinic's provider&nbsp;page.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr" target="_blank" rel="noopener"><span class="tag">Skin care</span><img class="brandlogo" src="https://www.hydrinity.com/cdn/shop/files/Hydrinity_Menu_Logo.png?width=600" alt="Hydrinity"><h3 class="vh">Hydrinity</h3><p>Hydration science skin care, through Dr. Tess's&nbsp;link.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://us.alumiermd.com/products?code=2SUHYVVW" target="_blank" rel="noopener"><span class="tag">Skin care</span><img class="brandlogo" src="https://us.alumiermd.com/cdn/shop/files/logo-9eca377a420c905b16e4772feea6f592c4014129b760a0efb648540c7e87f540_1.svg?v=1703077115" alt="AlumierMD"><h3 class="vh">AlumierMD</h3><p>Medical-grade skin care with M Beauty's&nbsp;code.</p><span class="more">Shop Now</span></a><a class="scard rv" href="https://www.ourself.com/?provider_account_id=32880" target="_blank" rel="noopener"><span class="tag">Skin care</span><img class="brandlogo" src="https://www.ourself.com/cdn/shop/t/235/assets/logo.svg?v=27716060296987161291674731087" alt="Ourself"><h3 class="vh">Ourself</h3><p>Science-built skin care with patented delivery technology, through Dr. Tess's&nbsp;link.</p><span class="more">Shop Now</span></a></div>
   </div>
 </section>
 
@@ -1538,6 +1613,17 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
   </div>
 </section>
 
+<!-- inside the clinic -->
+<section class="inside" id="inside" aria-label="Inside M Beauty Clinic">
+  <div class="container">
+    <div class="rv"><p class="k">Visit&nbsp;us</p><h2 class="serif" id="step-inside-our-clinic">Step inside <em>our&nbsp;clinic</em></h2></div>
+    <div class="igrid">
+      <figure class="rv"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AHgIinIS17HB6obGKr2Ri18/IMG_7394.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="M Beauty Clinic waiting room with a crystal chandelier and lounge seating" loading="lazy"></figure>
+      <figure class="rv"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/AIuOAsu6f9zScwPud-_vhWs/IMG_7395.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&amp;raw=1" alt="M Beauty Clinic lounge with a wall of framed photos and press" loading="lazy"></figure>
+    </div>
+  </div>
+</section>
+
 <!-- visit -->
 <section class="visit" id="visit" aria-label="Location and hours">
   <div class="container vgrid2">
@@ -1580,7 +1666,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
       <h4>Treatments</h4>
       <p><a href="#time-machine">The Time Machine Procedure&trade;</a><br><a href="#treatments">Botox and Fillers</a><br><a href="#treatments">Regenerative Medicine</a><br><a href="#treatments">Skin Brightening</a><br><a href="#treatments">Hair&nbsp;Restoration</a></p>
       <h4 style="margin-top:22px">More</h4><p><a href="/mbeauty/articles/">Articles by Dr. Tess</a><br><a href="/mbeauty/results/">Before and after results</a><br><a href="/mbeauty/local-ai-registry/">Dr. Tess at Local AI Registry</a></p><h4 style="margin-top:22px">Shop</h4>
-      <p><a href="https://joinplatformhealth.com/" target="_blank" rel="noopener">Platform Health</a><br><a href="https://xtresse.com/pages/provider/m-beauty-clinic?programId=2" target="_blank" rel="noopener">Xtresse</a><br><a href="https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr" target="_blank" rel="noopener">Hydrinity</a><br><a href="https://us.alumiermd.com/products?code=2SUHYVVW" target="_blank" rel="noopener">AlumierMD</a></p>
+      <p><a href="https://joinplatformhealth.com/" target="_blank" rel="noopener">Platform Health</a><br><a href="https://xtresse.com/pages/provider/m-beauty-clinic?programId=2" target="_blank" rel="noopener">Xtresse</a><br><a href="https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr" target="_blank" rel="noopener">Hydrinity</a><br><a href="https://us.alumiermd.com/products?code=2SUHYVVW" target="_blank" rel="noopener">AlumierMD</a><br><a href="https://www.ourself.com/?provider_account_id=32880" target="_blank" rel="noopener">Ourself</a></p>
     </div>
   </div>
   <div class="legal"><div class="container">
@@ -1664,7 +1750,7 @@ renderQ();
 // options tabs
 const T=[
  {t:'Every Sign of Aging,<br><em>One Plan</em>',c:'Ask About the Time Machine',f:[['What it treats:','Sun damage, wrinkles, sagging, lost volume and overactive expression lines'],['Surgery:','None required'],['Your plan:','Personal to you, designed by Dr. Tess'],['Why patients love it:','Many say they look 5 to 10 years younger, and still like themselves']]},
- {t:'Smooth Lines,<br><em>Restore Volume</em>',c:'Ask About Botox and Fillers',f:[['What it treats:','Frown lines, crow\'s feet and lost volume in the cheeks'],['Options:','Botox and Juvederm Voluma filler'],['Your plan:','Matched to your face and your goals'],['Great if you:','Want a refreshed look without surgery']]},
+ {t:'Smooth Lines,<br><em>Restore Volume</em>',c:'Ask About Botox and Fillers',f:[['What it treats:','Frown lines, crow\'s feet and lost volume in the cheeks'],['Options:','Botox, Juvederm and Revanesse filler'],['Your plan:','Matched to your face and your goals'],['Great if you:','Want a refreshed look without surgery']]},
  {t:'Your Body\'s Own<br><em>Repair</em>',c:'Ask About Regenerative Medicine',f:[['What it is:','Treatments that use your body\'s own healing to restore skin and hair'],['Options:','ALMI fat transfer, stem cell regenerative therapy and hair restoration'],['Expertise:','Dr. Tess is one of the developers and pioneers of the ALMI procedure'],['Great if you:','Want natural, long-term renewal']]}
 ];
 const tbs=[...document.querySelectorAll('.tb')],facts=document.getElementById('facts');

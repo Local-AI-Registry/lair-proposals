@@ -1,7 +1,7 @@
 # Accessibility | M Beauty Clinic by Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/accessibility/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Accessibility Legal
 
@@ -23,4 +23,4 @@ M Beauty Clinic by Dr. Tess wants this website to be usable by everyone. We aim 
 
 If anything on this site is hard to use, call 1 (833) 462-3288 or email info@mbeautyclinic.com and we will help you directly.
 
-Updated November 20, 2026.
+Updated November 25, 2026.

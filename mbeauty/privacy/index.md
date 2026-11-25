@@ -1,7 +1,7 @@
 # Privacy Policy | M Beauty Clinic by Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/privacy/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Privacy Policy Legal
 
@@ -27,4 +27,4 @@ This website may use basic analytics to understand how visitors use it. We do no
 
 Questions about privacy? Email info@mbeautyclinic.com or call 1 (833) 462-3288.
 
-Updated November 20, 2026.
+Updated November 25, 2026.

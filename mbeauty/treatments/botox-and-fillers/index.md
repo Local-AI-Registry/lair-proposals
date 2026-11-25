@@ -1,7 +1,7 @@
 # Botox and Fillers in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/botox-and-fillers/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  Botox and Fillers Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -22,11 +22,11 @@ Soften lines, restore lost volume and contour the jawline, with a dermatologist'
 
 
 
-Botox and other neurotoxins relax the muscles that cause frown lines and crow's feet. Hyaluronic acid fillers such as Juvederm, Voluma and the RHA Collection restore volume in the cheeks, lips and folds. At M Beauty Clinic, injectables are planned by board-certified dermatologist Dr. Tess Mauricio for results that look like you.
+Botox and other neurotoxins relax the muscles that cause frown lines and crow's feet. Hyaluronic acid fillers such as Juvederm, Revanesse and the RHA Collection restore volume in the cheeks, lips and folds. At M Beauty Clinic, injectables are planned by board-certified dermatologist Dr. Tess Mauricio for results that look like you.
 
 **Neurotoxins** Botox Cosmetic, Jeuveau
 
-**Fillers** Juvederm, Voluma, RHA Collection
+**Fillers** Juvederm, Revanesse, RHA Collection
 
 **Chin and jaw** Kybella, jaw slimming
 
@@ -40,9 +40,9 @@ The clinic also offers Jeuveau, a neurotoxin made exclusively for aesthetic use,
 
 ## Fillers for volume and contour
 
-JUVÉDERM® XC adds natural-looking volume to wrinkles and folds, especially around the nose and mouth, and can subtly enhance the lips. VOLUMA® XC is placed deep in the cheeks to correct age-related volume loss in adults over 21.2 The RHA Collection is designed for lines that move as you talk.
+JUVÉDERM® XC adds natural-looking volume to wrinkles and folds, especially around the nose and mouth, and can subtly enhance the lips. Revanesse® is a hyaluronic acid filler for smoothing facial wrinkles and folds and adding volume to the lips. The RHA Collection is designed for lines that move as you talk.
 
-According to M Beauty Clinic, Dr. Tess was hand-picked by Allergan to be one of the first in the nation to offer Voluma, and one of six doctors in its expert injector course. Her technique adds volume to the upper cheeks while lifting the face and jawline.2
+Every filler plan is built around your face, adding volume where it was lost while keeping the result natural.
 
 Find out which treatment fits your skin.
 
@@ -70,7 +70,7 @@ Most people feel a quick pinch. The clinic uses very fine needles, and numbing i
 
 What are fillers made of?
 
-Juvederm and Voluma are made of hyaluronic acid, a substance that occurs naturally in the skin.
+Juvederm and Revanesse are made of hyaluronic acid, a substance that occurs naturally in the skin.
 
 Is there downtime?
 
@@ -87,7 +87,7 @@ They do different jobs. Botox relaxes lines caused by movement, while filler rep
 ## Sources
 
   1. [M Beauty Clinic, Botox](https://www.mbeautyclinic.com/botox.htm)
-  2. [M Beauty Clinic, Juvederm and Voluma](https://www.mbeautyclinic.com/juvedermvoluma.htm)
+  2. [M Beauty Clinic, fillers](https://www.mbeautyclinic.com/juvedermvoluma.htm)
   3. [Entertainment Tonight, "Celebrity Dermatologist Dr. Tess Mauricio Wants You to Look Like Your Best Self"](https://www.etonline.com/celebrity-dermatologist-dr-tess-mauricio-wants-you-to-look-like-your-best-self-not-someone-else)
 
 
@@ -100,4 +100,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

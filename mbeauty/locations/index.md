@@ -1,7 +1,7 @@
 # Locations | M Beauty Clinic by Dr. Tess in Beverly Hills, San Diego, Chula Vista
 
 Source: https://proposals.localairegistry.com/mbeauty/locations/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Locations Locations
 

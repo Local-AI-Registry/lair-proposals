@@ -1,7 +1,7 @@
 # Terms of Use | M Beauty Clinic by Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/terms/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Terms of Use Legal
 
@@ -23,4 +23,4 @@ Before and after photos show individual patients. Results vary from patient to p
 
 Links to partner stores open websites run by other companies, whose own terms and privacy policies apply.
 
-Updated November 20, 2026.
+Updated November 25, 2026.

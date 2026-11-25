@@ -1,7 +1,7 @@
 # Botox vs. Filler: Which One Do You Need? | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/articles/botox-vs-filler/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Articles](/mbeauty/articles/)  ›  Injectables Injectables
 
@@ -11,7 +11,7 @@ They do different jobs. Here is how to tell which line, fold or hollow calls for
 
 **By[Tess Mauricio, MD, FAAD](/mbeauty/dr-tess-mauricio/)**Board-certified dermatologist * Founder, M Beauty Clinic
 
-**Published** November 20, 20265 min read
+**Published** November 25, 20265 min read
 
 Draft for Dr. Tess's review before launch
 
@@ -41,7 +41,7 @@ Botox is a neuromodulator. It blocks the nerve signals that tell certain facial 
 
 ## How filler works
 
-Fillers restore fullness where it has been lost: the cheeks, the folds from the nose to the mouth, under the eyes and the lips. Hyaluronic acid fillers such as Juvederm and Voluma are made of a substance found naturally in the skin. Depending on the product, results can last from a few months to a few years.3
+Fillers restore fullness where it has been lost: the cheeks, the folds from the nose to the mouth, under the eyes and the lips. Hyaluronic acid fillers such as Juvederm and Revanesse are made of a substance found naturally in the skin. Depending on the product, results can last from a few months to a few years.3
 
 Find out which treatment fits your skin.
 
@@ -95,4 +95,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 20, 2026.
+Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 25, 2026.

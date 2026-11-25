@@ -1,7 +1,7 @@
 # Treatments at M Beauty Clinic | Dr. Tess Mauricio, Beverly Hills
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Treatments Treatments
 

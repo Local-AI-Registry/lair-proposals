@@ -1,7 +1,7 @@
 # Acne and Acne Scars in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/acne-and-acne-scars/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  Acne and Acne Scars Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -20,11 +20,11 @@ Clear active breakouts and smooth the marks they leave behind.
 
 
 
-Acne treatment at M Beauty Clinic combines medical care from a board-certified dermatologist with light, laser and microneedling treatments. Blue light and photodynamic therapy target active acne, while the ELOS Fotofacial, Micropen microneedling and Fraxel resurfacing improve dark marks and scars.
+Acne treatment at M Beauty Clinic combines medical care from a board-certified dermatologist with light, laser and microneedling treatments. Blue light and photodynamic therapy target active acne, while the Pico laser, Venus Versa IPL, Micropen microneedling and Fraxel resurfacing improve dark marks and scars.
 
 **Active acne** Blue light, PDT, medical care
 
-**Dark marks** ELOS Fotofacial
+**Dark marks** Pico laser, Venus Versa
 
 **Scars** Micropen, Fraxel ReStore
 
@@ -33,7 +33,7 @@ Acne treatment at M Beauty Clinic combines medical care from a board-certified d
 ## Treating active acne
 
   * **Medical treatment for acne** from a board-certified dermatologist
-  * **ELOS blue light** for mild to moderate acne
+  * **Blue light** for mild to moderate acne
   * **Venus Versa IPL** dual-light acne treatment
   * **Photodynamic therapy (PDT)** for stubborn or severe acne
   * **HydraFacial** to deep clean and extract clogged pores
@@ -42,7 +42,7 @@ Acne treatment at M Beauty Clinic combines medical care from a board-certified d
 
 ## Fading marks and scars
 
-  * **ELOS Fotofacial** clears up dark acne marks
+  * **Pico laser and Venus Versa IPL** to fade dark acne marks
   * **Micropen microneedling** smooths acne scars and minimizes large pores without a laser
   * **Fraxel ReStore** resurfacing, best suited to lighter skin types
 
@@ -86,4 +86,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

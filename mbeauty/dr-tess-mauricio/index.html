@@ -30,7 +30,7 @@
    "name": "Dr. Tess Mauricio, MD, FAAD | Board-Certified Dermatologist, Beverly Hills",
    "description": "Dr. Tess Mauricio is a board-certified dermatologist, Stanford Medicine graduate and founder of M Beauty Clinic in Beverly Hills, San Diego and Chula Vista.",
    "inLanguage": "en-US",
-   "dateModified": "2026-11-20",
+   "dateModified": "2026-11-25",
    "isPartOf": {
     "@id": "https://proposals.localairegistry.com/mbeauty/#site"
    },
@@ -66,7 +66,8 @@
     "https://www.nbcsandiego.com/news/national-international/get-the-_benjamin-button_-effect-with-this-procedure_los-angeles/2134126/",
     "https://www.mbeautyclinic.com/about%20us.htm",
     "https://www.mbeautyclinic.com/",
-    "https://www.emedevents.com/speaker-profile/tess-mauricio"
+    "https://www.emedevents.com/speaker-profile/tess-mauricio",
+    "https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/"
    ]
   },
   {
@@ -86,7 +87,7 @@
    "jobTitle": "Board-Certified Dermatologist",
    "description": "Dr. Tess Mauricio is a board-certified dermatologist, Stanford Medicine graduate and founder of M Beauty Clinic in Beverly Hills, San Diego and Chula Vista.",
    "url": "https://proposals.localairegistry.com/mbeauty/dr-tess-mauricio/",
-   "image": "https://www.mbeautyclinic.com/index_htm_files/94575.jpg",
+   "image": "https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg",
    "gender": "Female",
    "knowsLanguage": [
     "English",
@@ -221,6 +222,11 @@
      "@type": "NewsArticle",
      "url": "https://www.nbcsandiego.com/news/national-international/get-the-_benjamin-button_-effect-with-this-procedure_los-angeles/2134126/",
      "name": "NBC San Diego, California Live: the Time Machine Procedure, 2019"
+    },
+    {
+     "@type": "NewsArticle",
+     "url": "https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/",
+     "name": "The Hollywood Reporter, \"The Top Cosmetic Doctors in L.A. and N.Y.C.\""
     }
    ]
   },
@@ -687,7 +693,10 @@ h2[id],section[id]{scroll-margin-top:110px}
 .bhero .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:60% 15%;border-radius:220px 220px 28px 28px;display:block}
 .bhero .portrait{position:relative}.bhero .cap{position:absolute;left:24px;bottom:22px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .bhero .cap strong{display:block;font:500 22px var(--serif)}
-@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}}
+@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}.bhero .portrait{order:-1;max-width:420px;width:100%;margin:0 auto!important}}
+.bhero .cap{color:var(--ink)!important;text-shadow:none!important;background:rgba(255,255,255,.9);padding:12px 16px;border-radius:14px;font-size:14px}
+.bhero .cap strong{font-size:19px}
+.stage{margin:26px 0 8px}.stage img{width:100%;max-height:520px;object-fit:cover;border-radius:18px;display:block}.stage figcaption{font-size:14px;color:#6a6062;margin-top:10px}
 @media(max-width:1240px){.nav .links{gap:16px}.nav .links a{font-size:14px}}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .scard .brandlogo{margin:auto 0 18px!important;height:46px;max-width:220px}
@@ -704,7 +713,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .onair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block}
 @media(max-width:760px){.onair{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .draftnote{font-size:13px;color:#8f2a34;background:#fbeff0;border-radius:10px;padding:8px 12px;display:inline-block;margin-top:10px}
-.resgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.resgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
 .resgrid figure{margin:0;background:#141112;border-radius:22px;overflow:hidden}
 .resgrid img{width:100%;height:auto;display:block}
 .resgrid figcaption{padding:14px 18px 18px;color:#fff;font-size:15px}.resgrid figcaption b{display:block;font:500 22px var(--serif);margin-top:4px}
@@ -713,6 +722,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .ba{position:relative;margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#ddd;user-select:none;max-width:520px}
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
 .ba .b-after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.ba .bhalf{position:absolute;inset:0;background-repeat:no-repeat;background-size:212% auto}.ba .b-before{background-position:0% 32%}.ba .b-after{background-position:100% 32%}
 .ba .lbl{position:absolute;top:16px;z-index:3;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(16,12,13,.55);padding:7px 11px;border-radius:999px}
 .ba .lbl.l{left:16px}.ba .lbl.r{right:16px}
 .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:3;pointer-events:none}
@@ -748,7 +758,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
     <div class="ctas"><a class="pill pill-dark" href="/mbeauty/contact/">Book With Dr. Tess</a><a class="pill pill-line" href="#honors">Training and Honors</a></div>
     <div class="badges"><span>Stanford Medicine</span><span>Fellow, American Academy of Dermatology</span><a href="/mbeauty/local-ai-registry/" style="text-decoration:none;color:inherit"><span>Medical Director, Local AI Registry</span></a></div>
    </div>
-   <figure class="portrait rv" style="margin:0"><img src="https://www.mbeautyclinic.com/index_htm_files/94575.jpg" alt="Dr. Tess Mauricio, board-certified dermatologist, in a white coat"><figcaption class="cap"><strong>Tess Mauricio, MD, FAAD</strong>Founder, M Beauty&nbsp;Clinic</figcaption></figure>
+   <figure class="portrait rv" style="margin:0"><img src="https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg" alt="Dr. Tess Mauricio, board-certified dermatologist, in a white coat"><figcaption class="cap"><strong>Tess Mauricio, MD, FAAD</strong>Founder, M Beauty&nbsp;Clinic</figcaption></figure>
   </div>
  </div>
 </section>
@@ -761,7 +771,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
    <p>Dr. Tess immigrated to the United States from the Philippines at age 12.<sup><a href="#ref-8">8</a></sup> She graduated summa cum laude from UC San Diego with a degree in biochemistry and cell biology, then earned her medical degree at Stanford University School of Medicine.<sup><a href="#ref-2">2</a></sup></p>
    <p>She first planned to become a psychiatrist, because she wanted to make people happier. "If we don't feel OK on the inside, then nothing is OK," she has said.<sup><a href="#ref-6">6</a></sup> That idea became the philosophy of M Beauty Clinic, the family practice she founded with her husband, Dr. James Lee: be your best at any age, mind, body and&nbsp;soul.</p>
    <p>Her practice focuses on non-surgical and regenerative treatments, with a focus on skin of color.<sup><a href="#ref-6">6</a></sup> She has worked as a dermatologist partner for skin care brands including Proactiv, No7, Your Good Skin and Soap &amp; Glory, and is the author of <i>California Total Beauty</i>.<sup><a href="#ref-1">1</a>, <a href="#ref-10">10</a></sup></p>
-   <p>She also serves as Medical Director at <a href="https://localairegistry.com/">Local AI Registry</a>, the public registry of which local businesses AI assistants recommend, where she helps define how AI should judge aesthetic practices. <a href="/mbeauty/local-ai-registry/">Read about her role</a>.</p>
+   <p>She also serves as Medical Director at <a href="https://localairegistry.com/">Local AI Registry</a>, which gets local businesses named by AI in 90 days, guaranteed. She helps define what AI should weigh when it names an aesthetic practice. <a href="/mbeauty/local-ai-registry/">Read about her role</a>.</p>
   </div>
   <aside class="facts rv" aria-label="Quick facts">
    <h3>Quick&nbsp;facts</h3>
@@ -791,7 +801,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
  <div class="container">
   <p class="k">Training&nbsp;and&nbsp;Honors</p>
   <h2 class="serif" id="training-leadership-and-honors">Training, leadership <em>and honors</em></h2>
-  <div class="fgrid"><article class="fa rv"><span class="fy">Stanford</span><h3 class="serif">Doctor of&nbsp;Medicine</h3><p>Stanford University School of Medicine.<sup><a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">UC San Diego</span><h3 class="serif">Summa Cum&nbsp;Laude</h3><p>Degree in biochemistry and cell biology from the University of California, San Diego, where she also completed her dermatology residency.<sup><a href="#ref-2">2</a>, <a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Board certified</span><h3 class="serif">Fellow, American Academy of&nbsp;Dermatology</h3><p>Board-certified dermatologist and FAAD.<sup><a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Leadership</span><h3 class="serif">Past President, San Diego Society for Dermatologic&nbsp;Surgery</h3><p>Reported as the youngest woman to serve as the society's president.<sup><a href="#ref-2">2</a>, <a href="#ref-12">12</a></sup></p></article><article class="fa rv"><span class="fy">UC San Diego</span><h3 class="serif">Warren College Distinguished Alumni&nbsp;Award</h3><p>Honored by UCSD as a distinguished alumna.<sup><a href="#ref-2">2</a>, <a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Award</span><h3 class="serif">Hollywood Daytime Beauty&nbsp;Award</h3><p>For Outstanding Achievement in Medicine.<sup><a href="#ref-1">1</a>, <a href="#ref-10">10</a></sup></p></article></div>
+  <div class="fgrid"><article class="fa rv"><span class="fy">Stanford</span><h3 class="serif">Doctor of&nbsp;Medicine</h3><p>Stanford University School of Medicine.<sup><a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">UC San Diego</span><h3 class="serif">Summa Cum&nbsp;Laude</h3><p>Degree in biochemistry and cell biology from the University of California, San Diego, where she also completed her dermatology residency.<sup><a href="#ref-2">2</a>, <a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Board certified</span><h3 class="serif">Fellow, American Academy of&nbsp;Dermatology</h3><p>Board-certified dermatologist and FAAD.<sup><a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Leadership</span><h3 class="serif">Past President, San Diego Society for Dermatologic&nbsp;Surgery</h3><p>Reported as the youngest woman to serve as the society's president.<sup><a href="#ref-2">2</a>, <a href="#ref-12">12</a></sup></p></article><article class="fa rv"><span class="fy">UC San Diego</span><h3 class="serif">Warren College Distinguished Alumni&nbsp;Award</h3><p>Honored by UCSD as a distinguished alumna.<sup><a href="#ref-2">2</a>, <a href="#ref-1">1</a></sup></p></article><article class="fa rv"><span class="fy">Award</span><h3 class="serif">Hollywood Daytime Beauty&nbsp;Award</h3><p>For Outstanding Achievement in Medicine.<sup><a href="#ref-1">1</a>, <a href="#ref-10">10</a></sup></p></article><article class="fa rv"><span class="fy">The Hollywood Reporter</span><h3 class="serif">Top Cosmetic Doctors in L.A.&nbsp;and&nbsp;N.Y.C.</h3><p>Named to The Hollywood Reporter&rsquo;s list of top cosmetic doctors.<sup><a href="#ref-13">13</a></sup></p></article></div>
  </div>
 </section>
 
@@ -801,6 +811,7 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
   <h2 class="serif" id="a-trusted-voice-on-television">A trusted voice <em>on television</em></h2>
   <p class="sub">Dr. Tess is the host and executive producer of <i>The Dr. Tess Show</i>, which ran for six seasons on GMA Pinoy TV, and has appeared as a medical expert on <i>Entertainment Tonight</i>, <i>The Talk</i>, <i>The Dr. Oz Show</i>, <i>The Doctors</i>, <i>The Rachael Ray Show</i>, <i>Dr. Phil</i>, <i>The Real</i>, Fox News and NBC's <i>California Live</i>.<sup><a href="#ref-6">6</a>, <a href="#ref-3">3</a>, <a href="#ref-4">4</a>, <a href="#ref-1">1</a></sup></p>
   <div class="onair"><img src="https://www.mbeautyclinic.com/index_htm_files/92978.jpg" alt="Dr. Tess Mauricio appearing on television" loading="lazy"><img src="https://www.mbeautyclinic.com/index_htm_files/92980.jpg" alt="Dr. Tess Mauricio appearing on television" loading="lazy"><img src="https://www.mbeautyclinic.com/index_htm_files/92982.jpg" alt="Dr. Tess Mauricio appearing on television" loading="lazy"><img src="https://www.mbeautyclinic.com/index_htm_files/92986.jpg" alt="Dr. Tess Mauricio appearing on television" loading="lazy"></div>
+  <figure class="stage rv"><img src="https://www.dropbox.com/scl/fo/pc548k8nuucrds4e9xypq/ADuYX1pv58HhLJm54DU6jZA/Evolus%20Jeuveau%20Presentation%20.jpg?rlkey=ytxsxq499ov5fz4r25pv7xyaw&raw=1" alt="Dr. Tess Mauricio speaking on stage in front of a large audience" loading="lazy"><figcaption>Dr. Tess on stage, teaching as a thought leader in aesthetic&nbsp;medicine.</figcaption></figure>
   <p class="sub">Patients come from all over the world to see her, including Cardi B, Kim Kardashian, Khlo&eacute; Kardashian, Paula Abdul and Julian Lennon.<sup><a href="#ref-10">10</a>, <a href="#ref-5">5</a></sup></p>
  </div>
 </section>
@@ -820,11 +831,11 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
  <div class="container">
   <h2 class="serif" id="sources-h">Sources</h2>
   <p class="sub">Every claim on this page links to a public source or to M Beauty Clinic's own published&nbsp;biography.</p>
-  <ol class="srcs"><li id="ref-1"><a href="https://aedit.com/provider/tess-mauricio-md-28816" target="_blank" rel="noopener">AEDIT, provider profile of Tess Mauricio, MD</a></li><li id="ref-2"><a href="https://usa.inquirer.net/12865/singing-fil-doctors-life-immigrant-success-story" target="_blank" rel="noopener">Inquirer USA, "Singing Fil-Am doctor's life is an immigrant success story," June 7, 2018</a></li><li id="ref-3"><a href="https://globalnation.inquirer.net/?p=141643" target="_blank" rel="noopener">Inquirer Global Nation, "Fil-Am dermatologist is just her natural self on TV"</a></li><li id="ref-4"><a href="https://www.imdb.com/name/nm5129911/" target="_blank" rel="noopener">IMDb, Tess Mauricio</a></li><li id="ref-5"><a href="https://www.etonline.com/celebrity-dermatologist-dr-tess-mauricio-wants-you-to-look-like-your-best-self-not-someone-else" target="_blank" rel="noopener">Entertainment Tonight, "Celebrity Dermatologist Dr. Tess Mauricio Wants You to Look Like Your Best Self, Not Someone Else"</a></li><li id="ref-6"><a href="https://www.medestheticsmag.com/success-through-specialization" target="_blank" rel="noopener">MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"</a></li><li id="ref-7"><a href="https://www.theaestheticguide.com/node/4702" target="_blank" rel="noopener">The Aesthetic Guide, profile of Tess Mauricio, MD</a></li><li id="ref-8"><a href="https://asianjournal.com/?p=22908" target="_blank" rel="noopener">Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"</a></li><li id="ref-9"><a href="https://www.nbcsandiego.com/news/national-international/get-the-_benjamin-button_-effect-with-this-procedure_los-angeles/2134126/" target="_blank" rel="noopener">NBC San Diego, California Live: the Time Machine Procedure, 2019</a></li><li id="ref-10"><a href="https://www.mbeautyclinic.com/about%20us.htm" target="_blank" rel="noopener">M Beauty Clinic, About Dr. Tess</a></li><li id="ref-11"><a href="https://www.mbeautyclinic.com/" target="_blank" rel="noopener">M Beauty Clinic, home page (Dr. James Lee biography)</a></li><li id="ref-12"><a href="https://www.emedevents.com/speaker-profile/tess-mauricio" target="_blank" rel="noopener">eMedEvents, speaker profile of Tess Mauricio, MD, FAAD</a></li></ol>
+  <ol class="srcs"><li id="ref-1"><a href="https://aedit.com/provider/tess-mauricio-md-28816" target="_blank" rel="noopener">AEDIT, provider profile of Tess Mauricio, MD</a></li><li id="ref-2"><a href="https://usa.inquirer.net/12865/singing-fil-doctors-life-immigrant-success-story" target="_blank" rel="noopener">Inquirer USA, "Singing Fil-Am doctor's life is an immigrant success story," June 7, 2018</a></li><li id="ref-3"><a href="https://globalnation.inquirer.net/?p=141643" target="_blank" rel="noopener">Inquirer Global Nation, "Fil-Am dermatologist is just her natural self on TV"</a></li><li id="ref-4"><a href="https://www.imdb.com/name/nm5129911/" target="_blank" rel="noopener">IMDb, Tess Mauricio</a></li><li id="ref-5"><a href="https://www.etonline.com/celebrity-dermatologist-dr-tess-mauricio-wants-you-to-look-like-your-best-self-not-someone-else" target="_blank" rel="noopener">Entertainment Tonight, "Celebrity Dermatologist Dr. Tess Mauricio Wants You to Look Like Your Best Self, Not Someone Else"</a></li><li id="ref-6"><a href="https://www.medestheticsmag.com/success-through-specialization" target="_blank" rel="noopener">MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"</a></li><li id="ref-7"><a href="https://www.theaestheticguide.com/node/4702" target="_blank" rel="noopener">The Aesthetic Guide, profile of Tess Mauricio, MD</a></li><li id="ref-8"><a href="https://asianjournal.com/?p=22908" target="_blank" rel="noopener">Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"</a></li><li id="ref-9"><a href="https://www.nbcsandiego.com/news/national-international/get-the-_benjamin-button_-effect-with-this-procedure_los-angeles/2134126/" target="_blank" rel="noopener">NBC San Diego, California Live: the Time Machine Procedure, 2019</a></li><li id="ref-10"><a href="https://www.mbeautyclinic.com/about%20us.htm" target="_blank" rel="noopener">M Beauty Clinic, About Dr. Tess</a></li><li id="ref-11"><a href="https://www.mbeautyclinic.com/" target="_blank" rel="noopener">M Beauty Clinic, home page (Dr. James Lee biography)</a></li><li id="ref-12"><a href="https://www.emedevents.com/speaker-profile/tess-mauricio" target="_blank" rel="noopener">eMedEvents, speaker profile of Tess Mauricio, MD, FAAD</a></li><li id="ref-13"><a href="https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/" target="_blank" rel="noopener">The Hollywood Reporter, "The Top Cosmetic Doctors in L.A. and N.Y.C."</a></li></ol>
  </div>
 </section>
 </main>
-<p class="updated">Updated <time datetime="2026-11-20">November 20, 2026</time></p>
+<p class="updated">Updated <time datetime="2026-11-25">November 25, 2026</time></p>
 <footer>
   <div class="container fcols">
     <div class="fbrand">
@@ -861,7 +872,7 @@ let ly=scrollY;addEventListener('scroll',()=>{if(Math.abs(scrollY-ly)>40){closeN
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const mbar=document.getElementById('mbar');if(mbar){const vis=new Set();const mio=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));mbar.classList.toggle('hide',vis.size>0)},{threshold:.05});document.querySelectorAll('footer,.acta').forEach(el=>mio.observe(el))}
-const baR=document.getElementById('baRange');if(baR){const a=document.getElementById('baAfter'),h=document.getElementById('baHandle');const set=v=>{a.style.clipPath='inset(0 0 0 '+v+'%)';h.style.left=v+'%'};baR.addEventListener('input',()=>set(baR.value));set(50)}
+document.querySelectorAll('figure.ba').forEach(f=>{const r=f.querySelector('input[type=range]'),a=f.querySelector('.b-after-wrap'),h=f.querySelector('.handle');if(!r||!a||!h)return;const set=v=>{a.style.clipPath='inset(0 0 0 '+v+'%)';h.style.left=v+'%'};r.addEventListener('input',()=>set(r.value));set(50)});
 const f=document.getElementById('form');if(f){f.addEventListener('submit',e=>{e.preventDefault();const ok=document.getElementById('ok');if(ok){ok.style.display='block';ok.scrollIntoView({block:'center'})}});const p=new URLSearchParams(location.search);p.forEach((v,k)=>{const el=f.querySelector('[name='+k+']');if(el)el.value=v})}
 </script>
 <script id="sop-webmcp">(function(){var mc=navigator.modelContext;if(!mc||typeof mc.registerTool!=='function')return;

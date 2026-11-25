@@ -1,7 +1,7 @@
 # The Time Machine Procedure in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/time-machine-procedure/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  The Time Machine Procedure Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -112,4 +112,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

@@ -1,7 +1,7 @@
 # Dermatologist in San Diego, CA | M Beauty Clinic by Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/locations/san-diego/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Locations](/mbeauty/locations/)  ›  San Diego Locations
 
@@ -31,7 +31,7 @@ Treatment plans are led by [Dr. Tess Mauricio](/mbeauty/dr-tess-mauricio/), a bo
 
 [The Time Machine Procedure in San Diego](/mbeauty/treatments/time-machine-procedure/)[Botox and Fillers in San Diego](/mbeauty/treatments/botox-and-fillers/)[ALMI and Regenerative Medicine in San Diego](/mbeauty/treatments/almi-regenerative-medicine/)[Skin Brightening in San Diego](/mbeauty/treatments/skin-brightening/)[Laser and Skin Tightening in San Diego](/mbeauty/treatments/laser-and-skin-tightening/)[Acne and Acne Scars in San Diego](/mbeauty/treatments/acne-and-acne-scars/)
 
-See this clinic's public record and AI Score on [Local AI Registry](https://localairegistry.com/biz/ca/san-diego/m-beauty-clinic-by-dr-tess-san-diego-ca).
+See this clinic's verified record on [Local AI Registry](https://localairegistry.com/biz/ca/san-diego/m-beauty-clinic-by-dr-tess-san-diego-ca).
 
 ## Who we serve
 
@@ -61,4 +61,4 @@ Is the consultation free?
 
 Consultations with cosmetic consultants are free. A consultation with Dr. Tess is $250, applied toward any treatment.
 
-Updated November 20, 2026.
+Updated November 25, 2026.

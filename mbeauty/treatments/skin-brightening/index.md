@@ -1,7 +1,7 @@
 # Skin Brightening in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/skin-brightening/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  Skin Brightening Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -14,7 +14,7 @@ Even out dark spots, sun damage and blotchy tone, for every skin type.
 **On this page**
 
   1. What it treats
-  2. How the ELOS Fotofacial works
+  2. Venus Versa and Pico laser
   3. Experience with skin of color
   4. Other brightening options
   5. FAQ
@@ -22,15 +22,15 @@ Even out dark spots, sun damage and blotchy tone, for every skin type.
 
 
 
-Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main option is the ELOS Fotofacial, which combines radiofrequency and light energy to target pigment and redness. It works for all skin types and is usually done in a series, about once every four weeks.
+Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main options are Venus Versa IPL photofacials, which use light energy to target pigment and redness, and the Pico laser, which breaks up pigment with ultra-short pulses. Treatments are usually done in a series.
 
-**Main treatment** ELOS Fotofacial RF / IPL
+**Main treatments** Venus Versa IPL, Pico laser
 
 **Treats** Spots, sun damage, redness
 
 **Skin types** All skin types
 
-**Schedule** About every 4 weeks
+**Schedule** Usually a series
 
 ## What it treats
 
@@ -41,9 +41,9 @@ Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Be
 
 
 
-## How the ELOS Fotofacial works
+## Venus Versa and Pico laser
 
-The ELOS Fotofacial combines bipolar radiofrequency with light energy to target pigment and broken capillaries while protecting the skin around them. Over a series of treatments, skin becomes more even and brighter. According to the clinic, improvement can show in as few as three sessions, and treatments are spaced about four weeks apart.1
+A Venus Versa IPL photofacial uses broad-spectrum light to target brown spots and broken capillaries. The Pico laser delivers energy in picosecond pulses that break pigment into tiny particles the body clears away. Over a series of treatments, skin becomes more even and brighter. Your consultation decides which one suits your skin, or whether to combine them.
 
 Find out which treatment fits your skin.
 
@@ -53,21 +53,21 @@ Consultations in Beverly Hills, San Diego and Chula Vista.
 
 ## Experience with skin of color
 
-Treating pigment safely takes experience, especially in darker skin. Dr. Tess's practices have a focus on skin of color, and the clinic treats all skin types.2
+Treating pigment safely takes experience, especially in darker skin. Dr. Tess's practices have a focus on skin of color, and the clinic treats all skin types.1
 
 ## Other brightening options
 
-Depending on your skin, a plan may also include photodynamic therapy (PDT) for sun damage and brown spots, the Refinity glycolic peel, the HydraFacial and glutathione. Dr. Tess also developed Timeless MD, a medical-grade illuminating skin care line for discoloration.3
+Depending on your skin, a plan may also include photodynamic therapy (PDT) for sun damage and brown spots, the Refinity glycolic peel, the HydraFacial and glutathione. Dr. Tess also developed Timeless MD, a medical-grade illuminating skin care line for discoloration.2
 
 ## Skin Brightening FAQ
 
-Is the ELOS Fotofacial safe for darker skin?
+Are these treatments safe for darker skin?
 
-The clinic uses it for all skin types. Your consultation checks that it is right for your skin.
+The clinic treats all skin types. Your consultation checks which device and settings are right for your skin.
 
 How many treatments will I need?
 
-Most people do a series. Some see improvement in as few as three sessions, about four weeks apart.
+Most people do a series. Your plan sets the number of sessions and the spacing.
 
 Is there downtime?
 
@@ -83,9 +83,8 @@ Yes. Brightening is often part of a larger plan such as the Time Machine Procedu
 
 ## Sources
 
-  1. [M Beauty Clinic, ELOS Fotofacial RF / IPL](https://www.mbeautyclinic.com/elosfotofacial.htm)
-  2. [MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"](https://www.medestheticsmag.com/success-through-specialization)
-  3. [Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"](https://asianjournal.com/?p=22908)
+  1. [MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"](https://www.medestheticsmag.com/success-through-specialization)
+  2. [Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"](https://asianjournal.com/?p=22908)
 
 
 
@@ -97,4 +96,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

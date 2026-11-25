@@ -1,7 +1,7 @@
 # Dermatologist in Chula Vista, CA | M Beauty Clinic by Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/locations/chula-vista/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Locations](/mbeauty/locations/)  ›  Chula Vista Locations
 
@@ -60,4 +60,4 @@ Is the consultation free?
 
 Consultations with cosmetic consultants are free. A consultation with Dr. Tess is $250, applied toward any treatment.
 
-Updated November 20, 2026.
+Updated November 25, 2026.

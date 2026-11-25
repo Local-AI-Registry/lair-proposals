@@ -1,7 +1,7 @@
 # What Is the Time Machine Procedure? A Dermatologist Explains | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/articles/what-is-the-time-machine-procedure/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Articles](/mbeauty/articles/)  ›  Anti-Aging Anti-Aging
 
@@ -11,7 +11,7 @@ Why I built one plan to treat every sign of aging at once, and what patients can
 
 **By[Tess Mauricio, MD, FAAD](/mbeauty/dr-tess-mauricio/)**Board-certified dermatologist * Founder, M Beauty Clinic
 
-**Published** November 20, 20265 min read
+**Published** November 25, 20265 min read
 
 Draft for Dr. Tess's review before launch
 
@@ -91,4 +91,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 20, 2026.
+Written by Tess Mauricio, MD, FAAD. General education, not medical advice. Updated November 25, 2026.

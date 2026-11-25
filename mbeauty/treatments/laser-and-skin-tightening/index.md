@@ -1,7 +1,7 @@
 # Laser and Skin Tightening in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/laser-and-skin-tightening/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  Laser and Skin Tightening Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -29,7 +29,7 @@ Laser and energy-based treatments renew skin by triggering new collagen. M Beaut
 
 **Eyes** Sublimax "Eye Opener"
 
-**Hair removal** ELOS laser
+**Pigment** Pico laser, Venus Versa
 
 ## Fraxel laser resurfacing
 
@@ -49,7 +49,8 @@ Consultations in Beverly Hills, San Diego and Chula Vista.
 
   * **J-Plasma** for skin tightening with helium plasma and radiofrequency energy
   * **Sublimax "Eye Opener"** for droopy eyelids and eye bags
-  * **ELOS laser hair removal** with numbing cream and cooling for comfort
+  * **Pico laser** for pigment, dark spots and acne marks
+  * **Venus Versa IPL** photofacials for spots and redness
 
 
 
@@ -91,4 +92,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

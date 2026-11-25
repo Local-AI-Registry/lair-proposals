@@ -1,7 +1,7 @@
 # Hair Restoration in Beverly Hills & San Diego | Dr. Tess Mauricio
 
 Source: https://proposals.localairegistry.com/mbeauty/treatments/hair-restoration/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  [Treatments](/mbeauty/treatments/)  ›  Hair Restoration Treatments * Beverly Hills, San Diego, Chula Vista
 
@@ -20,7 +20,7 @@ Natural hair transplants and regenerative treatments for thinning hair, under on
 
 
 
-M Beauty Clinic treats slight, moderate and severe hair loss in men and women. Options include natural hair transplantation using the follicular unit extraction (FUE) method, ALMI Hair Restoration, PRP hair restoration, the HydraFacial Keravive scalp treatment and the Theradome laser helmet for use at home.
+M Beauty Clinic treats slight, moderate and severe hair loss in men and women. Options include natural hair transplantation using the follicular unit extraction (FUE) method, ALMI Hair Restoration, PRP hair restoration, the HydraFacial Keravive scalp treatment and the REVIAN RED cap for use at home.
 
 **Transplant** Automated FUE
 
@@ -28,7 +28,7 @@ M Beauty Clinic treats slight, moderate and severe hair loss in men and women. O
 
 **Scalp care** HydraFacial Keravive
 
-**At home** Theradome laser helmet
+**At home** REVIAN RED cap
 
 ## Hair restoration options
 
@@ -36,7 +36,7 @@ M Beauty Clinic treats slight, moderate and severe hair loss in men and women. O
   * **ALMI Hair Restoration.** Targeted placement of regenerative cells to support the hair cycle.
   * **Hairvolution (PRP).** Platelet-rich plasma from your own blood for hair regrowth.
   * **HydraFacial Keravive.** A scalp facial for scalp health and natural growth.
-  * **Theradome.** A laser phototherapy helmet for treatment at home.
+  * **REVIAN RED.** An LED light therapy cap for thinning hair, used at home.
 
 
 
@@ -82,4 +82,4 @@ Board-certified dermatologist, Stanford University School of Medicine graduate a
 
 [Read Dr. Tess's full bio](/mbeauty/dr-tess-mauricio/)
 
-Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 20, 2026.
+Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated November 25, 2026.

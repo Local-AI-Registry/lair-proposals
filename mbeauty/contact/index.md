@@ -1,7 +1,7 @@
 # Contact M Beauty Clinic | Book a Consultation With Dr. Tess
 
 Source: https://proposals.localairegistry.com/mbeauty/contact/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 [M Beauty Clinic](/mbeauty/)  ›  Contact Contact
 
@@ -36,4 +36,4 @@ San Diego, CA 92126
 Chula Vista, CA 91914  
 [(619) 434-8950](tel:6194348950)
 
-Updated November 20, 2026.
+Updated November 25, 2026.

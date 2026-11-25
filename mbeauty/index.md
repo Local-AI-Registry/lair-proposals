@@ -1,7 +1,7 @@
 # M Beauty Clinic by Dr. Tess | Cosmetic Dermatologist in Beverly Hills, CA
 
 Source: https://proposals.localairegistry.com/mbeauty/
-Updated: 2026-11-20
+Updated: 2026-11-25
 
 # Cosmetic Dermatology in Beverly Hills, California
 
@@ -28,6 +28,8 @@ Dr. Tess Mauricio, MD, FAAD
 
 [Meet Dr. Tess](/mbeauty/dr-tess-mauricio/)
 
+[ Meet Dr. Tess**Tess Mauricio, MD,  FAAD**Founder, M Beauty Clinic ](/mbeauty/dr-tess-mauricio/)
+
 Stanford Medicine
 
 ### Board-certified  
@@ -49,8 +51,6 @@ Regenerative medicine
 
 One of the developers and pioneers of the ALMI procedure, and a past President of the San Diego Society of Dermatological Surgery.
 
-[ **Tess Mauricio, MD** Founder, M Beauty Clinic ](/mbeauty/dr-tess-mauricio/)
-
 Trusted worldwide
 
 ### Thousands of  
@@ -59,6 +59,12 @@ Trusted worldwide
 Patients come from all over the world to see Dr. Tess and her team, including Cardi B, Kim Kardashian, Paula Abdul and Julian Lennon.
 
 Three clinics [Beverly Hills](/mbeauty/locations/beverly-hills/) [San Diego](/mbeauty/locations/san-diego/) [Chula Vista](/mbeauty/locations/chula-vista/)
+
+On stage and on screen
+
+## As seen on stage _and  screen_
+
+WatchAmerica's favorite dermatologist WatchCelebrities on Dr. Tess Cardi B * Kim Kardashian * Paula Abdul * Julian Lennon [ The Hollywood Reporter Top Cosmetic Doctors in L.A. and N.Y.C. Read the list ](https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/)
 
 Our Signature Treatment
 
@@ -79,7 +85,7 @@ Book My Time Machine Consult Watch: Meet Dr. Tess
 
 BeforeAfter
 
-Actual patient of M Beauty Clinic. Individual results vary.
+Nathalie, an actual patient of M Beauty Clinic. Individual results vary.
 
 Real Results
 
@@ -88,7 +94,7 @@ Real Results
 
 Real patients of Dr. Tess, shared with their permission. Every face and every plan is different.
 
-Time Machine Procedure™Nathalie Time Machine Procedure™Denise Time Machine Procedure™David Her own resultsDr. Tess, through the years
+Time Machine Procedure™Denise Her own resultsDr. Tess, through the years Time Machine Procedure™David
 
 Find Your Treatment
 
@@ -119,7 +125,7 @@ Shop With Dr. Tess
 
 Dr. Tess's recommended skincare and wellness programs, from the brands she trusts. Each link opens the partner's store.
 
-[NewPlatform HealthEducation and wellness programs between visits, recommended by Dr. Tess.Shop Now](https://joinplatformhealth.com/)[Partner storeXtresseShop M Beauty Clinic's provider page.Shop Now](https://xtresse.com/pages/provider/m-beauty-clinic?programId=2)[Skin careHydrinityHydration science skin care, through Dr. Tess's link.Shop Now](https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr)[Skin careAlumierMDMedical-grade skin care with M Beauty's code.Shop Now](https://us.alumiermd.com/products?code=2SUHYVVW)
+[NewPlatform HealthEducation and wellness programs between visits, recommended by Dr. Tess.Shop Now](https://joinplatformhealth.com/)[Partner storeXtresseShop M Beauty Clinic's provider page.Shop Now](https://xtresse.com/pages/provider/m-beauty-clinic?programId=2)[Skin careHydrinityHydration science skin care, through Dr. Tess's link.Shop Now](https://www.hydrinity.com/?sca_ref=11391443.jWOujG47Jr)[Skin careAlumierMDMedical-grade skin care with M Beauty's code.Shop Now](https://us.alumiermd.com/products?code=2SUHYVVW)[Skin careOurselfScience-built skin care with patented delivery technology, through Dr. Tess's link.Shop Now](https://www.ourself.com/?provider_account_id=32880)
 
 ## Which treatment _fits  you?_
 

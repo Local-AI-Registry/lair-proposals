@@ -30,7 +30,7 @@
    "name": "Skin Brightening in Beverly Hills & San Diego | Dr. Tess Mauricio",
    "description": "Skin brightening treatments fade dark spots, sun damage and uneven tone.",
    "inLanguage": "en-US",
-   "dateModified": "2026-11-20",
+   "dateModified": "2026-11-25",
    "isPartOf": {
     "@id": "https://proposals.localairegistry.com/mbeauty/#site"
    },
@@ -42,7 +42,7 @@
      ".afaq"
     ]
    },
-   "lastReviewed": "2026-11-20",
+   "lastReviewed": "2026-11-25",
    "reviewedBy": {
     "@id": "https://proposals.localairegistry.com/mbeauty/dr-tess-mauricio/#person"
    },
@@ -63,7 +63,6 @@
     "height": 630
    },
    "citation": [
-    "https://www.mbeautyclinic.com/elosfotofacial.htm",
     "https://www.medestheticsmag.com/success-through-specialization",
     "https://asianjournal.com/?p=22908"
    ]
@@ -76,7 +75,7 @@
    "@id": "https://proposals.localairegistry.com/mbeauty/treatments/skin-brightening/#service",
    "name": "Skin Brightening",
    "serviceType": "Skin brightening and pigment treatment",
-   "description": "Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main option is the ELOS Fotofacial, which combines radiofrequency and light energy to target pigment and redness. It works for all skin types and is usually done in a series, about once every four weeks.",
+   "description": "Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main options are Venus Versa IPL photofacials, which use light energy to target pigment and redness, and the Pico laser, which breaks up pigment with ultra-short pulses. Treatments are usually done in a series.",
    "url": "https://proposals.localairegistry.com/mbeauty/treatments/skin-brightening/",
    "provider": {
     "@id": "https://proposals.localairegistry.com/mbeauty/#clinic"
@@ -157,10 +156,10 @@
    "mainEntity": [
     {
      "@type": "Question",
-     "name": "Is the ELOS Fotofacial safe for darker skin?",
+     "name": "Are these treatments safe for darker skin?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "The clinic uses it for all skin types. Your consultation checks that it is right for your skin."
+      "text": "The clinic treats all skin types. Your consultation checks which device and settings are right for your skin."
      }
     },
     {
@@ -168,7 +167,7 @@
      "name": "How many treatments will I need?",
      "acceptedAnswer": {
       "@type": "Answer",
-      "text": "Most people do a series. Some see improvement in as few as three sessions, about four weeks apart."
+      "text": "Most people do a series. Your plan sets the number of sessions and the spacing."
      }
     },
     {
@@ -617,7 +616,10 @@ h2[id],section[id]{scroll-margin-top:110px}
 .bhero .portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:60% 15%;border-radius:220px 220px 28px 28px;display:block}
 .bhero .portrait{position:relative}.bhero .cap{position:absolute;left:24px;bottom:22px;color:#fff;text-shadow:0 1px 10px rgba(0,0,0,.5)}
 .bhero .cap strong{display:block;font:500 22px var(--serif)}
-@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}}
+@media(max-width:860px){.bhero{padding-top:110px}.bhero .grid{grid-template-columns:1fr;gap:34px}.bhero .portrait{order:-1;max-width:420px;width:100%;margin:0 auto!important}}
+.bhero .cap{color:var(--ink)!important;text-shadow:none!important;background:rgba(255,255,255,.9);padding:12px 16px;border-radius:14px;font-size:14px}
+.bhero .cap strong{font-size:19px}
+.stage{margin:26px 0 8px}.stage img{width:100%;max-height:520px;object-fit:cover;border-radius:18px;display:block}.stage figcaption{font-size:14px;color:#6a6062;margin-top:10px}
 @media(max-width:1240px){.nav .links{gap:16px}.nav .links a{font-size:14px}}
 .vh{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .scard .brandlogo{margin:auto 0 18px!important;height:46px;max-width:220px}
@@ -634,7 +636,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .onair img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;display:block}
 @media(max-width:760px){.onair{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .draftnote{font-size:13px;color:#8f2a34;background:#fbeff0;border-radius:10px;padding:8px 12px;display:inline-block;margin-top:10px}
-.resgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.resgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;align-items:start}
 .resgrid figure{margin:0;background:#141112;border-radius:22px;overflow:hidden}
 .resgrid img{width:100%;height:auto;display:block}
 .resgrid figcaption{padding:14px 18px 18px;color:#fff;font-size:15px}.resgrid figcaption b{display:block;font:500 22px var(--serif);margin-top:4px}
@@ -643,6 +645,7 @@ h2[id],section[id]{scroll-margin-top:110px}
 .ba{position:relative;margin:0;border-radius:22px;overflow:hidden;aspect-ratio:4/5;background:#ddd;user-select:none;max-width:520px}
 .ba img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 35%}
 .ba .b-after-wrap{position:absolute;inset:0;clip-path:inset(0 0 0 50%)}
+.ba .bhalf{position:absolute;inset:0;background-repeat:no-repeat;background-size:212% auto}.ba .b-before{background-position:0% 32%}.ba .b-after{background-position:100% 32%}
 .ba .lbl{position:absolute;top:16px;z-index:3;font:600 12px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#fff;background:rgba(16,12,13,.55);padding:7px 11px;border-radius:999px}
 .ba .lbl.l{left:16px}.ba .lbl.r{right:16px}
 .ba .handle{position:absolute;top:0;bottom:0;left:50%;width:2px;background:#fff;z-index:3;pointer-events:none}
@@ -673,25 +676,25 @@ document.readyState==='loading'?document.addEventListener('DOMContentLoaded',fil
  <span class="cat">Treatments &middot; Beverly Hills, San Diego, Chula Vista</span>
  <h1 class="serif">Skin Brightening and Dark Spot&nbsp;Treatment</h1>
  <p class="dek">Even out dark spots, sun damage and blotchy tone, for every&nbsp;skin&nbsp;type.</p>
- <div class="byline"><div class="av"><img src="https://www.mbeautyclinic.com/index_htm_files/94575.jpg" alt="Tess Mauricio, MD"></div><div><b>Reviewed by <a href="/mbeauty/dr-tess-mauricio/" rel="author">Tess Mauricio, MD,&nbsp;FAAD</a></b><span>Board-certified dermatologist &middot; Founder, M Beauty Clinic</span></div></div>
+ <div class="byline"><div class="av"><img src="https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg" alt="Tess Mauricio, MD"></div><div><b>Reviewed by <a href="/mbeauty/dr-tess-mauricio/" rel="author">Tess Mauricio, MD,&nbsp;FAAD</a></b><span>Board-certified dermatologist &middot; Founder, M Beauty Clinic</span></div></div>
 </div></header>
 <figure class="aimg"><img src="https://images.pexels.com/photos/5069493/pexels-photo-5069493.jpeg?auto=compress&cs=tinysrgb&w=1600" alt="Brightening facial treatment"></figure>
 <div class="abody">
- <aside class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#what-it-treats">What it&nbsp;treats</a></li><li><a href="#elos-fotofacial">How the ELOS Fotofacial&nbsp;works</a></li><li><a href="#skin-of-color">Experience with skin of&nbsp;color</a></li><li><a href="#other-options">Other brightening&nbsp;options</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ol></aside>
+ <aside class="toc" aria-label="On this page"><b>On this page</b><ol><li><a href="#what-it-treats">What it&nbsp;treats</a></li><li><a href="#versa-and-pico">Venus Versa and Pico&nbsp;laser</a></li><li><a href="#skin-of-color">Experience with skin of&nbsp;color</a></li><li><a href="#other-options">Other brightening&nbsp;options</a></li><li><a href="#faq">FAQ</a></li><li><a href="#sources">Sources</a></li></ol></aside>
  <div class="prose">
-  <p class="answer">Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main option is the ELOS Fotofacial, which combines radiofrequency and light energy to target pigment and redness. It works for all skin types and is usually done in a series, about once every&nbsp;four&nbsp;weeks.</p>
-  <div class="facts4"><div><b>Main treatment</b><span>ELOS Fotofacial RF / IPL</span></div><div><b>Treats</b><span>Spots, sun damage, redness</span></div><div><b>Skin types</b><span>All skin types</span></div><div><b>Schedule</b><span>About every 4 weeks</span></div></div>
-  <h2 id="what-it-treats">What&nbsp;it&nbsp;treats</h2><ul><li>Freckles, brown spots and age&nbsp;spots</li><li>Dark acne scars and general&nbsp;discoloration</li><li>Broken capillaries and&nbsp;rosacea</li><li>Dark under-eye circles and&nbsp;blotchiness</li></ul><h2 id="elos-fotofacial">How the ELOS Fotofacial&nbsp;works</h2><p>The ELOS Fotofacial combines bipolar radiofrequency with light energy to target pigment and broken capillaries while protecting the skin around them. Over a series of treatments, skin becomes more even and brighter. According to the clinic, improvement can show in as few as three sessions, and treatments are spaced about four weeks&nbsp;apart.<sup><a href="#ref-1">1</a></sup></p><div class="acta"><div><p>Find out which treatment fits&nbsp;your&nbsp;skin.</p><span>Consultations in Beverly Hills, San Diego and Chula Vista.</span></div><a class="pill pill-white" href="/mbeauty/contact/">Book a Consultation</a></div><h2 id="skin-of-color">Experience with skin&nbsp;of&nbsp;color</h2><p>Treating pigment safely takes experience, especially in darker skin. Dr. Tess's practices have a focus on skin of color, and the clinic treats all skin&nbsp;types.<sup><a href="#ref-2">2</a></sup></p><h2 id="other-options">Other brightening&nbsp;options</h2><p>Depending on your skin, a plan may also include photodynamic therapy (PDT) for sun damage and brown spots, the Refinity glycolic peel, the HydraFacial and glutathione. Dr. Tess also developed Timeless MD, a medical-grade illuminating skin care line for&nbsp;discoloration.<sup><a href="#ref-3">3</a></sup></p>
-  <h2 id="faq">Skin Brightening&nbsp;FAQ</h2><div class="afaq"><details><summary>Is the ELOS Fotofacial safe for darker&nbsp;skin?</summary><p>The clinic uses it for all skin types. Your consultation checks that it is right for your&nbsp;skin.</p></details><details><summary>How many treatments will I&nbsp;need?</summary><p>Most people do a series. Some see improvement in as few as three sessions, about four weeks&nbsp;apart.</p></details><details><summary>Is there&nbsp;downtime?</summary><p>Usually very little. Spots can darken briefly before they&nbsp;fade.</p></details><details><summary>Can I combine it with other&nbsp;treatments?</summary><p>Yes. Brightening is often part of a larger plan such as the Time Machine Procedure&trade;.</p></details></div>
+  <p class="answer">Skin brightening treatments fade dark spots, sun damage and uneven tone. At M Beauty Clinic, the main options are Venus Versa IPL photofacials, which use light energy to target pigment and redness, and the Pico laser, which breaks up pigment with ultra-short pulses. Treatments are usually done in&nbsp;a&nbsp;series.</p>
+  <div class="facts4"><div><b>Main treatments</b><span>Venus Versa IPL, Pico laser</span></div><div><b>Treats</b><span>Spots, sun damage, redness</span></div><div><b>Skin types</b><span>All skin types</span></div><div><b>Schedule</b><span>Usually a series</span></div></div>
+  <h2 id="what-it-treats">What&nbsp;it&nbsp;treats</h2><ul><li>Freckles, brown spots and age&nbsp;spots</li><li>Dark acne scars and general&nbsp;discoloration</li><li>Broken capillaries and&nbsp;rosacea</li><li>Dark under-eye circles and&nbsp;blotchiness</li></ul><h2 id="versa-and-pico">Venus Versa and&nbsp;Pico&nbsp;laser</h2><p>A Venus Versa IPL photofacial uses broad-spectrum light to target brown spots and broken capillaries. The Pico laser delivers energy in picosecond pulses that break pigment into tiny particles the body clears away. Over a series of treatments, skin becomes more even and brighter. Your consultation decides which one suits your skin, or whether to combine&nbsp;them.</p><div class="acta"><div><p>Find out which treatment fits&nbsp;your&nbsp;skin.</p><span>Consultations in Beverly Hills, San Diego and Chula Vista.</span></div><a class="pill pill-white" href="/mbeauty/contact/">Book a Consultation</a></div><h2 id="skin-of-color">Experience with skin&nbsp;of&nbsp;color</h2><p>Treating pigment safely takes experience, especially in darker skin. Dr. Tess's practices have a focus on skin of color, and the clinic treats all skin&nbsp;types.<sup><a href="#ref-1">1</a></sup></p><h2 id="other-options">Other brightening&nbsp;options</h2><p>Depending on your skin, a plan may also include photodynamic therapy (PDT) for sun damage and brown spots, the Refinity glycolic peel, the HydraFacial and glutathione. Dr. Tess also developed Timeless MD, a medical-grade illuminating skin care line for&nbsp;discoloration.<sup><a href="#ref-2">2</a></sup></p>
+  <h2 id="faq">Skin Brightening&nbsp;FAQ</h2><div class="afaq"><details><summary>Are these treatments safe for darker&nbsp;skin?</summary><p>The clinic treats all skin types. Your consultation checks which device and settings are right for your&nbsp;skin.</p></details><details><summary>How many treatments will I&nbsp;need?</summary><p>Most people do a series. Your plan sets the number of sessions and the&nbsp;spacing.</p></details><details><summary>Is there&nbsp;downtime?</summary><p>Usually very little. Spots can darken briefly before they&nbsp;fade.</p></details><details><summary>Can I combine it with other&nbsp;treatments?</summary><p>Yes. Brightening is often part of a larger plan such as the Time Machine Procedure&trade;.</p></details></div>
   <h2 id="related">Related</h2><div class="related-links"><a href="/mbeauty/treatments/acne-and-acne-scars/">Acne and Acne Scars</a><a href="/mbeauty/treatments/laser-and-skin-tightening/">Laser and Skin Tightening</a><a href="/mbeauty/locations/beverly-hills/">Beverly Hills clinic</a><a href="/mbeauty/locations/san-diego/">San Diego clinic</a></div>
-  <h2 id="sources">Sources</h2><ol class="srcs"><li id="ref-1"><a href="https://www.mbeautyclinic.com/elosfotofacial.htm" target="_blank" rel="noopener">M Beauty Clinic, ELOS Fotofacial RF / IPL</a></li><li id="ref-2"><a href="https://www.medestheticsmag.com/success-through-specialization" target="_blank" rel="noopener">MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"</a></li><li id="ref-3"><a href="https://asianjournal.com/?p=22908" target="_blank" rel="noopener">Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"</a></li></ol>
-  <div class="abox"><div class="av"><img src="https://www.mbeautyclinic.com/index_htm_files/94575.jpg" alt="Tess Mauricio, MD"></div><div><p class="k">Your&nbsp;doctor</p><h3>Tess Mauricio,&nbsp;MD,&nbsp;FAAD</h3><p>Board-certified dermatologist, Stanford University School of Medicine graduate and Fellow of the American Academy of Dermatology. Creator of the Time Machine Procedure&trade; and one of the developers of the ALMI&nbsp;procedure.</p><a class="more" href="/mbeauty/dr-tess-mauricio/">Read Dr. Tess's full bio</a></div></div>
-  <p class="reviewed">Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated <time datetime="2026-11-20">November 20, 2026</time>.</p>
+  <h2 id="sources">Sources</h2><ol class="srcs"><li id="ref-1"><a href="https://www.medestheticsmag.com/success-through-specialization" target="_blank" rel="noopener">MedEsthetics, "Tess Mauricio, MD: Success Through Specialization"</a></li><li id="ref-2"><a href="https://asianjournal.com/?p=22908" target="_blank" rel="noopener">Asian Journal, "Look good & feel even better with Dr. Tess Mauricio"</a></li></ol>
+  <div class="abox"><div class="av"><img src="https://proposals.localairegistry.com/mbeauty/img/dr-tess-headshot.jpg" alt="Tess Mauricio, MD"></div><div><p class="k">Your&nbsp;doctor</p><h3>Tess Mauricio,&nbsp;MD,&nbsp;FAAD</h3><p>Board-certified dermatologist, Stanford University School of Medicine graduate and Fellow of the American Academy of Dermatology. Creator of the Time Machine Procedure&trade; and one of the developers of the ALMI&nbsp;procedure.</p><a class="more" href="/mbeauty/dr-tess-mauricio/">Read Dr. Tess's full bio</a></div></div>
+  <p class="reviewed">Medically reviewed by Tess Mauricio, MD, FAAD. This page is general education, not medical advice. Results vary. Updated <time datetime="2026-11-25">November 25, 2026</time>.</p>
  </div>
 </div>
 </article>
 </main>
-<p class="updated">Updated <time datetime="2026-11-20">November 20, 2026</time></p>
+<p class="updated">Updated <time datetime="2026-11-25">November 25, 2026</time></p>
 <footer>
   <div class="container fcols">
     <div class="fbrand">
@@ -728,7 +731,7 @@ let ly=scrollY;addEventListener('scroll',()=>{if(Math.abs(scrollY-ly)>40){closeN
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1});
 document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 const mbar=document.getElementById('mbar');if(mbar){const vis=new Set();const mio=new IntersectionObserver(es=>{es.forEach(e=>e.isIntersecting?vis.add(e.target):vis.delete(e.target));mbar.classList.toggle('hide',vis.size>0)},{threshold:.05});document.querySelectorAll('footer,.acta').forEach(el=>mio.observe(el))}
-const baR=document.getElementById('baRange');if(baR){const a=document.getElementById('baAfter'),h=document.getElementById('baHandle');const set=v=>{a.style.clipPath='inset(0 0 0 '+v+'%)';h.style.left=v+'%'};baR.addEventListener('input',()=>set(baR.value));set(50)}
+document.querySelectorAll('figure.ba').forEach(f=>{const r=f.querySelector('input[type=range]'),a=f.querySelector('.b-after-wrap'),h=f.querySelector('.handle');if(!r||!a||!h)return;const set=v=>{a.style.clipPath='inset(0 0 0 '+v+'%)';h.style.left=v+'%'};r.addEventListener('input',()=>set(r.value));set(50)});
 const f=document.getElementById('form');if(f){f.addEventListener('submit',e=>{e.preventDefault();const ok=document.getElementById('ok');if(ok){ok.style.display='block';ok.scrollIntoView({block:'center'})}});const p=new URLSearchParams(location.search);p.forEach((v,k)=>{const el=f.querySelector('[name='+k+']');if(el)el.value=v})}
 </script>
 <script id="sop-webmcp">(function(){var mc=navigator.modelContext;if(!mc||typeof mc.registerTool!=='function')return;
