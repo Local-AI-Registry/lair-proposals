@@ -116,11 +116,17 @@ Award
 
 For Outstanding Achievement in Medicine.1, 10
 
+The Hollywood Reporter, 2026
+
+### The 49 Best Cosmetic Doctors in America
+
+Named to The Hollywood Reporter's 2026 list of the best cosmetic doctors and aesthetic gurus in America.13
+
 The Hollywood Reporter
 
 ### Top Cosmetic Doctors in L.A. and N.Y.C.
 
-Named to The Hollywood Reporter's list of top cosmetic doctors.13
+Named to The Hollywood Reporter's list of top cosmetic doctors.14
 
 On Air
 
@@ -154,4 +160,5 @@ Every claim on this page links to a public source or to M Beauty Clinic's own pu
   10. [M Beauty Clinic, About Dr. Tess](https://www.mbeautyclinic.com/about%20us.htm)
   11. [M Beauty Clinic, home page (Dr. James Lee biography)](https://www.mbeautyclinic.com/)
   12. [eMedEvents, speaker profile of Tess Mauricio, MD, FAAD](https://www.emedevents.com/speaker-profile/tess-mauricio)
-  13. [The Hollywood Reporter, "The Top Cosmetic Doctors in L.A. and N.Y.C."](https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/)
+  13. [The Hollywood Reporter, "The 49 Best Cosmetic Doctors and Aesthetic Gurus in America," 2026](https://www.hollywoodreporter.com/lists/best-cosmetic-doctors-and-aesthetic-gurus-in-america-2026/)
+  14. [The Hollywood Reporter, "The Top Cosmetic Doctors in L.A. and N.Y.C."](https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/)

@@ -1,9 +1,9 @@
-# M Beauty Clinic by Dr. Tess | Cosmetic Dermatologist in Beverly Hills, CA
+# M Beauty Clinic by Dr. Tess | Cosmetic Dermatology & Regenerative Medicine, San Diego and Beverly Hills
 
 Source: https://proposals.localairegistry.com/mbeauty/
 Updated: 2026-11-25
 
-# Cosmetic Dermatology in Beverly Hills, California
+# Cosmetic Dermatology & Regenerative MedicineSan Diego and Beverly Hills
 
 You at your best,  
 _inside and  out._
@@ -64,7 +64,7 @@ On stage and on screen
 
 ## As seen on stage _and  screen_
 
-WatchAmerica's favorite dermatologist WatchCelebrities on Dr. Tess Cardi B * Kim Kardashian * Paula Abdul * Julian Lennon [ The Hollywood Reporter Top Cosmetic Doctors in L.A. and N.Y.C. Read the list ](https://www.hollywoodreporter.com/lists/best-plastic-surgeons-cosmetic-doctors-los-angeles-new-york/)
+WatchAmerica's favorite dermatologist WatchCelebrities on Dr. Tess Cardi B * Kim Kardashian * Paula Abdul * Julian Lennon [ The Hollywood Reporter * 2026 The 49 Best Cosmetic Doctors in America Read the list ](https://www.hollywoodreporter.com/lists/best-cosmetic-doctors-and-aesthetic-gurus-in-america-2026/)
 
 Our Signature Treatment
 

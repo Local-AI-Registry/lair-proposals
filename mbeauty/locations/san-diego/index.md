@@ -23,6 +23,8 @@ Monday to Friday| 9 AM to 5 PM
 ---|---  
 Saturday and Sunday| Closed  
   
+## Inside the clinic
+
 ## Who you will see
 
 Treatment plans are led by [Dr. Tess Mauricio](/mbeauty/dr-tess-mauricio/), a board-certified dermatologist and Stanford Medicine graduate, with her team of nurses and cosmetic consultants.
