@@ -1,24 +1,16 @@
 #!/usr/bin/env bash
 # One-time setup for a fresh Ubuntu 24.04 DigitalOcean droplet.
 # Paste into the droplet's web console as root:
-#   curl -fsSL https://proposals.localairegistry.com/setup/lair-seat.sh | bash
+#   curl -fsSL https://proposals.localairegistry.com/setup/lair-seat.sh | GOOGLE_CLIENT_ID=xxx bash
 # The code repo is private, so this makes a read-only deploy key and pauses while you add it on GitHub.
 set -euo pipefail
 exec < /dev/tty
 
 echo "== LAIR Seat setup =="
-read -rp "Domain for the app [daisychain.localairegistry.com]: " DOMAIN; DOMAIN=${DOMAIN:-daisychain.localairegistry.com}
-read -rsp "Choose a dashboard password: " ADMIN; echo
-read -rp "L2 customer id (Enter to skip for now): " L2C
-L2K=""; [ -n "$L2C" ] && { read -rsp "L2 API key: " L2K; echo; }
-read -rp "Mail service: postalytics or lob [postalytics]: " PROVIDER; PROVIDER=${PROVIDER:-postalytics}
-LOB=""; PSEND=""; PKEY=""
-if [ "$PROVIDER" = "lob" ]; then
-  read -rsp "Lob secret key (starts with test_ or live_): " LOB; echo
-else
-  read -rp "Postalytics campaign request URL (from the drip campaign's Settings page): " PSEND
-  read -rsp "Postalytics API key: " PKEY; echo
-fi
+DOMAIN=${DOMAIN:-daisychain.localairegistry.com}
+GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID:-}
+ALLOWED_EMAILS=${ALLOWED_EMAILS:-steve@localairegistry.com}
+# API keys (L2, Postalytics, Lob) are added later on the app's Settings page, not here.
 
 export DEBIAN_FRONTEND=noninteractive
 apt-get update -y
@@ -45,29 +37,26 @@ git -C /opt/lair-seat config core.sshCommand "ssh -i /root/.ssh/lair_seat -o Ide
 cd /opt/lair-seat && npm ci --omit=dev
 mkdir -p /opt/lair-seat/data
 
+if [ ! -f /opt/lair-seat/.env ]; then
 cat > /opt/lair-seat/.env <<EOF
 PORT=3100
 BASE_URL=https://${DOMAIN}
-ADMIN_PASSWORD=${ADMIN}
-MAIL_PROVIDER=${PROVIDER}
-LOB_API_KEY=${LOB}
-POSTALYTICS_SEND_URL=${PSEND}
-POSTALYTICS_API_KEY=${PKEY}
-CALENDLY_URL=https://calendly.com/steve-localairegistry/board-of-advisors-30-min
+GOOGLE_CLIENT_ID=${GOOGLE_CLIENT_ID}
+ALLOWED_EMAILS=${ALLOWED_EMAILS}
+SESSION_SECRET=$(openssl rand -hex 32)
+MAIL_PROVIDER=postalytics
+L2_APP=COM_US
+CONTACT_EMAIL=steve@localairegistry.com
+COST_PER_MAIL=1.30
+CHAIN_BUDGET=500
+CARD_WORD=Invited.
 FROM_NAME=Local AI Registry
 FROM_LINE1=9891 Irvine Center Dr
 FROM_CITY=Irvine
 FROM_STATE=CA
 FROM_ZIP=92618
-CONTACT_EMAIL=steve@localairegistry.com
-COST_PER_MAIL=1.30
-CHAIN_BUDGET=500
-CARD_WORD=Invited.
-DATA_DIR=/opt/lair-seat/data
-L2_CUSTOMER=${L2C}
-L2_KEY=${L2K}
-L2_APP=COM_US
 EOF
+fi
 chmod 600 /opt/lair-seat/.env
 chown -R seat:seat /opt/lair-seat
 
@@ -95,5 +84,5 @@ systemctl restart caddy
 IP=$(curl -fsS https://api.ipify.org || hostname -I | awk '{print $1}')
 echo
 echo "Done. Last step: in Hostinger DNS add an A record:  ${DOMAIN%%.localairegistry.com}  ->  ${IP}"
-echo "Then open https://${DOMAIN}/seat-admin/map (any username, your dashboard password)."
+echo "Then open https://${DOMAIN} and sign in with Google."
 echo "To update later:  cd /opt/lair-seat && git pull && npm ci --omit=dev && systemctl restart lair-seat"
