@@ -79,7 +79,7 @@ em{font-style:italic}
 .hdr .logo{flex:none}
 .nav{display:none}
 .hdr-r{display:flex;align-items:center;gap:8px}
-.hdr-r .phone{display:none;font-weight:700;font-size:15px;text-decoration:none;padding:8px}
+.hdr-r .phone{display:none!important;font-weight:700;font-size:15px;text-decoration:none;padding:8px}
 .hdr .btn{min-height:44px;padding:10px 18px;font-size:14px}
 .burger{width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center;border-radius:10px}
 .burger span{display:block;width:22px;height:2px;background:var(--inknavy);box-shadow:0 -7px 0 var(--inknavy),0 7px 0 var(--inknavy)}
@@ -91,14 +91,13 @@ em{font-style:italic}
 .mnav .sub{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:10px 0 14px}
 .mnav .sub a{font-size:16px;padding:6px 0;text-decoration:none;color:var(--muted)}
 .mnav .mfoot{margin-top:26px;display:grid;gap:12px}
-@media (min-width:1100px){
+@media (min-width:1280px){
   .hdr{top:14px;left:14px;right:14px;padding:10px 12px 10px 26px}
   .hdr .logo img{height:36px}
   .nav{display:flex;align-items:center;gap:28px;font-size:15px}
   .nav > a,.dd > a{text-decoration:none;padding:10px 0;display:inline-block;position:relative}
   .nav > a::after,.dd > a::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:1.5px;background:var(--navy);transition:right .25s}
   .nav > a:hover::after,.dd:hover > a::after,.dd:focus-within > a::after{right:0}
-  .hdr-r .phone{display:inline-block}
   .hdr .btn{min-height:48px;padding:12px 24px;font-size:15px}
   .burger{display:none}
 }
@@ -110,24 +109,19 @@ em{font-style:italic}
 .ddmenu a:hover{text-decoration:underline;text-underline-offset:3px}
 
 /* ---------- hero (video) ---------- */
-.hero{position:relative;background:#fff;padding-top:84px;display:flex;flex-direction:column}
-.hero-media{position:relative;order:2;aspect-ratio:4/3;overflow:hidden;background:#f4f4f4}
-.hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:82% 30%}
-.hero-media video{opacity:0;transition:opacity .8s}.hero-media video.ready{opacity:1}
-.hero-c{order:1;padding:28px var(--pad) 28px}
-.hero h1{font-size:clamp(46px,6.4vw,96px);font-weight:500;color:var(--navy);margin:2px 0 14px}
-.hero h1 em{display:block;color:var(--inknavy)}
-.hero .byline{font-family:var(--serif);font-style:italic;font-size:clamp(21px,2vw,28px);color:var(--muted);margin-bottom:26px}
-.motion{position:absolute;right:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);color:var(--inknavy);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer;min-height:40px}
-@media (min-width:1024px){
-  .hero{display:block;height:100vh;min-height:680px;max-height:980px;padding-top:0}
-  .hero-media{position:absolute;inset:0;aspect-ratio:auto}
-  .hero-media video,.hero-media img{object-position:right 30%}
-  .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.85) 0%,rgba(255,255,255,.6) 30%,rgba(255,255,255,0) 52%)}
-  .hero-c{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:var(--wrap);margin:0 auto;padding-top:70px}
-  .hero-c > *{max-width:760px}
-  .motion{right:24px;bottom:24px}
-}
+.hero{position:relative;min-height:88vh;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:var(--inknavy);overflow:hidden;padding:120px var(--pad) 90px}
+.hero-media{position:absolute;inset:0}
+.hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+.hero-media video.show{opacity:1}
+.hero::after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,27,58,.72) 0%,rgba(14,27,58,.55) 50%,rgba(14,27,58,.78) 100%)}
+.hero-c{position:relative;z-index:2;max-width:900px}
+.hero .eyebrow{color:#E6EEED;margin-bottom:22px}
+.hero h1{font-size:clamp(46px,7vw,104px);font-weight:500;color:#fff;margin-bottom:18px}
+.hero h1 em{display:block}
+.hero .byline{font-family:var(--serif);font-style:italic;font-size:clamp(21px,2.2vw,30px);margin-bottom:34px}
+.hero .ctas{justify-content:center}
+.motion{position:absolute;right:16px;bottom:16px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);color:var(--inknavy);border:0;border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer;min-height:40px}
+@media (min-width:1024px){.hero{min-height:100vh;max-height:1000px}}
 
 /* ---------- treatment ticker ---------- */
 .ticker-sec{background:linear-gradient(160deg,#21407c 0%,var(--inknavy) 55%,#0a1430 100%);color:#fff;padding:64px 0 40px;overflow:hidden;position:relative}
@@ -149,15 +143,13 @@ em{font-style:italic}
 .card p{color:var(--muted)}
 .card-photo{display:flex;flex-direction:column;background:var(--bone)}
 .card-photo .pad{align-self:center}
-.card-photo img{width:100%;height:300px;object-fit:cover;object-position:50% 15%;order:-1}
+.card-photo img{width:100%;height:auto;aspect-ratio:4/3;object-fit:cover;object-position:50% 20%;order:-1}
 .wide2{display:grid;gap:16px;margin-top:16px}
-.wide2 .img{border-radius:var(--r);overflow:hidden;min-height:340px;position:relative}
-.wide2 .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.wide2 .img{border-radius:var(--r);overflow:hidden;align-self:start}
+.wide2 .img img{width:100%;height:auto;aspect-ratio:1400/875}
 @media (min-width:900px){
   .cards3{grid-template-columns:repeat(3,1fr)}
-  .card-photo img{height:230px}
   .wide2{grid-template-columns:2fr 1fr}
-  .wide2 .img{min-height:440px}
   .card .pad{padding:38px 34px}
 }
 
@@ -225,7 +217,7 @@ em{font-style:italic}
 
 /* ---------- CTA ---------- */
 .cta{background:var(--inknavy);color:#fff;display:grid}
-.cta .img{min-height:340px;position:relative}
+.cta .img{position:relative;aspect-ratio:1/1}
 .cta .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 15%}
 .cta .c{padding:56px var(--pad)}
 .cta h2{margin-bottom:16px}
@@ -233,7 +225,7 @@ em{font-style:italic}
 @media (min-width:900px){
   .cta{grid-template-columns:1fr 1fr;min-height:600px}
   .cta .c{order:1;align-self:center;padding:80px var(--pad) 80px max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)))}
-  .cta .img{order:2;min-height:0}
+  .cta .img{order:2;aspect-ratio:auto;min-height:560px}
 }
 
 /* ---------- quiz ---------- */
@@ -278,7 +270,7 @@ em{font-style:italic}
 
 /* ---------- fillers split ---------- */
 .split{display:grid;background:#fff}
-.split .img{min-height:420px;position:relative}
+.split .img{position:relative;aspect-ratio:1000/1111}
 .split .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 12%}
 .split .c{padding:56px var(--pad)}
 .split h2{margin-bottom:20px}
@@ -287,6 +279,7 @@ em{font-style:italic}
 .chips li{border:1.5px solid var(--stone);border-radius:999px;padding:7px 16px;font-size:15px}
 @media (min-width:900px){
   .split{grid-template-columns:1fr 1fr;min-height:680px}
+  .split .img{aspect-ratio:auto}
   .split .c{align-self:center;padding:80px max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad))) 80px 64px}
 }
 
@@ -322,11 +315,13 @@ em{font-style:italic}
 .sol-ctl{display:flex;gap:12px;margin-top:24px}
 .track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--pad) 6px;min-width:0;list-style:none}
 .track::-webkit-scrollbar{display:none}
-.sol{flex:none;width:min(78vw,320px);min-height:280px;gap:28px;border-radius:var(--r);scroll-snap-align:start;background:linear-gradient(160deg,#2a4a86,var(--navy) 50%,#0b1634);padding:34px 28px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.12)}
-.sol .icon{background:rgba(255,255,255,.12);color:#fff;width:72px;height:72px}
-.sol h3{margin:24px 0 8px}
-.sol p{font-size:16px;line-height:1.5}
-@media (min-width:1000px){.sol-grid{grid-template-columns:360px 1fr;align-items:center}.track{padding-left:0}.sol{min-height:300px}}
+.sol{flex:none;width:min(78vw,320px);aspect-ratio:3/4;border-radius:var(--r);scroll-snap-align:start;position:relative;overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;padding:26px 24px;background:#1c2d55}
+.sol img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.sol::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,0) 35%,rgba(14,27,58,.92) 88%)}
+.sol > div{position:relative;z-index:2}
+.sol h3{margin:0 0 6px}
+.sol p{font-size:16px;line-height:1.45}
+@media (min-width:1000px){.sol-grid{grid-template-columns:360px 1fr;align-items:center}.track{padding-left:0}}
 
 /* ---------- quote ---------- */
 .quote{background:var(--bone);padding:84px 0;text-align:center}
@@ -401,6 +396,7 @@ footer{background:var(--inknavy);color:#fff;border-radius:32px 32px 0 0}
   .reveal{opacity:1;transform:none}
 }
 html.paused .marquee ul{animation-play-state:paused}
+@media (min-width:1400px){.hdr-r .phone{display:inline-block!important}}
 </style>
 </head>
 <body class="no-js">
@@ -448,24 +444,24 @@ html.paused .marquee ul{animation-play-state:paused}
 <main id="main">
 
 <!-- HERO -->
-<section class="hero" id="top" aria-labelledby="h-hero">
-  <div class="hero-media">
-    <img class="poster" src="img/hero-poster.jpg" alt="" width="1600" height="900">
-    <video id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true" data-src="img/hero.mp4"></video>
-    <button class="motion" id="motionBtn" type="button" aria-pressed="false">
-      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
-      <span>Pause motion</span>
-    </button>
+<section class="hero on-dark" id="top" aria-labelledby="h-hero">
+  <div class="hero-media" aria-hidden="true">
+    <video id="v0" muted playsinline preload="auto" src="https://videos.pexels.com/video-files/5468913/5468913-hd_1920_1080_25fps.mp4"></video>
+    <video id="v1" muted playsinline preload="none" data-src="https://videos.pexels.com/video-files/7581711/7581711-hd_2048_1080_25fps.mp4"></video>
   </div>
   <div class="hero-c">
     <span class="eyebrow">Medical Aesthetics in Merrick, NY</span>
     <h1 id="h-hero">Rested. Refined.<em>Entirely you.</em></h1>
     <p class="byline">Vixsthetics&nbsp;|&nbsp;Victoria Yunaev</p>
     <div class="ctas">
-      <a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
-      <a class="btn btn-line" href="#treatments">Explore Treatments</a>
+      <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
+      <a class="btn btn-line-w" href="#treatments">Explore Treatments</a>
     </div>
   </div>
+  <button class="motion" id="motionBtn" type="button" aria-pressed="false">
+    <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+    <span>Pause motion</span>
+  </button>
 </section>
 
 <!-- TREATMENT TICKER -->
@@ -715,14 +711,14 @@ html.paused .marquee ul{animation-play-state:paused}
       </div>
     </div>
     <ul class="track" id="track" tabindex="0" aria-label="Services, scroll sideways">
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3c-4 0-6 3.5-6 7 0 5 3 9 6 11 3-2 6-6 6-11 0-3.5-2-7-6-7z"/><path d="M8.5 11h7"/></svg></div><div><h3>Facial Balancing</h3><p>Chin, cheeks, jawline and lips, planned together.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="12" r="3"/><circle cx="16" cy="12" r="3"/><path d="M5 18c2 1.5 12 1.5 14 0"/></svg></div><div><h3>Under Eye</h3><p>Filler, PRP, PRF and PRF EZGel.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 20 12 4l8 16z"/><path d="M8 14h8"/></svg></div><div><h3>Sculptra</h3><p>Gradual support and structure.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="5" y="4" width="14" height="16" rx="3"/><path d="M9 9h6M9 13h6"/></svg></div><div><h3>Radiesse (+)</h3><p>Including hyperdilute Radiesse.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M6.3 17.7l2.8-2.8M14.9 9.1l2.8-2.8"/></svg></div><div><h3>Microneedling</h3><p>With Ariessence growth factor serum.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 3h8v9a4 4 0 0 1-8 0zM12 16v5M9 21h6"/></svg></div><div><h3>IV Therapy</h3><p>Hydration and vitamins.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Medical Weight Loss</h3><p>A supervised program.</p></div></li>
-      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 20c0-8 2-14 6-17M12 20c0-7 1-12 4-15M18 20c0-5-1-9-3-12"/></svg></div><div><h3>Hair Restoration</h3><p>Ask about options at your consultation.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/1236609/pexels-photo-1236609.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Black and white profile of a woman's jawline and chin" loading="lazy" width="800" height="1067"><div><h3>Facial Balancing</h3><p>Chin, cheeks, jawline and lips, planned together.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/609549/pexels-photo-609549.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Close-up of an eye and under eye skin" loading="lazy" width="800" height="1067"><div><h3>Under Eye</h3><p>Filler, PRP, PRF and PRF EZGel.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/3846106/pexels-photo-3846106.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Smiling woman with glowing skin in warm light" loading="lazy" width="800" height="1067"><div><h3>Sculptra</h3><p>Gradual support and structure.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/38256845/pexels-photo-38256845.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Portrait of an elegant woman with smooth skin" loading="lazy" width="800" height="1067"><div><h3>Radiesse (+)</h3><p>Including hyperdilute Radiesse.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/29648626/pexels-photo-29648626.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Microneedling pen treatment on a woman's face" loading="lazy" width="800" height="1067"><div><h3>Microneedling</h3><p>With Ariessence growth factor serum.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/6191543/pexels-photo-6191543.jpeg?auto=compress&cs=tinysrgb&w=800" alt="IV line taped to a patient's arm" loading="lazy" width="800" height="1067"><div><h3>IV Therapy</h3><p>Hydration and vitamins.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/6193559/pexels-photo-6193559.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Woman stretching by a sunny window" loading="lazy" width="800" height="1067"><div><h3>Medical Weight Loss</h3><p>A supervised program.</p></div></li>
+      <li class="sol"><img src="https://images.pexels.com/photos/31972471/pexels-photo-31972471.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Woman with long healthy hair in sunlight" loading="lazy" width="800" height="1067"><div><h3>Hair Restoration</h3><p>Ask about options at your consultation.</p></div></li>
     </ul>
   </div>
 </section>
@@ -847,15 +843,14 @@ html.paused .marquee ul{animation-play-state:paused}
   mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow=''}));
   document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))closeNav()});
 
-  // motion control (video, ticker, marquee, reviews)
-  const vid=document.getElementById('heroVideo'),mbtn=document.getElementById('motionBtn');
-  const showVid=()=>{vid.classList.add('ready')};
-  vid.addEventListener('playing',showVid);
-  const loadVid=src=>{vid.src=src;vid.load();if(!paused){const p=vid.play();if(p&&p.catch)p.catch(()=>{})}};
-  fetch(vid.dataset.src).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>loadVid(URL.createObjectURL(new Blob([b],{type:'video/mp4'})))).catch(()=>loadVid(vid.dataset.src));
-  const setPaused=p=>{paused=p;root.classList.toggle('paused',p);mbtn.setAttribute('aria-pressed',String(p));mbtn.querySelector('span').textContent=p?'Play motion':'Pause motion';try{p?vid.pause():vid.play()}catch(e){}};
+  // motion control (hero videos alternate, ticker, marquee, reviews)
+  const vids=[document.getElementById('v0'),document.getElementById('v1')],mbtn=document.getElementById('motionBtn');let vi=0;
+  const playV=i=>{const v=vids[i];if(!v.src&&v.dataset.src)v.src=v.dataset.src;v.currentTime=0;const p=v.play();if(p&&p.catch)p.catch(()=>{});vids.forEach((o,k)=>o.classList.toggle('show',k===i))};
+  vids.forEach((v,i)=>v.addEventListener('ended',()=>{vi=(i+1)%vids.length;if(!paused)playV(vi)}));
+  vids[0].addEventListener('canplay',()=>{if(!vids[1].src){vids[1].src=vids[1].dataset.src;vids[1].load()}},{once:true});
+  const setPaused=p=>{paused=p;root.classList.toggle('paused',p);mbtn.setAttribute('aria-pressed',String(p));mbtn.querySelector('span').textContent=p?'Play motion':'Pause motion';const v=vids[vi];if(p){v.pause()}else{const q=v.play();if(q&&q.catch)q.catch(()=>{});v.classList.add('show')}};
   mbtn.addEventListener('click',()=>setPaused(!paused));
-  if(reduce){setPaused(true)}
+  if(reduce){setPaused(true);vids[0].classList.add('show')}else{playV(0)}
 
   // ticker
   const tl=document.getElementById('tickerList'),items=[...tl.children];let ti=0;
