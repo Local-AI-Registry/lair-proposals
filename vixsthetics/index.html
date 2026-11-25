@@ -1,0 +1,911 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vixsthetics | Medical Aesthetics in Merrick, NY | Victoria Yunaev</title>
+<meta name="description" content="Vixsthetics in Merrick, NY: full face neurotoxin, lip filler, facial balancing, under eye treatments, Sculptra and Radiesse by Victoria Yunaev, serving the South Shore of Long Island.">
+<link rel="icon" type="image/png" href="img/logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MedicalBusiness",
+  "name": "Vixsthetics",
+  "slogan": "Effortless Beauty",
+  "url": "https://vixsthetics.com/",
+  "telephone": "+1-631-408-8376",
+  "email": "victoriayunaev@gmail.com",
+  "address": {"@type": "PostalAddress","streetAddress": "1149 Merrick Avenue, Suite 17","addressLocality": "Merrick","addressRegion": "NY","postalCode": "11566","addressCountry": "US"},
+  "geo": {"@type": "GeoCoordinates","latitude": 40.692315,"longitude": -73.5636},
+  "openingHoursSpecification": [
+    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday"],"opens": "10:00","closes": "18:00"},
+    {"@type": "OpeningHoursSpecification","dayOfWeek": ["Friday","Sunday"],"opens": "10:00","closes": "15:00"}
+  ],
+  "areaServed": ["Merrick","Bellmore","Wantagh","Massapequa","Babylon","Oceanside","Long Beach","Roslyn","Great Neck","Manhasset"],
+  "founder": {"@type": "Person","name": "Victoria Yunaev"},
+  "sameAs": ["https://www.instagram.com/vixsthetics/"]
+}
+</script>
+<style>
+:root{
+  --navy:#193062; --inknavy:#0E1B3A; --cognac:#74552F; --stone:#CBBEAC; --bone:#F2EEE8;
+  --sage:#9ABBB8; --muted:#3A4560; --line:#D9D1C5;
+  --serif:"Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --sans:"Lato", "Helvetica Neue", Arial, sans-serif;
+  --r:20px; --wrap:1240px; --pad:clamp(20px,4vw,40px);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{font-family:var(--sans);color:var(--inknavy);background:#fff;font-size:clamp(17px,1.1vw,18px);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+img,video{display:block;max-width:100%;height:auto}
+a{color:inherit}
+h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08;text-wrap:balance}
+h2{font-size:clamp(36px,4.6vw,60px)}
+h3{font-size:clamp(26px,2.4vw,32px)}
+p,li,dd{text-wrap:pretty}
+blockquote,figcaption,.byline,.lead,.card p{text-wrap:balance}
+em{font-style:italic}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 var(--pad)}
+.eyebrow{display:block;font-family:var(--sans);font-weight:700;font-size:13px;letter-spacing:2.4px;text-transform:uppercase;color:var(--cognac);margin-bottom:14px}
+.on-dark .eyebrow,.eyebrow.light{color:#C9DAD8}
+.lead{color:var(--muted);max-width:620px}
+.sr{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;left:12px;top:-60px;z-index:100;background:var(--inknavy);color:#fff;padding:12px 18px;border-radius:10px;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--navy);outline-offset:3px;border-radius:6px}
+.on-dark :focus-visible{outline-color:#fff}
+
+/* buttons */
+.btn{white-space:nowrap;display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:12px 26px;border-radius:999px;font:700 15px/1.2 var(--sans);letter-spacing:.5px;text-decoration:none;border:1.5px solid transparent;cursor:pointer;transition:background .2s,color .2s,border-color .2s;text-align:center}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--inknavy)}
+.btn-white{background:#fff;color:var(--inknavy)}.btn-white:hover{background:var(--bone)}
+.btn-line{border-color:var(--navy);color:var(--navy);background:#fff}.btn-line:hover{background:var(--navy);color:#fff}
+.btn-line-w{border-color:#fff;color:#fff;background:transparent}.btn-line-w:hover{background:#fff;color:var(--inknavy)}
+.ctas{display:flex;flex-wrap:wrap;gap:12px}
+.circ{width:48px;height:48px;border-radius:50%;border:1.5px solid currentColor;background:transparent;color:inherit;display:inline-grid;place-items:center;cursor:pointer;flex:none}
+.circ svg{width:18px;height:18px}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.no-js .reveal{opacity:1;transform:none}
+
+/* ---------- header ---------- */
+.hdr{position:fixed;top:10px;left:10px;right:10px;z-index:50;background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(14,27,58,.12);display:flex;align-items:center;justify-content:space-between;gap:12px;padding:8px 8px 8px 16px;max-width:1520px;margin:0 auto}
+.hdr .logo img{height:24px;width:auto}
+.hdr .logo{flex:none}
+.nav{display:none}
+.hdr-r{display:flex;align-items:center;gap:8px}
+.hdr-r .phone{display:none;font-weight:700;font-size:15px;text-decoration:none;padding:8px}
+.hdr .btn{min-height:44px;padding:10px 18px;font-size:14px}
+.burger{width:44px;height:44px;border:0;background:none;cursor:pointer;display:grid;place-items:center;border-radius:10px}
+.burger span{display:block;width:22px;height:2px;background:var(--inknavy);box-shadow:0 -7px 0 var(--inknavy),0 7px 0 var(--inknavy)}
+.mnav{position:fixed;inset:0;z-index:60;background:#fff;padding:88px var(--pad) 40px;overflow:auto;display:none}
+.mnav.open{display:block}
+.mnav .close{position:absolute;right:16px;top:16px;width:48px;height:48px;border:0;background:var(--bone);border-radius:50%;font-size:28px;line-height:1;cursor:pointer;color:var(--inknavy)}
+.mnav ul{list-style:none}
+.mnav > ul > li > a{display:block;font-family:var(--serif);font-size:34px;font-weight:500;padding:8px 0;text-decoration:none;border-bottom:1px solid var(--line)}
+.mnav .sub{display:grid;grid-template-columns:1fr 1fr;gap:4px 16px;padding:10px 0 14px}
+.mnav .sub a{font-size:16px;padding:6px 0;text-decoration:none;color:var(--muted)}
+.mnav .mfoot{margin-top:26px;display:grid;gap:12px}
+@media (min-width:1100px){
+  .hdr{top:14px;left:14px;right:14px;padding:10px 12px 10px 26px}
+  .hdr .logo img{height:36px}
+  .nav{display:flex;align-items:center;gap:28px;font-size:15px}
+  .nav > a,.dd > a{text-decoration:none;padding:10px 0;display:inline-block;position:relative}
+  .nav > a::after,.dd > a::after{content:"";position:absolute;left:0;right:100%;bottom:4px;height:1.5px;background:var(--navy);transition:right .25s}
+  .nav > a:hover::after,.dd:hover > a::after,.dd:focus-within > a::after{right:0}
+  .hdr-r .phone{display:inline-block}
+  .hdr .btn{min-height:48px;padding:12px 24px;font-size:15px}
+  .burger{display:none}
+}
+.dd{position:relative}
+.ddmenu{position:absolute;top:100%;left:50%;transform:translate(-50%,8px);background:#fff;border-radius:16px;box-shadow:0 20px 60px rgba(14,27,58,.18);padding:26px 30px;display:grid;grid-template-columns:repeat(4,max-content);gap:20px 40px;opacity:0;visibility:hidden;transition:opacity .2s,transform .2s}
+.dd:hover .ddmenu,.dd:focus-within .ddmenu{opacity:1;visibility:visible;transform:translate(-50%,0)}
+.ddmenu p{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cognac);margin-bottom:6px}
+.ddmenu a{display:block;font-size:15px;padding:4px 0;text-decoration:none}
+.ddmenu a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ---------- hero (video) ---------- */
+.hero{position:relative;background:#fff;padding-top:84px;display:flex;flex-direction:column}
+.hero-media{position:relative;order:2;aspect-ratio:4/3;overflow:hidden;background:#f4f4f4}
+.hero-media video,.hero-media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:82% 30%}
+.hero-media video{opacity:0;transition:opacity .8s}.hero-media video.ready{opacity:1}
+.hero-c{order:1;padding:28px var(--pad) 28px}
+.hero h1{font-size:clamp(46px,6.4vw,96px);font-weight:500;color:var(--navy);margin:2px 0 14px}
+.hero h1 em{display:block;color:var(--inknavy)}
+.hero .byline{font-family:var(--serif);font-style:italic;font-size:clamp(21px,2vw,28px);color:var(--muted);margin-bottom:26px}
+.motion{position:absolute;right:14px;bottom:14px;z-index:3;display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.92);color:var(--inknavy);border:1px solid var(--line);border-radius:999px;padding:8px 14px;font:700 13px var(--sans);cursor:pointer;min-height:40px}
+@media (min-width:1024px){
+  .hero{display:block;height:100vh;min-height:680px;max-height:980px;padding-top:0}
+  .hero-media{position:absolute;inset:0;aspect-ratio:auto}
+  .hero-media video,.hero-media img{object-position:right 30%}
+  .hero::after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(90deg,rgba(255,255,255,.85) 0%,rgba(255,255,255,.6) 30%,rgba(255,255,255,0) 52%)}
+  .hero-c{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:center;max-width:var(--wrap);margin:0 auto;padding-top:70px}
+  .hero-c > *{max-width:760px}
+  .motion{right:24px;bottom:24px}
+}
+
+/* ---------- treatment ticker ---------- */
+.ticker-sec{background:linear-gradient(160deg,#21407c 0%,var(--inknavy) 55%,#0a1430 100%);color:#fff;padding:64px 0 40px;overflow:hidden;position:relative}
+.ticker{position:relative;height:220px;max-width:820px;margin:0 auto;overflow:hidden;-webkit-mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent);mask-image:linear-gradient(180deg,transparent,#000 28%,#000 72%,transparent)}
+.ticker-pill{position:absolute;left:var(--pad);right:var(--pad);top:50%;height:76px;margin-top:-38px;border-radius:999px;background:linear-gradient(90deg,rgba(154,187,184,.5),rgba(25,48,98,.4));border:1px solid rgba(255,255,255,.18)}
+.ticker ul{list-style:none;position:absolute;left:0;right:0;top:0;transition:transform .9s cubic-bezier(.6,.05,.25,1)}
+.ticker li{height:80px;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(26px,3.4vw,42px);opacity:.35;transition:opacity .6s}
+.ticker li.on{opacity:1}
+@media (min-width:768px){.ticker{height:280px}.ticker li{height:96px}.ticker-pill{height:90px;margin-top:-45px}}
+
+/* ---------- meet ---------- */
+.meet{background:var(--inknavy);color:#fff;padding:24px 0 72px}
+.row-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:18px 30px;margin-bottom:28px}
+.cards3{display:grid;gap:16px}
+.card{background:#fff;color:var(--inknavy);border-radius:var(--r);overflow:hidden}
+.card .pad{padding:30px 28px}
+.card .k{display:block;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cognac);margin-bottom:14px}
+.card h3{margin-bottom:10px}
+.card p{color:var(--muted)}
+.card-photo{display:flex;flex-direction:column;background:var(--bone)}
+.card-photo .pad{align-self:center}
+.card-photo img{width:100%;height:300px;object-fit:cover;object-position:50% 28%;order:-1}
+.wide2{display:grid;gap:16px;margin-top:16px}
+.wide2 .img{border-radius:var(--r);overflow:hidden;min-height:340px;position:relative}
+.wide2 .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 22%}
+@media (min-width:900px){
+  .cards3{grid-template-columns:repeat(3,1fr)}
+  .card-photo img{height:230px}
+  .wide2{grid-template-columns:2fr 1fr}
+  .wide2 .img{min-height:440px}
+  .card .pad{padding:38px 34px}
+}
+
+.marquee{margin-top:56px;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent);mask-image:linear-gradient(90deg,transparent,#000 10%,#000 90%,transparent)}
+.marquee ul{list-style:none;display:flex;gap:64px;width:max-content;animation:mq 36s linear infinite}
+.marquee li{font-family:var(--serif);font-weight:500;font-size:clamp(22px,2.4vw,30px);letter-spacing:5px;text-transform:uppercase;white-space:nowrap}
+.marquee:hover ul{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* ---------- statement ---------- */
+.statement{position:relative;min-height:clamp(420px,70vh,720px);color:#fff;display:flex;align-items:flex-start;justify-content:center;text-align:center;overflow:hidden;padding:12vh var(--pad) 0;background:#3a3c40}
+.statement img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 80%}
+.statement::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,.82) 0%,rgba(14,27,58,.55) 45%,rgba(14,27,58,0) 75%)}
+.statement .c{position:relative;z-index:2}
+.statement h2{font-size:clamp(40px,6vw,82px);margin-bottom:26px}
+
+/* ---------- reviews ---------- */
+.reviews{background:radial-gradient(ellipse at 10% 90%,rgba(154,187,184,.28),transparent 55%),var(--inknavy);color:#fff;padding:84px 0;text-align:center;overflow:hidden}
+.reviews h2{margin-bottom:12px}
+.reviews .rating{margin-bottom:40px;font-size:16px}
+.rv-wrap{position:relative;max-width:900px;margin:0 auto;padding:0 var(--pad)}
+.rv{display:none;border-radius:40px;padding:40px 28px;background:linear-gradient(90deg,rgba(154,187,184,.35),rgba(25,48,98,.55));border:1px solid rgba(255,255,255,.18)}
+.rv.on{display:block;animation:fadein .6s ease}
+@keyframes fadein{from{opacity:0;transform:translateY(8px)}}
+.rv blockquote{font-family:var(--serif);font-style:italic;font-weight:500;font-size:clamp(26px,3.2vw,40px);line-height:1.18}
+.rv figcaption{margin-top:14px;font-size:14px;letter-spacing:1.5px;text-transform:uppercase}
+.rv-ctl{display:flex;justify-content:center;align-items:center;gap:8px;margin-top:30px;flex-wrap:wrap}
+.dots{display:flex;gap:6px}
+.dots button{width:32px;height:44px;border:0;background:transparent;cursor:pointer;display:grid;place-items:center}
+.dots button::before{content:"";width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.45)}
+.dots button[aria-current="true"]::before{background:#fff}
+@media (min-width:768px){.rv{border-radius:999px;padding:54px 80px}}
+
+/* ---------- results ---------- */
+.results{padding:84px 0}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.res{margin:0}
+.res img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:16px;background:var(--bone)}
+.res figcaption{padding:10px 2px 0;font-size:15px;line-height:1.35}
+.res figcaption b{display:block;font-family:var(--serif);font-size:22px;font-weight:600}
+.fine{font-size:14px;color:var(--muted);margin-top:22px}
+@media (min-width:900px){.res-grid{grid-template-columns:repeat(3,1fr);gap:24px}.res figcaption b{font-size:26px}}
+
+/* ---------- why ---------- */
+.why{background:var(--bone);padding:84px 0}
+.why-row{display:grid;gap:14px}
+.why-feature{position:relative;border-radius:var(--r);overflow:hidden;min-height:380px;color:#fff;display:flex;align-items:flex-end}
+.why-feature img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 40%}
+.why-feature::before{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(180deg,rgba(14,27,58,0) 30%,rgba(14,27,58,.92) 85%)}
+.why-feature .t{position:relative;z-index:2;padding:28px}
+.icards{display:grid;grid-template-columns:1fr;gap:14px}
+.icard{background:#fff;border-radius:var(--r);padding:26px 24px;display:grid;grid-template-columns:56px 1fr;gap:6px 18px;align-items:start}
+.icard .icon{grid-row:span 2}
+.icard h3{font-family:var(--sans);font-weight:700;font-size:18px;line-height:1.35}
+.icard p{font-size:16px;color:var(--muted);line-height:1.5}
+.icon{width:56px;height:56px;border-radius:50%;background:var(--bone);display:grid;place-items:center;color:var(--navy)}
+.icon svg{width:26px;height:26px}
+@media (min-width:640px){.icards{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){
+  .why-row{grid-template-columns:1.25fr 2fr}
+  .why-feature{min-height:460px}
+  .icard{grid-template-columns:1fr;padding:32px 28px}
+  .icard .icon{grid-row:auto;margin-bottom:12px}
+}
+
+/* ---------- CTA ---------- */
+.cta{background:var(--inknavy);color:#fff;display:grid}
+.cta .img{min-height:340px;position:relative}
+.cta .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:56% 42%}
+.cta .c{padding:56px var(--pad)}
+.cta h2{margin-bottom:16px}
+.cta p{margin-bottom:28px;max-width:520px}
+@media (min-width:900px){
+  .cta{grid-template-columns:1fr 1fr;min-height:600px}
+  .cta .c{order:1;align-self:center;padding:80px var(--pad) 80px max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)))}
+  .cta .img{order:2;min-height:0}
+}
+
+/* ---------- quiz ---------- */
+.quiz-sec{background:var(--inknavy);color:#fff;padding:24px 0 84px}
+.quiz{border:1.5px solid rgba(255,255,255,.55);border-radius:32px;padding:40px 22px}
+.quiz .count{display:block;text-align:center;font-size:15px;margin-bottom:10px}
+.quiz h2{text-align:center;margin-bottom:10px}
+.quiz .sub{text-align:center;max-width:600px;margin:0 auto 32px}
+.qopts{display:grid;gap:12px;max-width:1000px;margin:0 auto;list-style:none}
+.qopt{width:100%;display:flex;gap:16px;align-items:center;text-align:left;background:rgba(255,255,255,.06);border:1.5px solid rgba(255,255,255,.35);border-radius:16px;color:#fff;padding:14px 16px;cursor:pointer;font:16px/1.4 var(--sans);min-height:64px}
+.qopt:hover,.qopt:focus-visible{background:#fff;color:var(--inknavy)}
+.qopt b{display:block;font-size:17px}
+.qopt .circ{width:40px;height:40px}
+.qres{text-align:center;max-width:680px;margin:0 auto}
+.qres h3{font-size:clamp(34px,4vw,50px);margin:6px 0 14px}
+.qres p{margin-bottom:26px}
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:28px}
+.qnav button{display:inline-flex;align-items:center;gap:10px;background:none;border:0;color:#fff;font:700 15px var(--sans);cursor:pointer;min-height:48px}
+.qnav button[disabled]{visibility:hidden}
+@media (min-width:768px){.quiz{padding:58px 56px;border-radius:44px}.qopts{grid-template-columns:1fr 1fr}}
+@media (min-width:1100px){.qopts.three{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- signature tabs ---------- */
+.sig{background:linear-gradient(160deg,#1c3567 0%,var(--inknavy) 60%);color:#fff;padding:84px 0;border-radius:36px 36px 0 0}
+.sig-grid{display:grid;gap:36px}
+.tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin:28px 0 30px;border-bottom:1px solid rgba(255,255,255,.35)}
+.tab{background:none;border:0;color:#fff;text-align:left;padding:12px 4px 14px;cursor:pointer;font:700 16px/1.3 var(--sans);position:relative;opacity:.78;min-height:48px}
+.tab::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:3px;background:#fff;transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.tab[aria-selected="true"]{opacity:1}.tab[aria-selected="true"]::after{transform:none}
+.tab span{display:none;font-weight:400;font-size:14px;margin-top:4px}
+.panel h3{font-size:clamp(36px,4.4vw,60px);margin-bottom:22px}
+.facts{display:grid;gap:12px;margin-bottom:22px}
+.facts div{background:#fff;color:var(--inknavy);border-radius:14px;padding:18px 20px}
+.facts dt{font-weight:700;margin-bottom:4px}
+.facts dd{color:var(--muted);line-height:1.5}
+.disc{font-size:15px;line-height:1.5;margin-bottom:22px}
+.sig figure{margin:0}
+.sig figure img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:24px;background:#24365f}
+.sig figcaption{font-size:14px;margin-top:10px}
+@media (min-width:768px){.tab span{display:block}}
+@media (min-width:1000px){.sig-grid{grid-template-columns:1.15fr 1fr;align-items:start;gap:60px}.facts{grid-template-columns:1fr 1fr}.facts div:first-child{grid-column:1/-1}}
+
+/* ---------- fillers split ---------- */
+.split{display:grid;background:#fff}
+.split .img{min-height:420px;position:relative}
+.split .img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.split .c{padding:56px var(--pad)}
+.split h2{margin-bottom:20px}
+.split p{color:var(--muted);margin-bottom:14px;max-width:540px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 28px;list-style:none}
+.chips li{border:1.5px solid var(--stone);border-radius:999px;padding:7px 16px;font-size:15px}
+@media (min-width:900px){
+  .split{grid-template-columns:1fr 1fr;min-height:680px}
+  .split .c{align-self:center;padding:80px max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad))) 80px 64px}
+}
+
+/* ---------- groups (expanding) ---------- */
+.groups{background:var(--bone);padding:84px 0}
+.groups .head{text-align:center;margin-bottom:36px}
+.groups .lead{margin:12px auto 0}
+.xc{display:flex;flex-direction:column;gap:12px}
+.x{position:relative;border-radius:var(--r);overflow:hidden;color:#fff;min-height:110px;transition:min-height .6s cubic-bezier(.6,.05,.25,1),flex .6s cubic-bezier(.6,.05,.25,1);background:var(--inknavy)}
+.x img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.x::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,.25),rgba(14,27,58,.9) 80%)}
+.x-btn{position:relative;z-index:2;width:100%;min-height:110px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:22px 24px;background:none;border:0;color:#fff;text-align:left;cursor:pointer;font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.1}
+.x-btn::after{content:"+";font-family:var(--sans);font-size:28px;line-height:1}
+.x.on .x-btn::after{content:"\2212"}
+.x .more{position:relative;z-index:2;padding:0 24px 26px;display:none}
+.x.on .more{display:block}
+.x .more p{margin-bottom:18px;max-width:460px}
+.x.on{min-height:380px;display:flex;flex-direction:column;justify-content:flex-end}
+.x.plain{background:linear-gradient(160deg,#2a4a86,var(--navy) 50%,#0b1634)}.x.plain::after{background:none}
+@media (min-width:1000px){
+  .xc{flex-direction:row;height:540px}
+  .x{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end}
+  .x.on{flex:3.2;min-height:0}
+  .x-btn{min-height:0;font-size:19px;padding:22px 14px;overflow-wrap:anywhere}
+  .x.on .x-btn{font-size:36px}
+  .x-btn::after{display:none}
+}
+
+/* ---------- solutions carousel ---------- */
+.solutions{background:var(--inknavy);color:#fff;padding:84px 0;overflow:hidden}
+.sol-grid{display:grid;gap:34px}
+.sol-grid hr{border:0;border-top:1px solid rgba(255,255,255,.6);margin:22px 0}
+.sol-ctl{display:flex;gap:12px;margin-top:24px}
+.track{display:flex;gap:16px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:none;padding:0 var(--pad) 6px;min-width:0;list-style:none}
+.track::-webkit-scrollbar{display:none}
+.sol{flex:none;width:min(78vw,340px);min-height:360px;border-radius:var(--r);scroll-snap-align:start;background:linear-gradient(160deg,#2a4a86,var(--navy) 50%,#0b1634);padding:34px 28px;display:flex;flex-direction:column;justify-content:space-between;border:1px solid rgba(255,255,255,.12)}
+.sol .icon{background:rgba(255,255,255,.12);color:#fff;width:72px;height:72px}
+.sol h3{margin:24px 0 8px}
+.sol p{font-size:16px;line-height:1.5}
+@media (min-width:1000px){.sol-grid{grid-template-columns:360px 1fr;align-items:center}.track{padding-left:0}.sol{min-height:440px}}
+
+/* ---------- quote ---------- */
+.quote{background:var(--bone);padding:84px 0;text-align:center}
+.quote blockquote{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(30px,3.6vw,50px);line-height:1.15;max-width:920px;margin:0 auto}
+.quote figcaption{margin-top:18px;font-size:14px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted)}
+
+/* ---------- link cards ---------- */
+.links{padding:84px 0}
+.links-grid{display:grid;gap:14px}
+.lcard{display:flex;flex-direction:column;justify-content:space-between;gap:30px;padding:32px 28px;border-radius:var(--r);background:#fff;border:1.5px solid var(--line);text-decoration:none;min-height:230px;transition:border-color .2s,transform .2s}
+.lcard:hover{border-color:var(--navy);transform:translateY(-3px)}
+.lcard h3{margin-bottom:8px}
+.lcard p{color:var(--muted)}
+.lcard .go{font-weight:700;color:var(--navy)}
+@media (min-width:900px){.links-grid{grid-template-columns:repeat(3,1fr)}}
+
+/* ---------- team ---------- */
+.team{background:var(--bone);padding:84px 0}
+.team-grid{display:grid;gap:40px;align-items:center}
+.team p{color:var(--muted);margin-bottom:14px;max-width:520px}
+.circle{width:min(100%,520px);aspect-ratio:1/1;border-radius:50%;overflow:hidden;justify-self:center;background:#fff;border:10px solid #fff;box-shadow:0 30px 60px rgba(14,27,58,.12)}
+.circle img{width:100%;height:100%;object-fit:cover;object-position:50% 30%}
+.md{margin:24px 0 28px;padding-top:22px;border-top:1px solid var(--line);max-width:520px}
+.md b{display:block;font-size:17px;margin-bottom:4px}
+@media (min-width:900px){.team-grid{grid-template-columns:1.1fr 1fr;gap:70px}}
+
+/* ---------- faq ---------- */
+.faq{padding:84px 0 40px}
+.faq-grid{display:grid;gap:30px}
+details{border-bottom:1px solid var(--line)}
+summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:20px;font-family:var(--serif);font-weight:600;font-size:clamp(22px,2vw,26px);line-height:1.2;padding:20px 0;min-height:48px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-family:var(--sans);font-size:28px;color:var(--navy);flex:none;transition:transform .25s}
+details[open] summary::after{transform:rotate(45deg)}
+details p{padding-bottom:22px;color:var(--muted);max-width:640px}
+@media (min-width:900px){.faq-grid{grid-template-columns:1fr 1.6fr;gap:70px}}
+
+/* ---------- contact ---------- */
+.contact{padding:40px 0 84px}
+.cbox{border-radius:28px;background:var(--bone);border:1.5px solid var(--line);padding:40px 22px;display:grid;gap:36px}
+.cbox .info{margin-top:24px;display:grid;gap:8px}
+.cbox .info a{font-weight:700;text-underline-offset:3px}
+form{display:grid;gap:14px}
+.field label{display:block;font-weight:700;font-size:15px;margin-bottom:6px}
+.field label .req{color:#8a1c1c}
+input,select,textarea{width:100%;font:16px var(--sans);color:var(--inknavy);background:#fff;border:1.5px solid #8C93A6;border-radius:12px;padding:14px 16px;min-height:52px}
+input:focus,select:focus,textarea:focus{border-color:var(--navy);outline:3px solid rgba(25,48,98,.25);outline-offset:0}
+textarea{min-height:120px;resize:vertical}
+.consent{display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.5}
+.consent input{width:22px;height:22px;min-height:0;flex:none;margin-top:2px;padding:0}
+.fmsg{display:none;background:#fff;border-left:4px solid var(--navy);border-radius:10px;padding:14px 18px}
+.fmsg.show{display:block}
+@media (min-width:640px){form{grid-template-columns:1fr 1fr}.full{grid-column:1/-1}}
+@media (min-width:1000px){.cbox{grid-template-columns:1fr 1.2fr;padding:70px 72px;gap:60px}}
+
+/* ---------- footer ---------- */
+.flinks{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 28px;padding:20px var(--pad);list-style:none}
+.flinks a{display:inline-block;padding:10px 4px;text-decoration:none}
+footer{background:var(--inknavy);color:#fff;border-radius:32px 32px 0 0}
+.fmain{display:grid;gap:36px;padding:64px 0 40px;text-align:center}
+.fmain h3{font-style:italic;font-size:28px;margin-bottom:8px}
+.fmain a{color:#fff}
+.fmain .logo img{width:min(280px,70%);height:auto;margin:0 auto}
+.areas{text-align:center;padding:0 var(--pad) 36px;font-size:15px;color:#D5DCEA}
+.fbar{background:#F1EFEC;color:var(--inknavy);font-size:14px;padding:16px var(--pad);display:flex;flex-wrap:wrap;justify-content:space-between;gap:8px 20px}
+.fbar a{margin-right:16px}
+@media (min-width:900px){.fmain{grid-template-columns:1fr 1.2fr 1fr;align-items:center;text-align:left;padding:84px 0 60px}.fmain .r{text-align:right}}
+
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+html.paused .marquee ul{animation-play-state:paused}
+</style>
+</head>
+<body class="no-js">
+<a class="skip" href="#main">Skip to main content</a>
+
+<header class="hdr">
+  <a class="logo" href="#top"><img src="img/logotype.png" alt="Vixsthetics home" width="1181" height="191"></a>
+  <nav class="nav" aria-label="Main">
+    <a href="#about">About</a>
+    <div class="dd">
+      <a href="#treatments">Treatments</a>
+      <div class="ddmenu">
+        <div><p>Neurotoxin</p><a href="#signature">Full face neurotoxin</a><a href="#treatments">Neurotoxin treatments</a><a href="#signature">Lip flip</a></div>
+        <div><p>Fillers</p><a href="#signature">Lip filler</a><a href="#fillers">Facial balancing</a><a href="#fillers">Chin, cheek and jawline</a></div>
+        <div><p>Under eye</p><a href="#treatments">Filler, PRP and PRF</a><p style="margin-top:14px">Biostimulators</p><a href="#treatments">Sculptra</a><a href="#treatments">Radiesse (+)</a></div>
+        <div><p>Other services</p><a href="#services">Microneedling</a><a href="#services">IV therapy</a><a href="#services">Medical weight loss</a><a href="#services">Hair restoration</a></div>
+      </div>
+    </div>
+    <a href="#results">Results</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">Resources</a>
+    <a href="#contact">Contact</a>
+  </nav>
+  <div class="hdr-r">
+    <a class="phone" href="tel:+16314088376">(631) 408-8376</a>
+    <a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book Now<span class="sr"> (opens in a new tab)</span></a>
+    <button class="burger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><span></span></button>
+  </div>
+</header>
+
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Menu">
+  <button class="close" type="button" aria-label="Close menu">&times;</button>
+  <ul>
+    <li><a href="#about">About</a></li>
+    <li><a href="#treatments">Treatments</a>
+      <div class="sub"><a href="#signature">Full face neurotoxin</a><a href="#signature">Lip filler</a><a href="#signature">Lip flip</a><a href="#fillers">Facial balancing</a><a href="#treatments">Under eye</a><a href="#treatments">Sculptra and Radiesse</a><a href="#services">Microneedling</a><a href="#services">IV therapy</a></div></li>
+    <li><a href="#results">Results</a></li>
+    <li><a href="#pricing">Pricing</a></li>
+    <li><a href="#faq">Resources</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <div class="mfoot"><a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book Online</a><a class="btn btn-line" href="tel:+16314088376">Call (631) 408-8376</a></div>
+</div>
+
+<main id="main">
+
+<!-- HERO -->
+<section class="hero" id="top" aria-labelledby="h-hero">
+  <div class="hero-media">
+    <img class="poster" src="img/hero-poster.jpg" alt="" width="1600" height="900">
+    <video id="heroVideo" autoplay muted loop playsinline preload="auto" aria-hidden="true" data-src="img/hero.mp4"></video>
+    <button class="motion" id="motionBtn" type="button" aria-pressed="false">
+      <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true"><rect x="2" y="1" width="3.5" height="12" fill="currentColor"/><rect x="8.5" y="1" width="3.5" height="12" fill="currentColor"/></svg>
+      <span>Pause motion</span>
+    </button>
+  </div>
+  <div class="hero-c">
+    <span class="eyebrow">Medical Aesthetics in Merrick, NY</span>
+    <h1 id="h-hero">Rested. Refined.<em>Entirely you.</em></h1>
+    <p class="byline">Vixsthetics&nbsp;|&nbsp;Victoria Yunaev</p>
+    <div class="ctas">
+      <a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
+      <a class="btn btn-line" href="#treatments">Explore Treatments</a>
+    </div>
+  </div>
+</section>
+
+<!-- TREATMENT TICKER -->
+<section class="ticker-sec on-dark" aria-label="Treatments offered">
+  <ul class="sr">
+    <li>Full face neurotoxin</li><li>Lip filler</li><li>Lip flip</li><li>Facial balancing</li><li>Under eye treatments</li><li>Sculptra</li><li>Radiesse (+)</li><li>Microneedling</li><li>IV therapy</li>
+  </ul>
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-pill"></div>
+    <ul id="tickerList"><li>Full Face Neurotoxin</li><li>Lip Filler</li><li>Lip Flip</li><li>Facial Balancing</li><li>Under Eye Treatments</li><li>Sculptra</li><li>Radiesse (+)</li><li>Microneedling</li><li>IV Therapy</li></ul>
+  </div>
+</section>
+
+<!-- MEET -->
+<section class="meet on-dark" id="about" aria-labelledby="h-meet">
+  <div class="wrap">
+    <div class="row-head reveal">
+      <div><span class="eyebrow">Victoria Yunaev</span><h2 id="h-meet">Meet <em>Your Injector,</em> Victoria</h2></div>
+      <a class="btn btn-white" href="#team">Meet Victoria</a>
+    </div>
+    <div class="cards3">
+      <article class="card card-photo reveal">
+        <div class="pad"><h3>One injector, <em>every visit.</em></h3><p>Victoria plans and performs every treatment herself.</p></div>
+        <img src="img/meet-card.jpg" alt="Victoria Yunaev standing in a black blazer and polka dot skirt" loading="lazy" width="1000" height="1500">
+      </article>
+      <article class="card reveal"><div class="pad">
+        <span class="k">Clinical roots</span>
+        <h3>Three years in the <em>Cardiac ICU.</em></h3>
+        <p>Victoria brought that clinical precision and care to medical aesthetics in Merrick.</p>
+      </div></article>
+      <article class="card reveal"><div class="pad">
+        <span class="k">Medical oversight</span>
+        <h3>Physician <em>supervised.</em></h3>
+        <p>Dr. Peggy Bastien, board certified in Obstetrics and Gynecology, is the medical director and supervising physician.</p>
+      </div></article>
+    </div>
+    <div class="wide2">
+      <div class="img reveal"><img src="img/meet-wide.jpg" alt="Victoria Yunaev smiling in a tweed jacket, holding a syringe" loading="lazy" width="1000" height="1500"></div>
+      <article class="card reveal"><div class="pad">
+        <span class="k">Three neurotoxins</span>
+        <h3>More options = <em>the right plan.</em></h3>
+        <p>Daxxify, Jeuveau or Xeomin, chosen for your face rather than one product for everyone.</p>
+      </div></article>
+    </div>
+  </div>
+  <div class="marquee" aria-label="Products used at Vixsthetics">
+    <ul>
+      <li>Daxxify</li><li>Jeuveau</li><li>Xeomin</li><li>Restylane</li><li>RHA Collection</li><li>Sculptra</li><li>Radiesse (+)</li>
+      <li aria-hidden="true">Daxxify</li><li aria-hidden="true">Jeuveau</li><li aria-hidden="true">Xeomin</li><li aria-hidden="true">Restylane</li><li aria-hidden="true">RHA Collection</li><li aria-hidden="true">Sculptra</li><li aria-hidden="true">Radiesse (+)</li>
+    </ul>
+  </div>
+</section>
+
+<!-- STATEMENT -->
+<section class="statement on-dark" aria-labelledby="h-state">
+  <img src="img/vials-wide.jpg" alt="" loading="lazy" width="2000" height="1125">
+  <div class="c reveal">
+    <h2 id="h-state">Effortless Beauty, <em>In Every Light</em></h2>
+    <a class="btn btn-white" href="#treatments">Explore Treatments</a>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews on-dark" aria-labelledby="h-rev">
+  <div class="wrap">
+    <span class="eyebrow light">In their words</span>
+    <h2 id="h-rev">What Patients <em>Are Saying</em></h2>
+    <p class="rating">Rated 5.0 out of 5 on Google</p>
+  </div>
+  <div class="rv-wrap" aria-roledescription="carousel" aria-label="Google reviews">
+    <figure class="rv on"><blockquote>&ldquo;These are hands down the best results I&rsquo;ve had in a long time.&rdquo;</blockquote><figcaption>Google review &middot; Neurotoxin</figcaption></figure>
+    <figure class="rv"><blockquote>&ldquo;Her knowledge and expertise surpass anything I have experienced.&rdquo;</blockquote><figcaption>Google review</figcaption></figure>
+    <figure class="rv"><blockquote>&ldquo;She made me feel comfortable the entire time.&rdquo;</blockquote><figcaption>Google review &middot; Lip filler</figcaption></figure>
+    <figure class="rv"><blockquote>&ldquo;Everything looks perfectly even and balanced.&rdquo;</blockquote><figcaption>Google review &middot; Lip filler</figcaption></figure>
+    <figure class="rv"><blockquote>&ldquo;Her attention to detail and understanding of facial anatomy really show in her work.&rdquo;</blockquote><figcaption>Google review</figcaption></figure>
+    <div class="rv-ctl">
+      <button class="circ" id="rvPrev" type="button" aria-label="Previous review"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 8H2M7 3 2 8l5 5"/></svg></button>
+      <div class="dots" id="rvDots"></div>
+      <button class="circ" id="rvNext" type="button" aria-label="Next review"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+    </div>
+    <p style="margin-top:22px"><a class="btn btn-white" href="https://www.google.com/maps/place/?q=place_id:ChIJfSQ-rSd9wokR5iNjTuI-C40" target="_blank" rel="noopener">Read Reviews on Google<span class="sr"> (opens in a new tab)</span></a></p>
+  </div>
+</section>
+
+<!-- RESULTS -->
+<section class="results" id="results" aria-labelledby="h-res">
+  <div class="wrap">
+    <div class="row-head reveal">
+      <div><span class="eyebrow">Real results</span><h2 id="h-res">Results From <em>Our Practice</em></h2></div>
+      <p class="lead" style="max-width:420px">Photographed at Vixsthetics and shared with each patient&rsquo;s written consent.</p>
+    </div>
+    <div class="res-grid">
+      <figure class="res reveal"><img src="img/ba-lips-1.jpg" alt="Lips before treatment, top, and after, bottom" loading="lazy" width="1000" height="1000"><figcaption><b>Lips</b>Before, top. After, bottom.</figcaption></figure>
+      <figure class="res reveal"><img src="img/ba-frown-1.jpg" alt="Frown lines before treatment, left, and after, right" loading="lazy" width="1000" height="1000"><figcaption><b>Frown lines</b>Before, left. After, right.</figcaption></figure>
+      <figure class="res reveal"><img src="img/ba-crowsfeet.jpg" alt="Smiling patient before treatment, left, and after, right, with softer lines around the eyes" loading="lazy" width="1000" height="1000"><figcaption><b>Crow&rsquo;s feet</b>Before, left. After, right.</figcaption></figure>
+      <figure class="res reveal"><img src="img/ba-profile-2.jpg" alt="Lower face profile before treatment, top, and after, bottom" loading="lazy" width="1000" height="1000"><figcaption><b>Profile</b>Before, top. After, bottom.</figcaption></figure>
+      <figure class="res reveal"><img src="img/ba-smile.jpg" alt="Smiling patient before treatment, left, and after, right" loading="lazy" width="1000" height="1000"><figcaption><b>Smile lines</b>Before, left. After, right.</figcaption></figure>
+      <figure class="res reveal"><img src="img/ba-profile-1.jpg" alt="Three quarter view before treatment, left, and after, right" loading="lazy" width="1000" height="1000"><figcaption><b>Lower face</b>Before, left. After, right.</figcaption></figure>
+    </div>
+    <p class="fine">Individual results vary. Every treatment begins with a consultation.</p>
+  </div>
+</section>
+
+<!-- WHY -->
+<section class="why" aria-labelledby="h-why">
+  <div class="wrap">
+    <div class="row-head reveal"><div><span class="eyebrow">How we practice</span><h2 id="h-why">Planned for Your <em>Whole Face</em></h2></div></div>
+    <div class="why-row">
+      <div class="why-feature reveal">
+        <img src="img/why.jpg" alt="White Vixsthetics bag with navy ribbon beside Daxxify and skincare" loading="lazy" width="900" height="900">
+        <div class="t"><h3>Natural, <em>never frozen.</em></h3><p>Treatment shaped through restraint, balance and natural movement.</p></div>
+      </div>
+      <div class="icards">
+        <div class="icard reveal"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="8" r="3.5"/><path d="M5 20c1.2-3.6 3.8-5.5 7-5.5s5.8 1.9 7 5.5"/></svg></div><h3>One provider, start to finish.</h3><p>Your plan is made and carried out by the same person.</p></div>
+        <div class="icard reveal"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="8.5" y="6" width="7" height="14" rx="1.5"/><path d="M9.5 3h5v3h-5zM8.5 11h7"/></svg></div><h3>Three neurotoxins, chosen for you.</h3><p>Daxxify, Jeuveau or Xeomin.</p></div>
+        <div class="icard reveal"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 3 4.5 6v5.5c0 4.5 3.2 8.2 7.5 9.5 4.3-1.3 7.5-5 7.5-9.5V6z"/><path d="m9 12 2.2 2.2L15.5 10"/></svg></div><h3>Physician oversight.</h3><p>Dr. Peggy Bastien is medical director.</p></div>
+        <div class="icard reveal"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></div><h3>Comfort comes first.</h3><p>Every visit starts with what you want to keep.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta on-dark" aria-labelledby="h-cta">
+  <div class="img"><img src="img/cta.jpg" alt="Victoria Yunaev walking in the studio holding a syringe" loading="lazy" width="1000" height="1500"></div>
+  <div class="c reveal">
+    <span class="eyebrow light">Not sure where to start?</span>
+    <h2 id="h-cta">Find Out What <em>Your Face Needs</em></h2>
+    <p>Every first visit starts with a conversation about what you would like to change, and what you would rather keep.</p>
+    <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
+  </div>
+</section>
+
+<!-- QUIZ -->
+<section class="quiz-sec on-dark" aria-labelledby="qTitle">
+  <div class="wrap">
+    <div class="quiz reveal" id="quiz">
+      <span class="count" id="qCount" aria-live="polite">Question 1 of 2</span>
+      <div id="qStep1">
+        <h2 id="qTitle">What Would You <em>Like to Change?</em></h2>
+        <p class="sub">Pick what bothers you most. We&rsquo;ll point you to the treatment to ask about.</p>
+        <ul class="qopts three" id="qOpts1">
+          <li><button class="qopt" type="button" data-k="tox"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Lines when I move</b>Forehead, frown lines or crow&rsquo;s feet.</span></button></li>
+          <li><button class="qopt" type="button" data-k="lips"><span class="circ" aria-hidden="true">&rarr;</span><span><b>My lips</b>Volume, shape or symmetry.</span></button></li>
+          <li><button class="qopt" type="button" data-k="balance"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Balance and profile</b>Chin, cheeks or jawline.</span></button></li>
+          <li><button class="qopt" type="button" data-k="eyes"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Tired under eyes</b>Hollows or dark circles.</span></button></li>
+          <li><button class="qopt" type="button" data-k="volume"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Lost volume</b>Skin that feels less supported.</span></button></li>
+          <li><button class="qopt" type="button" data-k="skin"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Skin texture</b>Glow, tone and smoothness.</span></button></li>
+        </ul>
+      </div>
+      <div id="qStep2" hidden>
+        <h2>Have You Had <em>Injectables Before?</em></h2>
+        <p class="sub">Either answer is fine. It helps us plan your first visit.</p>
+        <ul class="qopts three" id="qOpts2">
+          <li><button class="qopt" type="button" data-k="new"><span class="circ" aria-hidden="true">&rarr;</span><span><b>This would be my first time</b>I&rsquo;d like to start with a conversation.</span></button></li>
+          <li><button class="qopt" type="button" data-k="yes"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Yes, I&rsquo;ve had treatment</b>I know what I like.</span></button></li>
+          <li><button class="qopt" type="button" data-k="switch"><span class="circ" aria-hidden="true">&rarr;</span><span><b>Yes, but I want better results</b>I&rsquo;m looking for a new injector.</span></button></li>
+        </ul>
+      </div>
+      <div class="qres" id="qRes" hidden>
+        <span class="eyebrow light">Treatment to ask about</span>
+        <h3 id="qResT" tabindex="-1"></h3>
+        <p id="qResP"></p>
+        <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
+      </div>
+      <div class="qnav">
+        <button id="qBack" type="button" disabled><span class="circ" aria-hidden="true">&larr;</span>Back</button>
+        <button id="qRestart" type="button" hidden>Start over<span class="circ" aria-hidden="true">&#8635;</span></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SIGNATURE TABS -->
+<section class="sig on-dark" id="signature" aria-labelledby="h-sig">
+  <div class="wrap sig-grid">
+    <div>
+      <span class="eyebrow light">Signature treatments</span>
+      <h2 id="h-sig">The Two Treatments <em>We&rsquo;re Known For</em></h2>
+      <div class="tabs" role="tablist" aria-label="Signature treatments">
+        <button class="tab" role="tab" id="t0" aria-controls="p0" aria-selected="true">Full Face<span>Neurotoxin, planned for the whole face</span></button>
+        <button class="tab" role="tab" id="t1" aria-controls="p1" aria-selected="false" tabindex="-1">Lip Filler<span>Volume, shape or symmetry</span></button>
+        <button class="tab" role="tab" id="t2" aria-controls="p2" aria-selected="false" tabindex="-1">Lip Flip<span>A subtle lift, no filler</span></button>
+      </div>
+      <div class="panel" role="tabpanel" id="p0" aria-labelledby="t0">
+        <h3>Full Face <em>Neurotoxin</em></h3>
+        <dl class="facts"><div><dt>Ideal for</dt><dd>Softening lines across the forehead, frown and eyes while keeping natural expression.</dd></div><div><dt>Products</dt><dd>Daxxify, Jeuveau or Xeomin, chosen at your consultation.</dd></div><div><dt>Your plan</dt><dd>Built for your whole face, not a single line.</dd></div></dl>
+        <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book Full Face<span class="sr"> (opens in a new tab)</span></a>
+      </div>
+      <div class="panel" role="tabpanel" id="p1" aria-labelledby="t1" hidden>
+        <h3>Lip <em>Filler</em></h3>
+        <dl class="facts"><div><dt>Ideal for</dt><dd>Volume, shape or symmetry, with a soft or full result.</dd></div><div><dt>Products</dt><dd>The RHA Collection and the Restylane collection, including Restylane Kysse.</dd></div><div><dt>Your plan</dt><dd>Shaped to suit your face and its proportions.</dd></div></dl>
+        <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book Lip Filler<span class="sr"> (opens in a new tab)</span></a>
+      </div>
+      <div class="panel" role="tabpanel" id="p2" aria-labelledby="t2" hidden>
+        <h3>Lip <em>Flip</em></h3>
+        <dl class="facts"><div><dt>Ideal for</dt><dd>A subtle lift of the upper lip without adding volume.</dd></div><div><dt>Product</dt><dd>A small dose of neurotoxin.</dd></div><div><dt>Compared with filler</dt><dd>A flip relaxes the lip; filler adds volume. Victoria will tell you which fits.</dd></div></dl>
+        <p class="disc">This is an off label use of an FDA approved product; your provider will discuss whether it is appropriate for you.</p>
+        <a class="btn btn-white" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Consultation<span class="sr"> (opens in a new tab)</span></a>
+      </div>
+    </div>
+    <figure id="sigFig">
+      <img id="sigImg" src="img/ba-frown-2.jpg" alt="Frown lines before treatment, left, and after, right" width="1000" height="1000" loading="lazy">
+      <figcaption id="sigCap">Before, left. After, right. Shared with patient consent.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- FILLERS SPLIT -->
+<section class="split" id="fillers" aria-labelledby="h-fill">
+  <div class="img"><img src="img/fillers.jpg" alt="Victoria Yunaev crouching and smiling, chin resting on her hand" loading="lazy" width="1000" height="1500"></div>
+  <div class="c reveal">
+    <span class="eyebrow">Fillers and facial balancing</span>
+    <h2 id="h-fill">Restore Volume. <em>Refine Your Look.</em></h2>
+    <p>Facial balancing starts with the proportions you already have. Victoria maps cheeks, chin, jawline, temples and lips together, so each detail supports the whole.</p>
+    <p>She works with the RHA Collection from Revance and the Restylane collection from Galderma.</p>
+    <ul class="chips"><li>Lips</li><li>Chin</li><li>Cheeks</li><li>Jawline</li><li>Temples</li><li>Nasolabial folds</li></ul>
+    <a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book a Filler Consultation<span class="sr"> (opens in a new tab)</span></a>
+  </div>
+</section>
+
+<!-- GROUPS -->
+<section class="groups" id="treatments" aria-labelledby="h-groups">
+  <div class="wrap">
+    <div class="head reveal"><span class="eyebrow">Treatments</span><h2 id="h-groups">Refined, <em>Never Changed</em></h2><p class="lead">Four treatment groups and a set of complementary services. Select a card to see what each covers.</p></div>
+    <div class="xc" id="xc">
+      <div class="x on"><img src="img/g-neuro.jpg" alt="" loading="lazy" style="object-position:50% 35%"><button class="x-btn" type="button" aria-expanded="true" aria-controls="m0">Neurotoxin</button><div class="more" id="m0"><p>Jeuveau, Xeomin and Daxxify soften the lines that form when you frown, squint or raise your brows, planned so you still look like you.</p><a class="btn btn-white" href="#signature">See Full Face</a></div></div>
+      <div class="x"><img src="img/ba-lips-2.jpg" alt="" loading="lazy" style="object-position:50% 70%"><button class="x-btn" type="button" aria-expanded="false" aria-controls="m1">Fillers</button><div class="more" id="m1"><p>Lip filler and facial balancing for the chin, cheeks, jawline and temples, with RHA and Restylane.</p><a class="btn btn-white" href="#fillers">Explore Fillers</a></div></div>
+      <div class="x"><img src="img/g-eye.jpg" alt="" loading="lazy" style="object-position:55% 30%"><button class="x-btn" type="button" aria-expanded="false" aria-controls="m2">Under Eye</button><div class="more" id="m2"><p>Filler, PRP, PRF and PRF EZGel for hollows and a tired look. Your consultation decides which fits.</p><a class="btn btn-white" href="#contact">Ask About Under Eye</a></div></div>
+      <div class="x"><img src="img/g-bio.jpg" alt="" loading="lazy" style="object-position:50% 50%"><button class="x-btn" type="button" aria-expanded="false" aria-controls="m3">Biostimulators</button><div class="more" id="m3"><p>Sculptra and Radiesse (+) support structure over time, including hyperdilute Radiesse.</p><a class="btn btn-white" href="#contact">Ask About Biostimulators</a></div></div>
+      <div class="x plain"><button class="x-btn" type="button" aria-expanded="false" aria-controls="m4">Other Services</button><div class="more" id="m4"><p>Microneedling, IV therapy, medical weight loss and hair restoration.</p><a class="btn btn-white" href="#services">See All Services</a></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES CAROUSEL -->
+<section class="solutions on-dark" id="services" aria-labelledby="h-sol">
+  <div class="wrap sol-grid">
+    <div class="reveal">
+      <span class="eyebrow light">The Vixsthetics approach</span>
+      <h2 id="h-sol">Every Treatment, <em>One Plan</em></h2>
+      <hr>
+      <p>Many options, one conversation. Your consultation decides what is right for you, or whether you need anything at all.</p>
+      <div class="sol-ctl">
+        <button class="circ" id="solPrev" type="button" aria-label="Previous services"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M14 8H2M7 3 2 8l5 5"/></svg></button>
+        <button class="circ" id="solNext" type="button" aria-label="Next services"><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M2 8h12M9 3l5 5-5 5"/></svg></button>
+      </div>
+    </div>
+    <ul class="track" id="track" tabindex="0" aria-label="Services, scroll sideways">
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3c-4 0-6 3.5-6 7 0 5 3 9 6 11 3-2 6-6 6-11 0-3.5-2-7-6-7z"/><path d="M8.5 11h7"/></svg></div><div><h3>Facial Balancing</h3><p>Chin, cheeks, jawline and lips, planned together.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="8" cy="12" r="3"/><circle cx="16" cy="12" r="3"/><path d="M5 18c2 1.5 12 1.5 14 0"/></svg></div><div><h3>Under Eye</h3><p>Filler, PRP, PRF and PRF EZGel.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 20 12 4l8 16z"/><path d="M8 14h8"/></svg></div><div><h3>Sculptra</h3><p>Gradual support and structure.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="5" y="4" width="14" height="16" rx="3"/><path d="M9 9h6M9 13h6"/></svg></div><div><h3>Radiesse (+)</h3><p>Including hyperdilute Radiesse.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 4v4M12 16v4M4 12h4M16 12h4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M6.3 17.7l2.8-2.8M14.9 9.1l2.8-2.8"/></svg></div><div><h3>Microneedling</h3><p>With Ariessence growth factor serum.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M8 3h8v9a4 4 0 0 1-8 0zM12 16v5M9 21h6"/></svg></div><div><h3>IV Therapy</h3><p>Hydration and vitamins.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="12" cy="12" r="8"/><path d="M12 7v5l3 2"/></svg></div><div><h3>Medical Weight Loss</h3><p>A supervised program.</p></div></li>
+      <li class="sol"><div class="icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M6 20c0-8 2-14 6-17M12 20c0-7 1-12 4-15M18 20c0-5-1-9-3-12"/></svg></div><div><h3>Hair Restoration</h3><p>Ask about options at your consultation.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- QUOTE -->
+<section class="quote" aria-label="Patient review">
+  <div class="wrap reveal">
+    <figure>
+      <blockquote>&ldquo;I&rsquo;ve tried so many different people over the past four years and will never see another injector besides Victoria!&rdquo;</blockquote>
+      <figcaption>Google review</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- LINK CARDS -->
+<section class="links" id="pricing" aria-label="Plan your visit">
+  <div class="wrap links-grid">
+    <a class="lcard reveal" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener"><div><h3>Pricing <em>&amp; Financing</em></h3><p>See treatments and prices on our booking page.</p></div><span class="go">View pricing &rarr;<span class="sr"> (opens in a new tab)</span></span></a>
+    <a class="lcard reveal" href="#faq"><div><h3>New <em>Patients</em></h3><p>What happens at your first visit, and how to prepare.</p></div><span class="go">Read quick answers &rarr;</span></a>
+    <a class="lcard reveal" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener"><div><h3>Gift <em>Cards</em></h3><p>Give effortless beauty to someone you love.</p></div><span class="go">Buy a gift card &rarr;<span class="sr"> (opens in a new tab)</span></span></a>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team" aria-labelledby="h-team">
+  <div class="wrap team-grid">
+    <div class="reveal">
+      <span class="eyebrow">Your partner in natural beauty</span>
+      <h2 id="h-team">Meet <em>Victoria Yunaev</em></h2>
+      <p style="margin-top:20px">Victoria founded Vixsthetics in Merrick to give patients across Long Island personalized care that enhances their natural beauty.</p>
+      <p>After three years in the Cardiac ICU, she turned her focus to medical aesthetics, helping people feel more confident with expertise and care.</p>
+      <div class="md"><b>Dr. Peggy Bastien, Medical Director</b><p style="margin:0">Board certified in Obstetrics and Gynecology by ABOG, with continued training in aesthetic medicine. Medical services provided by Bastien Medical PLLC.</p></div>
+      <a class="btn btn-navy" href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book With Victoria<span class="sr"> (opens in a new tab)</span></a>
+    </div>
+    <div class="circle reveal"><img src="img/team.jpg" alt="Victoria Yunaev in a navy pinstripe suit holding a Vixsthetics bag" loading="lazy" width="1000" height="1000"></div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq" aria-labelledby="h-faq">
+  <div class="wrap faq-grid">
+    <div class="reveal"><span class="eyebrow">Quick answers</span><h2 id="h-faq">Before <em>You Book</em></h2></div>
+    <div>
+      <details open><summary>Who performs treatments at Vixsthetics?</summary><p>Victoria Yunaev performs every treatment. Dr. Peggy Bastien, board certified in Obstetrics and Gynecology, is the medical director and supervising physician.</p></details>
+      <details><summary>Where is Vixsthetics?</summary><p>1149 Merrick Avenue, Suite 17, Merrick, NY 11566. Patients come from Merrick, Bellmore, Wantagh, Massapequa, Babylon, Oceanside and Long Beach, plus Roslyn, Great Neck and Manhasset.</p></details>
+      <details><summary>Which neurotoxins do you use?</summary><p>Daxxify, Jeuveau and Xeomin. Victoria chooses the product for your face at your consultation.</p></details>
+      <details><summary>Which fillers do you use?</summary><p>The RHA Collection from Revance and the Restylane collection from Galderma, plus Sculptra and Radiesse (+) for support and structure.</p></details>
+      <details><summary>Is a lip flip an approved use?</summary><p>A lip flip is an off label use of an FDA approved product. Your provider will discuss whether it is appropriate for you.</p></details>
+      <details><summary>How do I book?</summary><p>Book online any time, or call (631) 408-8376. Every first visit starts with a conversation about what you would like to change, and what you would rather keep.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact" aria-labelledby="h-contact">
+  <div class="wrap">
+    <div class="cbox">
+      <div>
+        <span class="eyebrow">Get in touch</span>
+        <h2 id="h-contact">Schedule Your <em>Consultation</em></h2>
+        <div class="info">
+          <p>1149 Merrick Avenue, Suite 17<br>Merrick, NY 11566</p>
+          <p><a href="tel:+16314088376">(631) 408-8376</a></p>
+          <p><a href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">Book online<span class="sr"> (opens in a new tab)</span></a> &middot; <a href="https://www.google.com/maps/place/?q=place_id:ChIJfSQ-rSd9wokR5iNjTuI-C40" target="_blank" rel="noopener">Directions<span class="sr"> (opens in a new tab)</span></a></p>
+        </div>
+      </div>
+      <form id="cform" novalidate>
+        <div class="field"><label for="f-first">First name <span class="req" aria-hidden="true">*</span></label><input id="f-first" name="first" required autocomplete="given-name"></div>
+        <div class="field"><label for="f-last">Last name <span class="req" aria-hidden="true">*</span></label><input id="f-last" name="last" required autocomplete="family-name"></div>
+        <div class="field"><label for="f-phone">Phone <span class="req" aria-hidden="true">*</span></label><input id="f-phone" name="phone" type="tel" required autocomplete="tel"></div>
+        <div class="field"><label for="f-email">Email</label><input id="f-email" name="email" type="email" autocomplete="email"></div>
+        <div class="field full"><label for="f-tx">Treatment of interest</label>
+          <select id="f-tx" name="treatment"><option value="">Choose one</option><option>Full face neurotoxin</option><option>Lip filler</option><option>Lip flip</option><option>Facial balancing</option><option>Under eye treatments</option><option>Sculptra</option><option>Radiesse (+)</option><option>Microneedling</option><option>IV therapy</option><option>Medical weight loss</option><option>Hair restoration</option><option>Not sure yet</option></select></div>
+        <div class="field full"><label for="f-msg">Comments <span style="font-weight:400">(please leave out medical details)</span></label><textarea id="f-msg" name="msg"></textarea></div>
+        <label class="consent full"><input type="checkbox" id="f-ok" required> I give permission to be contacted by phone, email or text.</label>
+        <div class="full"><button class="btn btn-navy" type="submit">Submit</button></div>
+        <p class="fmsg full" id="fmsg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+</main>
+
+<nav aria-label="Footer"><ul class="flinks"><li><a href="#about">About</a></li><li><a href="#treatments">Treatments</a></li><li><a href="#results">Results</a></li><li><a href="#pricing">Pricing</a></li><li><a href="#faq">Resources</a></li><li><a href="#contact">Contact</a></li></ul></nav>
+<footer class="on-dark">
+  <div class="wrap fmain">
+    <div>
+      <h3>Location</h3>
+      <p>1149 Merrick Avenue, Suite 17<br>Merrick, NY 11566</p>
+      <h3 style="margin-top:22px">Contact</h3>
+      <p><a href="tel:+16314088376">(631) 408-8376</a><br><a href="mailto:victoriayunaev@gmail.com">victoriayunaev@gmail.com</a></p>
+    </div>
+    <div class="logo"><img src="img/logo-white.png" alt="Vixsthetics, Effortless Beauty" width="1162" height="696" loading="lazy"></div>
+    <div class="r">
+      <h3>Hours</h3>
+      <p>Monday to Thursday, 10am to 6pm<br>Friday and Sunday, 10am to 3pm<br>Saturday, closed</p>
+      <p style="margin-top:14px">Rated 5.0 on Google</p>
+      <p><a href="https://www.instagram.com/vixsthetics/" target="_blank" rel="noopener">Instagram @vixsthetics<span class="sr"> (opens in a new tab)</span></a></p>
+    </div>
+  </div>
+  <p class="areas">Serving Merrick, Bellmore, Wantagh, Massapequa, Babylon, Oceanside, Long Beach, Roslyn, Great Neck and Manhasset</p>
+  <div class="fbar"><span>&copy; 2026 Vixsthetics. Medical services provided by Bastien Medical PLLC.</span><span><a href="#">Terms</a><a href="#">Privacy Policy</a></span></div>
+</footer>
+
+<script>
+(function(){
+  document.body.classList.remove('no-js');
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const root=document.documentElement;
+  let paused = reduce;
+
+  // reveal
+  const io='IntersectionObserver' in window ? new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.1}) : null;
+  document.querySelectorAll('.reveal').forEach(el=>io?io.observe(el):el.classList.add('in'));
+
+  // mobile nav
+  const mnav=document.getElementById('mnav'),burger=document.querySelector('.burger');
+  const openNav=()=>{mnav.classList.add('open');burger.setAttribute('aria-expanded','true');mnav.querySelector('.close').focus();document.body.style.overflow='hidden'};
+  const closeNav=()=>{mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow='';burger.focus()};
+  burger.addEventListener('click',openNav);
+  mnav.querySelector('.close').addEventListener('click',closeNav);
+  mnav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mnav.classList.remove('open');burger.setAttribute('aria-expanded','false');document.body.style.overflow=''}));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&mnav.classList.contains('open'))closeNav()});
+
+  // motion control (video, ticker, marquee, reviews)
+  const vid=document.getElementById('heroVideo'),mbtn=document.getElementById('motionBtn');
+  const showVid=()=>{vid.classList.add('ready')};
+  vid.addEventListener('playing',showVid);
+  const loadVid=src=>{vid.src=src;vid.load();if(!paused){const p=vid.play();if(p&&p.catch)p.catch(()=>{})}};
+  fetch(vid.dataset.src).then(r=>{if(!r.ok)throw 0;return r.blob()}).then(b=>loadVid(URL.createObjectURL(new Blob([b],{type:'video/mp4'})))).catch(()=>loadVid(vid.dataset.src));
+  const setPaused=p=>{paused=p;root.classList.toggle('paused',p);mbtn.setAttribute('aria-pressed',String(p));mbtn.querySelector('span').textContent=p?'Play motion':'Pause motion';try{p?vid.pause():vid.play()}catch(e){}};
+  mbtn.addEventListener('click',()=>setPaused(!paused));
+  if(reduce){setPaused(true)}
+
+  // ticker
+  const tl=document.getElementById('tickerList'),items=[...tl.children];let ti=0;
+  const rowH=()=>items[0].getBoundingClientRect().height;
+  const setT=()=>{items.forEach((li,i)=>li.classList.toggle('on',i===ti));tl.style.transform='translateY('+(tl.parentElement.clientHeight/2-rowH()/2-ti*rowH())+'px)'};
+  setT();addEventListener('resize',setT);
+  setInterval(()=>{if(!paused&&!document.hidden){ti=(ti+1)%items.length;setT()}},2400);
+
+  // reviews
+  const rvs=[...document.querySelectorAll('.rv')],dots=document.getElementById('rvDots');let ri=0,hold=false;
+  rvs.forEach((r,i)=>{r.setAttribute('aria-roledescription','slide');r.setAttribute('aria-label',(i+1)+' of '+rvs.length);const b=document.createElement('button');b.type='button';b.setAttribute('aria-label','Show review '+(i+1));b.onclick=()=>{ri=i;setR();hold=true};dots.appendChild(b)});
+  const setR=()=>{rvs.forEach((r,i)=>r.classList.toggle('on',i===ri));[...dots.children].forEach((d,i)=>d.setAttribute('aria-current',i===ri?'true':'false'))};
+  setR();
+  document.getElementById('rvNext').onclick=()=>{ri=(ri+1)%rvs.length;setR();hold=true};
+  document.getElementById('rvPrev').onclick=()=>{ri=(ri-1+rvs.length)%rvs.length;setR();hold=true};
+  const rw=document.querySelector('.rv-wrap');rw.addEventListener('mouseenter',()=>hold=true);rw.addEventListener('focusin',()=>hold=true);
+  setInterval(()=>{if(!paused&&!hold&&!document.hidden){ri=(ri+1)%rvs.length;setR()}},7000);
+
+  // expanding groups
+  const xs=[...document.querySelectorAll('.x')];
+  xs.forEach(x=>x.querySelector('.x-btn').addEventListener('click',()=>{xs.forEach(y=>{y.classList.remove('on');y.querySelector('.x-btn').setAttribute('aria-expanded','false')});x.classList.add('on');x.querySelector('.x-btn').setAttribute('aria-expanded','true')}));
+
+  // services carousel
+  const tr=document.getElementById('track'),step=()=>tr.querySelector('.sol').getBoundingClientRect().width+16;
+  document.getElementById('solNext').onclick=()=>tr.scrollBy({left:step(),behavior:reduce?'auto':'smooth'});
+  document.getElementById('solPrev').onclick=()=>tr.scrollBy({left:-step(),behavior:reduce?'auto':'smooth'});
+  tr.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();tr.scrollBy({left:step()})}if(e.key==='ArrowLeft'){e.preventDefault();tr.scrollBy({left:-step()})}});
+
+  // signature tabs
+  const IMG=[['img/ba-frown-2.jpg','Frown lines before treatment, left, and after, right','Before, left. After, right. Shared with patient consent.'],['img/ba-lips-3.jpg','Lips before treatment, top, and after, bottom','Before, top. After, bottom. Shared with patient consent.'],['img/flip.jpg','Victoria Yunaev crouching and smiling, holding a syringe','Victoria Yunaev, Vixsthetics']];
+  const tabs=[...document.querySelectorAll('.tab')],panels=[...document.querySelectorAll('.panel')],sImg=document.getElementById('sigImg'),sCap=document.getElementById('sigCap');
+  const selT=(i,focus)=>{tabs.forEach((t,j)=>{t.setAttribute('aria-selected',String(j===i));t.tabIndex=j===i?0:-1;panels[j].hidden=j!==i});sImg.src=IMG[i][0];sImg.alt=IMG[i][1];sCap.textContent=IMG[i][2];sImg.style.objectPosition=i===2?'50% 35%':'50% 50%';if(focus)tabs[i].focus()};
+  tabs.forEach((t,i)=>{t.addEventListener('click',()=>selT(i));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight'){e.preventDefault();selT((i+1)%3,true)}if(e.key==='ArrowLeft'){e.preventDefault();selT((i+2)%3,true)}})});
+
+  // quiz
+  const R={tox:['Full Face Neurotoxin','Daxxify, Jeuveau or Xeomin, planned across your whole face so lines soften and expression stays yours.'],lips:['Lip Filler','RHA or Restylane, shaped to suit your face. A lip flip may be an option if you want something subtler.'],balance:['Facial Balancing','Chin, cheek and jawline filler planned together, so each detail supports the whole.'],eyes:['Under Eye Treatments','Filler, PRP or PRF. Your consultation decides which one fits your under eyes.'],volume:['Biostimulators','Sculptra or Radiesse (+) to support structure gradually over time.'],skin:['Microneedling','Microneedling with Ariessence growth factor serum for texture and glow.']};
+  const N={new:'Your first visit starts with a conversation, with no pressure to treat that day.',yes:'Bring what you liked about past treatments, and Victoria will build on it.',switch:'Tell Victoria what you want done differently. Her plan starts from your whole face.'};
+  let pick=null;const s1=document.getElementById('qStep1'),s2=document.getElementById('qStep2'),res=document.getElementById('qRes'),back=document.getElementById('qBack'),rs=document.getElementById('qRestart'),cnt=document.getElementById('qCount');
+  const show=n=>{s1.hidden=n!==1;s2.hidden=n!==2;res.hidden=n!==3;back.disabled=n===1;rs.hidden=n!==3;cnt.textContent=n===3?'Your match':'Question '+n+' of 2'};
+  document.querySelectorAll('#qOpts1 .qopt').forEach(b=>b.onclick=()=>{pick=b.dataset.k;show(2);s2.querySelector('.qopt').focus()});
+  document.querySelectorAll('#qOpts2 .qopt').forEach(b=>b.onclick=()=>{const r=R[pick];document.getElementById('qResT').textContent=r[0];document.getElementById('qResP').textContent=r[1]+' '+N[b.dataset.k];show(3);document.getElementById('qResT').focus()});
+  back.onclick=()=>{show(res.hidden?1:2)};
+  rs.onclick=()=>{show(1);s1.querySelector('.qopt').focus()};
+
+  // form
+  document.getElementById('cform').addEventListener('submit',e=>{e.preventDefault();const f=e.target,m=document.getElementById('fmsg');m.classList.add('show');
+    const missing=[];if(!f.first.value.trim())missing.push('first name');if(!f.last.value.trim())missing.push('last name');if(!f.phone.value.trim())missing.push('phone');if(!document.getElementById('f-ok').checked)missing.push('permission checkbox');
+    if(missing.length){m.textContent='Please complete: '+missing.join(', ')+'.';return}
+    m.innerHTML='Thank you, '+f.first.value.replace(/[<>&"]/g,'')+'. To choose a time now, <a href="https://vixsthetics.janeapp.com/" target="_blank" rel="noopener">book online</a> or call (631) 408-8376.';});
+})();
+</script>
+</body>
+</html>
