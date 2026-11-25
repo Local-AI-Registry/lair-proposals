@@ -312,7 +312,7 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
 <section id="plays">
   <div class="case-head">
     <div><div class="case-num">Where to go</div><h2>The play for each launch city</h2></div>
-    <p class="sub" style="max-width:440px;margin:0">Every launch city gets one play. Two cities are open below. The other eight are in the briefing.</p>
+    <p class="sub" style="max-width:440px;margin:0">Every launch city gets one of three plays. Which city gets which is shared in the briefing.</p>
   </div>
   <div class="grid g3" style="margin-bottom:16px">
     <div class="card"><span class="play gap">Educate first</span><p style="margin:10px 0 0;font-size:14px"><b>Big crowd, quiet brand.</b> Patients search for toxin a lot but rarely name <span class="pname">Letybo</span>. Train injectors and build awareness before scaling reps, or reps knock on doors nobody is asking about.</p></div>
@@ -326,7 +326,7 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
 <section id="kols">
   <div class="case-head">
     <div><div class="case-num">Who to call</div><h2>The KOL call list, in order</h2></div>
-    <p class="sub" style="max-width:440px;margin:0">18 doctors and practices already tied to the brand or the category, ranked. One is shown. The rest are named in the briefing.</p>
+    <p class="sub" style="max-width:440px;margin:0">18 doctors and practices already tied to the brand, ranked. Names, cities and the ask are shared in the briefing.</p>
   </div>
   <div class="card">
     <div class="filters" id="kfilters"></div>
@@ -337,12 +337,12 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
 </section>
 
 <!-- PEOPLE -->
-<section id="people">
+<section id="people" class="lockwrap"><div class="lockover" style="align-items:flex-start;padding-top:240px"><a class="lockpill" href="tel:+12139315633"><svg class="lockic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> Rep placement and gaps: in the briefing</a></div>
   <div class="case-head">
     <div><div class="case-num">Where to put people</div><h2>Reps, trainers and the gaps</h2></div>
-    <p class="sub" style="max-width:440px;margin:0">Circles are reps per city. Line stars are named doctors. Dashed rings are launch cities with nobody to train their injectors yet.</p>
+    <p class="sub" style="max-width:440px;margin:0">How many reps go where, in what order, and which cities have nobody to train injectors.</p>
   </div>
-  <div class="lmap">
+  <div class="bl" aria-hidden="true"><div class="lmap">
     <div class="card" style="padding:12px"><div id="map2d"></div>
       <div style="display:flex;flex-wrap:wrap;gap:16px;font-size:13px;padding:0 10px 6px">
         <span><svg width="14" height="14"><circle cx="7" cy="7" r="6" fill="#1F4FE0" fill-opacity=".85"/></svg> Reps placed</span>
@@ -356,27 +356,22 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
       <p class="sub">Warm cities first because reps close faster where patients already ask.</p>
       <ol class="hire" id="hire"></ol>
       <h4 style="margin-top:16px;color:#B5341A">Recruit a trainer here first</h4>
-      <p class="sub" style="margin-bottom:6px">Launch cities with no named KOL. Pick from the busiest, best-reviewed clinics.</p>
+      <p class="sub" style="margin-bottom:6px">Xxxxxx xxxxxx xxxx xx xxxxx XXX.</p>
       <div id="gaps" style="display:flex;flex-wrap:wrap;gap:6px"></div>
     </div>
   </div>
-</section>
+</div></section>
 
 <!-- EVIDENCE: 3D -->
 <section id="skyline">
   <div class="case-head" style="margin-bottom:14px">
     <div><div class="case-num">The evidence</div><h2>The demand skyline</h2></div>
-    <p class="sub" style="max-width:440px;margin:0">Why the plays above. Tower height is monthly toxin searches. Color is how often those searchers name <span class="pname">Letybo</span>. Drag to tilt and turn.</p>
+    <p class="sub" style="max-width:440px;margin:0">Tower height is monthly toxin searches in each city. Drag to tilt and turn. The brand and KOL layers are in the briefing.</p>
   </div>
   <div class="map3d-wrap">
     <div id="map3d"></div>
     <div class="map-ui"><button class="btn on" data-v="3d">3D</button><button class="btn" data-v="flat">Flat</button><button class="btn" data-v="east">East</button><button class="btn" data-v="west">West</button><button class="btn" data-v="spin">Spin</button></div>
-    <div class="map-legend">
-      <div><i style="background:#FF5A3C"></i><span><b>Educate first:</b> big demand, quiet brand</span></div>
-      <div><i style="background:#1F4FE0"></i><span><b>Sell now:</b> patients already ask</span></div>
-      <div><i style="background:#7A8696"></i><span><b>Build both:</b> average interest</span></div>
-      <div><i style="background:#B8901C;border-radius:50%"></i><span>Named KOL</span></div>
-    </div>
+    <div class="map-legend"><div><i style="background:#1F4FE0"></i><span>Monthly toxin searches</span></div><div><span><b>Brand and KOL layers:</b> in the briefing</span></div></div>
   </div>
   <div class="grid g2" style="margin-top:16px">
     <div class="card">
@@ -461,12 +456,12 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
     </div>
   </div>
 
-  <div class="card money" style="margin-top:16px">
+  <div class="card money lockwrap" style="margin-top:16px"><div class="lockover" style="align-items:flex-start;padding-top:120px"><a class="lockpill" href="tel:+12139315633"><svg class="lockic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> Fund, keep or cut: in the briefing</a></div><div class="bl" aria-hidden="true">
     <h3>Fund more, keep, or cut back</h3>
-    <p class="sub">Every manufacturer budget line behind Jordan, ranked by how much each dollar moved her decision. The top lines are named in the briefing.</p>
+    <p class="sub">Every budget line ranked by how much each dollar moved her decision.</p>
     <div class="mr h"><div></div><div>Budget line</div><div>$ / patient</div><div>Influence</div><div>Do this</div><div>Why</div></div>
     <div id="moneyRows"></div>
-  </div>
+  </div></div>
 
   <div class="card" style="margin-top:16px">
     <div style="display:flex;gap:16px;align-items:center;flex-wrap:wrap">
@@ -478,7 +473,7 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
   </div>
 
   <div class="grid g2" style="margin-top:16px">
-    <div class="card"><h3>Cost vs. influence</h3><p class="sub">Top-left is where to put more money: cheap and decisive.</p><div id="impact"></div>
+    <div class="card lockwrap"><div class="lockover"><a class="lockpill" href="tel:+12139315633"><svg class="lockic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> Cost vs. influence: in the briefing</a></div><h3>Cost vs. influence</h3><p class="sub">Which lines are cheap and decisive, and which are not.</p><div id="impact" class="bl"></div>
       <div class="why"><div><b>Influence</b> is how much less likely Jordan is to buy if that one step is removed, the way marketers measure a <span class="gl" tabindex="0" data-def="Removal effect: take one touchpoint out of the journey and measure how many conversions are lost.">removal effect</span>.</div></div></div>
     <div class="card lockwrap"><div class="lockover"><a class="lockpill" href="tel:+12139315633"><svg class="lockic" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="1.8"/></svg> Full dollar flow in the briefing</a></div><h3>The flow of every dollar</h3><p class="sub">Budget lines on the left, touchpoints in the middle, Jordan on the right.</p><div id="sankey" class="bl"></div></div>
   </div>
@@ -503,8 +498,7 @@ footer{background:var(--white);border-top:1px solid var(--line);color:var(--mute
       <li><span class="tag as">Assumption</span> Price to practice, units, rep pace, conversion and influence rates are planning inputs. Replace with internal numbers for a final plan.</li>
     </ul></div>
     <div class="card"><h3>How the math works</h3>
-      <p style="margin:0 0 10px;font-size:15px">Plays: brand interest below 80% of the US average is "Educate first", above 115% is "Sell now", otherwise "Build both". Reps go to cities by a demand score (60% toxin searches, 25% brand searches, 15% practice count). Each play splits its city's demand budget differently.</p>
-      <p style="margin:0 0 10px;font-size:15px">Reps needed equals the sales target divided by what one rep's book sells by the deadline. Influence is the drop in conversion if one step is removed; impact per dollar is influence divided by cost.</p>
+      <p style="margin:0 0 10px;font-size:15px">Each city gets a play from how its demand compares to the US. Rep counts come from your sales target and deadline. Each budget line is scored by how much its dollars moved the patient. The full model is shared in the briefing.</p>
       <p style="margin:0;color:var(--muted);font-size:15px">AI is evolving every day. Local AI Registry's dedicated local AI research team is always figuring out the best approach.</p>
     </div>
   </div>
@@ -541,24 +535,24 @@ const M=[
 const NAT={b:165000,nm:165000,l:8100,d:40500,j:18100,dax:27100,x:27100};
 const TREND=[["Nov",8100],["Dec",6600],["Jan",8100],["Feb",8100],["Mar",8100],["Apr",8100],["May",6600],["Jun",5400],["Jul",6600],["Aug",5400],["Sep",6600],["Oct",9900]];
 const K=[
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Los Angeles",mk:"Los Angeles",t:1,lat:33.80,lng:-118.49,know:"",ask:"",u:""},
- {nm:"Dr. Michael H. Gold",rl:"Dermatologist, Nashville",mk:"National",t:1,lat:36.16,lng:-86.78,show:1,know:"US Letybo clinical investigator. Authored the trial analyses Hugel presented at ASDS 2026.",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"National",mk:"National",t:1,lat:36.16,lng:-78.81,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"San Diego",mk:"San Diego",t:1,lat:32.47,lng:-117.41,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"SF Bay Area",mk:"SF Bay Area",t:1,lat:37.77,lng:-122.42,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"New York",mk:"New York",t:2,lat:40.96,lng:-73.76,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"New York",mk:"New York",t:2,lat:40.46,lng:-74.26,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"New York",mk:"New York",t:2,lat:40.71,lng:-74.01,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Washington DC",mk:"Washington DC",t:2,lat:39.16,lng:-76.79,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"SF Bay Area",mk:"SF Bay Area",t:2,lat:37.52,lng:-122.67,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Miami-Ft. Lauderdale",mk:"Miami-Ft. Lauderdale",t:2,lat:25.95,lng:-80.20,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Tampa",mk:"Tampa",t:3,lat:28.20,lng:-82.21,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Houston",mk:"Houston",t:3,lat:29.51,lng:-95.62,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Denver",mk:"Denver",t:3,lat:39.74,lng:-104.99,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"San Diego",mk:"San Diego",t:4,lat:32.97,lng:-116.91,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Chicago",mk:"Chicago",t:4,lat:41.63,lng:-87.88,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"New York",mk:"New York",t:4,lat:40.71,lng:-74.01,know:"",ask:"",u:""},
- {nm:"Dr. Xxxxxx Xxxxxxx",rl:"Los Angeles",mk:"Los Angeles",t:4,lat:34.30,lng:-117.99,know:"",ask:"",u:""}
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:1,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:1,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:1,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:1,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:1,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:2,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:3,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:3,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:3,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:4,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:4,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:4,lat:39.5,lng:-98.35,know:"",ask:"",u:""},
+ {nm:"Dr. Xxxxxx Xxxxxxx",rl:"",mk:"Hidden",t:4,lat:39.5,lng:-98.35,know:"",ask:"",u:""}
 ];
 const TIERN={1:"Letybo faculty",2:"Speaks on Letybo",3:"Offers Letybo",4:"LAIR network"};
 const PLAY={gap:"Educate first",warm:"Sell now",par:"Build both"};
@@ -661,19 +655,6 @@ function draw2D(){
     g.onmousemove=e=>showTip(`<b>${m.n}</b> · ${PLAY[m.st]}<br>${fmt(m.cat)} toxin searches/mo · ${m.idx.toFixed(1)} per 1,000 name ${pn()}<br>${fmt(m.s)} med spas · ${m.on?m.reps+' reps':'Phase 2'}<br><i>Click to swap in or out of the plan</i>`,e);g.onmouseleave=hideTip;g.onclick=()=>toggleMarket(m.n);});
   el.querySelectorAll('.kst').forEach(g=>{const k=K[+g.dataset.i];g.onmousemove=e=>showTip(`<b>${k.nm}</b><br>${k.rl}<br>${TIERN[k.t]}`,e);g.onmouseleave=hideTip;});
 }
-function drawHero(){
-  const el=$('heroMap');if(!statesFC||!window.d3)return;
-  const W=560,H=380,proj=d3.geoAlbersUsa().fitExtent([[20,30],[W-20,H-40]],statesFC),path=d3.geoPath(proj);
-  let s=statesFC.features.map(f=>`<path d="${path(f)}" fill="none" stroke="#C9C2B2" stroke-width=".7"/>`).join('');
-  const on=M.filter(m=>m.on).map(m=>({m,p:proj([m.lng,m.lat])})).filter(o=>o.p);
-  const hub=proj([-86.78,36.16]);
-  on.forEach(({m,p})=>{const mx=(p[0]+hub[0])/2,my=Math.min(p[1],hub[1])-50;s+=`<path d="M${hub[0]},${hub[1]} Q${mx},${my} ${p[0]},${p[1]}" fill="none" stroke="#1F4FE0" stroke-width="1" stroke-opacity=".45"/>`;});
-  on.forEach(({m,p})=>{const r=4+Math.sqrt(m.cat/36600)*10;s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="#fff" stroke="${m.st==='gap'?'#FF5A3C':m.st==='warm'?'#1F4FE0':'#7A8696'}" stroke-width="1.5"/><circle cx="${p[0]}" cy="${p[1]}" r="2" fill="#0B1A2E"/>`;});
-  s+=`<circle cx="${hub[0]}" cy="${hub[1]}" r="5" fill="#0B1A2E"/>`;
-  s+=`<g transform="translate(${W-92} ${H-150})"><g transform="scale(1.7)"><use href="#i-vial" width="48" height="48"/></g></g>`;
-  s+=`<g font-family="Hanken Grotesk" font-size="11" fill="#5B6878"><circle cx="30" cy="${H-22}" r="5" fill="#fff" stroke="#FF5A3C" stroke-width="1.5"/><text x="40" y="${H-18}">Educate first</text><circle cx="130" cy="${H-22}" r="5" fill="#fff" stroke="#1F4FE0" stroke-width="1.5"/><text x="140" y="${H-18}">Sell now</text><circle cx="210" cy="${H-22}" r="5" fill="#fff" stroke="#7A8696" stroke-width="1.5"/><text x="220" y="${H-18}">Build both</text></g>`;
-  el.innerHTML=s;
-}
 function drawTrack(){
   const {H,reps,r,U,P,target}=plan;const W=760,Ht=230,pl=56,pr=16,pt=16,pb=30;
   const pts=[];for(let m=0;m<=H;m++)pts.push(Math.max(0,reps*r*U*P*m*(m-1)/2));
@@ -714,13 +695,13 @@ document.querySelectorAll('.map-ui .btn').forEach(b=>b.onclick=()=>{document.que
 
 /* ===== CASE 2 ===== */
 const T=[
- {id:'ctv',lane:'f',ic:'i-tv',day:'Day 0',b:'Consumer media',t:'Saw a brand spot on streaming TV',f:'8 impressions at $35 per 1,000 ÷ 1 in 250 reached become patients',c:8*.035*250,inf:.06,act:'down',why:'Expensive per patient and weak alone. Hold national TV until education has lifted brand searches in Educate-first cities.'},
- {id:'ig',lane:'f',ic:'i-phone',day:'Day 9',b:'Consumer media',t:"Watched a local creator's post",f:'3 views at $12 per 1,000 ÷ 1 in 400 viewers become patients',c:3*.012*400,inf:.04,act:'keep',why:'Cheap reach. Keep it local and tied to trained clinics so views lead to a booking.'},
- {id:'gs',lane:'f',ic:'i-search',day:'Day 14',b:'Search & AI',t:'Googled the brand vs Botox',f:'$9.01 brand click (real US cost) ÷ 1 in 10 clicks become patients',c:90.1,inf:.08,real:1,act:'down',why:'The costliest line per patient. Defend the brand name only; let AI answers and clinic pages carry comparison questions.'},
+ {id:'ctv',lane:'f',ic:'i-tv',day:'Day 0',b:'Consumer media',t:'Saw a brand spot on streaming TV',f:'8 impressions at $35 per 1,000 ÷ 1 in 250 reached become patients',c:8*.035*250,inf:.06,act:'keep',why:''},
+ {id:'ig',lane:'f',ic:'i-phone',day:'Day 9',b:'Consumer media',t:"Watched a local creator's post",f:'3 views at $12 per 1,000 ÷ 1 in 400 viewers become patients',c:3*.012*400,inf:.04,act:'keep',why:''},
+ {id:'gs',lane:'f',ic:'i-search',day:'Day 14',b:'Search & AI',t:'Googled the brand vs Botox',f:'$9.01 brand click (real US cost) ÷ 1 in 10 clicks become patients',c:90.1,inf:.08,real:1,act:'keep',why:''},
  {id:'ai',lane:'f',ic:'i-target',day:'Behind the counter',b:'Hidden line',t:'Named in the briefing',f:'',c:12.5,inf:.10,act:'Named in the briefing',why:''},
- {id:'coop',lane:'f',ic:'i-pin',day:'Day 16',b:'Practice co-op',t:'Clicked a clinic ad for "botox near me"',f:'$19.51 click (real Dallas cost) × 50% co-op ÷ 1 in 8 clicks book',c:19.51*.5*8,inf:.22,real:1,act:'keep',why:'Second-biggest share of the decision. Focus it on opened clinics in Sell-now cities.'},
- {id:'promo',lane:'f',ic:'i-tag',day:'Day 21',b:'Practice co-op',t:'Booked with "$40 off your first treatment"',f:'$2 per unit price support × 20 units',c:40,inf:.05,act:'down',why:'Only 8.4% of injectable patients say they choose mainly on price. Use offers to remove friction, not to win.'},
- {id:'loyal',lane:'f',ic:'i-cal',day:'Day 130',b:'Patient loyalty',t:'Came back and got her loyalty rebate',f:'$20 rebate, paid only when she returns',c:20,inf:.05,act:'keep',why:'Paid only on return visits, which is where the money is made. Keep.'},
+ {id:'coop',lane:'f',ic:'i-pin',day:'Day 16',b:'Practice co-op',t:'Clicked a clinic ad for "botox near me"',f:'$19.51 click (real Dallas cost) × 50% co-op ÷ 1 in 8 clicks book',c:19.51*.5*8,inf:.22,real:1,act:'keep',why:''},
+ {id:'promo',lane:'f',ic:'i-tag',day:'Day 21',b:'Practice co-op',t:'Booked with "$40 off your first treatment"',f:'$2 per unit price support × 20 units',c:40,inf:.05,act:'keep',why:''},
+ {id:'loyal',lane:'f',ic:'i-cal',day:'Day 130',b:'Patient loyalty',t:'Came back and got her loyalty rebate',f:'$20 rebate, paid only when she returns',c:20,inf:.05,act:'keep',why:''},
  {id:'rep',lane:'b',ic:'i-target',day:'Behind the counter',b:'Hidden line',t:'Named in the briefing',f:'',c:220000/3400,inf:1,gate:1,act:'Named in the briefing',why:''},
  {id:'kol',lane:'b',ic:'i-target',day:'Behind the counter',b:'Hidden line',t:'Named in the briefing',f:'',c:10,inf:.55,act:'Named in the briefing',why:''},
  {id:'kit',lane:'b',ic:'i-target',day:'Behind the counter',b:'Hidden line',t:'Named in the briefing',f:'',c:3,inf:.03,act:'Named in the briefing',why:''}
@@ -736,22 +717,19 @@ const B=t=>`<span class="bl">${t}</span>`;
 const DUM=['Xxxxx xxx xxxxxxx xx xxx xxxxx xxxxxxxx','Xxxxxxx xxxxx xx xxxxxx xxx xxxxx','Xxx xxxxxx xxxxxxxx xxxx xxxxxxx xx xxx','Xxxxx xxxxxxxxx xxx xxxxx xx xxxxxx'];
 function renderRec(on){
   const {budget,H}=plan;
-  const gaps=on.filter(m=>m.st==='gap').sort((a,b)=>b.cat-a.cat),warm=on.filter(m=>m.st==='warm').sort((a,b)=>b.cat-a.cat);
-  const covered=new Set(K.map(k=>k.mk));const holes=on.filter(m=>!covered.has(m.n));
-  $('recTitle').textContent='Sell warm cities. Educate the biggest.';
-  $('recSub').textContent=`${on.length} launch cities and six moves, sized to a ${money(budget)} launch over ${H} months. Amounts and names open in the briefing.`;
+  $('recTitle').textContent='Six moves. One beats every ad.';
+  $('recSub').textContent=`${on.length} launch cities, sized to a ${money(budget)} launch over ${H} months. Which cities, how much and who to call are shared in the briefing.`;
   $('recBud').textContent=money(budget);
-  const parts=[["Sales team","#1F4FE0"]].concat(DEMN.map((n,j)=>[n,DEMC[j]]));const w=[57,11,12,12,8];
-  $('alloc').innerHTML=parts.map((p,i)=>`<div class="row"><span>${p[0]}</span><div class="tr"><i style="width:${w[i]}%;background:${p[1]}" class="bl-soft"></i></div><b class="bl">$0.00M</b></div>`).join('');
-  const ev=a=>`<div class="ev">${a.map(x=>`<span class="evd">${x}</span>`).join('')}</div>`;
-  const mv=[];
-  if(warm.length)mv.push({ic:'i-rep',h:`Put reps in ${list(warm.slice(0,4).map(m=>m.n))} first.`,p:`Patients there already search for ${pn()} by name well above the US rate. Reps close faster where demand is already pulling.`,e:warm.slice(0,2).map(m=>`${m.n}: <b>${m.idx.toFixed(1)}</b> per 1,000 vs US ${natIdx.toFixed(1)}`),v:B('$0.0M'),l:'Rep count in briefing'});
-  if(gaps.length)mv.push({ic:'i-target',h:`Educate first in ${list(gaps.slice(0,3).map(m=>m.n))}.`,p:`The biggest toxin crowds in the plan, but few people there name ${pn()}. Reps alone will stall here.`,e:[`New York: <b>36,600</b> toxin searches a month`,`only <b>13.1</b> per 1,000 name the brand`],v:B('$0.00M'),l:'Split in briefing'});
-  mv.push({ic:'i-coins',h:`Fund the one line that beats every ad.`,p:`About $10 per patient, and it outweighed streaming TV, social and search ads combined in our patient trace. ${B(DUM[0]+' '+DUM[1])}`,e:[`<b>~$10</b> per patient`,B('xx% of the decision')],v:B('$0.00M'),l:'Named in briefing'});
-  mv.push({ic:'i-pin',h:`Co-fund each new clinic's local search.`,p:`Patients choose a clinic before a brand. ${B(DUM[2]+' '+DUM[3])}`,e:[`Clicks cost <b>$${Math.min(...on.map(m=>m.cpc)).toFixed(0)}</b> to <b>$${Math.max(...on.map(m=>m.cpc)).toFixed(0)}</b> in launch cities`],v:B('$0.00M'),l:'Clinic co-op'});
-  mv.push({ic:'i-chat',h:`Own the AI answer patients ask.`,p:`Patients now ask ChatGPT whether a newer toxin is safe and who offers it nearby. ${B(DUM[1]+' '+DUM[0])}`,e:[`Brand searches hit <b>9,900</b> in Oct`],v:B('$000K'),l:'Search and AI'});
-  if(holes.length)mv.push({ic:'i-people',h:`Fill ${holes.length} cities with no trainer.`,p:`${list(holes.map(m=>m.n))} have no doctor publicly tied to ${pn()} yet. ${B(DUM[3])}`,e:holes.slice(0,2).map(m=>`${m.n}: <b>${fmt(m.s)}</b> med spas, <b>0</b> named KOLs`),v:holes.length+' seats',l:'Who to recruit: in briefing'});
-  $('moves').innerHTML=mv.map((m,ix)=>`<div class="move"><div class="ic"><svg width="38" height="38"><use href="#${m.ic}"/></svg></div><div><h4><span class="n">${String(ix+1).padStart(2,'0')}</span>${m.h}</h4><p>${m.p}</p>${ev(m.e)}</div><div class="amt"><div class="v">${m.v}</div><div class="l">${m.l}</div></div></div>`).join('');
+  const parts=[["Sales team","#1F4FE0"]].concat(DEMN.map((n,j)=>[n,DEMC[j]]));
+  $('alloc').innerHTML=parts.map(p=>`<div class="row"><span>${p[0]}</span><div class="tr bl"><i style="width:40%;background:${p[1]}"></i></div><b class="bl">$0.00M</b></div>`).join('');
+  const mv=[
+   {ic:'i-rep',h:'Where reps should go first',p:`Some cities already search for ${pn()} by name. ${B(DUM[0])}`},
+   {ic:'i-target',h:'Where to educate before selling',p:`The biggest toxin crowds are not always the warmest. ${B(DUM[1])}`},
+   {ic:'i-coins',h:'The one line that beats every ad',p:`It costs less per patient than any ad. ${B(DUM[2]+' '+DUM[0])}`},
+   {ic:'i-pin',h:'How to fund clinic search',p:`Patients choose a clinic before a brand. ${B(DUM[3]+' '+DUM[1])}`},
+   {ic:'i-chat',h:'Owning the AI answer',p:`Patients now ask ChatGPT about newer toxins. ${B(DUM[0]+' '+DUM[2])}`},
+   {ic:'i-people',h:'Cities with nobody to train injectors',p:`${B(DUM[1]+' '+DUM[3])}`}];
+  $('moves').innerHTML=mv.map((m,ix)=>`<div class="move"><div class="ic"><svg width="38" height="38"><use href="#${m.ic}"/></svg></div><div><h4><span class="n">${String(ix+1).padStart(2,'0')}</span>${m.h}</h4><p>${m.p}</p><div class="ev bl"><span class="evd">Xxxxxxx: <b>00.0</b> xxx</span><span class="evd">Xxxxx <b>0,000</b></span></div></div><div class="amt"><div class="v">${B('$0.00M')}</div><div class="l">In the briefing</div></div></div>`).join('');
 }
 function renderPlaybooks(on){
   const card=(m,isOpen)=>{const ks=kolsIn(m.n);const mx=Math.max(...M.map(x=>x.idx));
@@ -759,22 +737,22 @@ function renderPlaybooks(on){
     const doL=isOpen?(m.st==='gap'?[`Train local injectors before reps scale.`,`Lead with consumer education and KOL content.`,B(DUM[2])]:[`Put reps in first and open the busiest clinics.`,`Co-fund their local search so demand lands in your accounts.`,B(DUM[3])]):DUM.slice(0,3);
     const body=`<div class="pb-stats"><div><b class="${isOpen?'':'bl'}">${isOpen?m.reps:'0'}</b><span>reps</span></div><div><b class="bl">$000K</b><span>demand budget</span></div><div><b class="${isOpen?'':'bl'}">${isOpen?fmt(Math.round(m.reps*V('pace')*V('months'))):'000'}</b><span>clinics to open</span></div><div><b>${ks.length}</b><span>named KOLs</span></div></div>
     <div class="pb-body">
-      <div><h5>Brand interest vs US average</h5><div class="meter"><i style="width:${m.idx/mx*100}%;background:${m.st==='gap'?'#FF5A3C':m.st==='warm'?'#1F4FE0':'#7A8696'}"></i><u style="left:${natIdx/mx*100}%"></u></div><div style="display:flex;justify-content:space-between;font-size:11.5px;color:#5B6878"><span>${isOpen?m.idx.toFixed(1)+' per 1,000':'&nbsp;'}</span><span>US ${natIdx.toFixed(1)}</span></div></div>
+      <div><h5>Brand interest vs US average</h5><div class="meter"><i style="width:${m.idx/mx*100}%;background:#9AA5B4"></i><u style="left:${natIdx/mx*100}%"></u></div><div style="display:flex;justify-content:space-between;font-size:11.5px;color:#5B6878"><span>${isOpen?m.idx.toFixed(1)+' per 1,000':'&nbsp;'}</span><span>US ${natIdx.toFixed(1)}</span></div></div>
       <div class="${isOpen?'':'bl'}"><h5>Why</h5><ul>${whyL.map(x=>`<li>${x}</li>`).join('')}</ul></div>
       <div class="${isOpen?'':'bl'}"><h5>Do this</h5><ul>${doL.map(x=>`<li>${x}</li>`).join('')}</ul></div>
       <div><h5>Call</h5>${ks.length?`<div class="who">${ks.map(k=>`<div class="p"><span class="d bl">XX</span><div><b class="bl">Dr. Xxxxxx Xxxxxxx</b> <span class="badge b${k.t}" style="margin:0">${TIERN[k.t]}</span><br><span class="bl" style="color:#5B6878">${DUM[0]}</span></div></div>`).join('')}</div>`:`<div class="seatline"><b>Open seat.</b> No doctor here is publicly tied to ${pn()} yet.</div>`}</div>
     </div>`;
-    return `<div class="pb ${isOpen?'':'lockwrap'}">${isOpen?'':`<div class="lockover"><a class="lockpill" href="${BOOKURL}">${LK} ${m.n} play in the briefing</a></div>`}<div class="pb-top"><div><div class="rk">#${m.rank} by demand score</div><div class="city">${m.n}</div></div><span class="play ${m.st}">${PLAY[m.st]}</span></div>${isOpen?body:`<div class="bl" aria-hidden="true">${body}</div>`}</div>`;};
-  $('playbooks').innerHTML=on.map((m,i)=>card(m,i<2)).join('');
+    return `<div class="pb ${isOpen?'':'lockwrap'}">${isOpen?'':`<div class="lockover"><a class="lockpill" href="${BOOKURL}">${LK} This city's play: in the briefing</a></div>`}<div class="pb-top"><div><div class="rk">#${m.rank} by demand score</div><div class="city">${m.n}</div></div><span class="play par bl">Xxxx xxx</span></div>${isOpen?body:`<div class="bl" aria-hidden="true">${body}</div>`}</div>`;};
+  $('playbooks').innerHTML=on.map(m=>card(m,false)).join('');
 }
 function renderKOLs(on){
   const f=$('kfilters');f.innerHTML=[0,1,2,3,4].map(t=>`<button class="fchip ${kf===t?'on':''}" data-t="${t}">${t?TIERN[t]:'All'}</button>`).join('');
   f.querySelectorAll('button').forEach(b=>b.onclick=()=>{kf=+b.dataset.t;renderKOLs(M.filter(m=>m.on));});
   const pri=k=>{const m=M.find(x=>x.n===k.mk);const city=k.mk==='National'?1.2:(m&&m.on?(19-m.rank)/18:0.1);const g=m&&m.st==='gap'?.15:0;return ({1:1,2:.7,3:.5,4:.45})[k.t]*(.6+city+g);};
-  const ks=[...K].filter(k=>!kf||k.t===kf).sort((a,b)=>(b.show||0)-(a.show||0)||pri(b)-pri(a));
-  $('klist').innerHTML=ks.map((k,ix)=>{const s=k.show;
+  const ks=[...K].filter(k=>!kf||k.t===kf).sort((a,b)=>a.t-b.t);
+  $('klist').innerHTML=ks.map((k,ix)=>{const s=0;
     return `<div class="kl ${ix<5?'p1':''}"><div class="pr">${ix+1}</div>
-    <div><div class="nm ${s?'':'bl'}">${s?k.nm:'Dr. Xxxxxx Xxxxxxx'}</div><div class="rl">${s?k.rl:(k.mk==='National'?'National reach':k.mk)}</div><span class="badge b${k.t}">${TIERN[k.t]}</span></div>
+    <div><div class="nm ${s?'':'bl'}">${s?k.nm:'Dr. Xxxxxx Xxxxxxx'}</div><div class="rl bl">Xxxxxxxxxx, Xxxxxx</div><span class="badge b${k.t}">${TIERN[k.t]}</span></div>
     <div class="c3"><div class="lab">What we know</div><div class="tx ${s?'':'bl'}">${s?k.know:DUM[ix%4]+' '+DUM[(ix+1)%4]}</div></div>
     <div class="c4"><div class="lab">The ask</div><div class="tx bl"><b>${DUM[(ix+2)%4]}</b></div></div></div>`;}).join('');
 }
@@ -782,8 +760,7 @@ function init3D(){const el=$('map3d');
   if(!window.deck||!statesFC){el.innerHTML='<p class="note" style="padding:60px 20px">3D view needs WebGL.</p>';return;}
   try{deckgl=new deck.Deck({parent:el,initialViewState:vs,controller:true,layers:layers3D(),style:{position:'absolute',inset:0},onViewStateChange:({viewState})=>{vs=viewState;},
     getTooltip:({object,layer})=>{if(!object)return null;const st='background:#0B1A2E;color:#fff;font:13px Hanken Grotesk;padding:10px 12px;border-radius:10px;max-width:260px';
-      if(layer.id==='kols')return {html:`<b>Named KOL</b><br>${TIERN[object.t]}<br>Name in the briefing`,style:{cssText:st}};
-      return {html:`<b>${object.n}</b> · ${PLAY[object.st]}<br>${fmt(object.cat)} toxin searches/mo<br>${object.idx.toFixed(1)} per 1,000 name ${pn()}`,style:{cssText:st}};}});}
+      return {html:`<b>${object.n}</b><br>${fmt(object.cat)} toxin searches a month<br>Play for this city: in the briefing`,style:{cssText:st}};}});}
   catch(e){el.innerHTML='<p class="note" style="padding:60px 20px">3D view needs WebGL.</p>';deckgl=null;}
   if(innerWidth<700)fly({zoom:2.5});}
 function draw2D(){
@@ -793,44 +770,52 @@ function draw2D(){
   let s=`<svg viewBox="0 0 ${W} ${H}">`+statesFC.features.map(f=>`<path d="${path(f)}" fill="#FBFAF6" stroke="#CFC8B8" stroke-width=".7"/>`).join('');
   const pts=M.map(m=>({m,p:proj([m.lng,m.lat])})).filter(o=>o.p).sort((a,b)=>(b.m.reps||0)-(a.m.reps||0));
   pts.forEach(({m,p})=>{const rad=m.on?9+Math.sqrt(m.reps/maxR)*20:6;
-    if(m.on&&!covered.has(m.n))s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${rad+7}" fill="none" stroke="#FF5A3C" stroke-width="1.5" stroke-dasharray="3 3"/>`;
+    if(false)s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${rad+7}" fill="none" stroke="#FF5A3C" stroke-width="1.5" stroke-dasharray="3 3"/>`;
     s+=`<circle class="mk2" data-n="${m.n}" cx="${p[0]}" cy="${p[1]}" r="${rad}" fill="${m.on?'#1F4FE0':'#fff'}" fill-opacity="${m.on?.85:1}" stroke="${m.on?'#fff':'#9AA5B4'}" stroke-width="1.5"/>`;});
-  pts.filter(o=>o.m.on).forEach(({m,p})=>{const rad=9+Math.sqrt(m.reps/maxR)*20;s+=`<text x="${p[0]+rad+5}" y="${p[1]+4}" font-family="Hanken Grotesk" font-weight="700" font-size="12" fill="#0B1A2E" style="paint-order:stroke;stroke:#FBFAF6;stroke-width:3px">${m.n}</text>`;});
+  pts.filter(()=>false).forEach(({m,p})=>{const rad=0;s+=`<text x="${p[0]+rad+5}" y="${p[1]+4}" font-family="Hanken Grotesk" font-weight="700" font-size="12" fill="#0B1A2E" style="paint-order:stroke;stroke:#FBFAF6;stroke-width:3px">${m.n}</text>`;});
   K.forEach((k,ix)=>{const p=proj([k.lng,k.lat]);if(!p)return;s+=`<path transform="translate(${p[0]-10+(ix%3)*4} ${p[1]-18})" d="M0-7l2 4.5 5 .7-3.6 3.4.9 5-4.3-2.3-4.3 2.3.9-5L-7-1.8l5-.7z" fill="#fff" stroke="#0B1A2E" stroke-width="1.2"/>`;});
   el.innerHTML=s+'</svg>';
-  el.querySelectorAll('.mk2').forEach(g=>{const m=M.find(x=>x.n===g.dataset.n);g.onmousemove=e=>showTip(`<b>${m.n}</b> · ${PLAY[m.st]}<br>${fmt(m.cat)} toxin searches/mo<br>${fmt(m.s)} med spas`,e);g.onmouseleave=hideTip;});
+  el.querySelectorAll('.mk2').forEach(g=>{const m=M.find(x=>x.n===g.dataset.n);g.onmousemove=e=>showTip(`<b>${m.n}</b><br>In the briefing`,e);g.onmouseleave=hideTip;});
 }
 function renderPeople(on){
-  const order=[...on].sort((a,b)=>({warm:0,par:1,gap:2}[a.st]-{warm:0,par:1,gap:2}[b.st])||b.score-a.score);
-  $('hire').innerHTML=order.filter(m=>m.reps).map((m,i)=>`<li><div><b>${i<3?m.n:'<span class="bl">Xxxxxxx</span>'}</b><span class="ws ${i<3?'':'bl'}">${m.st==='warm'?'Patients already ask; reps close fastest here.':m.st==='gap'?'Hire after training and awareness are running.':'Hire alongside a local trainer.'}</span></div><span class="rr bl">0 reps</span></li>`).join('');
-  const covered=new Set(K.map(k=>k.mk));const holes=on.filter(m=>!covered.has(m.n));
-  $('gaps').innerHTML=holes.map(m=>`<span style="font-size:12.5px;font-weight:700;border:1.5px dashed #F1A18F;color:#B5341A;border-radius:999px;padding:4px 10px">${m.n} · ${fmt(m.s)} clinics</span>`).join('');
+  $('hire').innerHTML=on.filter(m=>m.reps).map(()=>`<li><div><b class="bl">Xxxxxxx</b><span class="ws bl">Xxxxxx xxxxx xxxxxxx xxxx xxxxx</span></div><span class="rr bl">0 reps</span></li>`).join('');
+  $('gaps').innerHTML=[0,1,2].map(()=>`<span class="bl" style="font-size:12.5px;font-weight:700;border:1.5px dashed #F1A18F;color:#B5341A;border-radius:999px;padding:4px 10px">Xxxxxxx · 000 clinics</span>`).join('');
 }
-const ACT={up:'Fund more',keep:'Keep',down:'Cut back',gate:'Must have'};
+const ACT={up:'In briefing',keep:'In briefing',down:'In briefing',gate:'In briefing'};
 function renderCase2(){
   const act=T,pers=act.filter(s=>!s.gate);pers.forEach(s=>s.ipd=s.inf/s.c);
   const hid=s=>s.b==='Hidden line';
-  const card=s=>`<div class="step ${s.lane==='b'?'behind':''}"><svg width="34" height="34"><use href="#${s.ic}"/></svg><div class="day">${s.day}</div><div class="t">${s.t}</div><div class="d">$${s.c.toFixed(s.c<10?2:0)}</div><div class="b">${s.b}${s.real?' · <span class="tag da">Data</span>':''}</div><div class="inf"><i style="width:${s.inf/.55*100}%"></i></div><div class="b">${Math.round(s.inf*100)}% of the decision</div></div>`;
+  const card=s=>`<div class="step ${s.lane==='b'?'behind':''}"><svg width="34" height="34"><use href="#${s.ic}"/></svg><div class="day">${s.day}</div><div class="t">${s.t}</div><div class="d bl">$00</div><div class="b">${s.b}</div><div class="inf bl"><i style="width:30%"></i></div><div class="b bl">00% of the decision</div></div>`;
   $('laneFront').innerHTML=T.filter(s=>s.lane==='f').map(s=>hid(s)?`<div class="step lockwrap"><div class="lockover" style="border-radius:14px"><span class="lockpill" style="padding:6px 10px;font-size:12px">${LK} Briefing</span></div><div class="bl" aria-hidden="true"><div class="t">Xxxxx xxxxxx xx xxxxx</div><div class="d">$00</div><div class="b">Xxxxxx</div></div></div>`:card(s)).join('');
   $('laneBack').innerHTML=T.filter(s=>s.lane==='b').map(s=>`<div class="step behind lockwrap"><div class="lockover" style="border-radius:14px"><a class="lockpill" href="${BOOKURL}">${LK} Revealed in the briefing</a></div><div class="bl" aria-hidden="true"><svg width="34" height="34"><use href="#i-target"/></svg><div class="day">Xxxxx 0</div><div class="t">Xxxxxx xxx xxxxx xxxxx xx xxx xxxx</div><div class="d">$00</div><div class="b">Xxxxxx xxxx</div></div></div>`).join('');
   const cac=sum(act,s=>s.c);
   $('e-cac').textContent='$'+Math.round(cac);
   $('e-first').innerHTML=B('$000');$('e-ltv').innerHTML=B('$000');$('e-pay').innerHTML=B('Visit 0');
   const all=[...T].map(s=>({...s,ipd:s.gate?Infinity:s.inf/s.c})).sort((a,b)=>b.ipd-a.ipd);
-  $('moneyRows').innerHTML=all.map(s=>{const x=hid(s);return `<div class="mr"><svg width="34" height="34"><use href="#${x?'i-target':s.ic}"/></svg><div>${x?`<b class="bl">Xxxxxx xxxxx xxxx</b><div style="font-size:12px;color:#5B6878">Named in the briefing</div>`:`<b>${s.t}</b><div style="font-size:12px;color:#5B6878">${s.b}</div>`}</div><div style="font:800 16px Bricolage Grotesque" class="${x?'bl':''}">${x?'$00':'$'+s.c.toFixed(0)}</div><div class="c4">${x?'<div class="infbar bl"><i style="width:60%"></i></div>':`<div class="infbar"><i style="width:${s.inf/.55*100}%"></i></div><span style="font-size:12px;color:#5B6878">${Math.round(s.inf*100)}% of the decision</span>`}</div><span class="act ${x?'':s.act}" style="${x?'background:#F0ECE3;color:#56606C':''}">${x?'In briefing':ACT[s.act]}</span><div class="c6 ${x?'bl':''}" style="font-size:13px;color:#2B3A4E">${x?DUM[1]+' '+DUM[2]:s.why}</div></div>`;}).join('');
+  $('moneyRows').innerHTML=all.map(s=>{const x=true;return `<div class="mr"><svg width="34" height="34"><use href="#${x?'i-target':s.ic}"/></svg><div>${x?`<b class="bl">Xxxxxx xxxxx xxxx</b><div style="font-size:12px;color:#5B6878">Named in the briefing</div>`:`<b>${s.t}</b><div style="font-size:12px;color:#5B6878">${s.b}</div>`}</div><div style="font:800 16px Bricolage Grotesque" class="${x?'bl':''}">${x?'$00':'$'+s.c.toFixed(0)}</div><div class="c4">${x?'<div class="infbar bl"><i style="width:60%"></i></div>':`<div class="infbar"><i style="width:${s.inf/.55*100}%"></i></div><span style="font-size:12px;color:#5B6878">${Math.round(s.inf*100)}% of the decision</span>`}</div><span class="act ${x?'':s.act}" style="${x?'background:#F0ECE3;color:#56606C':''}">${x?'In briefing':ACT[s.act]}</span><div class="c6 ${x?'bl':''}" style="font-size:13px;color:#2B3A4E">${x?DUM[1]+' '+DUM[2]:s.why}</div></div>`;}).join('');
   drawImpact(pers);drawSankey();
 }
 function drawImpact(pers){const el=$('impact');if(!window.d3)return;const W=560,H=340,ml=48,mr=20,mt=20,mb=44;
   const x=d3.scaleLog().domain([2,150]).range([ml,W-mr]),y=d3.scaleLinear().domain([0,.62]).range([H-mb,mt]),r=d3.scaleSqrt().domain([0,d3.max(pers,d=>d.ipd)||1]).range([5,26]);
-  let s=`<svg viewBox="0 0 ${W} ${H}"><rect x="${ml}" y="${mt}" width="${x(20)-ml}" height="${y(.2)-mt}" fill="none" stroke="#1E8F5A" stroke-dasharray="4 4" rx="8"/><text x="${ml+8}" y="${mt+16}" font-size="11" font-weight="700" fill="#1E8F5A">Fund more here</text><text x="${W-mr-6}" y="${H-mb-8}" text-anchor="end" font-size="11" font-weight="700" fill="#B5341A">Cut back here</text>`;
+  let s=`<svg viewBox="0 0 ${W} ${H}"><rect x="${ml}" y="${mt}" width="${x(20)-ml}" height="${y(.2)-mt}" fill="none" stroke="#1E8F5A" stroke-dasharray="4 4" rx="8"/>`;
   [2,5,10,25,50,100].forEach(v=>s+=`<line x1="${x(v)}" x2="${x(v)}" y1="${mt}" y2="${H-mb}" stroke="#F0ECE3"/><text x="${x(v)}" y="${H-mb+16}" text-anchor="middle" font-size="11" fill="#5B6878">$${v}</text>`);
   [0,.2,.4,.6].forEach(v=>s+=`<line x1="${ml}" x2="${W-mr}" y1="${y(v)}" y2="${y(v)}" stroke="#F0ECE3"/><text x="${ml-6}" y="${y(v)+4}" text-anchor="end" font-size="11" fill="#5B6878">${v*100}%</text>`);
   s+=`<text x="${(ml+W-mr)/2}" y="${H-6}" text-anchor="middle" font-size="12" font-weight="700" fill="#0B1A2E">Cost per new patient</text><text transform="translate(12 ${(mt+H-mb)/2}) rotate(-90)" text-anchor="middle" font-size="12" font-weight="700" fill="#0B1A2E">Influence on her decision</text>`;
-  const short={ctv:'Streaming TV',ig:'Creator post',gs:'Brand search ad',coop:'Clinic "near me" ad',promo:'$40 intro offer',loyal:'Loyalty rebate'};
+  const short={};
   [...pers].sort((a,b)=>a.ipd-b.ipd).forEach(d=>{const cx=x(Math.max(2,Math.min(150,d.c))),cy=y(d.inf),dy={loyal:16,promo:-14,ctv:18,gs:-12,ig:16}[d.id]||0,lf=cx>W*.62,rr=r(d.ipd),hidden=!short[d.id];
     s+=`<circle cx="${cx}" cy="${cy}" r="${rr}" fill="#fff" stroke="${hidden?'#0B1A2E':BC[d.b]}" stroke-width="${hidden?2:1.5}" ${hidden?'stroke-dasharray="3 3"':''}/>`+(hidden?`<text x="${cx}" y="${cy+5}" text-anchor="middle" font-size="14" font-weight="800" fill="#0B1A2E">?</text>`:`<circle cx="${cx}" cy="${cy}" r="2.5" fill="${BC[d.b]}"/><text x="${lf?cx-rr-5:cx+rr+5}" y="${cy+4+dy}" text-anchor="${lf?'end':'start'}" font-size="11.5" font-weight="600" fill="#0B1A2E">${short[d.id]}</text>`);});
   el.innerHTML=s+'</svg>';}
 function drawSankey(){$('sankey').innerHTML='<svg viewBox="0 0 520 300" style="width:100%"><g fill="#C8CFDA"><rect x="110" y="20" width="8" height="60"/><rect x="110" y="100" width="8" height="70"/><rect x="110" y="190" width="8" height="90"/><rect x="300" y="30" width="8" height="240"/><rect x="460" y="60" width="8" height="180"/></g><g fill="none" stroke="#C8CFDA" stroke-opacity=".6"><path d="M118 50C200 50 220 80 300 80" stroke-width="40"/><path d="M118 135C200 135 220 150 300 150" stroke-width="50"/><path d="M118 235C200 235 220 230 300 230" stroke-width="60"/><path d="M308 150C380 150 400 150 460 150" stroke-width="150"/></g></svg>';}
+
+COL.gap=[31,79,224];COL.warm=[31,79,224];COL.par=[31,79,224];
+const _layers3D=layers3D;layers3D=function(){return _layers3D().filter(l=>l.id!=='kols');};
+function drawHero(){
+  const el=$('heroMap');if(!el||!statesFC||!window.d3)return;
+  const W=560,H=380,proj=d3.geoAlbersUsa().fitExtent([[20,30],[W-20,H-40]],statesFC),path=d3.geoPath(proj);
+  let s=statesFC.features.map(f=>`<path d="${path(f)}" fill="none" stroke="#C9C2B2" stroke-width=".7"/>`).join('');
+  M.map(m=>({m,p:proj([m.lng,m.lat])})).filter(o=>o.p).forEach(({m,p})=>{const r=4+Math.sqrt(m.cat/36600)*10;s+=`<circle cx="${p[0]}" cy="${p[1]}" r="${r}" fill="#fff" stroke="#1F4FE0" stroke-width="1.5"/><circle cx="${p[0]}" cy="${p[1]}" r="2" fill="#0B1A2E"/>`;});
+  el.innerHTML=s;
+}
 
 render();
 fetch('states.json').then(r=>r.json()).then(us=>{statesFC=topojson.feature(us,us.objects.states);statesFC.features=statesFC.features.filter(f=>!['02','15','72','60','66','69','78'].includes(f.id));init3D();drawHero();draw2D();}).catch(()=>init3D());
