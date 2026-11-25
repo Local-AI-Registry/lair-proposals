@@ -259,11 +259,11 @@ em{font-style:italic}
 .xc{display:flex;flex-direction:column;gap:12px}
 .x{position:relative;border-radius:var(--r);overflow:hidden;color:#fff;min-height:110px;transition:min-height .6s cubic-bezier(.6,.05,.25,1),flex .6s cubic-bezier(.6,.05,.25,1);background:var(--inknavy)}
 .x img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
-.x::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,.25),rgba(14,27,58,.9) 80%)}
+.x::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(14,27,58,0) 35%,rgba(14,27,58,.62) 62%,rgba(14,27,58,.92) 100%)}
 .x-btn{position:relative;z-index:2;width:100%;min-height:110px;display:flex;align-items:flex-end;justify-content:space-between;gap:12px;padding:22px 24px;background:none;border:0;color:#fff;text-align:left;cursor:pointer;font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.1}
 .x-btn::after{content:"+";font-family:var(--sans);font-size:28px;line-height:1}
 .x.on .x-btn::after{content:"\2212"}
-.x .more{position:relative;z-index:2;padding:0 24px 26px;display:none}
+.x .more{position:relative;z-index:2;padding:0 24px 26px;display:none;text-shadow:0 1px 12px rgba(14,27,58,.5)}
 .x.on .more{display:block}
 .x .more p{margin-bottom:18px;max-width:460px}
 .x.on{min-height:380px;display:flex;flex-direction:column;justify-content:flex-end}
@@ -273,7 +273,7 @@ em{font-style:italic}
   .x{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-end}
   .x.on{flex:3.2;min-height:0}
   .x-btn{min-height:0;font-size:19px;padding:22px 14px;overflow-wrap:anywhere}
-  .x.on .x-btn{font-size:36px}
+  .x.on .x-btn{font-size:36px;padding:22px 24px 14px}
   .x-btn::after{display:none}
 }
 
