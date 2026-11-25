@@ -398,7 +398,8 @@ html.paused .marquee ul{animation-play-state:paused}
 @media (min-width:900px){
   .vcardband{min-height:clamp(620px,90vh,860px);display:flex;align-items:center;padding:80px 0}
   .vcardband .bgv{position:absolute;height:100%}
-  .vcard{max-width:540px;margin:0 0 0 max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)));padding:48px 44px}
+  .vcardband .bgv{transform:scaleX(-1)}
+  .vcard{max-width:620px;margin:0 0 0 max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)));padding:48px 44px}
 }
 #vdlg{border:0;padding:0;background:transparent;width:min(92vw,1100px);max-width:none;overflow:visible;margin:auto}
 #vdlg::backdrop{background:rgba(8,14,30,.88)}
