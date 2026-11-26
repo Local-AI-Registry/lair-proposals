@@ -384,6 +384,7 @@ html.paused .marquee ul{animation-play-state:paused}
 .wcard .lbl{position:absolute;z-index:2;left:26px;right:26px;bottom:22px}
 .wcard small{display:block;font:700 14px var(--sans);letter-spacing:.5px;margin-bottom:4px}
 .wcard b{display:block;font-family:var(--serif);font-weight:500;font-size:clamp(26px,2.6vw,34px);line-height:1.1}
+a.wcard{text-decoration:none}
 .wcard:focus-visible{outline:3px solid var(--navy);outline-offset:4px}
 .vband{position:relative;min-height:clamp(460px,78vh,760px);display:grid;place-items:center;text-align:center;color:#fff;overflow:hidden;padding:90px var(--pad);background:var(--inknavy)}
 .vband::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at center,rgba(14,27,58,.62),rgba(14,27,58,.45) 70%)}
@@ -397,8 +398,7 @@ html.paused .marquee ul{animation-play-state:paused}
 .vcard p{color:var(--muted);margin-bottom:14px}
 @media (min-width:900px){
   .vcardband{min-height:clamp(620px,90vh,860px);display:flex;align-items:center;padding:80px 0}
-  .vcardband .bgv{position:absolute;height:100%}
-  .vcardband .bgv{transform:scaleX(-1)}
+  .vcardband .bgv{position:absolute;top:0;bottom:0;right:0;left:auto;width:60%;height:100%}
   .vcard{max-width:620px;margin:0 0 0 max(var(--pad),calc((100vw - var(--wrap))/2 + var(--pad)));padding:48px 44px}
 }
 #vdlg{border:0;padding:0;background:transparent;width:min(92vw,1100px);max-width:none;overflow:visible;margin:auto}
