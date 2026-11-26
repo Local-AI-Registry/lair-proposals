@@ -64,7 +64,9 @@ On stage and on screen
 
 ## As seen on stage _and  screen_
 
-WatchAmerica's favorite dermatologist WatchCelebrities on Dr. Tess Cardi B * Kim Kardashian * Paula Abdul * Julian Lennon [ The Hollywood Reporter * 2026 The 49 Best Cosmetic Doctors in America Read the list ](https://www.hollywoodreporter.com/lists/best-cosmetic-doctors-and-aesthetic-gurus-in-america-2026/)
+WatchAmerica's favorite dermatologist WatchCelebrities on Dr. Tess Cardi B * Kim Kardashian * Paula Abdul * Julian Lennon
+
+[Entertainment TonightLook like your best self, not someone elseRead the feature](https://www.etonline.com/celebrity-dermatologist-dr-tess-mauricio-wants-you-to-look-like-your-best-self-not-someone-else)[PBL Magazine * UK * 2026From Hollywood to Harley StreetRead the article](https://www.pblmagazine.co.uk/news/from-hollywood-to-harley-street-the-us-skincare-trends-uk-clinics-should-watch-out-for)[The Hollywood Reporter * 2026The 49 Best Cosmetic Doctors in AmericaRead the list](https://www.hollywoodreporter.com/lists/best-cosmetic-doctors-and-aesthetic-gurus-in-america-2026/)
 
 Our Signature Treatment
 
